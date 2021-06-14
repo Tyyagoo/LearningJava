@@ -1,11 +1,11 @@
 type: choice
 is_multiple_choice: true
 options:
-- text: Andrew
 - text: Mary
 - text: John
-- text: Alexander
 - text: Emily
+- text: Alexander
+- text: Andrew
 - text: Olivia
 message_correct: Congratulations!
 message_incorrect: Incorrect solution
@@ -21,6 +21,13 @@ files:
       }
     }
   learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Correct solution
+  time: Mon, 14 Jun 2021 20:40:06 UTC
 record: -1
+selected_options:
+- 0
+- 1
+- 3
 custom_name: Quiz

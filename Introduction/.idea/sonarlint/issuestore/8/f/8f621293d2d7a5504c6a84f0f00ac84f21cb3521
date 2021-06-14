@@ -1,0 +1,9 @@
+
+S
+java:S3518"7Make sure "n" can't be zero before doing this division.(‰òŒe8ˆò³Ú /
+X
+java:S1854"<Remove this useless assignment to local variable "quantity".(‰òŒe8ƒæ´Ú /
+Z	java:S106"9Replace this use of System.out or System.err by a logger.(§¼ð¤üÿÿÿÿ8“ò³Ú /
+o	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(©¸™üÿÿÿÿ8“ò³Ú /
+I
+java:S1481"-Remove this unused "quantity" local variable.(‰òŒe8˜æ´Ú /

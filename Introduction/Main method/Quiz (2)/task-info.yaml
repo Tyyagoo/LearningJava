@@ -20,6 +20,13 @@ files:
       }
     }
   learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Correct solution
+  time: Mon, 14 Jun 2021 15:11:41 UTC
 record: -1
+selected_options:
+- 1
+- 2
+- 4
 custom_name: Quiz

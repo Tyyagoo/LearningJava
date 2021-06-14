@@ -18,6 +18,11 @@ files:
       }
     }
   learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Correct solution
+  time: Mon, 14 Jun 2021 21:40:45 UTC
 record: -1
+selected_options:
+- 2
 custom_name: Quiz
