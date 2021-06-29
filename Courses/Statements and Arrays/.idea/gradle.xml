@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="delegatedBuild" value="false" />
+        <option name="distributionType" value="WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Array/Programming" />
+            <option value="$PROJECT_DIR$/Array/Programming (1)" />
+            <option value="$PROJECT_DIR$/Array/Programming (2)" />
+            <option value="$PROJECT_DIR$/Array/Programming (3)" />
+            <option value="$PROJECT_DIR$/Array/Quiz" />
+            <option value="$PROJECT_DIR$/Array/Theory" />
+            <option value="$PROJECT_DIR$/Array/Theory (1)" />
+            <option value="$PROJECT_DIR$/Boxing/Quiz" />
+            <option value="$PROJECT_DIR$/Boxing/Quiz (1)" />
+            <option value="$PROJECT_DIR$/Boxing/Quiz (2)" />
+            <option value="$PROJECT_DIR$/Boxing/Quiz (3)" />
+            <option value="$PROJECT_DIR$/Boxing/Theory" />
+            <option value="$PROJECT_DIR$/Boxing/Theory (1)" />
+            <option value="$PROJECT_DIR$/Branching statement/Programming" />
+            <option value="$PROJECT_DIR$/Branching statement/Quiz" />
+            <option value="$PROJECT_DIR$/Branching statement/Quiz (1)" />
+            <option value="$PROJECT_DIR$/Branching statement/Quiz (2)" />
+            <option value="$PROJECT_DIR$/Branching statement/Theory" />
+            <option value="$PROJECT_DIR$/Conditional statements/Programming" />
+            <option value="$PROJECT_DIR$/Conditional statements/Programming (1)" />
+            <option value="$PROJECT_DIR$/Conditional statements/Programming (2)" />
+            <option value="$PROJECT_DIR$/Conditional statements/Programming (3)" />
+            <option value="$PROJECT_DIR$/Conditional statements/Programming (4)" />
+            <option value="$PROJECT_DIR$/Conditional statements/Programming (5)" />
+            <option value="$PROJECT_DIR$/Conditional statements/Programming (6)" />
+            <option value="$PROJECT_DIR$/Conditional statements/Programming (7)" />
+            <option value="$PROJECT_DIR$/Conditional statements/Programming (8)" />
+            <option value="$PROJECT_DIR$/Conditional statements/Theory" />
+            <option value="$PROJECT_DIR$/For loop/Programming" />
+            <option value="$PROJECT_DIR$/For loop/Programming (1)" />
+            <option value="$PROJECT_DIR$/For loop/Programming (2)" />
+            <option value="$PROJECT_DIR$/For loop/Programming (3)" />
+            <option value="$PROJECT_DIR$/For loop/Programming (4)" />
+            <option value="$PROJECT_DIR$/For loop/Programming (5)" />
+            <option value="$PROJECT_DIR$/For loop/Programming (6)" />
+            <option value="$PROJECT_DIR$/For loop/Programming (7)" />
+            <option value="$PROJECT_DIR$/For loop/Theory" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Programming" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Programming (1)" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Programming (2)" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Programming (3)" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Programming (4)" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Programming (5)" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Programming (6)" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Programming (7)" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Programming (8)" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Programming (9)" />
+            <option value="$PROJECT_DIR$/Multi-dimensional array/Theory" />
+            <option value="$PROJECT_DIR$/String/Programming" />
+            <option value="$PROJECT_DIR$/String/Programming (1)" />
+            <option value="$PROJECT_DIR$/String/Programming (2)" />
+            <option value="$PROJECT_DIR$/String/Programming (3)" />
+            <option value="$PROJECT_DIR$/String/Programming (4)" />
+            <option value="$PROJECT_DIR$/String/Theory" />
+            <option value="$PROJECT_DIR$/String/Theory (1)" />
+            <option value="$PROJECT_DIR$/Switch statements/Programming" />
+            <option value="$PROJECT_DIR$/Switch statements/Programming (1)" />
+            <option value="$PROJECT_DIR$/Switch statements/Programming (2)" />
+            <option value="$PROJECT_DIR$/Switch statements/Programming (3)" />
+            <option value="$PROJECT_DIR$/Switch statements/Theory" />
+            <option value="$PROJECT_DIR$/While and do-while loops/Programming" />
+            <option value="$PROJECT_DIR$/While and do-while loops/Programming (1)" />
+            <option value="$PROJECT_DIR$/While and do-while loops/Programming (2)" />
+            <option value="$PROJECT_DIR$/While and do-while loops/Programming (3)" />
+            <option value="$PROJECT_DIR$/While and do-while loops/Programming (4)" />
+            <option value="$PROJECT_DIR$/While and do-while loops/Programming (5)" />
+            <option value="$PROJECT_DIR$/While and do-while loops/Programming (6)" />
+            <option value="$PROJECT_DIR$/While and do-while loops/Theory" />
+            <option value="$PROJECT_DIR$/util" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

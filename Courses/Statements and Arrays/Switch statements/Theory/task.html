@@ -1,0 +1,54 @@
+<html>
+ <head></head>
+ <body>
+  <h2 style="text-align: center;">Three keywords: switch, case and default<br></h2>
+  <p><b> The switch statement </b>provides a way to choose between multiple cases based on the value of a single variable. The variable in this statement can be an integer number, character, string, or enumeration. We will study the last two types later.<br></p>
+  <p>The most general form of the switch statement looks as follows:</p>
+  <pre><code class="language-java">switch (variable) {
+    case value1:
+&nbsp; &nbsp;     // do something here
+&nbsp; &nbsp; &nbsp; &nbsp; break;
+&nbsp; &nbsp; case value2:
+&nbsp; &nbsp;     // do something here
+&nbsp; &nbsp; &nbsp; &nbsp; break;
+&nbsp; &nbsp; 
+    //... other cases
+&nbsp; &nbsp; 
+    case valueN:
+&nbsp; &nbsp;     // do something here
+&nbsp; &nbsp; &nbsp; &nbsp; break;
+&nbsp;   default:
+&nbsp; &nbsp; &nbsp; &nbsp; // do something by default
+}
+// next statement</code></pre> 
+  <p>The keywords <code>switch</code> and <code>case</code> are always required. The keywords <code>break</code> and <code>default</code> are optional.</p>
+  <p>Cases are evaluated sequentially. If a case is valid and it includes the <code>break</code> keyword, the <code>switch</code> construct is finished and execution passes to the next statement. If a case doesn't include the <code>break</code> keyword, the following case(s) will be evaluated too.<br></p>
+  <p>The <code>default</code> case is only evaluated if no case matches the variable value.</p>
+  <h2 style="text-align: center;"><b></b>Example</h2>
+  <p>Let's consider an example. The following code output the name of some integers or the default string. It has three base cases and one default case.</p>
+  <pre><code>int val = ...; // the variable is assigned some value
+switch (val) {
+     case 0:
+&nbsp; &nbsp;     System.out.println("zero");
+&nbsp; &nbsp; &nbsp; &nbsp; break;
+&nbsp; &nbsp; &nbsp;case 1:
+&nbsp; &nbsp; &nbsp;   System.out.println("one");
+&nbsp; &nbsp; &nbsp; &nbsp; break;
+&nbsp; &nbsp; &nbsp;case 2:
+&nbsp; &nbsp; &nbsp; &nbsp; System.out.println("two");
+&nbsp; &nbsp; &nbsp; &nbsp; break;
+&nbsp; &nbsp; &nbsp;default:
+&nbsp; &nbsp; &nbsp;   System.out.println("The value is less than zero or greater than two");
+}</code></pre>
+  <p>If <code>val</code> equals 0, the code prints:</p>
+  <pre><code>zero</code></pre>
+  <p>If <code>val</code> is 1, the code prints:</p>
+  <pre><code>one</code></pre>
+  <p>if <code>val</code> is 10, the code prints:</p>
+  <pre><code>The value is less than zero or greater than two</code></pre>
+  <p>If you happen to forget to include <code>break</code>, the compiler will not consider it an error. Suppose we removed it from the second case (case 1) and assigned 1 to <code>val</code>. The program would print:</p>
+  <pre><code>one
+two</code></pre>
+  <p>However, missing <code>breaks</code> is not a good practice. Try to avoid it.</p>
+ </body>
+</html>

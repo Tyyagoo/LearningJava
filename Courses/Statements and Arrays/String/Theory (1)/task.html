@@ -1,0 +1,77 @@
+<html>
+ <head></head>
+ <body>
+  <h2 style="text-align: center;">Strings and arrays</h2>
+  <p>Sometimes, a string looks similar to an array of characters.</p>
+  <p>It's possible to convert between strings and character arrays using special methods:</p>
+  <pre><code class="language-java">char[] chars = { 'A', 'B', 'C', 'D', 'E', 'F' };
+
+String stringFromChars = String.valueOf(chars); // "ABCDEF"
+
+char[] charsFromString = stringFromChars.toCharArray(); // { 'A', 'B', 'C', 'D', 'E', 'F' }
+
+String theSameString = new String(stringFromChars); // "ABCDEF"</code></pre>
+  <div>
+   <br>
+  </div>
+  <div>
+   A string can be separated by delimiters to an array of strings. To perform this, call the method 
+   <b>split</b>.
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">String text = "a long text";
+String[] parts = text.split(" "); // [a, long, text]</code></pre> 
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   The method also can take a regular expression.
+  </div>
+  <b><h2 style="text-align: center;"></h2></b>
+  <h2 style="text-align: center;">Iterating over a string</h2>
+  <div>
+   <div>
+    It's possible to iterate over characters of a string using a loop 
+    <b>(while</b>, 
+    <b>do-while</b>, 
+    <b>for-loop).</b>
+    <br>
+   </div>
+   <div>
+    <br>
+   </div>
+   <div>
+    See the following example.
+    <br>
+    <pre><code class="language-java">String scientistName = "Isaac Newton";
+
+for (int i = 0; i &lt; scientistName.length(); i++) {
+    System.out.print(scientistName.charAt(i) + " "); // print the current character
+}</code></pre>
+    <p>The code outputs:</p>
+    <pre><code class="language-java">I s a a c   N e w t o n</code></pre>
+    <p>If you'd like to use the <b>for-each</b> loop, first you should convert a string to an array of characters and iterate it.<br></p>
+    <pre><code class="language-java">String str = "strings are not primitive types!";
+
+int count = 0;
+for (char ch : str.toCharArray()) {
+    if (ch == ' ') {
+&nbsp; &nbsp;     count++;
+&nbsp; &nbsp; }
+}
+
+
+System.out.println(count); // 4</code></pre>
+   </div>
+   <br>
+   <div>
+    The code above counts and prints the number of spaces in 
+    <b>str</b>. The result is 4.
+   </div>
+  </div>
+ </body>
+</html>

@@ -1,0 +1,74 @@
+<html>
+ <head></head>
+ <body>
+  <h2 style="text-align: center;">What is a conditional statement<b>?<br></b></h2>
+  <p><b>A conditional statement</b> is a construct that allows a program to perform different computations depending on a boolean condition. If the condition is <code>true</code>, the program performs one computation; otherwise, the condition is <code>false</code> and the program performs another computation. The condition can be any boolean expression, for instance: <code>a &gt; b</code>, <code>i - j == 1</code> and so on.</p>
+  <p>There are three types of conditional statements. We will give examples of all of them.</p>
+  <h2 style="text-align: center;">A single if statement</h2>
+  <p>The simplest form of the conditional statement is the following:<br></p>
+  <pre><code class="language-java">if (condition) {
+&nbsp; &nbsp; // do something
+}</code></pre>
+  <p>In this case, if the condition is true, the action inside the code block is executed. Otherwise, the program skips the action.</p>
+  <p>See the following example.</p>
+  <pre><code class="language-java">int age = ...; // it has a value
+if (age &lt; 3) {
+&nbsp; &nbsp; System.out.println("This person is too young");
+}</code></pre>
+  <p>In this example, if the age is less than 3, the program prints <b>"This person is too young"</b>.<b> </b>O<b></b>therwise, it does nothing.</p>
+  <h2 style="text-align: center;">If-else statement<br></h2>
+  <p>The if statement can also be extended to do something <em></em><i>else </i>if the condition is false.</p>
+  <pre><code class="language-java">if (condition) {  &nbsp; 
+&nbsp; &nbsp; // do something
+} else {
+&nbsp; &nbsp; // do something else
+}</code></pre>
+  <p>In the above code, if the condition is "true", the first code block is executed. Otherwise, the second code block is executed.</p>
+  <p>In the example below, the program outputs different text depending on the value of <b>num</b> (even or odd). Note that a whole number is even if it can be divided evenly by 2; otherwise, it's odd.</p>
+  <pre><code class="language-java">int num = ...; // num is assigned some value
+
+if (num % 2 == 0) {
+    System.out.println("It's an even number");
+} else {    
+    System.out.println("It's an odd number");
+}</code></pre> 
+  <p> For example, if the value of num is 10, the program outputs "It's an even number". If the value is 11, it outputs "It's an odd number".</p>
+  <h2 style="text-align: center;">If-else-if statements<br></h2>
+  <p>The most general form of the if-else statement consists of multiple conditions and else-branches.</p>
+  <pre><code class="language-java">if (condition0) {
+    // do something
+} else if (condition1) {
+    // do something else 1
+// ...
+} else if (conditionN) {
+    // do something else N
+}</code></pre> 
+  <br>The following code outputs recommendations as to what type of computer you should buy depending on your budget.
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">long dollars = ...; // your budget
+
+if (dollars &lt; 1000) {
+    System.out.println("Buy a laptop");
+} else if (dollars &lt; 2000) {
+    System.out.println("Buy a personal computer");
+} else if (dollars &lt; 100000) {
+    System.out.println("Buy a server");
+} else {
+    System.out.println("Buy a data center or a quantum computer");
+}</code></pre> 
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   This conditional statement has four branches: dollars &lt; 1000, dollars &lt; 2000, dollars &lt; 100000 and dollars &gt;= 100000.
+  </div>
+  <div>
+   For eample, if the value of dollars is 9000, it prints 
+   <b>"Buy a server"</b>.
+  </div>
+ </body>
+</html>

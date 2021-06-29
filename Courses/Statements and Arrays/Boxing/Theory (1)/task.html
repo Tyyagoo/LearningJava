@@ -1,0 +1,78 @@
+<html>
+ <head></head>
+ <body>
+  <h2 style="text-align: center;">Wrapper classes<b><br></b></h2>
+  <p>Each primitive data type has a class dedicated to it. These classes are known as wrappers. They are reference types and wrap values of primitive types.<br></p>
+  <p>Let's consider the table below with primitive types and their corresponding wrapper classes.</p>
+  <p style="text-align: center;"></p>
+  <p style="text-align: center;"><img alt="" class="image-fullsize" height="298" src="https://ucarecdn.com/be1a74f1-64d4-4aa6-86e9-bfe634098511/" width="563"></p>
+  <p></p>
+  <p style="text-align: center;"><br><b>The table with primitive types and the corresponding wrappers</b></p>
+  <p>As you can see Java provides eight wrapper classes: one for each primitive type. The third column will be considered later.<b><br></b></p>
+  <h2 style="text-align: center;">Boxing and unboxing</h2>
+  <p><i></i><b></b>Boxing<b></b><i></i> is the conversion between the primitive types and their corresponding object wrapper classes.</p>
+  <p>Unboxing<b></b><i></i> is the reverse process.</p>
+  <pre><code class="language-java">int primitive = 100;
+
+Integer reference = Integer.valueOf(primitive); // boxing
+
+int anotherPrimitive = reference.intValue();    // unboxing</code></pre>
+  <p><b></b>Autoboxing and auto-unboxing<b></b> are the automatic conversions performed by java compiler.</p>
+  <pre><pre><code class="language-java">double primitiveDouble = 10.8;
+
+Double wrapperDouble = primitiveDouble; // autoboxing
+
+double anotherPrimitiveDouble = wrapperDouble;  // auto-unboxing</code></pre></pre>
+  <div>
+   Also, it's possible to create an array of Long enumerating primitive values:
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><pre><code>Long[] array = { 1L, 2L, 3L, 4L };</code></pre></pre>
+  </div>
+  <div></div>
+  <div>
+   There is one possible problem when unpacking. If the wrapper object is null, the unpacking throws the 
+   <b>NullPointerException.</b>
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><pre><code>Long longVal = null;
+long primitiveLong = longVal; // it throws NullPointerException (NPE)</code></pre></pre>
+  </div>
+  <b></b>
+  <h2 style="text-align: center;">Constructing wrappers based on other types</h2>
+  <p>The wrapper classes have constructors for creating objects from other types. For instance, an object of a wrapper class can be created from a string (except the Character).<br></p>
+  <pre><pre><code class="language-java">Integer number = new Integer("10012");   // an Integer from the string "10012"
+Float f = new Float("0.01");             // a Float from the sting "0.01"
+Long longNumber = new Long("100000000"); // a Long from the string "100000000"
+Boolean boolVal = new Boolean("true");   // a Boolean from the string "true"</code></pre></pre>
+  <p>You can see the complete list of constructors in the picture above.</p>
+  <p>Also, you can create wrapper objects using special methods:</p>
+  <pre><code class="language-java">Long longVal = Long.parseLong("1000");      // a Long from the string "1000"
+Long anotherLongVal = Long.valueOf("2000"); // another Long from the string "2000"</code></pre>
+  <p>If the input string has an invalid argument (for instance, <b>"1d0o3"</b>), both of these methods throw the <code>NumberFormatException</code>.</p>
+  <h2 style="text-align: center;">Primitive types vs wrapper classes</h2>
+  <ul>
+   <li>processing values of primitive types are faster than wrapper objects;</li>
+   <li>wrappers can be used in the situation if you need "null" as a no-value indicator;<br></li>
+   <li>primitive types cannot be used in collections, but wrappers can.</li>
+  </ul>
+  <h2 style="text-align: center;">Comparing wrappers</h2>
+  <p>The operator <code>==</code> checks whether two objects are actually equal, i.e. whether they actually refer to the same object in memory. The method <code>equals</code> checks whether two objects are meaningfully equal, for example, it checks whether two wrappers or strings are having the same value.<br></p>
+  <p>The <code>==</code> actually checks whether two variables are having exactly same value. Note that a primitive variable contains what you see, but a reference variable contains the address to the object that it holds. When <code>==</code> is used to comparing a primitive to a wrapper, the wrapper will be unwrapped and the comparison will be primitive to primitive, and hence it will be true always as it is a primitive comparison and not object comparison.</p>
+  <h2 style="text-align: center;"> Reuse of wrapper class objects</h2>
+  <p>In order to save memory, two instances of the following wrapper objects (created through boxing), will always be equal (==) when their primitive values are the same:<br></p>
+  <ul>
+   <li>Boolean</li>
+   <li>Byte</li>
+   <li>Character from \u0000 to \u007f (7f is 127 in decimal)</li>
+   <li>Short and Integer from -128 to 127</li>
+  </ul>
+  <p>For example, <code>System.out.println(i1 == i2)</code>; will print true when <code>i1</code> and <code>i2</code> are having same value between -128 to 127 and will print false if i1 and i2 are outside -128 to 127 range even though both are same. The cause is a range of values is stored in the special pool to reuse them in different objects.</p>
+ </body>
+</html>

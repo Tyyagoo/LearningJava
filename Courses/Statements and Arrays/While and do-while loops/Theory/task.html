@@ -1,0 +1,115 @@
+<html>
+ <head></head>
+ <body>
+  <p>Java provides several kinds of loops for repeating a block of code while a certain condition is <code>true</code>. In this topic, we will learn about two kinds of loops: <code>while</code> and <code>do-while</code>. The difference between them is the order in which the body is executed and the condition is evaluated.</p>
+  <h2 style="text-align: center;"><b></b>The while loop<b></b><br></h2>
+  <p>In a <code>while</code> loop, the condition is tested first. The body is only executed if the condition is <code>true</code>, and then the process repeats.<br></p>
+  <p>The basic syntax of this loop is the following:</p>
+  <pre><code class="language-java">while (condition) {
+&nbsp; &nbsp; // do something in the body
+}</code></pre>
+  <p><b></b></p>
+  <p>The body of the loop may contain any valid Java statements, including conditional statements and even other loops (nested loops).<br></p>
+  <p>A loop becomes an infinite loop if the condition is always <code>true</code>. For example,<br></p>
+  <p><b></b></p>
+  <pre><code class="language-java">while (true) {
+&nbsp; &nbsp; // infinite loop
+}</code></pre>
+  <b></b>
+  <p>We will talk more about using infinite loops in later topics.</p>
+  <p><b>Example 1.</b> The following loop prints consecutive integer numbers until reaching 5.</p>
+  <div>
+   <b>
+    <div></div></b>
+   <div></div>
+  </div>
+  <div>
+   <div>
+    <pre><code class="language-java">int i = 0;
+while (i &lt; 5) {
+    System.out.println(i);
+    i++;
+}</code></pre>
+   </div>
+  </div>
+  <b>
+   <div></div>
+   <div>
+    <br>
+   </div>
+   <div></div></b>
+  <div>
+   The output:
+  </div>
+  <div>
+   <br>
+  </div>
+  <div></div>
+  <div></div>
+  <div>
+   <b></b>
+   <pre><code class="language-java">0
+1
+2
+3
+4</code></pre>
+   <b></b>
+  </div>
+  <b>
+   <div></div></b>
+  <p><b>Example 2. </b>The following code prints the English alphabet in a single line.</p>
+  <pre><code>public class WhileDemo {
+
+&nbsp; &nbsp; public static void main(String[] args) {
+&nbsp; &nbsp; &nbsp; &nbsp; char letter = 'A';
+&nbsp; &nbsp; &nbsp; &nbsp; while (letter &lt;= 'Z') {
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.print(letter);
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; letter++;
+&nbsp; &nbsp; &nbsp; &nbsp; }
+&nbsp; &nbsp; }
+}</code></pre>
+  <p>Here's what's happening: the program takes the first character, <b>'A'</b>,<b> </b>and then repeats:</p>
+  <ul>
+   <li>if letter is less than or equal to <b>'Z'</b>, the program goes to the loop body;<br></li>
+   <li>inside the body, it prints the current value of letter and moves on to the next .</li>
+  </ul>
+  <p>The output:</p>
+  <pre><code>ABCDEFGHIJKLMNOPQRSTUVWXYZ</code></pre>
+  <h2 style="text-align: center;"><b></b></h2>
+  <h2 style="text-align: center;"><b></b></h2>
+  <br>
+  <b><h2 style="text-align: center;">The do-while loop<br></h2></b>
+  <b></b>
+  <br>In a 
+  <code>do-while</code> loop, the body is executed first and only then is the condition statement tested. Therefore, the body will be always executed at least once.
+  <div>
+   <br>
+   <p>The basic syntax of the loop is the following:<br></p>
+   <pre><code class="language-java">do {
+&nbsp; &nbsp; // do something
+} while (condition);</code></pre>
+   <p>The program below keeps reading integer numbers from standard input and outputting them. If 0 is entered, the program outputs it and stops.<br></p>
+   <pre><code>public class DoWhileDemo {
+
+&nbsp; &nbsp; public static void main(String[] args) {
+&nbsp; &nbsp; &nbsp; &nbsp; Scanner scanner = new Scanner(System.in);
+
+&nbsp; &nbsp; &nbsp; &nbsp; int value;
+&nbsp; &nbsp; &nbsp; &nbsp; do {
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; value = scanner.nextInt();
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println(value);
+&nbsp; &nbsp; &nbsp; &nbsp; } while (value &gt; 0);
+&nbsp; &nbsp; }
+}</code></pre>
+   <p>The input:</p>
+   <pre><code>1 2 4 0 3</code></pre>
+   <p>The output:</p>
+   <pre><code>1
+2
+4
+0</code></pre>Note that a 
+   <code>do-while</code> loop may become infinite, just like a 
+   <code>while</code> loop.
+  </div>
+ </body>
+</html>

@@ -1,0 +1,95 @@
+<html>
+ <head></head>
+ <body>
+  <p>Sometimes, we need to repeat a block of code a certain number of times. Java provides the <code>for</code>-loop that is very convenient for this purpose. This loop is often used to iterate over a range of values or an array. If the number of iteration or the range borders are known, it is recommended to use the <code>for</code>-loop. If they are unknown the <code>while</code>-loop may be a preferable solution.</p>
+  <h2 style="text-align: center;">The base for-loop syntax<br></h2>
+  <p> This loop has the following base syntax:</p>
+  <pre><code class="language-java">for (initialization; condition; increment/decrement) {
+    // do something
+}</code></pre>
+  <p>The explanations:</p>
+  <ul>
+   <li><b>the initialization statement</b> is executed once when the loop begins, usually, here loop variables are initialized;</li>
+   <li><b>the condition</b> determines the need for the next iteration; if it's false, the loop terminates;</li>
+   <li><b>the increment/decrement</b> expression is invoked after each iteration of the loop; usually, here loop variables are changed.</li>
+  </ul>
+  <p>Inside the loop's body, the program can perform any correct java statements. It can even contain other loops.</p>
+  <p>The order of execution for any for-loop is always the same:</p>
+  <ol>
+   <li>the initialization statement;</li>
+   <li>if the condition is false then terminate;</li>
+   <li>the body</li>
+   <li>the increment/decrement</li>
+   <li>go to the stage 2 (condition).</li>
+  </ol>
+  <p>Let's write a loop for printing integer numbers from 0 to 9 in the same line.<br></p>
+  <pre><code>int n = 9;
+for (int i = 0; i &lt;= n; i++) {
+    System.out.print(i + " ");
+}</code></pre>
+  <p>The code outputs:</p>
+  <pre><code>0 1 2 3 4 5 6 7 8 9</code></pre>
+  <p>The variable declared in the initialization expression is visible only inside the loop including the condition, the body and the increment/decrement expression. The integer loop's variables is often called i, j, k or index.</p>
+  <p><b>Another example.</b> Let's calculate the sum of integer numbers from 1 to 10 (inclusive) using the for-loop.</p>
+  <pre><code>int startIncl = 1, endExcl = 11;
+
+int sum = 0;
+for (int i = startIncl; i &lt; endExcl; i++) {
+    sum += i;
+}
+
+System.out.println(sum); // it prints "55"</code></pre>
+  <p><br></p>
+  <p><b></b>Sometimes it's needed to declare a variable outside the loop. it's possible as well.</p>
+  <pre><code>int i;
+for (i = 10; i &gt; 0; i--) {
+    System.out.print(i + " ");
+}</code></pre>
+  <h2 style="text-align: center;"><b></b>Infinite for-loop<br></h2>
+  <p>The initialization statement, the condition, and the increment/decrement expression are optional, the for loop may not have one or all of them.</p>
+  <p>Moreover, it's possible to write an infinite loop:</p>
+  <pre><code class="language-java">for (;;) {
+    // do something
+}</code></pre>
+  <h2 style="text-align: center;"><b></b>Nested loops</h2>
+  <div>
+   It's possible to nest one for-loop into another for-loop.
+   <br>
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   For instance, the following code prints the multiplication table of numbers from 1 to 9 (inclusive).
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">for (int i = 1; i &lt; 10; i++) {
+    for (int j = 1; j &lt; 10; j++) {
+&nbsp; &nbsp;     System.out.print(i * j + "\t");
+&nbsp; &nbsp; }
+&nbsp; &nbsp; System.out.println();
+}</code></pre> 
+   <br>
+  </div>
+  <div>
+   It outputs:
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code>1   2   3   4   5   6   7   8   9  
+2   4   6   8   10  12  14  16  18  
+3   6   9   12  15  18  21  24  27  
+4   8   12  16  20  24  28  32  36  
+5   10  15  20  25  30  35  40  45  
+6   12  18  24  30  36  42  48  54  
+7   14  21  28  35  42  49  56  63  
+8   16  24  32  40  48  56  64  72  
+9   18  27  36  45  54  63  72  81</code></pre>
+  </div>
+ </body>
+</html>

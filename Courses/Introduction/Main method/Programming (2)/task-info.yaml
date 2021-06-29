@@ -1,0 +1,15 @@
+type: code
+custom_name: Programming
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    public class Main {
+
+        private static void main(String[] args) {
+            System.out.println("Cats are robots!");
+        }
+    }
+  learner_created: false
+status: Solved
+record: -1

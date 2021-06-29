@@ -1,0 +1,7 @@
+<html>
+ <head></head>
+ <body>
+  <p>Write a program, which inputs the rectangular matrix from a sequence of lines, ending with a line, containing the only word <b>"end"</b> (without the quotation marks).</p> 
+  <p>The program should output the matrix of the same size, where each elements in the position <code>(i, j)</code> is equal to the sum of the elements from the first matrix on the positions <code>(i-1, j)</code>, <code>(i+1, j)</code>, <code>(i, j-1)</code>, <code>(i, j+1)</code>. Boundary elements have neighbours on the opposite side of the matrix. In the case with one row or column, the element itself maybe its neighbour.</p>
+ </body>
+</html><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">9 5 3<br>0 7 -1<br>-5 2 9<br>end</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">3 21 22<br>10 6 19<br>20 16 -1</code></pre><br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br>

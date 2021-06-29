@@ -1,0 +1,92 @@
+<html>
+ <head></head>
+ <body>
+  <p><b>Primitive and reference types</b></p>
+  <div>
+   Remember, in Java, all data types can be divided into two categories: 
+   <b>primitive types</b> and 
+   <b>reference types</b>. 
+   <br>
+  </div>
+  <div></div>
+  <p>A variable of a primitive type (<b>int</b>, <b>float</b>, <b>char</b>, etc) stores the actual value. A variable of a reference type stores the address of the memory where the actual values are located.</p>
+  <p><b>Commonly used reference types</b></p>
+  <p>The Java Class Library has a lot of useful classes which are reference types:</p>
+  <ul>
+   <li><b>String </b>- a value that may represent a name, message, code and so on, for example: "hello", "John", "55"</li>
+   <li><b>Date, LocalDate, LocalDateTime</b> - classes for processing date and time</li>
+   <li><b>BigInteger</b>, <b>BigDecimal</b> - classes for processing very big numbers</li>
+   <li><b>Byte</b>, <b>Short</b>, <b>Integer</b>, <b>Long</b>, <b>Character</b>, <b>Boolean</b>, <b>Float</b>, <b>Double</b> - wrapper classes for primitive types</li>
+   <li>and so on.</li>
+  </ul>
+  <p>Java also has arrays. They groups values of the same type together: <b>int[]</b>, <b>double[]</b>, <b>String[]</b>. An array is a reference type, even an array of primitives.</p>
+  <p>The number of reference types is much larger than the primitive types. And it is continuously growing. In Java, all types created by programmers (users of the Java language) and provided by third-party libraries are reference types.</p>
+  <p><b>Important features of reference types</b></p>
+  <p>Despite a large number of different reference types, they have several common features.</p>
+  <ul>
+   <li>objects of many reference types can be created using the keyword <b>new</b>;<b></b></li>
+   <li>a variable of a reference type can be assigned a special value <b>null</b>;</li>
+   <li>it's possible to assign the same reference to several variables with suitable types;</li>
+   <li>when you compare two variables of reference types using <b>==</b> or <b>!=</b>, the program compares references, not actual values;</li>
+   <li>calling methods of an object.</li>
+  </ul>
+  <p><b>The keyword "new"</b></p>
+  <p>The keyword <b>new</b> creates an object of a reference type.</p>
+  <p>Let's create a string and assign it to the variable <b>str</b>:</p>
+  <pre><code>String str = new String("hello"); // creating an object and assigning it to the variable</code></pre>
+  <p>Also, we can write in two lines:</p>
+  <pre><code class="language-java">String str; // declaration of the variable
+str = new String("hello"); // initialization</code></pre>
+  <p><b></b></p>
+  <p><b>The "null" value</b></p>
+  <p>The default value for a variable of a reference type is <b>null</b>. It's a keyword and a special value that represents <b>null-address</b> (actual value is not stored anywhere).</p>
+  <p>Here is an example:<br></p>
+  <pre><code>String str = null;</code></pre>
+  <p>The <b>null</b> value can be assigned to any reference type, but it's impossible to assign <b>null </b>to primitive variables.</p>
+  <pre></pre>
+  <pre><code>int n = null; // compile-time error</code></pre>If you forgot to initialize a variable of a reference type, it's 
+  <b>null</b>:
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">String str; // it's null</code></pre>
+  </div>
+  <div>
+   <br>Be careful, it may cause 
+   <b>NullPointerException</b> in further.
+  </div>
+  <p><b>Reference reassigning</b></p>
+  <p>If you have a reference variable and will assign it to another reference variable then both variables will have an address of the same actual value. Also, they can modify this value together if the type is <b>mutable</b>.</p>
+  <p>See the following example.</p>
+  <p>1) Let's create an array of three integer numbers:</p>
+  <pre><code>int[] array = new int[3];
+
+Arrays.fill(array, 10); // it fills array with 10
+
+System.out.println("The array: " + Arrays.toString(array)); // it prints [10, 10, 10]</code></pre>
+  <br>2) Assign the address of array elements to another variable, then change one element in another array.
+  <br>
+  <pre><code>int[] another = array; // assign the address to another array
+another[1] = 5;        // set the element with index 1 the value 5</code></pre>
+  <p style="text-align: left;">3) As you can see, data changing is visible in both array variables:</p>
+  <pre><code>System.out.println("Another: " + Arrays.toString(another)); // it prints [10, 5, 10]
+System.out.println("The array: " + Arrays.toString(array)); // it prints [10, 5, 10]</code></pre>
+  <p style="text-align: left;">Do not forget, a variable of a reference type stores an address, not actual value. Several variables can have the same address of the actual value and modify the value together.</p>
+  <p style="text-align: left;"><b>Comparing references and values</b><br></p>
+  <p style="text-align: left;">During the work with reference types, the operations "==" and "!=" compares variables by the addresses, not actual values. This behavior is completely different from comparing primitive types.</p>
+  <p style="text-align: left;">If we'd like to compare two variables by actual value, use the method <b>equals</b> that takes another variable. Any variable of a reference type has the method.</p>
+  <p style="text-align: left;">For example, let's consider a class BigInteger. The objects of this class is a very long numbers, consisting of an arbitrary number of digits.</p>
+  <p style="text-align: left;">Let's create several such numbers and compare them using "==" and the method <b>equals</b>. See the example below.</p>
+  <pre><code>BigInteger big1 = new BigInteger("10000000000000000000"); // the first big number
+BigInteger big2 = new BigInteger("10000000000000000000"); // the second big number
+BigInteger big3 = new BigInteger("22222222222222222222"); // the third big number
+
+System.out.println(big1 == big2);  &nbsp; &nbsp; // false, because they have different addresses
+System.out.println(big1.equals(big2)); // true, because they have the same value
+
+System.out.println(big1 != big3);  &nbsp; &nbsp; // true, because they have different addresses
+System.out.println(big1.equals(big3)); // false, because they have different values</code></pre>
+  <p style="text-align: left;">Remember forever distinctions when comparing variables of reference types by "<b>==</b>" and <b>equals</b>.</p>
+ </body>
+</html>

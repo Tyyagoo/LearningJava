@@ -1,0 +1,29 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: '0 1 2 3 4 5 6 '
+- text: '7 8 9 '
+- text: '0 1 2 3 4 5 '
+- text: '0 1 2 3 4 5 6 7 8 9 '
+- text: '6 7 8 9 '
+message_correct: Congratulations!
+message_incorrect: Incorrect solution
+files:
+- name: src/Task.java
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    public class Task {
+      public static void main(String[] args) {
+        // put your code here
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Tue, 29 Jun 2021 19:06:08 UTC
+record: -1
+selected_options:
+- 4

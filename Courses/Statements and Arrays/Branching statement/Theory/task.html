@@ -1,0 +1,134 @@
+<html>
+ <head></head>
+ <body>
+  <p>Branching statements are used to change the standard behavior of loops: terminate a loop or skip some iterations.</p>
+  <h2 style="text-align: center;"><b></b>The break statement<b></b></h2>
+  <p>The break statement has two usages:</p>
+  <ul>
+   <li>it terminates the current loop (any kind) of any types (for, while, do-while);<br></li>
+   <li>it terminates a case in the <b>switch</b> statement;</li>
+  </ul>
+  <p>In this topic, we will learn the application of the <b>statement</b> to terminate loops.</p>
+  <p>Here is an example:</p>
+  <pre><code>int i = 10;
+while(true) {
+    if (i == 0) {
+        break;
+&nbsp; &nbsp; }
+&nbsp; &nbsp; i--;
+}</code></pre>
+  <p>This loop will be successfully stopped, even though the condition is always <b>true</b>.</p>
+  <p>The <b>break</b> statement terminates only the current loop. If this loop is inside another loop, the outer loop won't be stopped.</p>
+  <p>The following code prints a ladder of numbers.</p>
+  <pre><code>for (int i = 0; i &lt; 10; i++) {
+    for (int j = 0; j &lt; 10; j++) {
+&nbsp; &nbsp;     System.out.print(j + " ");
+&nbsp; &nbsp; &nbsp; &nbsp; if (i == j) {
+&nbsp; &nbsp; &nbsp; &nbsp;     break;
+&nbsp; &nbsp; &nbsp; &nbsp; }
+&nbsp; &nbsp; }
+&nbsp; &nbsp; System.out.println();
+}</code></pre>
+  <p>The break statement can't stop the outer loop (with variable i) and the code prints:</p>
+  <pre><code>0 
+0 1 
+0 1 2 
+0 1 2 3 
+0 1 2 3 4 
+0 1 2 3 4 5 
+0 1 2 3 4 5 6 
+0 1 2 3 4 5 6 7 
+0 1 2 3 4 5 6 7 8 
+0 1 2 3 4 5 6 7 8 9</code></pre>
+  <p>To stop the outer loop we'd like to declare boolean variable <b>stopped </b>and use it as a special flag.</p>
+  <pre><code>boolean stopped = false;
+for (int i = 0; (i &lt; 10) &amp;&amp; !stopped; i++) {
+    for (int j = 0; j &lt; 10; j++) {
+&nbsp; &nbsp;     System.out.print(j + " ");
+&nbsp; &nbsp; &nbsp; &nbsp; if (i == j) {
+&nbsp; &nbsp; &nbsp; &nbsp;     stopped = true;
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; break;
+&nbsp; &nbsp; &nbsp; &nbsp; }
+&nbsp; &nbsp; &nbsp;}
+    System.out.println();
+}</code></pre>
+  <p>Now, the program output is not the same.</p>
+  <p>Also, another way to stop the outer loop exist - labeled break operator. But it's not very good practice to use it. Google it, if you are interested.</p>
+  <h2 style="text-align: center;"><b></b>The continue statement<br></h2>
+  <h2 style="text-align: center;"></h2>
+  <div>
+   It causes a loop to skip the current iteration and go to the next one.
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   This statement also can be used inside any kinds of loops.
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <ul>
+    <li>inside the <b>for-loop</b>, the continue cases control to immediately move to the increment/decrement statement;</li>
+    <li>inside the <b>while</b> or<b> do-while loop</b>, control immediately move to the condition.</li>
+   </ul>
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   In the following example, the sequences of number are output. Odd numbers are skipped.
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code>int n = 10;
+for (int i = 0; i &lt; n; i++) {
+    if (i % 2 != 0) {
+&nbsp; &nbsp;     continue;
+&nbsp; &nbsp; }
+    System.out.print(i + " ");
+}</code></pre> 
+   <br>
+  </div>
+  <div>
+   The output:
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">0 2 4 6 8</code></pre>
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   The continue can't skip the current iteration of the outer loop.
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   Often, we can rewrite our loop without using the continue statement. Here is an example:
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">int n = 10;
+for (int i = 0; i &lt; n; i++) { 
+    if (i % 2 == 0) {
+&nbsp; &nbsp;     System.out.print(i + " ");
+&nbsp; &nbsp; } 
+}</code></pre> 
+   <br>
+  </div>
+  <div>
+   The result is the same as shown above but the code became shorter and more readable. Do not abuse 
+   <b>branching statements</b>.
+  </div>
+ </body>
+</html>

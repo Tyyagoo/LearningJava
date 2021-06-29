@@ -1,0 +1,207 @@
+<html>
+ <head></head>
+ <body>
+  ﻿
+  <p><b>Introduction to arrays</b></p>
+  <p>An array is an ordered collection of elements of the same type. It can store only a fixed number of elements. The length of an array is established when the array is created. Arrays allow you to group and processing similar data together.</p>
+  <p>In the following picture, an array of five floating-point elements is presented.</p>
+  <p style="text-align: center;"></p>
+  <p style="text-align: center;"><img alt="" class="image-fullsize" height="98" src="https://ucarecdn.com/9e0f106a-e924-462c-8c8a-c02a9912c1a9/" width="318"></p>
+  <b>An array of five floating-point elements</b>
+  <p></p>
+  <p>Some features:</p>
+  <ul>
+   <li>an array is a reference type;<br></li>
+   <li>all elements are stored in the memory sequentially ;<br></li>
+   <li>each element of an array is accessed by its numerical index, the first element has the <b>index 0</b>;</li>
+   <li>the last element is accessed by the index equal to <b>array size - 1</b>;</li>
+   <li>it's possible to create an array of any types;</li>
+   <li>the maximum size of an array is limited by the <b>Integer.MAX_VALUE</b>;<br></li>
+  </ul>
+  <p><b>Declaration, instantiation, initialization</b></p>
+  <p><b></b>To create an array filled with useful elements we should:</p>
+  <ul>
+   <li>declare a variable of an array type <b>(declaration); </b></li>
+   <li>create an instance of the array object <b>(instantiation)</b>;</li>
+   <li>initialize the array by some values <b>(initialization)</b>.</li>
+  </ul>
+  <div>
+   To declare an array we must use two special characters 
+   <b>[]</b> after the name of the type of elements in the array:
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">int[] array; // declaration</code></pre>
+   <br>
+  </div>
+  <div>
+   or after the name of an array variable:
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">int array[]; // declaration</code></pre>
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <b>Creating an array with the specified elements</b>
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <p>Java provides several ways to create an array.</p>
+   <p>The simplest way to instantiate and initialize an array is to enumerate all its elements:<br></p>
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">int[] numbers = { 1, 2, 3, 4 }; // an array of 1, 2, 3, 4</code></pre>But, this way to create an array has some disadvantages: we need to know values and number of elements at the moment of compilation.
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   Another way is to initialize an array using variables:
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">int a = ..., b = ..., c = ...;
+int[] numbers = { a, b, c };</code></pre> 
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   In this case, we should have all elements at the moment of the array creation.
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <b>Creating an array using the keyword "new"</b>
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   The most general way to create an instance (object) of an array is to use the special keyword 
+   <b>new </b>and specify the necessary number of elements:
+   <br>
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">int n = ...; // n is a length of an array
+int[] numbers = new int[n];</code></pre>
+   <p>Now, the array has <b>n</b> elements. Each element is equal to 0 (the default value). Next, we should make explicit initialization of elements.</p>
+   <p>It's possible to separate declaration and instantiation in two lines:</p>
+   <pre><code class="language-java">int[] numbers;
+numbers = new int[n];</code></pre> 
+   <br>
+  </div>
+  <div>
+   Also, we can write the keyword 
+   <b>new</b> and enumerate all elements of an array:
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <pre><code class="language-java">float[] floatNumbers; // declaration 
+floatNumbers = new float[] { 1.02f, 0.03f, 4f } // instantiation and initialization</code></pre>
+  </div>
+  <div>
+   <br>
+  </div>
+  <div>
+   <p><b>Where to place []?</b></p>
+   <p>Another feature associated with the creating of arrays is the location of characters [].<br></p>
+   <pre><code class="language-java">char[] chars1 = new char[n]; // [] after the type
+char chars2[] = new char[n]; // [] after the variable</code></pre>
+   <p>Often, Java developers use the first way because it signals that an array is a special type.</p>
+  </div>
+  <p><b> </b><b>The length of an array</b></p>
+  <p>To obtain the length of an existing array we should write <b>arrayName.length</b>. It returns the length of the array. Here is an example:</p>
+  <pre><code class="language-java">int[] array = { 1, 2, 3, 4 }; // an array of numbers
+&nbsp; &nbsp; &nbsp; &nbsp; 
+int length = array.length; // number of elements of the array
+&nbsp; &nbsp; &nbsp; &nbsp; 
+System.out.println(length); // 4</code></pre>
+  <p><b></b></p>
+  <p><b>Accessing elements</b></p>
+  <p>The values of elements of an array can be changed. To set (get) a value to (from) array the index is used.</p>
+  <p>Set the value by the index:</p>
+  <pre><code>array[index] = val;</code></pre>
+  <p>Get the value by the index</p>
+  <pre><code>val = array[index];</code></pre>
+  <p>Indexes of an array have numbers from <b>0</b> to <b>length - 1</b> inclusive.</p>
+  <p>Let's see an example.<br></p>
+  <pre><code class="language-java">int numbers[] = new int[3]; // numbers: [0, 0, 0]
+numbers[0] = 1; // numbers: [1, 0, 0]
+numbers[1] = 2; // numbers: [1, 2, 0]
+numbers[2] = numbers[0] + numbers[1]; // numbers: [1, 2, 3]</code></pre>
+  <p>Some explanations:</p>
+  <ul>
+   <li>in the first line, the integer array named <b>numbers</b> with the size 3 is created. By default, all elements are equal to 0;<br></li>
+   <li>in the second line, the value "1" is assigned to the first element of the array by its index (do not forget, the first element has the index 0);<br></li>
+   <li>in the third line, the value "2" is assigned to the second element of the array by its index (numbers[1] - is the second element);<br></li>
+   <li>in the last line, the sum of first two elements is assigned to the third element by its index.<br></li>
+  </ul>
+  <p>Note, if we try to access a non-existing element by an index then a runtime exception happens.<br></p>
+  <p>For instance, let's try to get fourth element (with index 3) of the considered array <b>numbers</b>.</p>
+  <pre><code>int elem = numbers[3];</code></pre>
+  <p>The program throws <b>ArrayIndexOutOfBoundsException.</b></p>
+  <p><b></b>Be careful with indexes when accessing elements of an array.</p>
+  <p><b>The utility class Arrays</b></p>
+  <p>The class provides a lot of useful methods for processing arrays.</p>
+  <ul>
+   <li>convert array to string using <b></b>Arrays.toString(...)<b></b> and then print it:</li>
+  </ul>
+  <pre><code>byte[] famousNumbers = { 0, 1, 2, 4, 8, 16, 32, 64 };
+System.out.println(Arrays.toString(famousNumbers)); // it prints [0, 1, 2, 4, 8, 16, 32, 64]</code></pre>
+  <div> 
+   <ul>
+    <li>sorting a whole array or a part of it:</li>
+   </ul>
+   <pre><code class="language-java">long[] bigNumbers = { 20000000000L, 40000000000L, 10000000000L, 30000000000L }; // it's unsorted
+
+Arrays.sort(bigNumbers); // sorting whole array
+
+// it prints [10000000000, 20000000000, 30000000000, 40000000000]
+System.out.println(Arrays.toString(bigNumbers));</code></pre>
+   <ul>
+    <li>comparing arrays: two arrays are equal if they contain the same elements in the same order:</li>
+   </ul>
+   <pre><code class="language-java">int[] numbers1 = { 1, 2, 5, 8 };
+int[] numbers2 = { 1, 2, 5 };
+int[] numbers3 = { 1, 2, 5, 8 };
+
+System.out.println(Arrays.equals(numbers1, numbers2)); // it prints "false"
+System.out.println(Arrays.equals(numbers1, numbers3)); // it prints "true"</code></pre>
+   <ul>
+    <li>filling a whole array or a part of it by some values:</li>
+   </ul>
+   <pre><code>int size = 10;
+char[] characters = new char[size];
+
+// It takes an array, start index, end index (exclusive) and the value for filling the array
+Arrays.fill(characters, 0, size / 2, 'A'); 
+Arrays.fill(characters, size / 2, size, 'B');
+
+System.out.println(Arrays.toString(characters)); // it prints [A, A, A, A, A, B, B, B, B, B]</code></pre>
+   <p><br></p>
+   <p>Of course, the class contains a lot of other useful methods, including array copying, binary search in sorted array and so on. For details see here: <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html" rel="nofollow noopener noreferrer">https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html</a>.</p>
+   <p>The Arrays class will be still considered in other subjects.</p>
+  </div>
+ </body>
+</html>

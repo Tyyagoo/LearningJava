@@ -1,0 +1,25 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: Long val = new Long(4321);
+- text: Long val = new Long("4321");
+- text: Long val = Long.parseLong("4321");
+- text: Long val = 4321L;
+- text: Long val = 4321;
+message_correct: Congratulations!
+message_incorrect: Incorrect solution
+files:
+- name: src/Task.java
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    public class Task {
+      public static void main(String[] args) {
+        // put your code here
+      }
+    }
+  learner_created: false
+status: Unchecked
+record: -1
+custom_name: Quiz
