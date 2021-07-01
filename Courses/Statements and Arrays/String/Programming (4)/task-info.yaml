@@ -11,9 +11,8 @@ files:
       }
     }
   learner_created: false
-status: Failed
+status: Solved
 feedback:
-  message: |
-    Failed test #6 of 15. Wrong answer
-  time: Tue, 29 Jun 2021 23:02:32 UTC
+  message: Correct solution
+  time: Wed, 30 Jun 2021 11:55:02 UTC
 record: -1

@@ -1,0 +1,31 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: Set
+- text: List
+- text: Queue
+- text: AbstractCollection
+- text: Map
+- text: Collection
+message_correct: Congratulations!
+message_incorrect: Incorrect solution
+files:
+- name: src/Task.java
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    public class Task {
+      public static void main(String[] args) {
+        // put your code here
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Thu, 01 Jul 2021 13:51:56 UTC
+record: -1
+selected_options:
+- 4
+- 5

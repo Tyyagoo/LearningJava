@@ -1,0 +1,24 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    import java.util.*;
+
+    public class Main {
+
+      public static void main(String[] args) {
+
+
+        //write your code here
+
+
+        System.out.println(list);
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Thu, 01 Jul 2021 13:54:25 UTC
+record: -1

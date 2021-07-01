@@ -1,9 +1,9 @@
 type: choice
 is_multiple_choice: false
 options:
-- text: the address of an object
-- text: nothing
 - text: an actual value
+- text: nothing
+- text: the address of an object
 - text: a pointer to an object
 message_correct: Congratulations!
 message_incorrect: Incorrect solution
@@ -19,5 +19,10 @@ files:
       }
     }
   learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Correct solution
+  time: Wed, 30 Jun 2021 15:31:48 UTC
 record: -1
+selected_options:
+- 2

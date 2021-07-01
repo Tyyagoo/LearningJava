@@ -6,7 +6,7 @@ public class Main {
   public static void main(String[] args) {
     //put your code here
     Scanner sc = new Scanner(System.in);
-    String string = sc.nextLine().toLowerCase(Locale.ROOT);
+    String string = sc.nextLine();
     System.out.println(compressString(string));
   }
 

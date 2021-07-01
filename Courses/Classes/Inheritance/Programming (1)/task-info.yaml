@@ -1,0 +1,28 @@
+type: code
+custom_name: Programming
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    class Animal {
+
+      public void say() {}
+    }
+
+    class Cat extends Animal {
+
+    }
+
+    class Dog extends Animal {
+
+    }
+
+    class Duck extends Animal {
+
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Wed, 30 Jun 2021 19:04:17 UTC
+record: -1

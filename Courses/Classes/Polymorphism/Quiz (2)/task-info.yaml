@@ -1,0 +1,30 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: Static polymorphism
+- text: Declaring generic types
+- text: Type casting
+- text: Dynamic method dispatch
+- text: Inheritance
+message_correct: Congratulations!
+message_incorrect: Incorrect solution
+files:
+- name: src/Task.java
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    public class Task {
+      public static void main(String[] args) {
+        // put your code here
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Wed, 30 Jun 2021 19:50:41 UTC
+record: -1
+selected_options:
+- 3
+custom_name: Quiz

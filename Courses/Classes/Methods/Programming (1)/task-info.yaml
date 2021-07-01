@@ -1,0 +1,25 @@
+type: code
+custom_name: Programming
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    class Cat {
+
+      // write static and instance variables
+
+      public Cat(String name, int age) {
+        // implement the constructor
+        // do not forgot to check the number of cats
+      }
+
+      public static int getNumberOfCats() {
+        // implement the static method
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Wed, 30 Jun 2021 17:47:55 UTC
+record: -1

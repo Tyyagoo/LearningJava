@@ -1,0 +1,32 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: isBoolVal()
+- text: getAnotherIntVal
+- text: readIntVal()
+- text: getLongVal()
+- text: getStringVal()
+message_correct: Congratulations!
+message_incorrect: Incorrect solution
+files:
+- name: src/Task.java
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    public class Task {
+      public static void main(String[] args) {
+        // put your code here
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Wed, 30 Jun 2021 18:21:21 UTC
+record: -1
+selected_options:
+- 0
+- 3
+- 4
+custom_name: Quiz

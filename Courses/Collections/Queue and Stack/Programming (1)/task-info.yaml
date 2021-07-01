@@ -1,0 +1,27 @@
+type: code
+custom_name: Programming
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    import java.util.*;
+
+    public class Main {
+
+      public static void main(String[] args) {
+
+        Deque<Integer> queue = new ArrayDeque<>(Arrays.asList(1,2,3,4));
+
+        //write your code here
+
+
+        System.out.println(queue);
+
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Thu, 01 Jul 2021 14:37:07 UTC
+record: -1

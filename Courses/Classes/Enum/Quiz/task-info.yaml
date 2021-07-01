@@ -1,0 +1,30 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: public methods
+- text: predefined constants
+- text: private constructor
+- text: public constructor
+message_correct: Congratulations!
+message_incorrect: Incorrect solution
+files:
+- name: src/Task.java
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    public class Task {
+      public static void main(String[] args) {
+        // put your code here
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Wed, 30 Jun 2021 18:30:01 UTC
+record: -1
+selected_options:
+- 0
+- 1
+- 2

@@ -1,0 +1,25 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    class Account {
+
+      private long id;
+      private String code;
+      private Long balance;
+
+      public Account(long id, String code, Long balance) {
+        this.id = id;
+        this.code = code;
+        this.balance = balance;
+      }
+
+      // Override toString() here
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Wed, 30 Jun 2021 20:23:44 UTC
+record: -1

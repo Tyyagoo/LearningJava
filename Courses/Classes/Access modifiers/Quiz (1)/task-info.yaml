@@ -1,0 +1,29 @@
+type: choice
+is_multiple_choice: false
+options:
+- text: to make the fields public
+- text: to make the fields package-private and put all needed classes into one package
+- text: 'to use special methods for accessing fields - getters '
+- text: to make public copy of these fields and to access them
+message_correct: Congratulations!
+message_incorrect: Incorrect solution
+files:
+- name: src/Task.java
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    public class Task {
+      public static void main(String[] args) {
+        // put your code here
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Wed, 30 Jun 2021 18:15:19 UTC
+record: -1
+selected_options:
+- 2
+custom_name: Quiz

@@ -1,0 +1,21 @@
+type: code
+files:
+- name: src/Main.java
+  visible: true
+  text: |-
+    class Application {
+
+      // write a field here
+
+      // write a constructor here
+
+      public void run(String[] args) {
+        // implement a method
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Wed, 30 Jun 2021 16:21:35 UTC
+record: -1

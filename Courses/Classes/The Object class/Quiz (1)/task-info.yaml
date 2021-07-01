@@ -1,0 +1,34 @@
+type: choice
+is_multiple_choice: true
+options:
+- text: ' An anonymous class can capture members of its enclosing class (an outer
+    class).'
+- text: An anonymous class can have fields and constructors.
+- text: ' An anonymous class is declared and instantiated in a single statement.'
+- text: An anonymous class can capture local variables which can change.
+- text: An anonymous class cannot be passed to a method as an argument.
+- text: ' An anonymous class always implement an interface or extends a class.'
+message_correct: Congratulations!
+message_incorrect: Incorrect solution
+files:
+- name: src/Task.java
+  visible: true
+  text: |
+    // You can experiment here, it won’t be checked
+
+    public class Task {
+      public static void main(String[] args) {
+        // put your code here
+      }
+    }
+  learner_created: false
+status: Solved
+feedback:
+  message: Correct solution
+  time: Wed, 30 Jun 2021 20:37:28 UTC
+record: -1
+selected_options:
+- 0
+- 2
+- 5
+custom_name: Quiz
