@@ -2,14 +2,14 @@ type: choice
 is_multiple_choice: true
 options:
 - text: SortedSet
-- text: MapSet
-- text: LinkedSet
-- text: HashSet
-- text: EnumSet
-- text: ArraySet
-- text: GraphSet
-- text: LinkedHashSet
 - text: TreeSet
+- text: LinkedSet
+- text: GraphSet
+- text: ArraySet
+- text: MapSet
+- text: EnumSet
+- text: HashSet
+- text: LinkedHashSet
 message_correct: Congratulations!
 message_incorrect: Incorrect solution
 files:
@@ -24,6 +24,14 @@ files:
       }
     }
   learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Correct solution
+  time: Fri, 02 Jul 2021 15:02:49 UTC
 record: -1
+selected_options:
+- 1
+- 6
+- 7
+- 8
 custom_name: Quiz

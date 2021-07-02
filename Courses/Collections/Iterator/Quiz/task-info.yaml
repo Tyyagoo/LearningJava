@@ -20,5 +20,11 @@ files:
       }
     }
   learner_created: false
-status: Unchecked
+status: Solved
+feedback:
+  message: Correct solution
+  time: Fri, 02 Jul 2021 18:18:49 UTC
 record: -1
+selected_options:
+- 1
+- 2

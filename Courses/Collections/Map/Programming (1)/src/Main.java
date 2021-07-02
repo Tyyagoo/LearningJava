@@ -1,4 +1,3 @@
-::code
 import java.util.*;
 
 public class Main {
@@ -13,8 +12,7 @@ public class Main {
 
 
     //write your code here
-
-
+    map.entrySet().forEach(System.out::println);
 
   }
 }
