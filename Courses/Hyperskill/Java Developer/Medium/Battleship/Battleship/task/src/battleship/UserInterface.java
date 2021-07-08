@@ -10,7 +10,44 @@ public class UserInterface {
     private static Scanner scanner = new Scanner(System.in);
 
 
-    public static String[] getInputCoordinates() {
+
+    public static Battlefield setupBattlefield() {
+        Battlefield battlefield = new Battlefield();
+        String[] namesOfShips = {"Aircraft Carrier", "Battleship", "Submarine", "Cruiser", "Destroyer"};
+
+        for(String shipName: namesOfShips) {
+            battlefield.showField();
+            askToPlaceShip(shipName, battlefield);
+        }
+        battlefield.showField();
+        return battlefield;
+    }
+
+    public static void startGame(Battlefield battlefield) {
+        System.out.println("The game starts!");
+        battlefield.showField();
+        System.out.println("Take a shot!");
+        String inputLine = getInputCoordinates();
+        Vector2 shootCoordinate;
+        while(true){
+            try {
+                shootCoordinate = Vector2.getVectorByCoordinates(inputLine);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error! You entered the wrong coordinates! Try again:");
+                inputLine = scanner.nextLine();
+            }
+        }
+        boolean shootResult = battlefield.shootOnCoordinate(shootCoordinate);
+        battlefield.showField();
+        System.out.println((shootResult) ? "You hit a ship!" : "You missed!");
+    }
+
+    private static String getInputCoordinates() {
+        return scanner.nextLine();
+    }
+
+    private static String[] getInputPosition() {
         return scanner.nextLine().split(" ");
     }
 
@@ -21,7 +58,7 @@ public class UserInterface {
 
         while(true) {
             try {
-                String[] inputLine = getInputCoordinates();
+                String[] inputLine = getInputPosition();
                 askToPlaceShip(shipName, inputLine, battlefield);
                 break;
             } catch (RuntimeException e) {
@@ -53,15 +90,4 @@ public class UserInterface {
         }
     }
 
-    public static Battlefield setupBattlefield() {
-        Battlefield battlefield = new Battlefield();
-        String[] namesOfShips = {"Aircraft Carrier", "Battleship", "Submarine", "Cruiser", "Destroyer"};
-
-        for(String shipName: namesOfShips) {
-            battlefield.showField();
-            askToPlaceShip(shipName, battlefield);
-        }
-        battlefield.showField();
-        return battlefield;
-    }
 }

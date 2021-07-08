@@ -2,16 +2,16 @@ battleship/Ships/AbstractShip.java
  battleship.Ships.AbstractShip
 battleship/Ships/Destroyer.java
  battleship.Ships.Destroyer
-battleship/Main.java
- battleship.Main
+battleship/Ships/AircraftCarrier.java
+ battleship.Ships.AircraftCarrier
 battleship/Ships/Submarine.java
  battleship.Ships.Submarine
 battleship/Exceptions/InvalidShipLocationException.java
  battleship.Exceptions.InvalidShipLocationException
 battleship/ShipFactory.java
  battleship.ShipFactory
-battleship/UserInterface.java
- battleship.UserInterface
+battleship/Battlefield.java
+ battleship.Battlefield
 battleship/Ships/Battleship.java
  battleship.Ships.Battleship
 battleship/Vector2.java
@@ -26,7 +26,7 @@ battleship/Exceptions/InvalidShipSizeException.java
  battleship.Exceptions.InvalidShipSizeException
 battleship/Exceptions/TooCloseShipsException.java
  battleship.Exceptions.TooCloseShipsException
-battleship/Battlefield.java
- battleship.Battlefield
-battleship/Ships/AircraftCarrier.java
- battleship.Ships.AircraftCarrier
+battleship/Main.java
+ battleship.Main
+battleship/UserInterface.java
+ battleship.UserInterface

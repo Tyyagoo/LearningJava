@@ -58,6 +58,17 @@ public class Battlefield {
         return isEmpty;
     }
 
+    public boolean shootOnCoordinate(Vector2 coordinates) {
+        char charAtPosition = field[coordinates.getX() - 1][coordinates.getY() - 1];
+        if (charAtPosition == 'O') {
+            field[coordinates.getX() - 1][coordinates.getY() - 1] = 'X';
+            return true;
+        } else {
+            field[coordinates.getX() - 1][coordinates.getY() - 1] = 'M';
+            return false;
+        }
+    }
+
     public void placeShip(AbstractShip ship) {
         Vector2 begin = ship.getPosition().getFrom();
         Vector2 end = ship.getPosition().getTo();

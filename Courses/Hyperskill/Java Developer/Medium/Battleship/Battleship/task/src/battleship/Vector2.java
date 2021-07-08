@@ -8,6 +8,10 @@ public class Vector2 {
     public static Vector2 getVectorByCoordinates(String coordinates) {
         int number = Integer.parseInt(coordinates.substring(1));
         int letter = (int) coordinates.charAt(0) - 64;
+
+        if (number > 10 || number < 1) throw new IllegalArgumentException();
+        if (letter > 10 || letter < 1) throw new IllegalArgumentException();
+
         return new Vector2(letter, number);
     }
 

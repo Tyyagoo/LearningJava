@@ -497,6 +497,591 @@ files:
         }
     }
   learner_created: false
+- name: src/battleship/Vector2.java
+  visible: true
+  text: |
+    package battleship;
+
+    public class Vector2 {
+
+        private int x;
+        private int y;
+
+        public static Vector2 getVectorByCoordinates(String coordinates) {
+            int number = Integer.parseInt(coordinates.substring(1));
+            int letter = (int) coordinates.charAt(0) - 64;
+
+            if (number > 10 || number < 1) throw new IllegalArgumentException();
+            if (letter > 10 || letter < 1) throw new IllegalArgumentException();
+
+            return new Vector2(letter, number);
+        }
+
+        Vector2(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+
+        public int getMagnitude(Vector2 to) {
+            int magnitude = 0;
+
+            if (x == to.getX()) {
+                magnitude = 1 + Math.abs(y - to.getY());
+            }
+            else if (y == to.getY()) {
+                magnitude = 1 + Math.abs(x - to.getX());
+            }
+
+            else {
+                throw new IllegalArgumentException();
+            }
+
+            return magnitude;
+        }
+
+        public void setX(int x) {
+            if (x > 10) return;
+            this.x = x;
+        }
+
+        public void setY(int y) {
+            if (y > 10) return;
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+    }
+  learner_created: true
+- name: src/battleship/ShipFactory.java
+  visible: true
+  text: |
+    package battleship;
+
+    import battleship.Exceptions.InvalidShipSizeException;
+    import battleship.Ships.*;
+    import battleship.Exceptions.InvalidShipException;
+
+
+    public class ShipFactory {
+
+        public static AbstractShip makeShip(String shipName, Vector2 from, Vector2 to) throws InvalidShipException{
+            AbstractShip ship;
+            Position position = new Position(from, to);
+            switch (shipName) {
+                case AircraftCarrier.name:
+                    ship = new AircraftCarrier(position);
+                    break;
+                case Battleship.name:
+                    ship = new Battleship(position);
+                    break;
+                case Submarine.name:
+                    ship = new Submarine(position);
+                    break;
+                case Cruiser.name:
+                    ship = new Cruiser(position);
+                    break;
+                case Destroyer.name:
+                    ship = new Destroyer(position);
+                    break;
+                default:
+                    throw new InvalidShipException(shipName);
+            }
+            return ship;
+        }
+
+        public static int getShipSizeByName(String shipName) throws InvalidShipException {
+            int size = 0;
+            switch (shipName) {
+                case AircraftCarrier.name:
+                    size = AircraftCarrier.size;
+                    break;
+                case Battleship.name:
+                    size = Battleship.size;
+                    break;
+                case Submarine.name:
+                    size = Submarine.size;
+                    break;
+                case Cruiser.name:
+                    size = Cruiser.size;
+                    break;
+                case Destroyer.name:
+                    size = Destroyer.size;
+                    break;
+                default:
+                    throw new InvalidShipException(shipName);
+            }
+            return size;
+        }
+    }
+  learner_created: true
+- name: src/battleship/Ships/AircraftCarrier.java
+  visible: true
+  text: |
+    package battleship.Ships;
+
+    import battleship.Position;
+    import battleship.Vector2;
+
+    public class AircraftCarrier extends AbstractShip{
+
+        public static final String name = "Aircraft Carrier";
+        public static final int size = 5;
+
+        public AircraftCarrier(Position position) {
+            super(position);
+        }
+
+        public AircraftCarrier(Vector2 from, Vector2 to) {
+            super(from, to);
+        }
+
+        @Override
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public int getSize() {
+            return size;
+        }
+    }
+  learner_created: true
+- name: src/battleship/Ships/Submarine.java
+  visible: true
+  text: |
+    package battleship.Ships;
+
+    import battleship.Position;
+    import battleship.Vector2;
+
+    public class Submarine extends AbstractShip{
+
+        public static final String name = "Submarine";
+        public static final int size = 3;
+
+        public Submarine(Position position) {
+            super(position);
+        }
+
+        public Submarine(Vector2 from, Vector2 to) {
+            super(from, to);
+        }
+
+        @Override
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public int getSize() {
+            return size;
+        }
+    }
+  learner_created: true
+- name: src/battleship/UserInterface.java
+  visible: true
+  text: |
+    package battleship;
+
+    import battleship.Exceptions.*;
+    import battleship.Ships.AbstractShip;
+
+    import java.util.*;
+
+    public class UserInterface {
+
+        private static Scanner scanner = new Scanner(System.in);
+
+
+
+        public static Battlefield setupBattlefield() {
+            Battlefield battlefield = new Battlefield();
+            String[] namesOfShips = {"Aircraft Carrier", "Battleship", "Submarine", "Cruiser", "Destroyer"};
+
+            for(String shipName: namesOfShips) {
+                battlefield.showField();
+                askToPlaceShip(shipName, battlefield);
+            }
+            battlefield.showField();
+            return battlefield;
+        }
+
+        public static void startGame(Battlefield battlefield) {
+            System.out.println("The game starts!");
+            battlefield.showField();
+            System.out.println("Take a shot!");
+            String inputLine = getInputCoordinates();
+            Vector2 shootCoordinate;
+            while(true){
+                try {
+                    shootCoordinate = Vector2.getVectorByCoordinates(inputLine);
+                    break;
+                } catch (IllegalArgumentException e) {
+                    System.out.println("Error! You entered the wrong coordinates! Try again:");
+                    inputLine = scanner.nextLine();
+                }
+            }
+            boolean shootResult = battlefield.shootOnCoordinate(shootCoordinate);
+            battlefield.showField();
+            System.out.println((shootResult) ? "You hit a ship!" : "You missed!");
+        }
+
+        private static String getInputCoordinates() {
+            return scanner.nextLine();
+        }
+
+        private static String[] getInputPosition() {
+            return scanner.nextLine().split(" ");
+        }
+
+        private static void askToPlaceShip(String shipName, Battlefield battlefield) {
+
+            System.out.printf("Enter the coordinates of the %s (%d cells):%n", shipName, ShipFactory.getShipSizeByName(shipName));
+            System.out.println();
+
+            while(true) {
+                try {
+                    String[] inputLine = getInputPosition();
+                    askToPlaceShip(shipName, inputLine, battlefield);
+                    break;
+                } catch (RuntimeException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+        }
+
+        private static void askToPlaceShip(String shipName, String[] coordinates, Battlefield battlefield)
+                throws InvalidShipLocationException, InvalidShipSizeException, TooCloseShipsException, InvalidShipException{
+            Vector2 startPosition = Vector2.getVectorByCoordinates(coordinates[0]);
+            Vector2 endPosition = Vector2.getVectorByCoordinates(coordinates[1]);
+
+            try {
+                int magnitude = startPosition.getMagnitude(endPosition);
+                if (magnitude == ShipFactory.getShipSizeByName(shipName)) {
+                    if (battlefield.scanForEmptyPosition(startPosition, endPosition)) {
+                        AbstractShip ship = ShipFactory.makeShip(shipName, startPosition, endPosition);
+                        battlefield.placeShip(ship);
+                        return;
+                    } else {
+                        throw new TooCloseShipsException();
+                    }
+                } else {
+                    throw new InvalidShipSizeException(shipName);
+                }
+            } catch (IllegalArgumentException e) {
+                throw new InvalidShipLocationException();
+            }
+        }
+
+    }
+  learner_created: true
+- name: src/battleship/Ships/Cruiser.java
+  visible: true
+  text: |
+    package battleship.Ships;
+
+    import battleship.Position;
+    import battleship.Vector2;
+
+    public class Cruiser extends AbstractShip {
+
+        public static final String name = "Cruiser";
+        public static final int size = 3;
+
+        public Cruiser(Position position) {
+            super(position);
+        }
+
+        public Cruiser(Vector2 from, Vector2 to) {
+            super(from, to);
+        }
+
+        @Override
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public int getSize() {
+            return size;
+        }
+    }
+  learner_created: true
+- name: src/battleship/Position.java
+  visible: true
+  text: |
+    package battleship;
+
+    public class Position {
+
+        private Vector2 from;
+        private Vector2 to;
+
+        public Position(Vector2 from, Vector2 to) {
+            this.from = from;
+            this.to = to;
+        }
+
+        public Vector2 getFrom() {
+            return from;
+        }
+
+        public Vector2 getTo() {
+            return to;
+        }
+    }
+  learner_created: true
+- name: src/battleship/Battlefield.java
+  visible: true
+  text: |
+    package battleship;
+
+    import battleship.Ships.AbstractShip;
+
+    public class Battlefield {
+
+        public static final int xSize = 10;
+        public static final int ySize = 10;
+
+        private char[][] field = new char[xSize][ySize];
+
+        Battlefield() {
+            for (int i = 0; i < xSize; i++) {
+                for (int j = 0; j < ySize; j++) {
+                    field[i][j] = '~';
+                }
+            }
+        }
+
+        public boolean checkSurroundings(int i, int j) {
+            boolean isEmpty = true;
+            int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+            for (int c = 0; c < 4; c++) {
+                try {
+                    if (field[i - directions[c][0]][j - directions[c][1]] != '~') {
+                        isEmpty = false;
+                        break;
+                    }
+                } catch (ArrayIndexOutOfBoundsException ignored) {}
+            }
+            return isEmpty;
+        }
+
+        public boolean scanForEmptyPosition(Vector2 begin, Vector2 end) {
+            int magnitude = begin.getMagnitude(end);
+            boolean isEmpty = true;
+
+            if (begin.getX() == end.getX()) {
+                for (int i = Math.min(begin.getY(), end.getY()) - 1; i < Math.max(begin.getY(), end.getY()); i++) {
+                    if (field[begin.getX() - 1][i] != '~') {
+                        isEmpty = false;
+                        break;
+                    }
+                    isEmpty = checkSurroundings(begin.getX() - 1, i);
+                    if (!isEmpty) break;
+                }
+            } else {
+                for (int i = Math.min(begin.getX(), end.getX()) - 1; i < Math.max(begin.getX(), end.getX()); i++) {
+                    if (field[i][begin.getY() - 1] != '~') {
+                        isEmpty = false;
+                        break;
+                    }
+                    isEmpty = checkSurroundings(i, begin.getY() - 1);
+                    if (!isEmpty) break;
+                }
+            }
+
+            return isEmpty;
+        }
+
+        public boolean shootOnCoordinate(Vector2 coordinates) {
+            char charAtPosition = field[coordinates.getX() - 1][coordinates.getY() - 1];
+            if (charAtPosition == 'O') {
+                field[coordinates.getX() - 1][coordinates.getY() - 1] = 'X';
+                return true;
+            } else {
+                field[coordinates.getX() - 1][coordinates.getY() - 1] = 'M';
+                return false;
+            }
+        }
+
+        public void placeShip(AbstractShip ship) {
+            Vector2 begin = ship.getPosition().getFrom();
+            Vector2 end = ship.getPosition().getTo();
+            if (begin.getX() == end.getX()) {
+                for (int i = Math.min(begin.getY(), end.getY()) - 1; i < Math.max(begin.getY(), end.getY()); i++) {
+                    field[begin.getX() - 1][i] = 'O';
+                }
+            } else {
+                for (int i = Math.min(begin.getX(), end.getX()) - 1; i < Math.max(begin.getX(), end.getX()); i++) {
+                    field[i][begin.getY() - 1] = 'O';
+                }
+            }
+        }
+
+        public void showField() {
+
+            System.out.print("  ");
+            for (int c = 1; c <= 10; c++){
+                System.out.print(c + " ");
+            }
+            System.out.println();
+
+            char[] lettersArray = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+            for (int i = 0; i < xSize; i++) {
+                System.out.print(String.format("%s ", lettersArray[i]));
+                for (int j = 0; j < ySize; j++) {
+                    System.out.print(field[i][j] + " ");
+                }
+                System.out.println();
+            }
+        }
+    }
+  learner_created: true
+- name: src/battleship/Exceptions/InvalidShipSizeException.java
+  visible: true
+  text: |
+    package battleship.Exceptions;
+
+    public class InvalidShipSizeException  extends RuntimeException{
+        public InvalidShipSizeException(String shipName) {
+            super(String.format("Error! Wrong length of the %s! Try again:", shipName), null);
+        }
+    }
+  learner_created: true
+- name: src/battleship/Exceptions/InvalidShipLocationException.java
+  visible: true
+  text: |
+    package battleship.Exceptions;
+
+    public class InvalidShipLocationException extends RuntimeException{
+        public InvalidShipLocationException() {
+            super("Error! Wrong ship location! Try again:", null);
+        }
+    }
+  learner_created: true
+- name: src/battleship/Ships/Destroyer.java
+  visible: true
+  text: |
+    package battleship.Ships;
+
+    import battleship.Position;
+    import battleship.Vector2;
+
+    public class Destroyer extends AbstractShip {
+
+        public static final String name = "Destroyer";
+        public static final int size = 2;
+
+        public Destroyer(Position position) {
+            super(position);
+        }
+
+        public Destroyer(Vector2 from, Vector2 to) {
+            super(from, to);
+        }
+
+        @Override
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public int getSize() {
+            return size;
+        }
+    }
+  learner_created: true
+- name: src/battleship/Ships/AbstractShip.java
+  visible: true
+  text: |
+    package battleship.Ships;
+
+    import battleship.Position;
+    import battleship.Vector2;
+
+    public abstract class AbstractShip {
+
+        private Position position;
+
+        public abstract String getName();
+        public abstract int getSize();
+
+        public AbstractShip(Position position) {
+            this.position = position;
+        }
+
+        public AbstractShip(Vector2 from, Vector2 to) {
+            this.position = new Position(from, to);
+        }
+
+        public Position getPosition() {
+            return position;
+        }
+    }
+  learner_created: true
+- name: src/battleship/Exceptions/TooCloseShipsException.java
+  visible: true
+  text: |
+    package battleship.Exceptions;
+
+
+    public class TooCloseShipsException extends RuntimeException {
+        public TooCloseShipsException() {
+            super("Error! You placed it too close to another one. Try again:", null);
+        }
+    }
+  learner_created: true
+- name: src/battleship/Ships/Battleship.java
+  visible: true
+  text: |
+    package battleship.Ships;
+
+    import battleship.Position;
+    import battleship.Vector2;
+
+    public class Battleship extends AbstractShip{
+
+        public static final String name = "Battleship";
+        public static final int size = 4;
+
+        public Battleship(Position position) {
+            super(position);
+        }
+
+        public Battleship(Vector2 from, Vector2 to) {
+            super(from, to);
+        }
+
+        @Override
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public int getSize() {
+            return size;
+        }
+    }
+  learner_created: true
+- name: src/battleship/Exceptions/InvalidShipException.java
+  visible: true
+  text: |
+    package battleship.Exceptions;
+
+    public class InvalidShipException extends RuntimeException {
+
+        public InvalidShipException(String shipName) {
+            super(String.format("'%s' isn't a valid ship.", shipName), null);
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/125/stages/665/implement#comment
 status: Unchecked
 record: -1
