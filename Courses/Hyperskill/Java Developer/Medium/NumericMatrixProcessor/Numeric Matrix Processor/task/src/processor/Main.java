@@ -32,13 +32,13 @@ class UserInterface {
     private static final Command optionOne = new Command() {
         @Override
         public void execute() {
-            System.out.println("Enter the size of first matrix: ");
+            System.out.print("Enter the size of first matrix: ");
             int n = scanner.nextInt();
             int m = scanner.nextInt();
             System.out.println("Enter first matrix:");
             Matrix firstMatrix = MatrixFactory.getMatrixFromSize(n, m);
 
-            System.out.println("Enter the size of second matrix: ");
+            System.out.print("Enter the size of second matrix: ");
             n = scanner.nextInt();
             m = scanner.nextInt();
             System.out.println("Enter second matrix:");
@@ -57,12 +57,12 @@ class UserInterface {
     private static final Command optionTwo = new Command() {
         @Override
         public void execute() {
-            System.out.println("Enter the size of matrix: ");
+            System.out.print("Enter the size of matrix: ");
             int n = scanner.nextInt();
             int m = scanner.nextInt();
             System.out.println("Enter matrix:");
             Matrix matrix = MatrixFactory.getMatrixFromSize(n, m);
-            System.out.println("Enter constant: ");
+            System.out.print("Enter constant: ");
             double s = scanner.nextDouble();
             System.out.println("The result is:");
             System.out.println(matrix.scale(s));
@@ -72,13 +72,13 @@ class UserInterface {
     private static final Command optionThree = new Command() {
         @Override
         public void execute() {
-            System.out.println("Enter the size of first matrix: ");
+            System.out.print("Enter the size of first matrix: ");
             int n = scanner.nextInt();
             int m = scanner.nextInt();
             System.out.println("Enter first matrix:");
             Matrix firstMatrix = MatrixFactory.getMatrixFromSize(n, m);
 
-            System.out.println("Enter the size of second matrix: ");
+            System.out.print("Enter the size of second matrix: ");
             n = scanner.nextInt();
             m = scanner.nextInt();
             System.out.println("Enter second matrix:");
@@ -94,10 +94,10 @@ class UserInterface {
     };
 
     private static void showOptions() {
-        System.out.println("1. Add matrices\n" +
-                            "2. Multiply matrix by a constant\n" +
-                            "3. Multiply matrices\n" +
-                            "0. Exit\n");
+        System.out.println("1. Add matrices");
+        System.out.println("2. Multiply matrix by a constant");
+        System.out.println("3. Multiply matrices");
+        System.out.println("0. Exit");
     }
 
     private static void getUserOption() {
@@ -123,6 +123,7 @@ class UserInterface {
     }
 
     public static void invoke() {
+        System.out.println();
         showOptions();
         getUserOption();
     }
@@ -143,6 +144,7 @@ class MatrixFactory {
         return matrix;
     }
 }
+
 
 class Matrix {
 

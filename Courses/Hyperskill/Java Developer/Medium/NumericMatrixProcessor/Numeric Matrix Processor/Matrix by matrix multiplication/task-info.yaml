@@ -295,14 +295,37 @@ files:
 feedback_link: https://hyperskill.org/projects/60/stages/325/implement#comment
 status: Failed
 feedback:
-  message: "Wrong answer in test #6\n\nCan&#39;t check the answer\n\nPlease find below\
-    \ the output of your program during this failed test.\nNote that the &#39;&gt;&#39;\
-    \ character indicates the beginning of the input line.\n\n---\n\n1. Add matrices\n\
-    2. Multiply matrix by a constant\n3. Multiply matrices\n0. Exit\n\nYour choice:\
-    \ &gt; 3\nEnter the size of first matrix: \n&gt; 2 3\nEnter first matrix:\n&gt;\
-    \ 1 0 17\n&gt; 15 19 7\nEnter the size of second matrix: \n&gt; 3 4\nEnter second\
-    \ matrix:\n&gt; 5 6 78 9\n&gt; 29 31 47 1\n&gt; 14 17 0 3\nThe operation cannot\
-    \ be performed.\n1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply\
-    \ matrices\n0. Exit\n\nYour choice: &gt; 0"
-  time: Wed, 07 Jul 2021 21:29:52 UTC
+  message: |-
+    Wrong answer in test #6
+
+    Can&#39;t check the answer
+
+    Please find below the output of your program during this failed test.
+    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
+
+    ---
+
+
+    1. Add matrices
+    2. Multiply matrix by a constant
+    3. Multiply matrices
+    0. Exit
+    Your choice: &gt; 3
+    Enter the size of first matrix: &gt; 2 3
+    Enter first matrix:
+    &gt; 1 0 17
+    &gt; 15 19 7
+    Enter the size of second matrix: &gt; 3 4
+    Enter second matrix:
+    &gt; 5 6 78 9
+    &gt; 29 31 47 1
+    &gt; 14 17 0 3
+    The operation cannot be performed.
+
+    1. Add matrices
+    2. Multiply matrix by a constant
+    3. Multiply matrices
+    0. Exit
+    Your choice: &gt; 0
+  time: Thu, 08 Jul 2021 00:25:43 UTC
 record: -1
