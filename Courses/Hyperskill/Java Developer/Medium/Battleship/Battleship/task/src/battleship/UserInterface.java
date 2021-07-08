@@ -27,6 +27,13 @@ public class UserInterface {
         System.out.println("The game starts!");
         battlefield.showField();
         System.out.println("Take a shot!");
+
+        while (!battlefield.isAllShipsDestroyed()) {
+            makeTurn(battlefield);
+        }
+    }
+
+    public static void makeTurn(Battlefield battlefield) {
         String inputLine = getInputCoordinates();
         Vector2 shootCoordinate;
         while(true){
@@ -38,10 +45,21 @@ public class UserInterface {
                 inputLine = scanner.nextLine();
             }
         }
-        boolean shootResult = battlefield.shootOnCoordinate(shootCoordinate);
-        battlefield.showField();
-        System.out.println((shootResult) ? "You hit a ship!" : "You missed!");
-        battlefield.showField(true);
+        boolean shootResult;
+        try {
+            shootResult = battlefield.shootOnCoordinate(shootCoordinate);
+            battlefield.showField();
+            System.out.println((shootResult) ? "You hit a ship! Try again:" : "You missed. Try again:");
+        } catch (ShipSankedException e) {
+            battlefield.showField();
+            if (battlefield.isAllShipsDestroyed()) {
+                System.out.println("You sank the last ship. You won. Congratulations!");
+            } else {
+                System.out.println(e.getMessage());
+            }
+        } catch (ShotOnDestroyedShipException e) {
+            battlefield.showField();
+        }
     }
 
     private static String getInputCoordinates() {

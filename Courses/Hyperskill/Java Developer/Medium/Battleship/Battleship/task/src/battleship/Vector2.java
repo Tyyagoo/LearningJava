@@ -15,6 +15,12 @@ public class Vector2 {
         return new Vector2(letter, number);
     }
 
+    public static boolean equals(Vector2 v1, Vector2 v2) {
+        if (v1 == null || v2 == null) return false;
+        if (v1.getX() == v2.getX() && v1.getY() == v2.getY()) return true;
+        return false;
+    }
+
     Vector2(int x, int y) {
         this.x = x;
         this.y = y;

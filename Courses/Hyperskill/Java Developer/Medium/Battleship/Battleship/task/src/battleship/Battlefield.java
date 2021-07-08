@@ -1,6 +1,10 @@
 package battleship;
 
+import battleship.Exceptions.ShipSankedException;
+import battleship.Exceptions.ShotOnDestroyedShipException;
 import battleship.Ships.AbstractShip;
+
+import java.util.*;
 
 public class Battlefield {
 
@@ -31,6 +35,7 @@ public class Battlefield {
     }
 
     private Tiles[][] field = new Tiles[xSize][ySize];
+    private Map<AbstractShip, List<Vector2>> aliveShips = new HashMap<>();
 
     Battlefield() {
         for (int i = 0; i < xSize; i++) {
@@ -81,29 +86,52 @@ public class Battlefield {
         return isEmpty;
     }
 
-    public boolean shootOnCoordinate(Vector2 coordinates) {
+    public boolean shootOnCoordinate(Vector2 coordinates) throws ShipSankedException, ShotOnDestroyedShipException {
         Tiles tileAtPosition = field[coordinates.getX() - 1][coordinates.getY() - 1];
+        boolean rightShoot = false;
         if (tileAtPosition == Tiles.SHIP) {
             field[coordinates.getX() - 1][coordinates.getY() - 1] = Tiles.DESTROYED_SHIP;
-            return true;
+            rightShoot = true;
+            AbstractShip hittedShip = getShipAtCoordinate(coordinates);
+            if (hittedShip != null) {
+                boolean shipIsDestroyed = true;
+                for (Vector2 v: aliveShips.getOrDefault(hittedShip, new ArrayList<Vector2>())) {
+                    if (field[v.getX() - 1][v.getY() - 1] == Tiles.SHIP) {
+                        shipIsDestroyed = false;
+                    }
+                }
+                if (shipIsDestroyed) {
+                    aliveShips.remove(hittedShip);
+                    throw new ShipSankedException();
+                }
+            }
+        } else if (tileAtPosition == Tiles.DESTROYED_SHIP) {
+            throw new ShotOnDestroyedShipException();
         } else {
             field[coordinates.getX() - 1][coordinates.getY() - 1] = Tiles.MISSED_SHOOT;
-            return false;
         }
+
+        return rightShoot;
     }
 
     public void placeShip(AbstractShip ship) {
+        List<Vector2> listOfPositions = new ArrayList<>();
         Vector2 begin = ship.getPosition().getFrom();
         Vector2 end = ship.getPosition().getTo();
         if (begin.getX() == end.getX()) {
             for (int i = Math.min(begin.getY(), end.getY()) - 1; i < Math.max(begin.getY(), end.getY()); i++) {
                 field[begin.getX() - 1][i] = Tiles.SHIP;
+
+                listOfPositions.add(new Vector2(begin.getX(), i + 1));
             }
         } else {
             for (int i = Math.min(begin.getX(), end.getX()) - 1; i < Math.max(begin.getX(), end.getX()); i++) {
                 field[i][begin.getY() - 1] = Tiles.SHIP;
+                listOfPositions.add(new Vector2(i + 1, begin.getY()));
             }
         }
+
+        aliveShips.put(ship, listOfPositions);
     }
 
     public void showField(boolean ...cancelFog) {
@@ -128,5 +156,19 @@ public class Battlefield {
             }
             System.out.println();
         }
+    }
+
+    public boolean isAllShipsDestroyed() {
+        if (aliveShips.isEmpty()) return true;
+        return false;
+    }
+
+    private AbstractShip getShipAtCoordinate(Vector2 coordinate) {
+        for (Map.Entry<AbstractShip, List<Vector2>> entry: aliveShips.entrySet()) {
+            for (Vector2 v: entry.getValue()) {
+                if (Vector2.equals(coordinate, v)) return entry.getKey();
+            }
+        }
+        return null;
     }
 }

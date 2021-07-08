@@ -984,6 +984,15 @@ files:
         }
     }
   learner_created: true
+- name: src/battleship/Exceptions/ShipSankedException.java
+  visible: true
+  learner_created: true
+- name: src/battleship/Exceptions/ShotOnDestroyedShipException.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/125/stages/666/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Thu, 08 Jul 2021 23:25:27 UTC
 record: -1
