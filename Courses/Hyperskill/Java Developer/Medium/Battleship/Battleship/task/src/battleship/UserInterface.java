@@ -16,10 +16,10 @@ public class UserInterface {
         String[] namesOfShips = {"Aircraft Carrier", "Battleship", "Submarine", "Cruiser", "Destroyer"};
 
         for(String shipName: namesOfShips) {
-            battlefield.showField();
+            battlefield.showField(true);
             askToPlaceShip(shipName, battlefield);
         }
-        battlefield.showField();
+        battlefield.showField(true);
         return battlefield;
     }
 
@@ -41,6 +41,7 @@ public class UserInterface {
         boolean shootResult = battlefield.shootOnCoordinate(shootCoordinate);
         battlefield.showField();
         System.out.println((shootResult) ? "You hit a ship!" : "You missed!");
+        battlefield.showField(true);
     }
 
     private static String getInputCoordinates() {

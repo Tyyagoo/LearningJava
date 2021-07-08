@@ -12,6 +12,7 @@ battleship/ShipFactory.java
  battleship.ShipFactory
 battleship/Battlefield.java
  battleship.Battlefield
+ battleship.Battlefield$Tiles
 battleship/Ships/Battleship.java
  battleship.Ships.Battleship
 battleship/Vector2.java
