@@ -1,21 +1,21 @@
 battleship/Ships/AbstractShip.java
  battleship.Ships.AbstractShip
-battleship/Exceptions/ShipSankedException.java
- battleship.Exceptions.ShipSankedException
+battleship/Exceptions/InvalidShipSizeException.java
+ battleship.Exceptions.InvalidShipSizeException
 battleship/Exceptions/ShotOnDestroyedShipException.java
  battleship.Exceptions.ShotOnDestroyedShipException
 battleship/Ships/Destroyer.java
  battleship.Ships.Destroyer
-battleship/Main.java
- battleship.Main
+battleship/Ships/AircraftCarrier.java
+ battleship.Ships.AircraftCarrier
 battleship/Ships/Submarine.java
  battleship.Ships.Submarine
 battleship/Exceptions/InvalidShipLocationException.java
  battleship.Exceptions.InvalidShipLocationException
 battleship/ShipFactory.java
  battleship.ShipFactory
-battleship/UserInterface.java
- battleship.UserInterface
+battleship/Exceptions/TooCloseShipsException.java
+ battleship.Exceptions.TooCloseShipsException
 battleship/Ships/Battleship.java
  battleship.Ships.Battleship
 battleship/Vector2.java
@@ -26,12 +26,14 @@ battleship/Exceptions/InvalidShipException.java
  battleship.Exceptions.InvalidShipException
 battleship/Position.java
  battleship.Position
-battleship/Exceptions/InvalidShipSizeException.java
- battleship.Exceptions.InvalidShipSizeException
-battleship/Exceptions/TooCloseShipsException.java
- battleship.Exceptions.TooCloseShipsException
+battleship/Exceptions/ShipSankedException.java
+ battleship.Exceptions.ShipSankedException
+battleship/Main.java
+ battleship.Main
+battleship/UserInterface.java
+ battleship.UserInterface
 battleship/Battlefield.java
  battleship.Battlefield
  battleship.Battlefield$Tiles
-battleship/Ships/AircraftCarrier.java
- battleship.Ships.AircraftCarrier
+battleship/Player.java
+ battleship.Player
