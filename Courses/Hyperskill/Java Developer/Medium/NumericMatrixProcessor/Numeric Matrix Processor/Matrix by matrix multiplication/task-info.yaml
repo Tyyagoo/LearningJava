@@ -305,17 +305,8 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/60/stages/325/implement#comment
-status: Failed
+status: Solved
 feedback:
-  message: "Wrong answer in test #1\n\nChecking if matrices adding algorithm is correct\n\
-    \nPlease find below the output of your program during this failed test.\nNote\
-    \ that the &#39;&gt;&#39; character indicates the beginning of the input line.\n\
-    \n---\n\n\n1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n\
-    0. Exit\nYour choice: &gt; 1\nEnter the size of first matrix: &gt; 3 3\nEnter\
-    \ first matrix:\n&gt; 3 4 55\n&gt; 4 1 1\n&gt; 9 0 0\nEnter the size of second\
-    \ matrix: &gt; 3 3\nEnter second matrix:\n&gt; 4 9 77\n&gt; 13 22 44\n&gt; 56\
-    \ 57 78\nThe result is:\n7 17 65 \n13 23 57 \n132 45 78 \n\n\n1. Add matrices\n\
-    2. Multiply matrix by a constant\n3. Multiply matrices\n0. Exit\nYour choice:\
-    \ &gt; 0"
-  time: Fri, 09 Jul 2021 21:47:26 UTC
+  message: Congratulations!
+  time: Fri, 09 Jul 2021 23:06:49 UTC
 record: -1

@@ -1,94 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="NumericMatrixProcessorTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-07-09T21:47:26" hostname="LAPTOP-J1J60HSA" time="0.218">
+<testsuite name="NumericMatrixProcessorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-09T23:06:48" hostname="LAPTOP-J1J60HSA" time="0.56">
   <properties/>
-  <testcase name="start" classname="NumericMatrixProcessorTest" time="0.218">
-    <failure message="java.lang.AssertionError: Wrong answer in test #1&#10;&#10;Checking if matrices adding algorithm is correct&#10;&#10;Please find below the output of your program during this failed test.&#10;Note that the '&gt;' character indicates the beginning of the input line.&#10;&#10;---&#10;&#10;&#10;1. Add matrices&#10;2. Multiply matrix by a constant&#10;3. Multiply matrices&#10;0. Exit&#10;Your choice: &gt; 1&#10;Enter the size of first matrix: &gt; 3 3&#10;Enter first matrix:&#10;&gt; 3 4 55&#10;&gt; 4 1 1&#10;&gt; 9 0 0&#10;Enter the size of second matrix: &gt; 3 3&#10;Enter second matrix:&#10;&gt; 4 9 77&#10;&gt; 13 22 44&#10;&gt; 56 57 78&#10;The result is:&#10;7 17 65 &#10;13 23 57 &#10;132 45 78 &#10;&#10;&#10;1. Add matrices&#10;2. Multiply matrix by a constant&#10;3. Multiply matrices&#10;0. Exit&#10;Your choice: &gt; 0" type="java.lang.AssertionError">java.lang.AssertionError: Wrong answer in test #1
-
-Checking if matrices adding algorithm is correct
-
-Please find below the output of your program during this failed test.
-Note that the '&gt;' character indicates the beginning of the input line.
-
----
-
-
-1. Add matrices
-2. Multiply matrix by a constant
-3. Multiply matrices
-0. Exit
-Your choice: &gt; 1
-Enter the size of first matrix: &gt; 3 3
-Enter first matrix:
-&gt; 3 4 55
-&gt; 4 1 1
-&gt; 9 0 0
-Enter the size of second matrix: &gt; 3 3
-Enter second matrix:
-&gt; 4 9 77
-&gt; 13 22 44
-&gt; 56 57 78
-The result is:
-7 17 65 
-13 23 57 
-132 45 78 
-
-
-1. Add matrices
-2. Multiply matrix by a constant
-3. Multiply matrices
-0. Exit
-Your choice: &gt; 0
-	at org.junit.Assert.fail(Assert.java:88)
-	at org.hyperskill.hstest.stage.StageTest.start(StageTest.java:141)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
-	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
-	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
-	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
-	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
-	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
-	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
-	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
-	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
-	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
-	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
-	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
-	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
-	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
-	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
-	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
-	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
-	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:119)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182)
-	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164)
-	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:414)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
-	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
-	at java.base/java.lang.Thread.run(Thread.java:829)
-</failure>
-  </testcase>
+  <testcase name="start" classname="NumericMatrixProcessorTest" time="0.56"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 
@@ -108,9 +21,270 @@ Enter second matrix:
 > 13 22 44
 > 56 57 78
 The result is:
-7 17 65 
-13 23 57 
-132 45 78 
+ 7.00 13.00 132.00 
+17.00 23.00 45.00 
+65.00 57.00 78.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 2?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 1
+Enter the size of first matrix: > 4 4
+Enter first matrix:
+> -0.3 677.4 435.2 123.33
+> 1.3 141.4 0.11 1411.4
+> 231.33 113.4 99.9 999.9
+> 1002.22 123.44 55.66 13.3
+Enter the size of second matrix: > 4 4
+Enter second matrix:
+> 43.43 234.22 876.6 13.2
+> -5.5 -0.3 -1.2 10.2
+> -1.0 0.8 0.8 -9.5
+> -45.5 45.5 56.5 13.7
+The result is:
+43.13 911.62 1311.80 136.53 
+-4.20 141.10 -1.09 1421.60 
+230.33 114.20 100.70 990.40 
+956.72 168.94 112.16 27.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 3?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 2
+Enter the size of matrix: > 3 3
+Enter matrix:
+> 11 234 444
+> 456 343 222
+> 997 456 456
+Enter constant: > 17
+The result is:
+187.00 3978.00 7548.00 
+7752.00 5831.00 3774.00 
+16949.00 7752.00 7752.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 4?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 2
+Enter the size of matrix: > 4 4
+Enter matrix:
+> 10123 53455 999345 21312
+> 13559 77654 231221 34534
+> 12312 23412 342342 525255
+> 99713 88123 123123 121111
+Enter constant: > 111
+The result is:
+1123653.00 5933505.00 110927295.00 2365632.00 
+1505049.00 8619594.00 25665531.00 3833274.00 
+1366632.00 2598732.00 37999962.00 58303305.00 
+11068143.00 9781653.00 13666653.00 13443321.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 5?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 3
+Enter the size of first matrix: > 4 4
+Enter first matrix:
+> 1 2 2 7
+> 3 3 4 5
+> 5 0 0 1
+> 0 1 0 8
+Enter the size of second matrix: > 4 4
+Enter second matrix:
+> 9 8 7 13
+> 15 14 0 1
+> 3 7 2 3
+> 0 9 0 35
+The result is:
+45.00 113.00 11.00 266.00 
+84.00 139.00 29.00 229.00 
+45.00 49.00 35.00 100.00 
+15.00 86.00  0.00 281.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 6?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 3
+Enter the size of first matrix: > 2 3
+Enter first matrix:
+> 1 0 17
+> 15 19 7
+Enter the size of second matrix: > 3 4
+Enter second matrix:
+> 5 6 78 9
+> 29 31 47 1
+> 14 17 0 3
+The result is:
+243.00 295.00 78.00 60.00 
+724.00 798.00 2063.00 175.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 7?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 3
+Enter the size of first matrix: > 3 5
+Enter first matrix:
+> 1 4 5 6 6
+> 7 8 9 0 0
+> 4 1 2 2 2
+Enter the size of second matrix: > 5 2
+Enter second matrix:
+> 4 5
+> 6 1
+> 6 0
+> 0 9
+> 7 7
+The result is:
+100.00 105.00 
+130.00 43.00 
+48.00 53.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 8?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 3
+Enter the size of first matrix: > 4 4
+Enter first matrix:
+> 0.65 0.67 76.4 23.2
+> -0.7 -13.1 -7.2 9.2
+> -0.7 -5.5 -1.5 0.4
+> -1.0 12.6 0.8 -0.4
+Enter the size of second matrix: > 4 4
+Enter second matrix:
+> -5.5 -0.3 -1.2 10.2
+> -1.0 0.8 0.8 -9.5
+> -45.5 45.5 56.5 13.7
+> -10.7 11.9 2.2 1.2
+The result is:
+-3728.69 3752.62 4367.40 1074.79 
+246.11 -228.39 -396.20 29.71 
+73.32 -67.68 -87.43 25.04 
+-39.22 42.02 55.60 -119.42 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 9?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 3
+Enter the size of first matrix: > 4 4
+Enter first matrix:
+> 0.65 0.67 76.4 23.2
+> -0.7 -13.1 -7.2 9.2
+> -0.7 -5.5 -1.5 0.4
+> -1.0 12.6 0.8 -0.4
+Enter the size of second matrix: > 4 4
+Enter second matrix:
+> -5.5 -0.3 -1.2 10.2
+> -1.0 0.8 0.8 -9.5
+> -45.5 45.5 56.5 13.7
+> -10.7 11.9 2.2 1.2
+The result is:
+-3728.69 3752.62 4367.40 1074.79 
+246.11 -228.39 -396.20 29.71 
+73.32 -67.68 -87.43 25.04 
+-39.22 42.02 55.60 -119.42 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+0. Exit
+Your choice: > 3
+Enter the size of first matrix: > 3 5
+Enter first matrix:
+> 1 4 5 6 6
+> 7 8 9 0 0
+> 4 1 2 2 2
+Enter the size of second matrix: > 5 2
+Enter second matrix:
+> 4 5
+> 6 1
+> 6 0
+> 0 9
+> 7 7
+The result is:
+100.00 105.00 
+130.00 43.00 
+48.00 53.00 
 
 
 1. Add matrices

@@ -44,7 +44,8 @@ public class Matrix {
             Matrix result = new Matrix(this.n, this.m);
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < m; j++) {
-                    result.fillPosition((getPosition(i, j) + other.getPosition(i, j)), i, j);
+                    double newValue = getPosition(i, j) + other.getPosition(i, j);
+                    result.fillPosition(newValue, i, j);
                 }
             }
             return result;
@@ -66,7 +67,7 @@ public class Matrix {
     }
 
     public Matrix multiply(Matrix other) throws InvalidMatrixSizeException {
-        if (this.n == other.m) {
+        if (this.m == other.n) {
             Matrix result = new Matrix(this.n, other.m);
 
             for (int i = 0; i < n; i++) {
@@ -98,8 +99,7 @@ public class Matrix {
         System.out.println("The result is:");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                System.out.printf("%d ", (int) object[j][i]);
-                //System.out.printf("%5.2f ", object[j][i]);
+                System.out.printf("%5.2f ", object[i][j]);
             }
             System.out.println();
         }

@@ -66,8 +66,8 @@ class UserInterface {
             Matrix matrix = MatrixFactory.getMatrixFromSize(n, m);
             System.out.print("Enter constant: ");
             double s = scanner.nextDouble();
-            matrix.scale(s);
-            matrix.print();
+            Matrix resultMatrix = matrix.scale(s);
+            resultMatrix.print();
         }
     };
 
