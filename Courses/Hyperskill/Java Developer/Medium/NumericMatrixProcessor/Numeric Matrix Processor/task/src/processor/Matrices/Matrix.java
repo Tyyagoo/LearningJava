@@ -183,6 +183,15 @@ public class Matrix {
         return transposedMatrix;
     }
 
+    /*
+    THANKS FOR:
+    https://www.youtube.com/watch?v=xfhzwNkMNg4 - Inverse of a 3x3 Matrix using Adjoint | Don't Memories
+    https://www.mathwords.com/c/cofactor_matrix.htm - Matrix of Cofactors
+
+    Cofactor Expansion for calculate determinant:
+    https://people.math.carleton.ca/~kcheung/math/notes/MATH1107/wk07/07_cofactor_expansion.html#:~:text=One%20way%20of%20computing%20the,the%20determinant%20along%20row%20i.
+     */
+
     public double getDeterminant() throws InvalidMatrixSizeException {
         if (n != m) throw new InvalidMatrixSizeException();
 
@@ -190,129 +199,65 @@ public class Matrix {
         if (n == 1) return object[0][0];
         // O(1) Time - O(1) Memory
         if (n == 2) return (getPosition(0, 0) * getPosition(1,1)) - (getPosition(0, 1) * getPosition(1, 0));
-        // O(1) Time - O(1) Memory
-        if (n == 3) {
-            double a, b, c;
-            a = getPosition(0, 0) * ((getPosition(1, 1)*getPosition(2, 2)) - (getPosition(1, 2)*getPosition(2, 1)));
-            b = getPosition(0, 1) * ((getPosition(1, 0)*getPosition(2, 2)) - (getPosition(2, 0)*getPosition(1, 2)));
-            c = getPosition(0, 2) * ((getPosition(1, 0)*getPosition(2, 1)) - (getPosition(1, 1)*getPosition(2, 0)));
 
-            return a - b + c;
+        int sign = 1;
+        double determinant = 0.0;
+        for (int j = 0; j < n; j++) {
+            determinant += getPosition(0, j) * getCofactorOfElement(0, j) * sign;
+            sign = -sign;
         }
 
-        // now is the time the child cries and the mother doesn't see T.T
-        // O(n³) Time - O(n) Memory
-        int index;
-        double num1, num2;
-        double det = 1, total = 1;
-        double[] temp = new double[n + 1];
-
-        // loop for traversing the diagonal elements
-        for (int i = 0; i < n; i++) {
-            index = i; // initialize the index
-
-            // finding the index which has non zero value
-            while (getPosition(index, i) == 0 && index < n) {
-                index++;
-            }
-
-            // if there is non zero element
-            if (index == n) {
-                // the determinant of matrix as zero
-                continue;
-            }
-            if (index != i) {
-                // loop for swapping the diagonal element row
-                // and index row
-                for (int j = 0; j < n; j++) {
-                    double tmp = getPosition(index, j);
-                    fillPosition(getPosition(i, j), index, j);
-                    fillPosition(tmp, i, j);
-                }
-                // determinant sign changes when we shift
-                // rows go through determinant properties
-                det = (int)(det * Math.pow(-1, index - i));
-            }
-
-            // storing the values of diagonal row elements
-            for (int j = 0; j < n; j++) {
-                temp[j] = getPosition(i, j);
-            }
-
-            // traversing every row below the diagonal
-            // element
-            for (int j = i + 1; j < n; j++) {
-                num1 = temp[i]; // value of diagonal element
-                num2 = getPosition(j, i);
-
-                // traversing every column of row
-                // and multiplying to every row
-                for (int k = 0; k < n; k++) {
-                    // multiplying to make the diagonal
-                    // element and next row element equal
-                    fillPosition((num1 * getPosition(j, k)) - (num2 * temp[k]), j, k);
-                }
-                total = total * num1; // Det(kA)=kDet(A);
-            }
-        }
-
-        // multiplying the diagonal elements to get
-        // determinant
-        for (int i = 0; i < n; i++) {
-            det = det * getPosition(i, i);
-        }
-        return (det / total); // Det(kA)/k=Det(A);
-
-        /*
-        IMPORTANT:
-            from: https://www.geeksforgeeks.org/determinant-of-a-matrix/
-        TODO -> Then I have to try to implement my own.
-         */
+        return determinant;
     }
 
-    private Matrix getSubMatrix(int deleteRow, int deleteCol) {
-        Matrix subMatrix = new Matrix(n - 1, n - 1);
-        int i = 0, j = 0;
+    private Matrix getSubMatrix(int ignoreI, int ignoreJ) {
+        Matrix subMatrix = new Matrix(n - 1, m - 1);
 
-        for (int row = 0; row < n; row++) {
-            for (int col = 0; col < n; col++) {
-                if(row == deleteRow || col == deleteCol)
-                    continue;
-
-                double value = getPosition(row, col);
-                subMatrix.fillPosition(value, i, j++);
-
-                if(j == n-1){
-                    j = 0;
-                    i++;
+        int currentI = 0;
+        int currentJ = 0;
+        for (int i = 0; i < n; i++) {
+            if (i == ignoreI) continue;
+            for (int j = 0; j < n; j++) {
+                if (j == ignoreJ) continue;
+                subMatrix.fillPosition(getPosition(i, j), currentI, currentJ++);
+                if (currentJ == n - 1) {
+                    currentJ = 0;
+                    currentI++;
                 }
             }
         }
         return subMatrix;
     }
 
+
+    private double getCofactorOfElement(int i, int j) {
+        Matrix subMatrix = getSubMatrix(i, j);
+        return subMatrix.getDeterminant();
+    }
+
+    private Matrix getCofactorMatrix() {
+        Matrix cofactorMatrix = new Matrix(n, m);
+        int sign = 1;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                double cofactor = getCofactorOfElement(i, j) * sign;
+                cofactorMatrix.fillPosition(cofactor, i, j);
+                sign = -sign;
+            }
+        }
+
+        return cofactorMatrix;
+    }
+
+    private Matrix getAdjointMatrix() {
+        Matrix cofactorMatrix = getCofactorMatrix();
+        return cofactorMatrix.transpose(TransposeType.MAIN_DIAGONAL);
+    }
+
     public Matrix getInverseMatrix() throws DeterminantEqualsZeroException {
-        Matrix inverseMatrix = new Matrix(n, m);
         double determinant = MatrixFactory.cloneMatrix(this).getDeterminant();
-
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                Matrix m = getSubMatrix(i, j);
-                m = m.transpose(TransposeType.MAIN_DIAGONAL);
-                double value = Math.pow(-1, i+j) * determinant;
-                inverseMatrix.fillPosition(value, i, j);
-            }
-        }
-
-        double s = 1.0 / determinant;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                double temp = inverseMatrix.getPosition(i, j);
-                inverseMatrix.fillPosition((inverseMatrix.getPosition(j, i) * s), i, j);
-                inverseMatrix.fillPosition((temp * s), j, i);
-            }
-        }
-        return inverseMatrix;
+        if (determinant == 0.0) throw new DeterminantEqualsZeroException();
+        return getAdjointMatrix().scale(1.0 / determinant);
     }
 
     public void print() {
