@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="NumericMatrixProcessorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-09T23:06:48" hostname="LAPTOP-J1J60HSA" time="0.56">
+<testsuite name="NumericMatrixProcessorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-10T00:50:38" hostname="LAPTOP-J1J60HSA" time="0.904">
   <properties/>
-  <testcase name="start" classname="NumericMatrixProcessorTest" time="0.56"/>
+  <testcase name="start" classname="NumericMatrixProcessorTest" time="0.904"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 1
 Enter the size of first matrix: > 3 3
@@ -29,6 +30,7 @@ The result is:
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -37,6 +39,7 @@ Start test 2?[0m
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 1
 Enter the size of first matrix: > 4 4
@@ -61,6 +64,7 @@ The result is:
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -69,6 +73,7 @@ Start test 3?[0m
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 2
 Enter the size of matrix: > 3 3
@@ -86,6 +91,7 @@ The result is:
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -94,6 +100,7 @@ Start test 4?[0m
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 2
 Enter the size of matrix: > 4 4
@@ -113,6 +120,7 @@ The result is:
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -121,6 +129,7 @@ Start test 5?[0m
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 4 4
@@ -145,6 +154,7 @@ The result is:
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -153,6 +163,7 @@ Start test 6?[0m
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 2 3
@@ -172,6 +183,7 @@ The result is:
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -180,6 +192,7 @@ Start test 7?[0m
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 3 5
@@ -203,6 +216,7 @@ The result is:
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -211,6 +225,7 @@ Start test 8?[0m
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 4 4
@@ -235,6 +250,7 @@ The result is:
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -243,6 +259,7 @@ Start test 9?[0m
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 4 4
@@ -267,6 +284,7 @@ The result is:
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 3 5
@@ -290,6 +308,197 @@ The result is:
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 10?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 4
+1. Main diagonal
+2. Side diagonal
+3. Vertical line
+4. Horizontal line
+Your choice: > 1
+Enter matrix size: > 3 3
+Enter matrix: 
+> 1 7 7
+> 6 6 4
+> 4 2 1
+The result is:
+ 1.00  6.00  4.00 
+ 7.00  6.00  2.00 
+ 7.00  4.00  1.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 11?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 4
+1. Main diagonal
+2. Side diagonal
+3. Vertical line
+4. Horizontal line
+Your choice: > 1
+Enter matrix size: > 3 3
+Enter matrix: 
+> 1 7 7
+> 6 6 4
+> 4 5 1
+The result is:
+ 1.00  6.00  4.00 
+ 7.00  6.00  5.00 
+ 7.00  4.00  1.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 12?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 4
+1. Main diagonal
+2. Side diagonal
+3. Vertical line
+4. Horizontal line
+Your choice: > 2
+Enter matrix size: > 3 3
+Enter matrix: 
+> 1 2 4
+> 4 6 6
+> 7 7 1
+The result is:
+ 1.00  6.00  4.00 
+ 7.00  6.00  2.00 
+ 7.00  4.00  1.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 13?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 4
+1. Main diagonal
+2. Side diagonal
+3. Vertical line
+4. Horizontal line
+Your choice: > 2
+Enter matrix size: > 3 3
+Enter matrix: 
+> 1 5 4
+> 4 6 6
+> 7 7 1.0
+The result is:
+ 1.00  6.00  4.00 
+ 7.00  6.00  5.00 
+ 7.00  4.00  1.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 14?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 4
+1. Main diagonal
+2. Side diagonal
+3. Vertical line
+4. Horizontal line
+Your choice: > 3
+Enter matrix size: > 4 4
+Enter matrix: 
+> 6 5 4 2
+> 8 7 6 6
+> 1 0 0 5.0
+> 9 2 8 8
+The result is:
+ 2.00  4.00  5.00  6.00 
+ 6.00  6.00  7.00  8.00 
+ 5.00  0.00  0.00  1.00 
+ 8.00  8.00  2.00  9.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 15?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+0. Exit
+Your choice: > 4
+1. Main diagonal
+2. Side diagonal
+3. Vertical line
+4. Horizontal line
+Your choice: > 4
+Enter matrix size: > 4 4
+Enter matrix: 
+> 8 8 2 9
+> 5 0 0 1
+> 6 6 7 8.0
+> 2 4 5 6
+The result is:
+ 2.00  4.00  5.00  6.00 
+ 6.00  6.00  7.00  8.00 
+ 5.00  0.00  0.00  1.00 
+ 8.00  8.00  2.00  9.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
 0. Exit
 Your choice: > 0
 ]]></system-out>

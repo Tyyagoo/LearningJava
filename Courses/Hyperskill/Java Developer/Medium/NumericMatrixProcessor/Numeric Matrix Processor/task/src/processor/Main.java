@@ -94,10 +94,30 @@ class UserInterface {
         }
     };
 
+    private static final Command optionFour = new Command() {
+        @Override
+        public void execute() {
+            System.out.println("1. Main diagonal\n" +
+                    "2. Side diagonal\n" +
+                    "3. Vertical line\n" +
+                    "4. Horizontal line");
+            System.out.print("Your choice: ");
+            Matrix.TransposeType choice = Matrix.TransposeType.getTypeByValue(scanner.nextInt());
+            System.out.print("Enter matrix size: ");
+            int n = scanner.nextInt();
+            int m = scanner.nextInt();
+            System.out.println("Enter matrix: ");
+            Matrix matrix = MatrixFactory.getMatrixFromSize(n, m);
+            Matrix transposedMatrix = matrix.transpose(choice);
+            transposedMatrix.print();
+        }
+    };
+
     private static void showOptions() {
         System.out.println("1. Add matrices");
         System.out.println("2. Multiply matrix by a constant");
         System.out.println("3. Multiply matrices");
+        System.out.println("4. Transpose matrix");
         System.out.println("0. Exit");
     }
 
@@ -116,6 +136,9 @@ class UserInterface {
                 break;
             case 3:
                 optionThree.execute();
+                break;
+            case 4:
+                optionFour.execute();
                 break;
             default:
                 System.out.println("This option doesn't exists. Try again.");

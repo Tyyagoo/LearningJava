@@ -1,12 +1,39 @@
 package processor.Matrices;
 
 import processor.Exceptions.*;
+import java.util.*;
 
 public class Matrix {
 
     private final double[][] object;
     private final int n;
     private final int m;
+
+    public enum TransposeType {
+        MAIN_DIAGONAL(1),
+        SIDE_DIAGONAL(2),
+        VERTICAL(3),
+        HORIZONTAL(4);
+
+        private final int value;
+
+        TransposeType(int v) {
+            this.value = v;
+        }
+
+        public static TransposeType getTypeByValue(int value) {
+            switch (value) {
+                case 2:
+                    return SIDE_DIAGONAL;
+                case 3:
+                    return VERTICAL;
+                case 4:
+                    return HORIZONTAL;
+                default:
+                    return MAIN_DIAGONAL;
+            }
+        }
+    }
 
     public Matrix(int n, int m) {
         this.object = new double[n][m];
@@ -93,6 +120,67 @@ public class Matrix {
             }
         }
         return scaledMatrix;
+    }
+
+    public Matrix transpose(TransposeType type) {
+        switch (type) {
+            case MAIN_DIAGONAL:
+                return transposeAlongMainDiagonal();
+            case SIDE_DIAGONAL:
+                return transposeAlongSideDiagonal();
+            case VERTICAL:
+                return transposeAlongVerticalLine();
+            case HORIZONTAL:
+                return transposeAlongHorizontalLine();
+        }
+        return new Matrix(1, 1);
+    }
+
+    private Matrix transposeAlongMainDiagonal() throws InvalidMatrixSizeException {
+        if (n != m) throw new InvalidMatrixSizeException();
+        Matrix transposedMatrix = new Matrix(n, m);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                transposedMatrix.fillPosition(object[j][i], i, j);
+            }
+        }
+        return transposedMatrix;
+    }
+
+    private Matrix transposeAlongSideDiagonal() throws InvalidMatrixSizeException {
+        if (n != m) throw new InvalidMatrixSizeException();
+        Matrix transposedMatrix = new Matrix(n, m);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                double value = getPosition(((n - 1) - j), ((m - 1) - i));
+                transposedMatrix.fillPosition(value, i, j);
+            }
+        }
+        return transposedMatrix;
+    }
+
+    private Matrix transposeAlongVerticalLine() throws InvalidMatrixSizeException {
+        if (n != m) throw new InvalidMatrixSizeException();
+        Matrix transposedMatrix = new Matrix(n, m);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                double value = getPosition(i, (m - 1) - j);
+                transposedMatrix.fillPosition(value, i, j);
+            }
+        }
+        return transposedMatrix;
+    }
+
+    private Matrix transposeAlongHorizontalLine() throws InvalidMatrixSizeException {
+        if (n != m) throw new InvalidMatrixSizeException();
+        Matrix transposedMatrix = new Matrix(n, m);
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                double value = getPosition((n-1) - i, j);
+                transposedMatrix.fillPosition(value, i, j);
+            }
+        }
+        return transposedMatrix;
     }
 
     public void print() {
