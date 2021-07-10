@@ -183,6 +183,93 @@ public class Matrix {
         return transposedMatrix;
     }
 
+    public double getDeterminant() throws InvalidMatrixSizeException {
+        if (n != m) throw new InvalidMatrixSizeException();
+
+        // O(1) Time - O(1) Memory
+        if (n == 1) return object[0][0];
+        // O(1) Time - O(1) Memory
+        if (n == 2) return (getPosition(0, 0) * getPosition(1,1)) - (getPosition(0, 1) * getPosition(1, 0));
+        // O(1) Time - O(1) Memory
+        if (n == 3) {
+            double a, b, c;
+            a = getPosition(0, 0) * ((getPosition(1, 1)*getPosition(2, 2)) - (getPosition(1, 2)*getPosition(2, 1)));
+            b = getPosition(0, 1) * ((getPosition(1, 0)*getPosition(2, 2)) - (getPosition(2, 0)*getPosition(1, 2)));
+            c = getPosition(0, 2) * ((getPosition(1, 0)*getPosition(2, 1)) - (getPosition(1, 1)*getPosition(2, 0)));
+
+            return a - b + c;
+        }
+
+        // now is the time the child cries and the mother doesn't see T.T
+        // O(n³) Time - O(n) Memory
+        int index;
+        double num1, num2;
+        double det = 1, total = 1;
+        double[] temp = new double[n + 1];
+
+        // loop for traversing the diagonal elements
+        for (int i = 0; i < n; i++) {
+            index = i; // initialize the index
+
+            // finding the index which has non zero value
+            while (getPosition(index, i) == 0 && index < n) {
+                index++;
+            }
+
+            // if there is non zero element
+            if (index == n) {
+                // the determinant of matrix as zero
+                continue;
+            }
+            if (index != i) {
+                // loop for swapping the diagonal element row
+                // and index row
+                for (int j = 0; j < n; j++) {
+                    double tmp = getPosition(index, j);
+                    fillPosition(getPosition(i, j), index, j);
+                    fillPosition(tmp, i, j);
+                }
+                // determinant sign changes when we shift
+                // rows go through determinant properties
+                det = (int)(det * Math.pow(-1, index - i));
+            }
+
+            // storing the values of diagonal row elements
+            for (int j = 0; j < n; j++) {
+                temp[j] = getPosition(i, j);
+            }
+
+            // traversing every row below the diagonal
+            // element
+            for (int j = i + 1; j < n; j++) {
+                num1 = temp[i]; // value of diagonal element
+                num2 = getPosition(j, i);
+
+                // traversing every column of row
+                // and multiplying to every row
+                for (int k = 0; k < n; k++) {
+                    // multiplying to make the diagonal
+                    // element and next row element equal
+                    fillPosition((num1 * getPosition(j, k)) - (num2 * temp[k]), j, k);
+                }
+                total = total * num1; // Det(kA)=kDet(A);
+            }
+        }
+
+        // multiplying the diagonal elements to get
+        // determinant
+        for (int i = 0; i < n; i++) {
+            det = det * getPosition(i, i);
+        }
+        return (det / total); // Det(kA)/k=Det(A);
+
+        /*
+        IMPORTANT:
+            from: https://www.geeksforgeeks.org/determinant-of-a-matrix/
+        TODO -> Then I have to try to implement my own.
+         */
+    }
+
     public void print() {
         System.out.println("The result is:");
         for (int i = 0; i < n; i++) {

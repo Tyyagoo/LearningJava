@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="NumericMatrixProcessorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-10T00:50:38" hostname="LAPTOP-J1J60HSA" time="0.904">
+<testsuite name="NumericMatrixProcessorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-10T04:14:14" hostname="LAPTOP-J1J60HSA" time="1.141">
   <properties/>
-  <testcase name="start" classname="NumericMatrixProcessorTest" time="0.904"/>
+  <testcase name="start" classname="NumericMatrixProcessorTest" time="1.141"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 
@@ -9,6 +9,7 @@ Start test 1?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 1
 Enter the size of first matrix: > 3 3
@@ -31,6 +32,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -40,6 +42,7 @@ Start test 2?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 1
 Enter the size of first matrix: > 4 4
@@ -65,6 +68,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -74,6 +78,7 @@ Start test 3?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 2
 Enter the size of matrix: > 3 3
@@ -92,6 +97,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -101,6 +107,7 @@ Start test 4?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 2
 Enter the size of matrix: > 4 4
@@ -121,6 +128,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -130,6 +138,7 @@ Start test 5?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 4 4
@@ -155,6 +164,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -164,6 +174,7 @@ Start test 6?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 2 3
@@ -184,6 +195,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -193,6 +205,7 @@ Start test 7?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 3 5
@@ -217,6 +230,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -226,6 +240,7 @@ Start test 8?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 4 4
@@ -251,6 +266,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -260,6 +276,7 @@ Start test 9?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 4 4
@@ -285,6 +302,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 3 5
@@ -309,6 +327,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -318,6 +337,7 @@ Start test 10?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -340,6 +360,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -349,6 +370,7 @@ Start test 11?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -371,6 +393,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -380,6 +403,7 @@ Start test 12?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -402,6 +426,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -411,6 +436,7 @@ Start test 13?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -433,6 +459,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -442,6 +469,7 @@ Start test 14?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -466,6 +494,7 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -475,6 +504,7 @@ Start test 15?[0m
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -499,6 +529,60 @@ The result is:
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
+5. Calculate determinant
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 16?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+5. Calculate determinant
+0. Exit
+Your choice: > 5
+Enter the size of matrix: > 3 3
+Enter matrix:
+> 1 2 3
+> 4 5 7
+> 10 22 23
+The result is:
+31.00
+This option doesn't exists. Try again.
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+5. Calculate determinant
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 17?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+5. Calculate determinant
+0. Exit
+Your choice: > 5
+Enter the size of matrix: > 4 4
+Enter matrix:
+> 2.65 3.54 3.88 8.99
+> 3.12 5.45 7.77 5.56
+> 5.31 2.23 2.33 9.81
+> 1.67 1.67 1.01 9.99
+The result is:
+45.22
+This option doesn't exists. Try again.
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+5. Calculate determinant
 0. Exit
 Your choice: > 0
 ]]></system-out>
