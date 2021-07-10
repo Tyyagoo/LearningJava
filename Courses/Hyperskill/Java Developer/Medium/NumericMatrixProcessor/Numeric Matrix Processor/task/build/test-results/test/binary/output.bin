@@ -6,6 +6,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 1
 &Enter the size of first matrix: > 3 3
@@ -29,6 +30,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -39,6 +41,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 1
 &Enter the size of first matrix: > 4 4
@@ -65,6 +68,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -75,6 +79,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 2
  Enter the size of matrix: > 3 3
@@ -94,6 +99,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -104,6 +110,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 2
  Enter the size of matrix: > 4 4
@@ -125,6 +132,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -135,6 +143,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 3
 &Enter the size of first matrix: > 4 4
@@ -166,6 +175,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -176,6 +186,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 3
 &Enter the size of first matrix: > 2 3
@@ -198,6 +209,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -208,6 +220,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 3
 &Enter the size of first matrix: > 3 5
@@ -233,6 +246,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -243,6 +257,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 3
 &Enter the size of first matrix: > 4 4
@@ -269,6 +284,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -279,6 +295,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 3
 &Enter the size of first matrix: > 4 4
@@ -305,6 +322,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 3
 &Enter the size of first matrix: > 3 5
@@ -330,6 +348,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -340,6 +359,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -363,6 +383,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -373,6 +394,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -396,6 +418,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -406,6 +429,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -429,6 +453,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -439,6 +464,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -463,6 +489,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -473,6 +500,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -501,6 +529,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -511,6 +540,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -539,6 +569,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -549,6 +580,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 5
  Enter the size of matrix: > 3 3
@@ -558,13 +590,13 @@
 > 10 22 23
 The result is:
 31.00
-(This option doesn't exists. Try again.
 
 1. Add matrices
 "2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0
 [1;31m
@@ -575,6 +607,7 @@
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 5
  Enter the size of matrix: > 4 4
@@ -585,12 +618,42 @@
 > 1.67 1.67 1.01 9.99
 The result is:
 45.22
-(This option doesn't exists. Try again.
 
 1. Add matrices
 "2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
+	0. Exit
+Your choice: > 0
+[1;31m
+Start test 18[0m
+
+1. Add matrices
+"2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+5. Calculate determinant
+6. Inverse matrix
+	0. Exit
+Your choice: > 6
+Enter matrix size: > 3 3
+Enter matrix:
+> 0.396796 -0.214938 0.276735
+> 5.19655 -2.06983 -0.388886
+> -3.3797 1.50219 0.159794
+The result is:
+ 1.00 -4.53  4.53 
+-4.53  1.00 -4.53 
+ 4.53 -4.53  1.00 
+
+
+1. Add matrices
+"2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+5. Calculate determinant
+6. Inverse matrix
 	0. Exit
 Your choice: > 0

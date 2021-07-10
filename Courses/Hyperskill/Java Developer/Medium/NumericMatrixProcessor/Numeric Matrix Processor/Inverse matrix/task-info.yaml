@@ -802,6 +802,22 @@ files:
         }
     }
   learner_created: true
+- name: src/processor/Exceptions/DeterminantEqualsZeroException.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/60/stages/328/implement#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: "Wrong answer in test #18\n\nChecking if inversion algorithm is correct\n\
+    \nPlease find below the output of your program during this failed test.\nNote\
+    \ that the &#39;&gt;&#39; character indicates the beginning of the input line.\n\
+    \n---\n\n\n1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n\
+    4. Transpose matrix\n5. Calculate determinant\n6. Inverse matrix\n0. Exit\nYour\
+    \ choice: &gt; 6\nEnter matrix size: &gt; 3 3\nEnter matrix:\n&gt; 0.396796 -0.214938\
+    \ 0.276735\n&gt; 5.19655 -2.06983 -0.388886\n&gt; -3.3797 1.50219 0.159794\nThe\
+    \ result is:\n 1.00 -4.53  4.53 \n-4.53  1.00 -4.53 \n 4.53 -4.53  1.00 \n\n\n\
+    1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n4. Transpose\
+    \ matrix\n5. Calculate determinant\n6. Inverse matrix\n0. Exit\nYour choice: &gt;\
+    \ 0"
+  time: Sat, 10 Jul 2021 05:17:09 UTC
 record: -1

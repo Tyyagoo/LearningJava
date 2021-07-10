@@ -15,4 +15,18 @@ public class MatrixFactory {
         }
         return matrix;
     }
+
+    public static Matrix cloneMatrix(Matrix matrix) {
+        int n = matrix.getRowsSize();
+        int m = matrix.getColumnsSize();
+        Matrix newMatrix = new Matrix(n, m);
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                newMatrix.fillPosition(matrix.getPosition(i, j), i, j);
+            }
+        }
+
+        return newMatrix;
+    }
 }

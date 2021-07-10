@@ -2,12 +2,8 @@ processor/Exceptions/MatrixIndexOutOfBoundsException.java
  processor.Exceptions.MatrixIndexOutOfBoundsException
 processor/Exceptions/InvalidMatrixSizeException.java
  processor.Exceptions.InvalidMatrixSizeException
-processor/Matrices/Matrix.java
- processor.Matrices.Matrix
- processor.Matrices.Matrix$1
- processor.Matrices.Matrix$TransposeType
-processor/Matrices/MatrixFactory.java
- processor.Matrices.MatrixFactory
+processor/Exceptions/DeterminantEqualsZeroException.java
+ processor.Exceptions.DeterminantEqualsZeroException
 processor/Main.java
  processor.Command
  processor.Main
@@ -17,3 +13,10 @@ processor/Main.java
  processor.UserInterface$3
  processor.UserInterface$4
  processor.UserInterface$5
+ processor.UserInterface$6
+processor/Matrices/MatrixFactory.java
+ processor.Matrices.MatrixFactory
+processor/Matrices/Matrix.java
+ processor.Matrices.Matrix
+ processor.Matrices.Matrix$1
+ processor.Matrices.Matrix$TransposeType

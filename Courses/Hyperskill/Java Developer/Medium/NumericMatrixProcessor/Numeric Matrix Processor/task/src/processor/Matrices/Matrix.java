@@ -270,6 +270,51 @@ public class Matrix {
          */
     }
 
+    private Matrix getSubMatrix(int deleteRow, int deleteCol) {
+        Matrix subMatrix = new Matrix(n - 1, n - 1);
+        int i = 0, j = 0;
+
+        for (int row = 0; row < n; row++) {
+            for (int col = 0; col < n; col++) {
+                if(row == deleteRow || col == deleteCol)
+                    continue;
+
+                double value = getPosition(row, col);
+                subMatrix.fillPosition(value, i, j++);
+
+                if(j == n-1){
+                    j = 0;
+                    i++;
+                }
+            }
+        }
+        return subMatrix;
+    }
+
+    public Matrix getInverseMatrix() throws DeterminantEqualsZeroException {
+        Matrix inverseMatrix = new Matrix(n, m);
+        double determinant = MatrixFactory.cloneMatrix(this).getDeterminant();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                Matrix m = getSubMatrix(i, j);
+                m = m.transpose(TransposeType.MAIN_DIAGONAL);
+                double value = Math.pow(-1, i+j) * determinant;
+                inverseMatrix.fillPosition(value, i, j);
+            }
+        }
+
+        double s = 1.0 / determinant;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                double temp = inverseMatrix.getPosition(i, j);
+                inverseMatrix.fillPosition((inverseMatrix.getPosition(j, i) * s), i, j);
+                inverseMatrix.fillPosition((temp * s), j, i);
+            }
+        }
+        return inverseMatrix;
+    }
+
     public void print() {
         System.out.println("The result is:");
         for (int i = 0; i < n; i++) {

@@ -1,7 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="NumericMatrixProcessorTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-10T04:14:14" hostname="LAPTOP-J1J60HSA" time="1.141">
+<testsuite name="NumericMatrixProcessorTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2021-07-10T05:17:07" hostname="LAPTOP-J1J60HSA" time="0.875">
   <properties/>
-  <testcase name="start" classname="NumericMatrixProcessorTest" time="1.141"/>
+  <testcase name="start" classname="NumericMatrixProcessorTest" time="0.875">
+    <failure message="java.lang.AssertionError: Wrong answer in test #18&#10;&#10;Checking if inversion algorithm is correct&#10;&#10;Please find below the output of your program during this failed test.&#10;Note that the '&gt;' character indicates the beginning of the input line.&#10;&#10;---&#10;&#10;&#10;1. Add matrices&#10;2. Multiply matrix by a constant&#10;3. Multiply matrices&#10;4. Transpose matrix&#10;5. Calculate determinant&#10;6. Inverse matrix&#10;0. Exit&#10;Your choice: &gt; 6&#10;Enter matrix size: &gt; 3 3&#10;Enter matrix:&#10;&gt; 0.396796 -0.214938 0.276735&#10;&gt; 5.19655 -2.06983 -0.388886&#10;&gt; -3.3797 1.50219 0.159794&#10;The result is:&#10; 1.00 -4.53  4.53 &#10;-4.53  1.00 -4.53 &#10; 4.53 -4.53  1.00 &#10;&#10;&#10;1. Add matrices&#10;2. Multiply matrix by a constant&#10;3. Multiply matrices&#10;4. Transpose matrix&#10;5. Calculate determinant&#10;6. Inverse matrix&#10;0. Exit&#10;Your choice: &gt; 0" type="java.lang.AssertionError">java.lang.AssertionError: Wrong answer in test #18
+
+Checking if inversion algorithm is correct
+
+Please find below the output of your program during this failed test.
+Note that the '&gt;' character indicates the beginning of the input line.
+
+---
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+5. Calculate determinant
+6. Inverse matrix
+0. Exit
+Your choice: &gt; 6
+Enter matrix size: &gt; 3 3
+Enter matrix:
+&gt; 0.396796 -0.214938 0.276735
+&gt; 5.19655 -2.06983 -0.388886
+&gt; -3.3797 1.50219 0.159794
+The result is:
+ 1.00 -4.53  4.53 
+-4.53  1.00 -4.53 
+ 4.53 -4.53  1.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+5. Calculate determinant
+6. Inverse matrix
+0. Exit
+Your choice: &gt; 0
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.hyperskill.hstest.stage.StageTest.start(StageTest.java:141)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
+	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:94)
+	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:119)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:182)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:164)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:414)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:48)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:56)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+</failure>
+  </testcase>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 
@@ -10,6 +98,7 @@ Start test 1?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 1
 Enter the size of first matrix: > 3 3
@@ -33,6 +122,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -43,6 +133,7 @@ Start test 2?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 1
 Enter the size of first matrix: > 4 4
@@ -69,6 +160,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -79,6 +171,7 @@ Start test 3?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 2
 Enter the size of matrix: > 3 3
@@ -98,6 +191,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -108,6 +202,7 @@ Start test 4?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 2
 Enter the size of matrix: > 4 4
@@ -129,6 +224,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -139,6 +235,7 @@ Start test 5?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 4 4
@@ -165,6 +262,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -175,6 +273,7 @@ Start test 6?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 2 3
@@ -196,6 +295,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -206,6 +306,7 @@ Start test 7?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 3 5
@@ -231,6 +332,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -241,6 +343,7 @@ Start test 8?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 4 4
@@ -267,6 +370,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -277,6 +381,7 @@ Start test 9?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 4 4
@@ -303,6 +408,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 3
 Enter the size of first matrix: > 3 5
@@ -328,6 +434,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -338,6 +445,7 @@ Start test 10?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -361,6 +469,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -371,6 +480,7 @@ Start test 11?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -394,6 +504,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -404,6 +515,7 @@ Start test 12?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -427,6 +539,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -437,6 +550,7 @@ Start test 13?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -460,6 +574,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -470,6 +585,7 @@ Start test 14?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -495,6 +611,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -505,6 +622,7 @@ Start test 15?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 4
 1. Main diagonal
@@ -530,6 +648,7 @@ The result is:
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -540,6 +659,7 @@ Start test 16?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 5
 Enter the size of matrix: > 3 3
@@ -549,13 +669,13 @@ Enter matrix:
 > 10 22 23
 The result is:
 31.00
-This option doesn't exists. Try again.
 
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ?[1;31m
@@ -566,6 +686,7 @@ Start test 17?[0m
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 5
 Enter the size of matrix: > 4 4
@@ -576,13 +697,43 @@ Enter matrix:
 > 1.67 1.67 1.01 9.99
 The result is:
 45.22
-This option doesn't exists. Try again.
 
 1. Add matrices
 2. Multiply matrix by a constant
 3. Multiply matrices
 4. Transpose matrix
 5. Calculate determinant
+6. Inverse matrix
+0. Exit
+Your choice: > 0
+?[1;31m
+Start test 18?[0m
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+5. Calculate determinant
+6. Inverse matrix
+0. Exit
+Your choice: > 6
+Enter matrix size: > 3 3
+Enter matrix:
+> 0.396796 -0.214938 0.276735
+> 5.19655 -2.06983 -0.388886
+> -3.3797 1.50219 0.159794
+The result is:
+ 1.00 -4.53  4.53 
+-4.53  1.00 -4.53 
+ 4.53 -4.53  1.00 
+
+
+1. Add matrices
+2. Multiply matrix by a constant
+3. Multiply matrices
+4. Transpose matrix
+5. Calculate determinant
+6. Inverse matrix
 0. Exit
 Your choice: > 0
 ]]></system-out>

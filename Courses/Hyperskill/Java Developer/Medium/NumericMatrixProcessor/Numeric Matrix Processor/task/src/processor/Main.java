@@ -3,6 +3,7 @@ package processor;
 import java.util.*;
 import java.io.*;
 
+import processor.Exceptions.DeterminantEqualsZeroException;
 import processor.Exceptions.InvalidMatrixSizeException;
 import processor.Matrices.*;
 
@@ -121,8 +122,26 @@ class UserInterface {
             int m = scanner.nextInt();
             System.out.println("Enter matrix:");
             Matrix matrix = MatrixFactory.getMatrixFromSize(n, m);
+            Matrix garbageMatrix = MatrixFactory.cloneMatrix(matrix);
             System.out.println("The result is:");
-            System.out.printf("%5.2f\n", matrix.getDeterminant());
+            System.out.printf("%5.2f\n", garbageMatrix.getDeterminant());
+        }
+    };
+
+    private static final Command optionSix = new Command() {
+        @Override
+        public void execute() {
+            System.out.print("Enter matrix size: ");
+            int n = scanner.nextInt();
+            int m = scanner.nextInt();
+            System.out.println("Enter matrix:");
+            Matrix matrix = MatrixFactory.getMatrixFromSize(n, m);
+            try {
+                Matrix invertedMatrix = matrix.getInverseMatrix();
+                invertedMatrix.print();
+            } catch (DeterminantEqualsZeroException e) {
+                System.out.println(e.getMessage());
+            }
         }
     };
 
@@ -132,6 +151,7 @@ class UserInterface {
         System.out.println("3. Multiply matrices");
         System.out.println("4. Transpose matrix");
         System.out.println("5. Calculate determinant");
+        System.out.println("6. Inverse matrix");
         System.out.println("0. Exit");
     }
 
@@ -156,8 +176,12 @@ class UserInterface {
                 break;
             case 5:
                 optionFive.execute();
+                break;
+            case 6:
+                optionSix.execute();
+                break;
             default:
-                System.out.println("This option doesn't exists. Try again.");
+                System.out.println("");
                 break;
         }
     }
