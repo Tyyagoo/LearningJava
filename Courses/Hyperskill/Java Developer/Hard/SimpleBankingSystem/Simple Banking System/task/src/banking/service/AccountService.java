@@ -28,13 +28,14 @@ public class AccountService {
         }
     }
 
-    public static Account logIntoAccount(char[] number, char[] pin) throws InvalidCredentialsException {
-        Account acc = getAccountByNumber(number); // can throw InvalidCredentialsException
+    public static Account logIntoAccount(String number, String pin) throws InvalidCredentialsException {
+        String numberWithoutBin = number.substring(6);
+        Account acc = getAccountByNumber(numberWithoutBin); // can throw InvalidCredentialsException
         if (acc.getCard().isValidPin(pin)) return acc;
         throw new InvalidCredentialsException(); // if pin isn't the same, throw InvalidCredentials
     }
 
-    private static Account getAccountByNumber(char[] number) throws InvalidCredentialsException {
+    private static Account getAccountByNumber(String number) throws InvalidCredentialsException {
         int bucketNumber = getBucketNumber(number);
 
         if (accounts.containsKey(bucketNumber)) {
@@ -50,19 +51,17 @@ public class AccountService {
         return getBucketNumber(acc.getNumber());
     }
 
-    private static int getBucketNumber(char[] number) {
+    private static int getBucketNumber(String number) {
         int sum = 0;
-        for (char n: number) {
+        char[] numberArray = number.toCharArray();
+        for (char n: numberArray) {
             sum += n;
         }
         return sum;
     }
 
-    private static boolean numbersAreEqual(char[] n1, char[] n2) {
-        for (int i = 0; i < Bank.numberLength - Bank.binLength; i++) {
-            if (n1[i] != n2[i]) return false;
-        }
-        return true;
+    private static boolean numbersAreEqual(String n1, String n2) {
+        return n1.equals(n2);
     }
 
 

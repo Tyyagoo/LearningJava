@@ -1,7 +1,7 @@
-import org.hyperskill.hstest.dynamic.DynamicTest;
 import org.hyperskill.hstest.stage.StageTest;
 import org.hyperskill.hstest.testcase.CheckResult;
 import org.hyperskill.hstest.testing.TestedProgram;
+import org.hyperskill.hstest.dynamic.DynamicTest;
 
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -77,7 +77,7 @@ public class SimpleBankSystemTest extends StageTest<String> {
         Matcher cardNumberMatcher = cardNumberPattern.matcher(output);
 
         if (!cardNumberMatcher.find()) {
-            return CheckResult.wrong("You are printing the card number " +
+            return new CheckResult(false, "You are printing the card number " +
                 "incorrectly. The card number should look like in the example: " +
                 "400000DDDDDDDDDD, where D is a digit.");
         }
@@ -85,7 +85,7 @@ public class SimpleBankSystemTest extends StageTest<String> {
         Matcher pinMatcher = pinPattern.matcher(output);
 
         if (!pinMatcher.find()) {
-            return CheckResult.wrong("You are printing the card PIN " +
+            return new CheckResult(false, "You are printing the card PIN " +
                 "incorrectly. The PIN should look like in the example: DDDD, where D is " +
                 "a digit.");
         }
@@ -96,14 +96,14 @@ public class SimpleBankSystemTest extends StageTest<String> {
         output = program.execute(correctCardNumber + "\n" + correctPin);
 
         if (!output.toLowerCase().contains("successfully")) {
-            return CheckResult.wrong("The user should be signed in after " +
+            return new CheckResult(false, "The user should be signed in after " +
                 "entering the correct card information.");
         }
 
         output = program.execute("2");
 
         if (!output.toLowerCase().contains("create")) {
-            return CheckResult.wrong("The user should be logged out after choosing 'Log out' option.\n" +
+            return new CheckResult(false, "The user should be logged out after choosing 'Log out' option.\n" +
                 "And you should print the menu with 'Create an account' option.");
         }
 
@@ -124,7 +124,7 @@ public class SimpleBankSystemTest extends StageTest<String> {
         Matcher pinMatcher = pinPattern.matcher(output);
 
         if (!cardNumberMatcher.find() || !pinMatcher.find()) {
-            return CheckResult.wrong("You should output card number and PIN like in example!");
+            return new CheckResult(false, "You should output card number and PIN like in example!");
         }
 
         String correctCardNumber = cardNumberMatcher.group();
@@ -142,7 +142,7 @@ public class SimpleBankSystemTest extends StageTest<String> {
         output = program.execute(correctCardNumber + "\n" + incorrectPin);
 
         if (output.toLowerCase().contains("successfully")) {
-            return CheckResult.wrong("The user should not be signed in after" +
+            return new CheckResult(false, "The user should not be signed in after" +
                 " entering incorrect card information.");
         }
 
@@ -163,7 +163,7 @@ public class SimpleBankSystemTest extends StageTest<String> {
         Matcher pinMatcher = pinPattern.matcher(output);
 
         if (!cardNumberMatcher.find() || !pinMatcher.find()) {
-            return CheckResult.wrong("You should output card number " +
+            return new CheckResult(false, "You should output card number " +
                 "and PIN like in example");
         }
 
@@ -182,7 +182,7 @@ public class SimpleBankSystemTest extends StageTest<String> {
         output = program.execute(incorrectCardNumber + "\n" + correctPin);
 
         if (output.toLowerCase().contains("successfully")) {
-            return CheckResult.wrong("The user should not be signed" +
+            return new CheckResult(false, "The user should not be signed" +
                 " in after entering the information of a non-existing card.");
         }
 
@@ -201,7 +201,7 @@ public class SimpleBankSystemTest extends StageTest<String> {
         Matcher pinMatcher = pinPattern.matcher(output);
 
         if (!cardNumberMatcher.find() || !pinMatcher.find()) {
-            return CheckResult.wrong("You should output card number and PIN like in example");
+            return new CheckResult(false, "You should output card number and PIN like in example");
         }
 
         String correctPin = pinMatcher.group().trim();
@@ -212,12 +212,64 @@ public class SimpleBankSystemTest extends StageTest<String> {
         output = program.execute("1");
 
         if (!output.contains("0")) {
-            return CheckResult.wrong("Expected balance: 0");
+            return new CheckResult(false, "Expected balance: 0");
         }
 
         program.execute("0");
 
         return CheckResult.correct();
     }
-}
 
+    @DynamicTest
+    CheckResult test6_checkLuhnAlgorithm() {
+
+        TestedProgram program = new TestedProgram();
+        program.start();
+
+        String output = program.execute("1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1\n1");
+
+        Matcher cardNumberMatcher = cardNumberPattern.matcher(output);
+
+        boolean isSomeCardFound = false;
+        int foundCards = 0;
+
+        while (cardNumberMatcher.find()) {
+
+            foundCards++;
+
+            if (!isSomeCardFound) {
+                isSomeCardFound = true;
+            }
+
+            String cardNumber = cardNumberMatcher.group();
+
+            if (!checkLuhnAlgorithm(cardNumber)) {
+                return new CheckResult(false, String.format("The card number %s doesn’t pass the Luhn algorithm.", cardNumber));
+            }
+        }
+
+        if (!isSomeCardFound) {
+            return new CheckResult(false, "You should output card number and PIN like in example");
+        }
+
+        if (foundCards != 20) {
+            return new CheckResult(false, "Tried to generate 20 cards, but found " + foundCards);
+        }
+
+        return CheckResult.correct();
+    }
+
+    private boolean checkLuhnAlgorithm(String cardNumber) {
+        int result = 0;
+        for (int i = 0; i < cardNumber.length(); i++) {
+            int digit = Character.getNumericValue(cardNumber.charAt(i));
+            if (i % 2 == 0) {
+                int doubleDigit = digit * 2 > 9 ? digit * 2 - 9 : digit * 2;
+                result += doubleDigit;
+                continue;
+            }
+            result += digit;
+        }
+        return result % 10 == 0;
+    }
+}

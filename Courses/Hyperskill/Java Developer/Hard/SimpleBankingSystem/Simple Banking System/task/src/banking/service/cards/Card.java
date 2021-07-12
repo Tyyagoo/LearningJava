@@ -2,43 +2,42 @@ package banking.service.cards;
 
 import banking.Bank;
 
+import java.math.BigDecimal;
 import java.util.Random;
 
 public class Card {
 
-    private final char[] number = new char[Bank.numberLength - Bank.binLength];
-    private final char[] pin = new char[Bank.pinLength];
+    private final String number;
+    private final String pin;
+    private BigDecimal balance = new BigDecimal(0);
 
-    Card(char[] number) { // for create new cards
-        System.arraycopy(number, 0, this.number, 0, number.length);
+    Card(String number) { // for create new cards
+        this.number = number;
 
         Random randomizer = new Random();
-
-        for (int i = 0; i < pin.length; i++) {
-            pin[i] = (char) randomizer.nextInt(10);
+        StringBuilder pinBuilder = new StringBuilder();
+        for (int i = 0; i < Bank.pinLength; i++) {
+            pinBuilder.append(randomizer.nextInt(10));
         }
-
+        pin = pinBuilder.toString();
         // Show pin only on the creation of account.
-        System.out.println("Your card PIN:");
-        for (char n: pin) {
-            System.out.printf("%d", (int) n);
-        }
-        System.out.println();
+        System.out.printf("Your card PIN:%n%s%n", pin);
     }
 
-    Card(char[] number, char[] pin) { // for load existing cards
-        System.arraycopy(number, 0, this.number, 0, number.length);
-        System.arraycopy(pin, 0, this.pin, 0, pin.length);
+    Card(String number, String pin) { // for load existing cards
+        this.number = number;
+        this.pin = pin;
     }
 
-    public char[] getNumber() {
+    public String getNumber() {
         return number;
     }
 
-    public boolean isValidPin(char[] credential) {
-        for (int i = 0; i < pin.length; i++) {
-            if (pin[i] != credential[i]) return false;
-        }
-        return true;
+    public boolean isValidPin(String credential) {
+        return pin.equals(credential);
+    }
+
+    public BigDecimal getBalance() {
+        return balance;
     }
 }

@@ -3,7 +3,7 @@ package banking.service.cards;
 public class CardFactory {
 
 
-    public static Card createNewCard(char[] number) {
+    public static Card createNewCard(String number) {
         // use Card(number);
         return new Card(number);
     }

@@ -4,37 +4,38 @@ import banking.Bank;
 import banking.service.cards.Card;
 import banking.service.cards.CardFactory;
 
+import java.math.BigDecimal;
 import java.util.Random;
 
 public class Account {
 
-    private final char[] number = new char[Bank.numberLength - Bank.binLength];
+    private final String number;
     private Card card;
 
 
     public Account() {
         Random randomizer = new Random();
+        StringBuilder numberBuilder = new StringBuilder();
 
-        for (int i = 0; i < number.length; i++) {
-            number[i] = (char) randomizer.nextInt(10);
+        for (int i = 0; i < Bank.numberLength - Bank.binLength; i++) {
+            numberBuilder.append(randomizer.nextInt(10));
         }
+        number = numberBuilder.toString();
 
         System.out.println("Your card number:");
-        for (char n: Bank.bankIdentificationNumber) {
-            System.out.printf("%d", (int) n);
-        }
-        for (char n: number) {
-            System.out.printf("%d", (int) n);
-        }
-        System.out.println();
+        System.out.printf("%s%s%n", String.valueOf(Bank.bankIdentificationNumber), number);
         this.card = CardFactory.createNewCard(number);
     }
 
-    public char[] getNumber() {
+    public String getNumber() {
         return number;
     }
 
     public Card getCard() {
         return card;
+    }
+
+    public BigDecimal getBalance() {
+        return card.getBalance();
     }
 }
