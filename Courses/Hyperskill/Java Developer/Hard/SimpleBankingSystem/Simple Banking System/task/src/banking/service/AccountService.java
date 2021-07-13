@@ -29,6 +29,7 @@ public class AccountService {
     }
 
     public static Account logIntoAccount(String number, String pin) throws InvalidCredentialsException {
+        if (!Bank.checkNumber(number)) throw new InvalidCredentialsException(); // invalid Luhn
         String numberWithoutBin = number.substring(6);
         Account acc = getAccountByNumber(numberWithoutBin); // can throw InvalidCredentialsException
         if (acc.getCard().isValidPin(pin)) return acc;

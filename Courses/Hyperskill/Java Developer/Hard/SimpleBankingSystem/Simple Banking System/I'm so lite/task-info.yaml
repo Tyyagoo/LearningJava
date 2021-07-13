@@ -490,6 +490,546 @@ files:
         }
     }
   learner_created: false
+- name: src/banking/Bank.java
+  visible: true
+  text: |
+    package banking;
+
+    import java.util.Random;
+
+    public class Bank {
+
+        public static final char[] bankIdentificationNumber = {'4', '0', '0', '0', '0', '0'};
+        public static final int binLength = 6;
+        public static final int numberLength = 16;
+        public static final int pinLength = 4;
+
+        public static String generateAccountNumber() {
+            StringBuilder numberBuilder = new StringBuilder();
+            numberBuilder.append(String.valueOf(bankIdentificationNumber));
+
+            Random randomizer = new Random();
+            for (int i = binLength; i < numberLength - 1; i++) {
+                numberBuilder.append(randomizer.nextInt(10));
+            }
+
+            int sum = 0;
+            String currentString = numberBuilder.toString();
+            for (int i = 0; i < currentString.length(); i++) {
+                int digit = Integer.parseInt(String.valueOf(currentString.charAt(i)));
+                if ((i + 1) % 2 != 0) digit *= 2;
+                if (digit > 9) digit -= 9;
+                sum += digit;
+            }
+
+            int checksum;
+            if (sum % 10 == 0) checksum = 0;
+            else checksum = 10 - (sum % 10);
+            numberBuilder.append(checksum);
+            return numberBuilder.toString();
+        }
+
+        public static boolean checkNumber(String number) {
+            int i, sum = 0;
+            for (i = 1; i < numberLength; i++) {
+                int n = Integer.parseInt(String.valueOf(number.charAt(i - 1)));
+                if (i % 2 != 0) n *= 2;
+                if (n > 9) n -= 9;
+                sum += n;
+            }
+            sum += Integer.parseInt(String.valueOf(number.charAt(i - 1)));
+            return sum % 10 == 0;
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/commands/ShowBalance.java
+  visible: true
+  text: |
+    package banking.ui.commands;
+
+    import banking.exceptions.NonExistentAccountException;
+    import banking.service.Account;
+
+    import java.util.Scanner;
+
+    public class ShowBalance implements ICommand<Account> {
+
+        @Override
+        public Callback<Account> execute(Scanner scanner, Object... args) {
+            if (args.length != 0) {
+                try {
+                    Account acc = (Account) args[0];
+                    System.out.printf("Balance: %d%n", acc.getBalance().intValue());
+                    return new Callback<>(acc);
+                } catch (Exception e) {
+                    throw new NonExistentAccountException();
+                }
+            }
+            throw new NonExistentAccountException();
+        }
+    }
+  learner_created: true
+- name: src/banking/service/Account.java
+  visible: true
+  text: |
+    package banking.service;
+
+    import banking.Bank;
+    import banking.service.cards.Card;
+    import banking.service.cards.CardFactory;
+
+    import java.math.BigDecimal;
+    import java.util.Random;
+
+    public class Account {
+
+        private final String number;
+        private Card card;
+
+
+        public Account() {
+            number = Bank.generateAccountNumber().substring(Bank.binLength);
+            System.out.println("Your card number:");
+            System.out.printf("%s%s%n", String.valueOf(Bank.bankIdentificationNumber), number);
+            this.card = CardFactory.createNewCard(number);
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+        public Card getCard() {
+            return card;
+        }
+
+        public BigDecimal getBalance() {
+            return card.getBalance();
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/commands/CreateAccount.java
+  visible: true
+  text: |
+    package banking.ui.commands;
+
+
+    import banking.service.Account;
+    import banking.service.AccountService;
+    import java.util.Scanner;
+
+    public class CreateAccount implements ICommand<Account> {
+
+        @Override
+        public Callback<Account> execute(Scanner scanner, Object... args) {
+            Account account = AccountService.createNewAccount();
+            return new Callback<>(account);
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/commands/Callback.java
+  visible: true
+  text: |
+    package banking.ui.commands;
+
+    public class Callback<T> {
+        private final T callback;
+
+        public Callback(T callback) {
+            this.callback = callback;
+        }
+
+        public T getResult() {
+            return callback;
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/MainMenu.java
+  visible: true
+  text: |
+    package banking.ui;
+
+
+    import banking.service.Account;
+    import banking.ui.commands.Callback;
+    import banking.ui.commands.CreateAccount;
+    import banking.ui.commands.ICommand;
+    import banking.ui.commands.LoginAccount;
+
+    import java.util.Scanner;
+
+    public class MainMenu extends AbstractUserInterface {
+
+        private static final ICommand<Account> optionOne = new CreateAccount();
+        private static final ICommand<Account> optionTwo = new LoginAccount();
+
+        private AbstractUserInterface subMenu = null;
+
+        public MainMenu(Scanner scanner) {
+            super(scanner);
+        }
+
+        @Override
+        public void invoke() {
+            showOptions();
+            Callback callback = getUserInput();
+            if (callback == null) return;
+            if (callback.getResult() == ExitContext.EXIT_PROGRAM) {
+                finishProgram = true;
+                return;
+            }
+
+            if (callback.getResult() == ExitContext.EXIT_MENU) {
+                subMenu = null;
+                return;
+            }
+            Account acc = (Account) callback.getResult();
+        }
+
+        @Override
+        protected void showOptions() {
+            System.out.println("1. Create an account");
+            System.out.println("2. Log into account");
+            System.out.println("0. Exit");
+        }
+
+        @Override
+        protected Callback getUserInput() {
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    return optionOne.execute(scanner);
+                case 2:
+                    Callback<Account> callback = optionTwo.execute(scanner);
+                    if (callback == null) return null;
+                    subMenu = new AccountMenu(scanner, callback.getResult());
+
+                    while (!(subMenu.isFinished() || subMenu.isStopped())) {
+                        subMenu.invoke();
+                    }
+
+                    if (subMenu.isStopped()) return exitCommand.execute(scanner);
+                    return backCommand.execute(scanner);
+
+                default:
+                    return exitCommand.execute(scanner);
+            }
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/AccountMenu.java
+  visible: true
+  text: |
+    package banking.ui;
+
+    import banking.service.Account;
+    import banking.ui.commands.Callback;
+    import banking.ui.commands.ICommand;
+    import banking.ui.commands.ShowBalance;
+
+    import java.util.Scanner;
+
+    public class AccountMenu extends AbstractUserInterface {
+
+        private final Account account;
+        private static final ICommand<Account> optionOne = new ShowBalance();
+
+        AccountMenu(Scanner scanner, Account account) {
+            super(scanner);
+            this.account = account;
+        }
+
+        @Override
+        public void invoke() {
+            showOptions();
+            Callback callback = getUserInput();
+            if (callback.getResult() == ExitContext.EXIT_PROGRAM) {
+                finishProgram = true;
+                return;
+            }
+            if (callback.getResult() == ExitContext.EXIT_MENU) {
+                finishMenu = true;
+                return;
+            }
+        }
+
+        @Override
+        protected void showOptions() {
+            System.out.println("1. Balance");
+            System.out.println("2. Log out");
+            System.out.println("0. Exit");
+        }
+
+        @Override
+        protected Callback getUserInput() {
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    return optionOne.execute(scanner, account);
+                case 2:
+                    System.out.println("You have successfully logged out!");
+                    return backCommand.execute(scanner);
+                default:
+                    return exitCommand.execute(scanner);
+            }
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/commands/ICommand.java
+  visible: true
+  text: |+
+    package banking.ui.commands;
+
+    import java.util.Scanner;
+
+    public interface ICommand<T> {
+        Callback<T> execute(Scanner scanner, Object... args);
+    }
+
+  learner_created: true
+- name: src/banking/service/cards/CardFactory.java
+  visible: true
+  text: |
+    package banking.service.cards;
+
+    public class CardFactory {
+
+
+        public static Card createNewCard(String number) {
+            // use Card(number);
+            return new Card(number);
+        }
+
+        /*
+        private static Card loadCardOnSystem() {
+            // use Card(number, pin)
+        }
+         */
+    }
+  learner_created: true
+- name: src/banking/service/cards/Card.java
+  visible: true
+  text: |
+    package banking.service.cards;
+
+    import banking.Bank;
+
+    import java.math.BigDecimal;
+    import java.util.Random;
+
+    public class Card {
+
+        private final String number;
+        private final String pin;
+        private BigDecimal balance = new BigDecimal(0);
+
+        Card(String number) { // for create new cards
+            this.number = number;
+
+            Random randomizer = new Random();
+            StringBuilder pinBuilder = new StringBuilder();
+            for (int i = 0; i < Bank.pinLength; i++) {
+                pinBuilder.append(randomizer.nextInt(10));
+            }
+            pin = pinBuilder.toString();
+            // Show pin only on the creation of account.
+            System.out.printf("Your card PIN:%n%s%n", pin);
+        }
+
+        Card(String number, String pin) { // for load existing cards
+            this.number = number;
+            this.pin = pin;
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+        public boolean isValidPin(String credential) {
+            return pin.equals(credential);
+        }
+
+        public BigDecimal getBalance() {
+            return balance;
+        }
+    }
+  learner_created: true
+- name: src/banking/exceptions/NonExistentAccountException.java
+  visible: true
+  text: |
+    package banking.exceptions;
+
+    public class NonExistentAccountException extends RuntimeException {
+        public NonExistentAccountException() {
+            super("Invalid Account.", null);
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/commands/LoginAccount.java
+  visible: true
+  text: |
+    package banking.ui.commands;
+
+    import banking.Bank;
+    import banking.exceptions.InvalidCredentialsException;
+    import banking.service.Account;
+    import banking.service.AccountService;
+    import java.util.Scanner;
+
+    public class LoginAccount implements ICommand<Account> {
+
+        @Override
+        public Callback<Account> execute(Scanner scanner, Object... args) {
+            String number = "";
+            String pin = "";
+            System.out.println("Enter your card number:");
+            while (number.length() != Bank.numberLength) {
+                number = scanner.nextLine();
+            }
+            System.out.println("Enter your PIN:");
+            while (pin.length() != Bank.pinLength) {
+                pin = scanner.nextLine();
+            }
+
+            try {
+                Account acc = AccountService.logIntoAccount(number, pin);
+                System.out.println("You have successfully logged in!");
+                return new Callback<>(acc);
+            } catch (InvalidCredentialsException e) {
+                System.out.println(e.getMessage());
+            }
+
+            return null;
+        }
+    }
+  learner_created: true
+- name: src/banking/service/AccountService.java
+  visible: true
+  text: |
+    package banking.service;
+
+    import banking.Bank;
+    import banking.exceptions.InvalidCredentialsException;
+
+    import java.util.*;
+
+    public class AccountService {
+
+        private static final Map<Integer, ArrayList<Account>> accounts = new HashMap<>();
+
+        public static Account createNewAccount() {
+            System.out.println("Your card has been created");
+            Account account = new Account();
+            registryAccount(account);
+            return account;
+        }
+
+        private static void registryAccount(Account account) {
+            int bucketNumber = getAccountBucket(account);
+
+            if (accounts.containsKey(bucketNumber)) {
+                accounts.get(bucketNumber).add(account);
+            } else {
+                ArrayList<Account> accountList = new ArrayList<>();
+                accountList.add(account);
+                accounts.put(bucketNumber, accountList);
+            }
+        }
+
+        public static Account logIntoAccount(String number, String pin) throws InvalidCredentialsException {
+            if (!Bank.checkNumber(number)) throw new InvalidCredentialsException(); // invalid Luhn
+            String numberWithoutBin = number.substring(6);
+            Account acc = getAccountByNumber(numberWithoutBin); // can throw InvalidCredentialsException
+            if (acc.getCard().isValidPin(pin)) return acc;
+            throw new InvalidCredentialsException(); // if pin isn't the same, throw InvalidCredentials
+        }
+
+        private static Account getAccountByNumber(String number) throws InvalidCredentialsException {
+            int bucketNumber = getBucketNumber(number);
+
+            if (accounts.containsKey(bucketNumber)) {
+                for (Account acc: accounts.get(bucketNumber)) {
+                    if (numbersAreEqual(number, acc.getNumber())) return acc;
+                }
+                throw new InvalidCredentialsException();
+            }
+            throw new InvalidCredentialsException();
+        }
+
+        private static int getAccountBucket(Account acc) {
+            return getBucketNumber(acc.getNumber());
+        }
+
+        private static int getBucketNumber(String number) {
+            int sum = 0;
+            char[] numberArray = number.toCharArray();
+            for (char n: numberArray) {
+                sum += n;
+            }
+            return sum;
+        }
+
+        private static boolean numbersAreEqual(String n1, String n2) {
+            return n1.equals(n2);
+        }
+
+
+    }
+  learner_created: true
+- name: src/banking/exceptions/InvalidCredentialsException.java
+  visible: true
+  text: |
+    package banking.exceptions;
+
+    public class InvalidCredentialsException extends RuntimeException {
+        public InvalidCredentialsException() {
+            super("Wrong card number or PIN!", null);
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/AbstractUserInterface.java
+  visible: true
+  text: |
+    package banking.ui;
+
+    import banking.ui.commands.Callback;
+    import banking.ui.commands.ICommand;
+
+    import java.util.Scanner;
+
+    public abstract class AbstractUserInterface {
+
+        enum ExitContext {
+            EXIT_MENU,
+            EXIT_PROGRAM;
+        }
+
+        protected final ICommand<ExitContext> exitCommand = (scanner, args) -> new Callback<>(ExitContext.EXIT_PROGRAM);
+        protected  final ICommand<ExitContext> backCommand = (scanner, args) -> new Callback<>(ExitContext.EXIT_MENU);
+
+        protected final Scanner scanner;
+        protected boolean finishProgram = false;
+        protected boolean finishMenu = false;
+
+        AbstractUserInterface(Scanner scanner) {
+            this.scanner = scanner;
+        }
+
+        public abstract void invoke();
+        protected abstract void showOptions();
+        protected abstract Callback getUserInput();
+
+        public boolean isStopped() {
+            return finishProgram;
+        }
+        public boolean isFinished() { return finishMenu; }
+
+        public Scanner getScanner() {
+            return scanner;
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/93/stages/517/implement#comment
 status: Unchecked
 record: -1
