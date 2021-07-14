@@ -1,7 +1,10 @@
 package banking.service;
 
-import banking.system.Bank;
+import banking.exceptions.InsufficientBalanceException;
 import banking.exceptions.InvalidCredentialsException;
+import banking.system.Bank;
+
+import java.math.BigDecimal;
 
 
 public class AccountService {
@@ -25,7 +28,7 @@ public class AccountService {
         throw new InvalidCredentialsException(); // if pin isn't the same, throw InvalidCredentials
     }
 
-    private static Account getAccountByNumber(String number) throws InvalidCredentialsException {
+    public static Account getAccountByNumber(String number) throws InvalidCredentialsException {
         try {
             return Bank.getAccount(number);
         } catch (Exception e) {
@@ -33,9 +36,12 @@ public class AccountService {
         }
     }
 
-    private static boolean numbersAreEqual(String n1, String n2) {
-        return n1.equals(n2);
+    public static void makeTransaction(Transaction transaction, BigDecimal value) throws InsufficientBalanceException {
+        transaction.setValue(value);
+        Account sender = transaction.getSender();
+        Account receiver = transaction.getReceiver();
+        sender.withdraw(transaction.getValue()); // can throw InsufficientBalanceException
+        receiver.deposit(transaction.getValue());
     }
-
 
 }

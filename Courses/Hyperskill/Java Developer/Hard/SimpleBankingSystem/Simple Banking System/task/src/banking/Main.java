@@ -1,9 +1,6 @@
 package banking;
 
 import banking.system.Bank;
-import banking.ui.AbstractUserInterface;
-import banking.ui.MainMenu;
-
 import java.util.Scanner;
 
 public class Main {

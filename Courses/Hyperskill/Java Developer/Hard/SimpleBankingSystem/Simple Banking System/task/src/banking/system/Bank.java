@@ -6,8 +6,6 @@ import banking.service.Account;
 import banking.ui.AbstractUserInterface;
 import banking.ui.MainMenu;
 
-import java.sql.SQLException;
-import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -18,12 +16,10 @@ public class Bank {
     public static final int numberLength = 16;
     public static final int pinLength = 4;
 
-    private static Scanner scanner = null;
     private static AbstractUserInterface rootMenu = null;
     private static Database database = null;
 
     public static void initialize(Scanner scanner, String dataBaseFilename) {
-        Bank.scanner = scanner;
         String url = String.format("jdbc:sqlite:%s", dataBaseFilename);
         database = new Database(url);
         database.initialize();
@@ -39,6 +35,14 @@ public class Bank {
 
     public static void registryAccount(Account account) {
         database.insertAccount(account);
+    }
+
+    public static void updateAccountBalance(Account account) {
+        database.updateBalance(account);
+    }
+
+    public static void closeAccount(Account account) {
+        database.deleteAccount(account);
     }
 
     public static Account getAccount(String number) throws InvalidCredentialsException, NonExistentAccountException {

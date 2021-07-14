@@ -9,7 +9,7 @@ public abstract class AbstractUserInterface {
 
     enum ExitContext {
         EXIT_MENU,
-        EXIT_PROGRAM;
+        EXIT_PROGRAM
     }
 
     protected final ICommand<ExitContext> exitCommand = (scanner, args) -> new Callback<>(ExitContext.EXIT_PROGRAM);
@@ -31,8 +31,4 @@ public abstract class AbstractUserInterface {
         return finishProgram;
     }
     public boolean isFinished() { return finishMenu; }
-
-    public Scanner getScanner() {
-        return scanner;
-    }
 }

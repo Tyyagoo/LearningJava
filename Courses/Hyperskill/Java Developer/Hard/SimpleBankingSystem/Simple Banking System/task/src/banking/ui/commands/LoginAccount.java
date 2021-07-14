@@ -1,6 +1,5 @@
 package banking.ui.commands;
 
-import banking.system.Bank;
 import banking.exceptions.InvalidCredentialsException;
 import banking.service.Account;
 import banking.service.AccountService;

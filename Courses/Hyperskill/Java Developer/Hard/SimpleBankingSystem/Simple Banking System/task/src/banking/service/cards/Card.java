@@ -1,5 +1,6 @@
 package banking.service.cards;
 
+import banking.exceptions.InsufficientBalanceException;
 import banking.system.Bank;
 
 import java.math.BigDecimal;
@@ -42,5 +43,14 @@ public class Card {
 
     public BigDecimal getBalance() {
         return balance;
+    }
+
+    public void incrementBalance(BigDecimal quantity) {
+        balance = balance.add(quantity);
+    }
+
+    public void decrementBalance(BigDecimal quantity) throws InsufficientBalanceException {
+        if (balance.compareTo(quantity) < 0) throw new InsufficientBalanceException();
+        balance = balance.subtract(quantity);
     }
 }

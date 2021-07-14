@@ -3,7 +3,6 @@ package banking.system;
 import banking.exceptions.InvalidCredentialsException;
 import banking.exceptions.NonExistentAccountException;
 import banking.service.Account;
-import banking.service.cards.Card;
 import org.sqlite.SQLiteDataSource;
 
 import java.math.BigDecimal;

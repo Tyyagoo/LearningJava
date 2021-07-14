@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public class Account {
 
     private final String number;
-    private Card card;
+    private final Card card;
 
 
     public Account() {
@@ -22,6 +22,16 @@ public class Account {
     public Account(String number, String pin, BigDecimal balance) {
         this.number = number;
         this.card = CardFactory.createCard(number, pin, balance);
+    }
+
+    public void deposit(BigDecimal value) {
+        card.incrementBalance(value);
+        Bank.updateAccountBalance(this);
+    }
+
+    public void withdraw(BigDecimal value) {
+        card.decrementBalance(value);
+        Bank.updateAccountBalance(this);
     }
 
     public String getNumber() {
