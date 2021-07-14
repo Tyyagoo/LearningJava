@@ -1,16 +1,16 @@
 package banking.service.cards;
 
+import java.math.BigDecimal;
+
 public class CardFactory {
 
 
-    public static Card createNewCard(String number) {
+    public static Card createCard(String number) {
         // use Card(number);
         return new Card(number);
     }
 
-    /*
-    private static Card loadCardOnSystem() {
-        // use Card(number, pin)
+    public static Card createCard(String number, String pin, BigDecimal balance) {
+        return new Card(number, pin, balance);
     }
-     */
 }

@@ -672,6 +672,654 @@ files:
         }
     }
   learner_created: false
+- name: src/banking/system/Bank.java
+  visible: true
+  text: |
+    package banking.system;
+
+    import banking.exceptions.InvalidCredentialsException;
+    import banking.exceptions.NonExistentAccountException;
+    import banking.service.Account;
+    import banking.ui.AbstractUserInterface;
+    import banking.ui.MainMenu;
+
+    import java.sql.SQLException;
+    import java.sql.SQLOutput;
+    import java.util.Random;
+    import java.util.Scanner;
+
+    public class Bank {
+
+        public static final char[] bankIdentificationNumber = {'4', '0', '0', '0', '0', '0'};
+        public static final int binLength = 6;
+        public static final int numberLength = 16;
+        public static final int pinLength = 4;
+
+        private static Scanner scanner = null;
+        private static AbstractUserInterface rootMenu = null;
+        private static Database database = null;
+
+        public static void initialize(Scanner scanner, String dataBaseFilename) {
+            Bank.scanner = scanner;
+            String url = String.format("jdbc:sqlite:%s", dataBaseFilename);
+            database = new Database(url);
+            database.initialize();
+            rootMenu = new MainMenu(scanner);
+        }
+
+        public static void process() {
+            while (!rootMenu.isStopped()) {
+                rootMenu.invoke();
+            }
+            System.out.println("Bye!");
+        }
+
+        public static void registryAccount(Account account) {
+            database.insertAccount(account);
+        }
+
+        public static Account getAccount(String number) throws InvalidCredentialsException, NonExistentAccountException {
+            return database.getAccount(number);
+        }
+
+        public static String generateAccountNumber() {
+            StringBuilder numberBuilder = new StringBuilder();
+            numberBuilder.append(String.valueOf(bankIdentificationNumber));
+
+            Random randomizer = new Random();
+            for (int i = binLength; i < numberLength - 1; i++) {
+                numberBuilder.append(randomizer.nextInt(10));
+            }
+
+            int sum = 0;
+            String currentString = numberBuilder.toString();
+            for (int i = 0; i < currentString.length(); i++) {
+                int digit = Integer.parseInt(String.valueOf(currentString.charAt(i)));
+                if ((i + 1) % 2 != 0) digit *= 2;
+                if (digit > 9) digit -= 9;
+                sum += digit;
+            }
+
+            int checksum;
+            if (sum % 10 == 0) checksum = 0;
+            else checksum = 10 - (sum % 10);
+            numberBuilder.append(checksum);
+            return numberBuilder.toString();
+        }
+
+        public static boolean checkNumber(String number) {
+            int i, sum = 0;
+            for (i = 1; i < numberLength; i++) {
+                int n = Integer.parseInt(String.valueOf(number.charAt(i - 1)));
+                if (i % 2 != 0) n *= 2;
+                if (n > 9) n -= 9;
+                sum += n;
+            }
+            sum += Integer.parseInt(String.valueOf(number.charAt(i - 1)));
+            return sum % 10 == 0;
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/commands/ShowBalance.java
+  visible: true
+  text: |
+    package banking.ui.commands;
+
+    import banking.exceptions.NonExistentAccountException;
+    import banking.service.Account;
+
+    import java.util.Scanner;
+
+    public class ShowBalance implements ICommand<Account> {
+
+        @Override
+        public Callback<Account> execute(Scanner scanner, Object... args) {
+            if (args.length != 0) {
+                try {
+                    Account acc = (Account) args[0];
+                    System.out.printf("Balance: %d%n", acc.getBalance().intValue());
+                    return new Callback<>(acc);
+                } catch (Exception e) {
+                    throw new NonExistentAccountException();
+                }
+            }
+            throw new NonExistentAccountException();
+        }
+    }
+  learner_created: true
+- name: src/banking/service/Account.java
+  visible: true
+  text: |
+    package banking.service;
+
+    import banking.system.Bank;
+    import banking.service.cards.Card;
+    import banking.service.cards.CardFactory;
+
+    import java.math.BigDecimal;
+
+    public class Account {
+
+        private final String number;
+        private Card card;
+
+
+        public Account() {
+            number = Bank.generateAccountNumber();
+            System.out.println("Your card number:");
+            System.out.printf("%s%n", number);
+            this.card = CardFactory.createCard(number);
+        }
+
+        public Account(String number, String pin, BigDecimal balance) {
+            this.number = number;
+            this.card = CardFactory.createCard(number, pin, balance);
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+        public Card getCard() {
+            return card;
+        }
+
+        public BigDecimal getBalance() {
+            return card.getBalance();
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/commands/CreateAccount.java
+  visible: true
+  text: |
+    package banking.ui.commands;
+
+
+    import banking.service.Account;
+    import banking.service.AccountService;
+    import java.util.Scanner;
+
+    public class CreateAccount implements ICommand<Account> {
+
+        @Override
+        public Callback<Account> execute(Scanner scanner, Object... args) {
+            Account account = AccountService.createNewAccount();
+            return new Callback<>(account);
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/commands/Callback.java
+  visible: true
+  text: |
+    package banking.ui.commands;
+
+    public class Callback<T> {
+        private final T callback;
+
+        public Callback(T callback) {
+            this.callback = callback;
+        }
+
+        public T getResult() {
+            return callback;
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/MainMenu.java
+  visible: true
+  text: |
+    package banking.ui;
+
+
+    import banking.service.Account;
+    import banking.ui.commands.Callback;
+    import banking.ui.commands.CreateAccount;
+    import banking.ui.commands.ICommand;
+    import banking.ui.commands.LoginAccount;
+
+    import java.util.Scanner;
+
+    public class MainMenu extends AbstractUserInterface {
+
+        private static final ICommand<Account> optionOne = new CreateAccount();
+        private static final ICommand<Account> optionTwo = new LoginAccount();
+
+        private AbstractUserInterface subMenu = null;
+
+        public MainMenu(Scanner scanner) {
+            super(scanner);
+        }
+
+        @Override
+        public void invoke() {
+            showOptions();
+            Callback callback = getUserInput();
+            if (callback == null) return;
+            if (callback.getResult() == ExitContext.EXIT_PROGRAM) {
+                finishProgram = true;
+                return;
+            }
+
+            if (callback.getResult() == ExitContext.EXIT_MENU) {
+                subMenu = null;
+                return;
+            }
+            Account acc = (Account) callback.getResult();
+        }
+
+        @Override
+        protected void showOptions() {
+            System.out.println("1. Create an account");
+            System.out.println("2. Log into account");
+            System.out.println("0. Exit");
+        }
+
+        @Override
+        protected Callback getUserInput() {
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    return optionOne.execute(scanner);
+                case 2:
+                    Callback<Account> callback = optionTwo.execute(scanner);
+                    if (callback == null) return null;
+                    subMenu = new AccountMenu(scanner, callback.getResult());
+
+                    while (!(subMenu.isFinished() || subMenu.isStopped())) {
+                        subMenu.invoke();
+                    }
+
+                    if (subMenu.isStopped()) return exitCommand.execute(scanner);
+                    return backCommand.execute(scanner);
+
+                default:
+                    return exitCommand.execute(scanner);
+            }
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/AccountMenu.java
+  visible: true
+  text: |
+    package banking.ui;
+
+    import banking.service.Account;
+    import banking.ui.commands.Callback;
+    import banking.ui.commands.ICommand;
+    import banking.ui.commands.ShowBalance;
+
+    import java.util.Scanner;
+
+    public class AccountMenu extends AbstractUserInterface {
+
+        private final Account account;
+        private static final ICommand<Account> optionOne = new ShowBalance();
+
+        AccountMenu(Scanner scanner, Account account) {
+            super(scanner);
+            this.account = account;
+        }
+
+        @Override
+        public void invoke() {
+            showOptions();
+            Callback callback = getUserInput();
+            if (callback.getResult() == ExitContext.EXIT_PROGRAM) {
+                finishProgram = true;
+                return;
+            }
+            if (callback.getResult() == ExitContext.EXIT_MENU) {
+                finishMenu = true;
+                return;
+            }
+        }
+
+        @Override
+        protected void showOptions() {
+            System.out.println("1. Balance");
+            System.out.println("2. Log out");
+            System.out.println("0. Exit");
+        }
+
+        @Override
+        protected Callback getUserInput() {
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    return optionOne.execute(scanner, account);
+                case 2:
+                    System.out.println("You have successfully logged out!");
+                    return backCommand.execute(scanner);
+                default:
+                    return exitCommand.execute(scanner);
+            }
+        }
+    }
+  learner_created: true
+- name: card.s3db
+  visible: true
+  text: "SQLite format 3\0\x04\0\x01\x01\0@  \0\0\0\v\0\0\0\x02\0\0\0\0\0\0\0\0\0\0\
+    \0\x01\0\0\0\x04\0\0\0\0\0\0\0\0\0\0\0\x01\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\v\0-�\v\n\0\0\0\x01\x03�\0\x03�\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0p\x01\a\x17\x15\x15\x01�Ctablecardcard\x02CREATE TABLE\
+    \ card (\nid INTEGER PRIMARY KEY,\nnumber TEXT,pin TEXT,balance INTEGER DEFAULT\
+    \ 0)\n\0\0\0\t\x03\n\0\x03�\x03�\x03�\x03�\x03y\x03^\x03C\x03(\x03\n\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\
+    \0\0\0\0\0\0\0\0\0\x19\t\x05\0-\x15\b40000070552304597996\x19\b\x05\0-\x15\b40000029360531478441\x19\
+    \a\x05\0-\x15\b40000016592647090321\x19\x06\x05\0-\x15\b40000087347905174974\x19\
+    \x05\x05\0-\x15\b40000088643025961587\x19\x04\x05\0-\x15\b40000056239421756368\x19\
+    \x03\x05\0-\x15\b40000036174066040334\x19\x02\x05\0-\x15\b40000012047933199056\x19\
+    \x01\x05\0-\x15\b40000080640995476531"
+  learner_created: true
+- name: src/banking/ui/commands/ICommand.java
+  visible: true
+  text: |+
+    package banking.ui.commands;
+
+    import java.util.Scanner;
+
+    public interface ICommand<T> {
+        Callback<T> execute(Scanner scanner, Object... args);
+    }
+
+  learner_created: true
+- name: src/banking/service/cards/CardFactory.java
+  visible: true
+  text: |
+    package banking.service.cards;
+
+    import java.math.BigDecimal;
+
+    public class CardFactory {
+
+
+        public static Card createCard(String number) {
+            // use Card(number);
+            return new Card(number);
+        }
+
+        public static Card createCard(String number, String pin, BigDecimal balance) {
+            return new Card(number, pin, balance);
+        }
+    }
+  learner_created: true
+- name: src/banking/service/cards/Card.java
+  visible: true
+  text: |
+    package banking.service.cards;
+
+    import banking.system.Bank;
+
+    import java.math.BigDecimal;
+    import java.util.Random;
+
+    public class Card {
+
+        private final String number;
+        private final String pin;
+        private BigDecimal balance = new BigDecimal(0);
+
+        Card(String number) { // for create new cards
+            this.number = number;
+
+            Random randomizer = new Random();
+            StringBuilder pinBuilder = new StringBuilder();
+            for (int i = 0; i < Bank.pinLength; i++) {
+                pinBuilder.append(randomizer.nextInt(10));
+            }
+            pin = pinBuilder.toString();
+            // Show pin only on the creation of account.
+            System.out.printf("Your card PIN:%n%s%n", pin);
+        }
+
+        Card(String number, String pin, BigDecimal balance) { // for load existing cards
+            this.number = number;
+            this.pin = pin;
+            this.balance = balance;
+        }
+
+        public String getNumber() {
+            return number;
+        }
+
+        public String getPin() { return pin; }
+
+        public boolean isValidPin(String credential) {
+            return pin.equals(credential);
+        }
+
+        public BigDecimal getBalance() {
+            return balance;
+        }
+    }
+  learner_created: true
+- name: src/banking/exceptions/NonExistentAccountException.java
+  visible: true
+  text: |
+    package banking.exceptions;
+
+    public class NonExistentAccountException extends RuntimeException {
+        public NonExistentAccountException() {
+            super("Invalid Account.", null);
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/commands/LoginAccount.java
+  visible: true
+  text: |
+    package banking.ui.commands;
+
+    import banking.system.Bank;
+    import banking.exceptions.InvalidCredentialsException;
+    import banking.service.Account;
+    import banking.service.AccountService;
+    import java.util.Scanner;
+
+    public class LoginAccount implements ICommand<Account> {
+
+        @Override
+        public Callback<Account> execute(Scanner scanner, Object... args) {
+            String number = "";
+            String pin = "";
+            System.out.println("Enter your card number:");
+            while (number.length() < 1) {
+                number = scanner.nextLine();
+            }
+            System.out.println("Enter your PIN:");
+            while (pin.length() < 1) {
+                pin = scanner.nextLine();
+            }
+
+            try {
+                Account acc = AccountService.logIntoAccount(number, pin);
+                System.out.println("You have successfully logged in!");
+                return new Callback<>(acc);
+            } catch (InvalidCredentialsException e) {
+                System.out.println(e.getMessage());
+            }
+
+            return null;
+        }
+    }
+  learner_created: true
+- name: src/banking/system/Database.java
+  visible: true
+  text: "package banking.system;\n\nimport banking.exceptions.InvalidCredentialsException;\n\
+    import banking.exceptions.NonExistentAccountException;\nimport banking.service.Account;\n\
+    import banking.service.cards.Card;\nimport org.sqlite.SQLiteDataSource;\n\nimport\
+    \ java.math.BigDecimal;\nimport java.sql.*;\n\nclass Database {\n\n    private\
+    \ final String url;\n    private final SQLiteDataSource dataSource = new SQLiteDataSource();\n\
+    \    \n    Database(String url) {\n        this.url = url;\n        dataSource.setUrl(url);\n\
+    \    }\n\n    void initialize() {\n        try (Connection cxn = dataSource.getConnection())\
+    \ {\n            try (Statement stmt = cxn.createStatement()) {\n            \
+    \    stmt.executeUpdate(\"CREATE TABLE IF NOT EXISTS card (\\n\" +\n         \
+    \               \"id INTEGER PRIMARY KEY,\\n\" +\n                        \"number\
+    \ TEXT,\" +\n                        \"pin TEXT,\" +\n                       \
+    \ \"balance INTEGER DEFAULT 0\" +\n                        \");\");\n        \
+    \    } catch (SQLException e) {\n                System.out.println(e.getMessage());\n\
+    \            }\n        } catch (SQLException e) {\n            System.out.println(e.getMessage());\n\
+    \        }\n    }\n\n    void insertAccount(Account account) {\n        String\
+    \ sql = \"INSERT INTO card(number,pin,balance) VALUES(?,?,?)\";\n        try (Connection\
+    \ cxn = dataSource.getConnection()) {\n            try (PreparedStatement stmt\
+    \ = cxn.prepareStatement(sql)) {\n                stmt.setString(1, account.getNumber());\n\
+    \                stmt.setString(2, account.getCard().getPin());\n            \
+    \    stmt.setInt(3, account.getBalance().intValue());\n                stmt.executeUpdate();\n\
+    \            }\n            catch (SQLException e) {\n                System.out.println(e.getMessage());\n\
+    \            }\n        } catch (SQLException e) {\n            System.out.println(e.getMessage());\n\
+    \        }\n    }\n\n    Account getAccount(String number) throws InvalidCredentialsException,\
+    \ NonExistentAccountException {\n        if (number.length() != Bank.numberLength)\
+    \ throw new NonExistentAccountException();\n\n        String sql = \"SELECT pin,\
+    \ balance \"\n                    + \"FROM card WHERE number = ?\";\n\n      \
+    \  try (Connection cxn = dataSource.getConnection()) {\n            try (PreparedStatement\
+    \ stmt  = cxn.prepareStatement(sql)) {\n                stmt.setString(1, number);\n\
+    \                try (ResultSet result = stmt.executeQuery()) {\n            \
+    \        if (result.next()) {\n                        String pin = result.getString(\"\
+    pin\");\n                        BigDecimal balance = new BigDecimal(result.getInt(\"\
+    balance\"));\n                        return new Account(number, pin, balance);\n\
+    \                    }\n                    throw new InvalidCredentialsException();\n\
+    \                } catch (SQLException e) {\n                    System.out.println(e.getMessage());\n\
+    \                }\n            } catch (SQLException e) {\n                System.out.println(e.getMessage());\n\
+    \            }\n        } catch (SQLException e) {\n            System.out.println(e.getMessage());\n\
+    \        }\n        return null;\n    }\n\n}\n"
+  learner_created: true
+- name: src/banking/service/AccountService.java
+  visible: true
+  text: |
+    package banking.service;
+
+    import banking.system.Bank;
+    import banking.exceptions.InvalidCredentialsException;
+
+
+    public class AccountService {
+
+        public static Account createNewAccount() {
+            System.out.println("Your card has been created");
+            Account account = new Account();
+            registryAccount(account);
+            return account;
+        }
+
+        private static void registryAccount(Account account) {
+            Bank.registryAccount(account);
+        }
+
+        public static Account logIntoAccount(String number, String pin) throws InvalidCredentialsException {
+            if(number.length() != Bank.numberLength || pin.length() != Bank.pinLength) throw new InvalidCredentialsException();
+            if (!Bank.checkNumber(number)) throw new InvalidCredentialsException(); // invalid Luhn
+            Account acc = getAccountByNumber(number); // can throw InvalidCredentialsException
+            if (acc.getCard().isValidPin(pin)) return acc;
+            throw new InvalidCredentialsException(); // if pin isn't the same, throw InvalidCredentials
+        }
+
+        private static Account getAccountByNumber(String number) throws InvalidCredentialsException {
+            try {
+                return Bank.getAccount(number);
+            } catch (Exception e) {
+                throw new InvalidCredentialsException();
+            }
+        }
+
+        private static boolean numbersAreEqual(String n1, String n2) {
+            return n1.equals(n2);
+        }
+
+
+    }
+  learner_created: true
+- name: src/banking/exceptions/InvalidCredentialsException.java
+  visible: true
+  text: |
+    package banking.exceptions;
+
+    public class InvalidCredentialsException extends RuntimeException {
+        public InvalidCredentialsException() {
+            super("Wrong card number or PIN!", null);
+        }
+    }
+  learner_created: true
+- name: src/banking/ui/AbstractUserInterface.java
+  visible: true
+  text: |
+    package banking.ui;
+
+    import banking.ui.commands.Callback;
+    import banking.ui.commands.ICommand;
+
+    import java.util.Scanner;
+
+    public abstract class AbstractUserInterface {
+
+        enum ExitContext {
+            EXIT_MENU,
+            EXIT_PROGRAM;
+        }
+
+        protected final ICommand<ExitContext> exitCommand = (scanner, args) -> new Callback<>(ExitContext.EXIT_PROGRAM);
+        protected  final ICommand<ExitContext> backCommand = (scanner, args) -> new Callback<>(ExitContext.EXIT_MENU);
+
+        protected final Scanner scanner;
+        protected boolean finishProgram = false;
+        protected boolean finishMenu = false;
+
+        AbstractUserInterface(Scanner scanner) {
+            this.scanner = scanner;
+        }
+
+        public abstract void invoke();
+        protected abstract void showOptions();
+        protected abstract Callback getUserInput();
+
+        public boolean isStopped() {
+            return finishProgram;
+        }
+        public boolean isFinished() { return finishMenu; }
+
+        public Scanner getScanner() {
+            return scanner;
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/93/stages/518/implement#comment
 status: Unchecked
 record: -1

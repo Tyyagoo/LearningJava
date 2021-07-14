@@ -1,6 +1,6 @@
 package banking.service.cards;
 
-import banking.Bank;
+import banking.system.Bank;
 
 import java.math.BigDecimal;
 import java.util.Random;
@@ -24,14 +24,17 @@ public class Card {
         System.out.printf("Your card PIN:%n%s%n", pin);
     }
 
-    Card(String number, String pin) { // for load existing cards
+    Card(String number, String pin, BigDecimal balance) { // for load existing cards
         this.number = number;
         this.pin = pin;
+        this.balance = balance;
     }
 
     public String getNumber() {
         return number;
     }
+
+    public String getPin() { return pin; }
 
     public boolean isValidPin(String credential) {
         return pin.equals(credential);

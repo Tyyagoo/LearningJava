@@ -1,11 +1,10 @@
 package banking.service;
 
-import banking.Bank;
+import banking.system.Bank;
 import banking.service.cards.Card;
 import banking.service.cards.CardFactory;
 
 import java.math.BigDecimal;
-import java.util.Random;
 
 public class Account {
 
@@ -14,10 +13,15 @@ public class Account {
 
 
     public Account() {
-        number = Bank.generateAccountNumber().substring(Bank.binLength);
+        number = Bank.generateAccountNumber();
         System.out.println("Your card number:");
-        System.out.printf("%s%s%n", String.valueOf(Bank.bankIdentificationNumber), number);
-        this.card = CardFactory.createNewCard(number);
+        System.out.printf("%s%n", number);
+        this.card = CardFactory.createCard(number);
+    }
+
+    public Account(String number, String pin, BigDecimal balance) {
+        this.number = number;
+        this.card = CardFactory.createCard(number, pin, balance);
     }
 
     public String getNumber() {

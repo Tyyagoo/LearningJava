@@ -1,6 +1,6 @@
 package banking.ui.commands;
 
-import banking.Bank;
+import banking.system.Bank;
 import banking.exceptions.InvalidCredentialsException;
 import banking.service.Account;
 import banking.service.AccountService;
@@ -13,11 +13,11 @@ public class LoginAccount implements ICommand<Account> {
         String number = "";
         String pin = "";
         System.out.println("Enter your card number:");
-        while (number.length() != Bank.numberLength) {
+        while (number.length() < 1) {
             number = scanner.nextLine();
         }
         System.out.println("Enter your PIN:");
-        while (pin.length() != Bank.pinLength) {
+        while (pin.length() < 1) {
             pin = scanner.nextLine();
         }
 
