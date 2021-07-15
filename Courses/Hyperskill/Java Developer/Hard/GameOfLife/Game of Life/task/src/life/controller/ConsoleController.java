@@ -11,24 +11,19 @@ public class ConsoleController {
     private static Game gameInstance;
 
 
-    public static void initialize() {
+    public static void initialize() throws InterruptedException {
         int n = scanner.nextInt();
-        int s = scanner.nextInt();
-        int numberOfGens = scanner.nextInt();
-        gameInstance = new Game(n, s);
-
-        for (int i = 0; i < numberOfGens; i++) {
-            gameInstance.evolve();
-        }
+        gameInstance = new Game(n);
+        ConsoleViewer.clearConsole();
         ConsoleViewer.showMap(gameInstance);
-    }
+        Thread.sleep(1000);
 
-    public static void makeStep() {
-        gameInstance.evolve();
-    }
-
-    public static Game getGame() {
-        return gameInstance;
+        for (int i = 0; i < 10; i++) {
+            ConsoleViewer.clearConsole();
+            gameInstance.evolve();
+            ConsoleViewer.showMap(gameInstance);
+            Thread.sleep(1000);
+        }
     }
 
 }

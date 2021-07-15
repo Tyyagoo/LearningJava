@@ -1,15 +1,15 @@
-life/controller/ConsoleController.java
- life.controller.ConsoleController
+life/exceptions/UniverseOutOfIndex.java
+ life.exceptions.UniverseOutOfIndex
 life/model/Universe.java
  life.model.Universe
  life.model.Universe$Cell
-life/Main.java
- life.Main
-life/exceptions/UniverseOutOfIndex.java
- life.exceptions.UniverseOutOfIndex
-life/model/Game.java
- life.model.Game
-life/model/Generation.java
- life.model.Generation
 life/viewer/ConsoleViewer.java
  life.viewer.ConsoleViewer
+life/model/Generation.java
+ life.model.Generation
+life/model/Game.java
+ life.model.Game
+life/controller/ConsoleController.java
+ life.controller.ConsoleController
+life/Main.java
+ life.Main

@@ -1,41 +1,64 @@
+import life.GameOfLife;
+import org.assertj.swing.fixture.JLabelFixture;
 import org.hyperskill.hstest.dynamic.DynamicTest;
-import org.hyperskill.hstest.stage.StageTest;
+import org.hyperskill.hstest.stage.SwingTest;
 import org.hyperskill.hstest.testcase.CheckResult;
-import org.hyperskill.hstest.testing.TestedProgram;
+import org.hyperskill.hstest.testing.swing.SwingComponent;
 
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import static org.hyperskill.hstest.testcase.CheckResult.correct;
+import static org.hyperskill.hstest.testcase.CheckResult.wrong;
 
-public class GameOfLifeTest extends StageTest<String> {
+public class GameOfLifeTest extends SwingTest {
 
-    int[] sizes = {5, 6, 7, 8, 9, 10};
+    public GameOfLifeTest() {
+        super(new GameOfLife());
+    }
 
-    @DynamicTest(data = "sizes")
-    CheckResult test(int size) {
+    @SwingComponent(name = "GenerationLabel")
+    JLabelFixture generationLabel;
 
-        TestedProgram program = new TestedProgram();
-        program.start();
+    @SwingComponent(name = "AliveLabel")
+    JLabelFixture aliveLabel;
 
-        String output = program.execute(String.valueOf(size));
+    @DynamicTest(order = 1)
+    CheckResult testWindow() {
+        requireVisible(window);
+        return correct();
+    }
 
-        if (output.isEmpty()) {
-            return CheckResult.wrong("Looks like your output is empty!");
+    @DynamicTest(order = 2)
+    CheckResult testGenerationLabel() {
+        requireEnabled(generationLabel);
+        requireVisible(generationLabel);
+        return correct();
+    }
+
+    @DynamicTest(order = 3)
+    CheckResult testAliveLabel() {
+        requireEnabled(aliveLabel);
+        requireVisible(aliveLabel);
+        return correct();
+    }
+
+    @DynamicTest(order = 4)
+    CheckResult testForInteger() {
+
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(generationLabel.text());
+
+        if (!matcher.find()) {
+            return wrong("The 'GenerationLabel' doesn't contain an integer number!");
         }
 
-        if (!output.toLowerCase().contains("generation")) {
-            return CheckResult.wrong("Can't find 'Generation' word in the output!");
+        matcher = pattern.matcher(aliveLabel.text());
+
+        if (!matcher.find()) {
+            return wrong("The 'AliveLabel' doesn't contain an integer number!");
         }
 
-        String[] generations = output.toLowerCase().split("generation");
-
-        if (generations.length < 11) {
-            return CheckResult.wrong("Your output should contain not less than 10 generations!");
-        }
-
-        List<Generation> generationsList = Generation.getGenerations(generations, size);
-
-        Generation.isCorrectGenerationsList(generationsList);
-
-        return CheckResult.correct();
+        return correct();
     }
 }

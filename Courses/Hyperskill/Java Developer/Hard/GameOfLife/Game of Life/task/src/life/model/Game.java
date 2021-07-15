@@ -4,8 +4,8 @@ public class Game {
 
     private Generation currentGeneration;
 
-    public Game(int mapSize, int seed) {
-        currentGeneration = Generation.getInitialGeneration(mapSize, seed);
+    public Game(int mapSize) {
+        currentGeneration = Generation.getInitialGeneration(mapSize);
     }
 
     public Universe getUniverse() {
