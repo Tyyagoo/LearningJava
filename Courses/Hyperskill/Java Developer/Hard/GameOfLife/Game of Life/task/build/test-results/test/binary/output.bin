@@ -1,0 +1,149 @@
+[1;31m
+Start test 1[0m
+> 4 4 0
+OOOO
+O O 
+   O
+OOO 
+[1;31m
+Start test 2[0m
+	> 8 1 10
+
+ O  OO  
+
+OO   OO 
+
+O     O 
+
+        
+
+  O     
+
+  O O   
+
+     OO 
+
+O   OO O
+[1;31m
+Start test 3[0m
+> 10 10 100
+          
+          
+    O     
+   O O    
+    O     
+          
+          
+          
+          
+          
+[1;31m
+Start test 4[0m
+	> 4 4 10
+    
+    
+    
+    
+[1;31m
+Start test 5[0m
+
+> 32 -1 0
+"   OOO  O O    OOOOOO O O     OO
+"   OO O    OO  O  O   O    O  OO
+" O OOO OOO  OO  OO  O O  OO  O  
+" O O O O    O     OO O    OO OOO
+" O O O    O OOOOO OOOOOOOOO O OO
+"O OOOO  O OOO OOOO O  O   OOO O 
+"O  OO  O  O     O O OOOOOOOOO O 
+"     OO OO  O OOO   OOOOO OOOOOO
+"  O OO        O O    O     OOOO 
+"OOOO  OO  OO    O O   OO OOOO  O
+"   O         O   O   OOOOOO    O
+"   OOOOO   OOOOOOO  O O  O OO O 
+" O O  OOO O O O  OO OO   OO    O
+"O    O OOOOO O    OO  OO O  OOO 
+" OOOOO   O O      O  O  O  OOOOO
+"OOO O  OOOO OOO OO  O OO    OO  
+"  OOO  OO  OO  O OOO     O O  OO
+"OOO  OOOOOOO OOO  OO  O  O   OO 
+"OO O O    OOO    O O  O OOOO O  
+"O O   OO  O     O  O O  O O O   
+"OOO       OOOO OOO O    OOOO  OO
+"O  OO  OOO     OOOO  O    O  O O
+"  O OO  O OO  OOOOO  O   O OOO  
+"O    OO O   O   OO O   O O OOOO 
+" O OOO O OOOOOO O   O O  O  OOO 
+" OO OOO  O O O  OO OOOOOOOOO  O 
+" OOO OO  OO O O   OO  OOOO OOO  
+" O O O  O OOO O  OO OO   O    OO
+"OO O O OOO OO O     OO  O  O O  
+" O O O O OO     OOOOO O   O  OOO
+"OOOOO     OO   O    O    OO    O
+" OOO OO  O   O OO  OO   OO   O  
+[1;31m
+Start test 6[0m
+> 64 0 512
+B                                                        OO      
+B                          OO                           O  O   O 
+B                         O  O                           OO    O 
+B                          O O                                 O 
+B             OO            O                                    
+B             O O                           O                    
+B              O                            O                    
+B                                           O                    
+B                 OO                                             
+B                 OO                    OOO                      
+B                                                                
+B       OO                                  O                    
+B       OO                                  O                    
+B                                           O                    
+B                                                                
+B                                                                
+B                                                OO              
+B                 O                              OO          O   
+B                 O                                         O O  
+B                 O                                         O  O 
+B                                                            OO  
+B                                                                
+B                                                                
+B                                                                
+B                                                                
+B                                                                
+B                                                                
+B                                      OO                        
+B                                     O  O                       
+B                                      O O                       
+B                                       O                        
+B                                                                
+B                                                                
+B                              O                                 
+B                             O O                                
+B                             OO                                 
+B     OOO          O                                             
+B                  O                    OO                       
+B                  O                    OO                       
+B                                                                
+B                                                                
+B                                                                
+B                                                     O          
+B      OO                                            O O         
+B      OO                     OO                     O O         
+B                            O  O                     O          
+B                             OO                                 
+B          OO                                                    
+B          OO                                                    
+B                                                                
+B                                            O                   
+B                                  OO        O                   
+B                                  OO    O   O                   
+B                       OO               O                       
+B                       OO               O                       
+B                                                                
+B                                                       OO       
+B                                                O      OO       
+B                                               O O              
+B                                               O O              
+B       OO                                       O               
+B       OO                                                       
+B                                                                
+B                                                                
