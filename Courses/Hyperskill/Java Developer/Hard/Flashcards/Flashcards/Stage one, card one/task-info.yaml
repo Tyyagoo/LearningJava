@@ -43,5 +43,8 @@ files:
     \  \n                })\n        );\n    }\n    \n}\n"
   learner_created: false
 feedback_link: https://hyperskill.org/projects/44/stages/232/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Mon, 19 Jul 2021 19:46:29 UTC
+record: 1

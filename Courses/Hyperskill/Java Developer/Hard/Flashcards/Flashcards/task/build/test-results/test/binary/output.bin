@@ -1,0 +1,25 @@
+[1;31m
+Start test 1[0m
+
+> print()
+> outputs text
+> outputs text
+Your answer is right!
+[1;31m
+Start test 2[0m
+> Dog
+> A barking animal
+> A barking animal
+Your answer is right!
+[1;31m
+Start test 3[0m
+> Jetbrains
+&> A place for people who love to code
+&> A place for people who hate to code
+Your answer is wrong...
+[1;31m
+Start test 4[0m
+> Cat
+> A barking animal
+> A purring animal
+Your answer is wrong...

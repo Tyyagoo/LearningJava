@@ -67,6 +67,15 @@ files:
     );\n        }\n        \n        return CheckResult.correct();\n        \n   \
     \ }\n    \n}\n"
   learner_created: false
+- name: src/flashcards/cards/Card.java
+  visible: true
+  learner_created: true
+- name: src/flashcards/cards/CardFactory.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/44/stages/233/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Mon, 19 Jul 2021 19:52:10 UTC
+record: 2
