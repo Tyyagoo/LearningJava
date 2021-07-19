@@ -12,7 +12,7 @@ public class JGamePanel extends JPanel {
 
     JGamePanel() {
         setName("GamePanel");
-        setBounds(5, 35, 275, 215);
+        setBounds(5, 35, 500, 500);
     }
 
     public void changeGeneration(Generation u) {
@@ -23,8 +23,8 @@ public class JGamePanel extends JPanel {
         super.paintComponent(g);
         if (gameGen == null) return;
 
-        Color aliveColor = new Color(230, 230, 230);
-        Color deadColor = new Color(30, 30, 30);
+        Color aliveColor = new Color(30, 30, 30);
+        Color deadColor = new Color(230, 230, 230);
         int rectX = getWidth() / gameGen.getSize();
         int rectY = getHeight() / gameGen.getSize();
 

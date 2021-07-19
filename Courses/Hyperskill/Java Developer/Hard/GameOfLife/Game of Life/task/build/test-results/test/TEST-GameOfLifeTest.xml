@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="GameOfLifeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-19T16:11:51" hostname="LAPTOP-J1J60HSA" time="1.052">
+<testsuite name="GameOfLifeTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-19T19:10:32" hostname="LAPTOP-J1J60HSA" time="2.867">
   <properties/>
-  <testcase name="start" classname="GameOfLifeTest" time="1.052"/>
+  <testcase name="start" classname="GameOfLifeTest" time="2.867"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 ?[1;31m
@@ -10,6 +10,16 @@ Start test 2?[0m
 Start test 3?[0m
 ?[1;31m
 Start test 4?[0m
+?[1;31m
+Start test 5?[0m
+?[1;31m
+Start test 6?[0m
+?[1;31m
+Start test 7?[0m
+Generation #1
+Generation #1
+Generation #1
+Generation #4
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
