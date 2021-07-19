@@ -206,6 +206,49 @@ files:
     \ of one\",\n                \"a part of the body where the foot meet\"\n    \
     \    );\n    }\n}\n"
   learner_created: false
+- name: src/flashcards/cards/CardFactory.java
+  visible: true
+  text: |
+    package flashcards.cards;
+
+    import java.util.Scanner;
+
+    public class CardFactory {
+
+        public static Card createCardFromConsole(Scanner scanner) {
+            String term = scanner.nextLine();
+            String definition = scanner.nextLine();
+            return new Card(term, definition);
+        }
+    }
+  learner_created: true
+- name: src/flashcards/cards/Card.java
+  visible: true
+  text: |
+    package flashcards.cards;
+
+    public class Card {
+
+        private final String term;
+        private final String definition;
+
+        Card(String t, String d) {
+            this.term = t;
+            this.definition = d;
+        }
+
+        public String getTerm() {
+            return term;
+        }
+
+        public String getDefinition() {
+            return definition;
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/44/stages/234/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Mon, 19 Jul 2021 20:00:37 UTC
 record: -1

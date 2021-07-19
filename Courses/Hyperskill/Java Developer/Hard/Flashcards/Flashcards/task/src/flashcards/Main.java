@@ -7,11 +7,20 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Card card = CardFactory.createCardFromConsole(scanner);
 
-        String answer = scanner.nextLine();
+        System.out.println("Input the number of cards:");
+        int numberOfCards = Integer.parseInt(scanner.nextLine());
+        Card[] cards = new Card[numberOfCards];
+        for (int i = 0; i < numberOfCards; i++) {
+            cards[i] = CardFactory.createCardFromConsole(scanner, i + 1);
+        }
 
-        System.out.print("Your answer is ");
-        System.out.println(card.getDefinition().equals(answer) ? "right!" : "wrong...");
+        for (int i = 0; i < numberOfCards; i++) {
+            System.out.printf("Print the definition of \"%s\":%n", cards[i].getTerm());
+            String answer = scanner.nextLine();
+            String output = cards[i].getDefinition().equals(answer) ? "Correct!%n" :
+                    "Wrong. The right answer is \"%s\".%n";
+            System.out.printf(output, cards[i].getDefinition());
+        }
     }
 }

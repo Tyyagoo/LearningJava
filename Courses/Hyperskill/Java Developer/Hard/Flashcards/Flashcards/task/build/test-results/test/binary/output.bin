@@ -1,25 +1,246 @@
 [1;31m
 Start test 1[0m
-
-> print()
-> outputs text
-> outputs text
-Your answer is right!
+Input the number of cards:
 [1;31m
 Start test 2[0m
-> Dog
-> A barking animal
-> A barking animal
-Your answer is right!
+Input the number of cards:
+> 2
+
+Card #1:
+
+> print()
+The definition for card #1:
+> outputs text
+
+Card #2:
+> str()
+The definition for card #2:
+> converts to a string
+$Print the definition of "print()":
+> outputs text
+
+Correct!
+"Print the definition of "str()":
+> outputs text
+4Wrong. The right answer is "converts to a string".
 [1;31m
 Start test 3[0m
-> Jetbrains
-&> A place for people who love to code
-&> A place for people who hate to code
-Your answer is wrong...
+Input the number of cards:
+> 6
+
+Card #1:
+
+> print()
+The definition for card #1:
+> outputs text
+
+Card #2:
+> str()
+The definition for card #2:
+> converts to a string
+
+Card #3:
+> son
+The definition for card #3:
+> a male child
+
+Card #4:
+> daughter
+The definition for card #4:
+> a female child
+
+Card #5:
+> uncle
+The definition for card #5:
+> a brother of one's parent
+
+Card #6:
+> ankle
+The definition for card #6:
+5> a part of the body where the foot and the leg meet
+$Print the definition of "print()":
+> outputs text
+
+Correct!
+"Print the definition of "str()":
+> converts to a string
+
+Correct!
+ Print the definition of "son":
+> a male child
+
+Correct!
+%Print the definition of "daughter":
+> a female child
+
+Correct!
+"Print the definition of "uncle":
+> a brother of one's parent
+
+Correct!
+"Print the definition of "ankle":
+5> a part of the body where the foot and the leg meet
+
+Correct!
 [1;31m
 Start test 4[0m
-> Cat
-> A barking animal
-> A purring animal
-Your answer is wrong...
+Input the number of cards:
+> 6
+
+Card #1:
+
+> print()
+The definition for card #1:
+> outputs text
+
+Card #2:
+> str()
+The definition for card #2:
+> converts to a string
+
+Card #3:
+> son
+The definition for card #3:
+> a male child
+
+Card #4:
+> daughter
+The definition for card #4:
+> a female child
+
+Card #5:
+> uncle
+The definition for card #5:
+> a brother of one's parent
+
+Card #6:
+> ankle
+The definition for card #6:
+5> a part of the body where the foot and the leg meet
+$Print the definition of "print()":
+> converts to a string
+,Wrong. The right answer is "outputs text".
+"Print the definition of "str()":
+> outputs text
+4Wrong. The right answer is "converts to a string".
+ Print the definition of "son":
+> a female child
+,Wrong. The right answer is "a male child".
+%Print the definition of "daughter":
+> a male child
+.Wrong. The right answer is "a female child".
+"Print the definition of "uncle":
+5> a part of the body where the foot and the leg meet
+9Wrong. The right answer is "a brother of one's parent".
+"Print the definition of "ankle":
+> a brother of one's parent
+RWrong. The right answer is "a part of the body where the foot and the leg meet".
+[1;31m
+Start test 5[0m
+Input the number of cards:
+> 6
+
+Card #1:
+
+> print()
+The definition for card #1:
+> outputs text
+
+Card #2:
+> str()
+The definition for card #2:
+> converts to a string
+
+Card #3:
+> son
+The definition for card #3:
+> a male child
+
+Card #4:
+> daughter
+The definition for card #4:
+> a female child
+
+Card #5:
+> uncle
+The definition for card #5:
+> a brother of one's parent
+
+Card #6:
+> ankle
+The definition for card #6:
+5> a part of the body where the foot and the leg meet
+$Print the definition of "print()":
+> outputs text line by line
+,Wrong. The right answer is "outputs text".
+"Print the definition of "str()":
+&> converts to a string and an integer
+4Wrong. The right answer is "converts to a string".
+ Print the definition of "son":
+!> a male child or a female child
+,Wrong. The right answer is "a male child".
+%Print the definition of "daughter":
+!> a female child or a male child
+.Wrong. The right answer is "a female child".
+"Print the definition of "uncle":
+,> a brother of one's parent or grandparents
+9Wrong. The right answer is "a brother of one's parent".
+"Print the definition of "ankle":
+@> a part of the body where the foot and the leg meet or the arm
+RWrong. The right answer is "a part of the body where the foot and the leg meet".
+[1;31m
+Start test 6[0m
+Input the number of cards:
+> 6
+
+Card #1:
+
+> print()
+The definition for card #1:
+> outputs text
+
+Card #2:
+> str()
+The definition for card #2:
+> converts to a string
+
+Card #3:
+> son
+The definition for card #3:
+> a male child
+
+Card #4:
+> daughter
+The definition for card #4:
+> a female child
+
+Card #5:
+> uncle
+The definition for card #5:
+> a brother of one's parent
+
+Card #6:
+> ankle
+The definition for card #6:
+5> a part of the body where the foot and the leg meet
+$Print the definition of "print()":
+
+> outputs
+,Wrong. The right answer is "outputs text".
+"Print the definition of "str()":
+> converts a string
+4Wrong. The right answer is "converts to a string".
+ Print the definition of "son":
+
+> a child
+,Wrong. The right answer is "a male child".
+%Print the definition of "daughter":
+
+> a child
+.Wrong. The right answer is "a female child".
+"Print the definition of "uncle":
+> a brother of one
+9Wrong. The right answer is "a brother of one's parent".
+"Print the definition of "ankle":
+)> a part of the body where the foot meet
+RWrong. The right answer is "a part of the body where the foot and the leg meet".
