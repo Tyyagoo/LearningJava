@@ -1,13 +1,19 @@
 package life;
 
-import life.controller.ConsoleController;
+import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        try {
-            ConsoleController.initialize();
-        } catch (InterruptedException e) {
-            System.out.println(e.getMessage());
-        }
+        final Runnable swingApp = GameOfLife::new;
+        Thread appThread = new Thread(() -> {
+            try {
+                SwingUtilities.invokeAndWait(swingApp);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println("Finished on " + Thread.currentThread());
+        });
+        appThread.start();
     }
 }

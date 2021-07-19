@@ -338,6 +338,15 @@ files:
         }
     }
   learner_created: true
+- name: src/life/GameOfLife.java
+  visible: true
+  learner_created: true
+- name: src/life/JGamePanel.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/54/stages/298/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Mon, 19 Jul 2021 16:11:53 UTC
+record: 4

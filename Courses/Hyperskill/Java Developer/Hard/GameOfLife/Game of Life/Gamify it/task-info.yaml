@@ -148,6 +148,373 @@ files:
         }
     }
   learner_created: false
+- name: src/life/controller/ConsoleController.java
+  visible: true
+  text: |
+    package life.controller;
+
+    import life.model.Game;
+    import life.viewer.ConsoleViewer;
+
+    import java.util.Scanner;
+
+    public class ConsoleController {
+
+        public static final Scanner scanner = new Scanner(System.in);
+        private static Game gameInstance;
+
+
+        public static void initialize() throws InterruptedException {
+            int n = scanner.nextInt();
+            gameInstance = new Game(n);
+            ConsoleViewer.clearConsole();
+            ConsoleViewer.showMap(gameInstance);
+            Thread.sleep(1000);
+
+            for (int i = 0; i < 10; i++) {
+                ConsoleViewer.clearConsole();
+                gameInstance.evolve();
+                ConsoleViewer.showMap(gameInstance);
+                Thread.sleep(1000);
+            }
+        }
+
+    }
+  learner_created: true
+- name: src/life/GameOfLife.java
+  visible: true
+  text: |
+    package life;
+
+    import life.model.Generation;
+
+    import javax.swing.*;
+    import java.awt.*;
+    import java.awt.event.ActionListener;
+
+    public class GameOfLife extends JFrame {
+
+        private JLabel generationLabel = new JLabel("Generation #0");
+        private JLabel aliveLabel = new JLabel("Alive: 0");
+        private JGamePanel gamePanel;
+
+        Generation gameGen = Generation.getInitialGeneration(20);
+
+        public GameOfLife() {
+            setTitle("Game Of Life");
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setSize(300, 300);
+            setLocationRelativeTo(null);
+            setLayout(null);
+            setVisible(true);
+
+            generationLabel.setName("GenerationLabel");
+            generationLabel.setBounds(5, 5, 150, 10);
+            add(generationLabel);
+
+            aliveLabel.setName("AliveLabel");
+            aliveLabel.setBounds(5, 20, 150, 10);
+            add(aliveLabel);
+
+
+            gamePanel = new JGamePanel();
+            gamePanel.changeGeneration(gameGen);
+            add(gamePanel);
+
+            ActionListener refresh = e -> {
+                changeGeneration(gameGen.getNextGeneration());
+                setVisible(true);
+            };
+            int UPDATE_SPEED = 700;
+            new Timer(UPDATE_SPEED, refresh).start();
+        }
+
+        public void changeGeneration(Generation u) {
+            gameGen = u;
+            gamePanel.changeGeneration(u);
+            generationLabel.setText(String.format("Generation #%d", gameGen.getId()));
+            aliveLabel.setText(String.format("Alive: %d", gameGen.getPopulation()));
+            repaint();
+        }
+
+    }
+  learner_created: true
+- name: src/life/model/Game.java
+  visible: true
+  text: |
+    package life.model;
+
+    public class Game {
+
+        private Generation currentGeneration;
+
+        public Game(int mapSize) {
+            currentGeneration = Generation.getInitialGeneration(mapSize);
+        }
+
+        public Universe getUniverse() {
+            return currentGeneration.getUniverse();
+        }
+
+        public Generation getGeneration() {
+            return currentGeneration;
+        }
+
+        public void evolve() {
+            currentGeneration = currentGeneration.getNextGeneration();
+        }
+
+    }
+  learner_created: true
+- name: src/life/viewer/ConsoleViewer.java
+  visible: true
+  text: |
+    package life.viewer;
+
+    import life.model.Game;
+    import life.model.Generation;
+    import life.model.Universe;
+
+    import java.io.IOException;
+
+    public class ConsoleViewer {
+
+        public static void showMap(Game game) {
+            Generation gen = game.getGeneration();
+            showMap(gen);
+        }
+
+        public static void showMap(Generation gen) {
+            int len = gen.getSize();
+            System.out.printf("Generation #%d%n", gen.getId());
+            System.out.printf("Alive: %d%n", gen.getPopulation());
+
+            for (int i = 0; i < len; i++) {
+                for (int j = 0; j < len; j++) {
+                    System.out.printf("%s", (gen.getUniverse().getCellAt(i, j) == Universe.Cell.ALIVE) ? "O" : " ");
+                }
+                System.out.println();
+            }
+        }
+
+        public static void clearConsole() {
+            try {
+                if (System.getProperty("os.name").contains("Windows"))
+                    new ProcessBuilder("cmd","/c","cls").inheritIO().start().waitFor();
+                else
+                    Runtime.getRuntime().exec("clear");
+            }
+            catch (IOException | InterruptedException e) {
+                System.out.println("Error on trying to clear screen.");
+            }
+        }
+    }
+  learner_created: true
+- name: src/life/model/Generation.java
+  visible: true
+  text: |
+    package life.model;
+
+    import java.util.Random;
+
+    public class Generation {
+
+        private final Universe universe;
+        private final int size;
+        private int population = 0;
+        private int id = 1;
+
+        Generation(int n, int ... id) {
+            this.size = n;
+            if (id.length != 0) this.id = id[0];
+            this.universe = new Universe(size);
+        }
+
+        public Universe getUniverse() {
+            return universe;
+        }
+
+        public int getSize() {
+            return size;
+        }
+
+        public int getPopulation() {
+            return population;
+        }
+
+        public int getId() { return id; }
+
+        public Generation getNextGeneration() {
+            /*
+            A live cell survives if it has two or three live neighbors; otherwise, it dies of boredom (<2) or overpopulation (>3).
+            A dead cell is reborn if it has exactly three live neighbors.
+             */
+            Generation gen = new Generation(size, id+1);
+            gen.getUniverse().thanosAll();
+
+            int[][] neighbors = new int[size][size];
+
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    neighbors[i][j] = universe.getNeighborsCount(i, j);
+                }
+            }
+
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (universe.getCellAt(i, j) == Universe.Cell.ALIVE) {
+                        if (!(neighbors[i][j] < 2 || neighbors[i][j] > 3)) {
+                            gen.universe.setCellAt(Universe.Cell.ALIVE, i, j);
+                            gen.population++;
+                        }
+                    } else {
+                        if (neighbors[i][j] == 3) {
+                            gen.universe.setCellAt(Universe.Cell.ALIVE, i, j);
+                            gen.population++;
+                        }
+                    }
+                }
+            }
+
+            return gen;
+        }
+
+        public static Generation getInitialGeneration(int n) {
+            Generation gen = new Generation(n);
+            Random randomizer = new Random();
+
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    Universe.Cell cell = randomizer.nextBoolean() ? Universe.Cell.ALIVE : Universe.Cell.DEAD;
+                    gen.getUniverse().setCellAt(cell, i, j);
+                    if (cell == Universe.Cell.ALIVE) gen.population++;
+                }
+            }
+            return gen;
+        }
+    }
+  learner_created: true
+- name: src/life/JGamePanel.java
+  visible: true
+  text: |
+    package life;
+
+    import life.model.Generation;
+    import life.model.Universe;
+
+    import javax.swing.*;
+    import java.awt.*;
+
+    public class JGamePanel extends JPanel {
+
+        Generation gameGen;
+
+        JGamePanel() {
+            setName("GamePanel");
+            setBounds(5, 35, 275, 215);
+        }
+
+        public void changeGeneration(Generation u) {
+            gameGen = u;
+        }
+
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
+            if (gameGen == null) return;
+
+            Color aliveColor = new Color(230, 230, 230);
+            Color deadColor = new Color(30, 30, 30);
+            int rectX = getWidth() / gameGen.getSize();
+            int rectY = getHeight() / gameGen.getSize();
+
+            g.setColor(new Color(0,0,0));
+            for (int i = 0; i < gameGen.getSize(); i++) {
+                for (int j = 0; j < gameGen.getSize(); j++) {
+                    g.drawRect(rectX * j, rectY * i, rectX, rectY);
+                }
+            }
+
+            for (int i = 0; i < gameGen.getSize(); i++) {
+                for (int j = 0; j < gameGen.getSize(); j++) {
+                    Color color = (gameGen.getUniverse().getCellAt(i, j) == Universe.Cell.ALIVE) ? aliveColor : deadColor;
+                    g.setColor(color);
+                    g.fillRect(rectX * j + 1, rectY * i + 1, rectX-1, rectY-1);
+                }
+            }
+
+        }
+    }
+  learner_created: true
+- name: src/life/model/Universe.java
+  visible: true
+  text: |
+    package life.model;
+
+    import life.exceptions.UniverseOutOfIndex;
+
+    public class Universe {
+
+        public enum Cell { DEAD, ALIVE };
+        private Cell[][] state;
+        private int n;
+
+        Universe(int n) {
+            this.n = n;
+            state = new Cell[n][n];
+        }
+
+        public int getNeighborsCount(int i, int j) {
+            checkIndex(i, j);
+            int count = 0;
+            int[][] directions = {{1,0}, {-1,0}, {0,1}, {0,-1},{1,1}, {1,-1}, {-1,1}, {-1,-1}};
+
+            for (int[] dir: directions) {
+                int desiredX = i + dir[0];
+                int desiredY = j + dir[1];
+
+                int xIndex = (desiredX >= 0) ? ((desiredX < n) ? desiredX : (n - desiredX) ) : (n + desiredX);
+                int yIndex = (desiredY >= 0) ? ((desiredY < n) ? desiredY : (n - desiredY) ) : (n + desiredY);
+                if (getCellAt(xIndex, yIndex) == Cell.ALIVE) count++;
+            }
+
+            return count;
+        }
+
+        private void checkIndex(int i, int j) throws UniverseOutOfIndex {
+            if ((i < n && j < n) && (i >= 0 && j >= 0)) return;
+            throw new UniverseOutOfIndex(String.format("Oops, this is an finite universe. [%d, %d]", i, j));
+        }
+
+        public Cell getCellAt(int i, int j) throws UniverseOutOfIndex {
+            checkIndex(i, j);
+            return state[i][j];
+        }
+
+        public void setCellAt(Cell cell, int i, int j) throws UniverseOutOfIndex {
+            checkIndex(i, j);
+            state[i][j] = cell;
+        }
+
+        public void thanosAll() {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    state[i][j] = Cell.DEAD;
+                }
+            }
+        }
+    }
+  learner_created: true
+- name: src/life/exceptions/UniverseOutOfIndex.java
+  visible: true
+  text: |
+    package life.exceptions;
+
+    public class UniverseOutOfIndex extends RuntimeException {
+        public UniverseOutOfIndex(String ... message) {
+            super((message.length == 0) ? "" : message[0], null);
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/54/stages/299/implement#comment
 status: Unchecked
 record: -1
