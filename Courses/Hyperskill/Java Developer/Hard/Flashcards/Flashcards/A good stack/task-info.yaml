@@ -245,6 +245,66 @@ files:
     \  \"a brother of one\",\n                \"a part of the body where the foot\
     \ meet\"\n        );\n    }\n    \n}\n"
   learner_created: false
+- name: src/flashcards/cards/CardFactory.java
+  visible: true
+  text: |
+    package flashcards.cards;
+
+    import java.util.Scanner;
+
+    public class CardFactory {
+
+        public static Card createCardFromConsole(Scanner scanner) {
+            String term = scanner.nextLine();
+            String definition = scanner.nextLine();
+            return new Card(term, definition);
+        }
+
+        public static Card createCardFromConsole(Scanner scanner, int cardId) {
+            System.out.printf("Card #%d:%n", cardId);
+            String term = scanner.nextLine();
+            System.out.printf("The definition for card #%d:%n", cardId);
+            String definition = scanner.nextLine();
+            return new Card(term, definition);
+        }
+    }
+  learner_created: true
+- name: src/flashcards/cards/Card.java
+  visible: true
+  text: |
+    package flashcards.cards;
+
+    public class Card {
+
+        private final String term;
+        private final String definition;
+
+        Card(String t, String d) {
+            this.term = t;
+            this.definition = d;
+        }
+
+        public String getTerm() {
+            return term;
+        }
+
+        public String getDefinition() {
+            return definition;
+        }
+    }
+  learner_created: true
+- name: src/flashcards/cards/CardManager.java
+  visible: true
+  learner_created: true
+- name: src/flashcards/ui/Menu.java
+  visible: true
+  learner_created: true
+- name: src/flashcards/ui/ICommand.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/44/stages/235/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Tue, 20 Jul 2021 22:08:27 UTC
+record: 4

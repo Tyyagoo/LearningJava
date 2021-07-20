@@ -825,6 +825,167 @@ files:
 
     }
   learner_created: false
+- name: src/flashcards/cards/CardFactory.java
+  visible: true
+  text: |
+    package flashcards.cards;
+
+    import java.util.Scanner;
+
+    public class CardFactory {
+
+        public static Card createCardFromConsole(Scanner scanner) {
+            String term, definition;
+            System.out.printf("Card #%d:%n", CardManager.getCurrentId() + 1);
+            while (true) {
+                term = scanner.nextLine();
+                if (CardManager.containsTerm(term)) {
+                    System.out.printf("The term \"%s\" already exists. Try again:%n", term);
+                    continue;
+                }
+                break;
+            }
+
+            System.out.printf("The definition for card #%d:%n", CardManager.getCurrentId() + 1);
+            while (true) {
+                definition = scanner.nextLine();
+                if (CardManager.containsDefinition(definition)) {
+                    System.out.printf("The definition \"%s\" already exists. Try again:%n", definition);
+                    continue;
+                }
+                break;
+            }
+
+            return new Card(term, definition);
+        }
+    }
+  learner_created: true
+- name: src/flashcards/cards/CardManager.java
+  visible: true
+  text: |
+    package flashcards.cards;
+
+    import java.util.*;
+
+    public class CardManager {
+
+        private static final Map<Integer, Card> map = new TreeMap<>();
+
+        public static int getCurrentId() {
+            return map.size();
+        }
+
+        public static void storeCard(Card card) {
+            int cardId = getCurrentId() + 1;
+            map.put(cardId, card);
+        }
+
+        public static Card getCardById(int id) {
+            return map.get(id);
+        }
+
+        public static Card getCardByDefinition(String definition) {
+            for (Card card: map.values()) {
+                if (card.getDefinition().equals(definition)) return card;
+            }
+            return null;
+        }
+
+        public static Card getCardByTerm(String term) {
+            for (Card card: map.values()) {
+                if (card.getTerm().equals(term)) return card;
+            }
+            return null;
+        }
+
+        public static boolean containsTerm(String term) {
+            return getCardByTerm(term) != null;
+        }
+
+        public static boolean containsDefinition(String definition) {
+            return getCardByDefinition(definition) != null;
+        }
+    }
+  learner_created: true
+- name: src/flashcards/cards/Card.java
+  visible: true
+  text: |
+    package flashcards.cards;
+
+    public class Card {
+
+        private final String term;
+        private final String definition;
+
+        Card(String t, String d) {
+            this.term = t;
+            this.definition = d;
+        }
+
+        public String getTerm() {
+            return term;
+        }
+
+        public String getDefinition() {
+            return definition;
+        }
+    }
+  learner_created: true
+- name: src/flashcards/ui/ICommand.java
+  visible: true
+  text: |
+    package flashcards.ui;
+
+    import java.util.Scanner;
+
+    interface ICommand {
+        void execute(Scanner scanner);
+    }
+  learner_created: true
+- name: src/flashcards/ui/Menu.java
+  visible: true
+  text: |
+    package flashcards.ui;
+
+    import flashcards.cards.Card;
+    import flashcards.cards.CardFactory;
+    import flashcards.cards.CardManager;
+
+    import java.util.Scanner;
+
+    public class Menu {
+
+        public static final Scanner scanner = new Scanner(System.in);
+
+        public static void initialize() {
+            System.out.println("Input the number of cards:");
+            int numberOfCards = scanner.nextInt();
+            scanner.nextLine();
+
+            for (int i = 0; i < numberOfCards; i++) {
+                CardManager.storeCard(CardFactory.createCardFromConsole(scanner));
+            }
+
+            for (int i = 0; i < numberOfCards; i++) {
+                Card card = CardManager.getCardById(i + 1);
+                if (card == null) continue;
+                System.out.printf("Print the definition of \"%s\":%n", card.getTerm());
+                String answer = scanner.nextLine();
+
+                if (answer.equals(card.getDefinition())) {
+                    System.out.println("Correct!");
+                } else {
+                    System.out.printf("Wrong. The right answer is \"%s\"", card.getDefinition());
+                    if (CardManager.containsDefinition(answer)) {
+                        String correctTerm = CardManager.getCardByDefinition(answer).getTerm();
+                        System.out.printf(", but your definition is correct for \"%s\"", correctTerm);
+                    }
+                    System.out.println(".");
+                }
+            }
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/44/stages/236/implement#comment
 status: Unchecked
 record: -1
