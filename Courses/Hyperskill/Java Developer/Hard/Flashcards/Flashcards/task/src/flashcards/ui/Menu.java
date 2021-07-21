@@ -1,5 +1,6 @@
 package flashcards.ui;
 
+import flashcards.CommandLineWrapper;
 import flashcards.ConsoleLogger;
 import flashcards.cards.Card;
 import flashcards.cards.CardFactory;
@@ -13,7 +14,7 @@ public class Menu {
 
     private static boolean running = true;
 
-    private static final ICommand addCommand = () -> {
+    private static final ICommand addCommand = (ignore) -> {
         Card card = CardFactory.createCardFromConsole();
         if (card != null) {
             CardManager.storeCard(card);
@@ -21,7 +22,7 @@ public class Menu {
         }
     };
 
-    private static final ICommand removeCommand = () -> {
+    private static final ICommand removeCommand = (ignore) -> {
         ConsoleLogger.println("Which card?");
         String term = ConsoleLogger.getNextLine();
 
@@ -33,9 +34,16 @@ public class Menu {
         }
     };
 
-    private static final ICommand importCommand = () -> {
-        ConsoleLogger.println("File name:");
-        String fileName = ConsoleLogger.getNextLine();
+    private static final ICommand importCommand = (consoleFileName) -> {
+        String fileName;
+
+        if (consoleFileName.length > 0) {
+            fileName = consoleFileName[0];
+        } else {
+            ConsoleLogger.println("File name:");
+            fileName = ConsoleLogger.getNextLine();
+        }
+
         File file = new File(fileName);
         try (Scanner fileReader = new Scanner(file)) {
             int loadedCards = 0;
@@ -50,9 +58,15 @@ public class Menu {
         }
     };
 
-    private static final ICommand exportCommand = () -> {
-        ConsoleLogger.println("File name:");
-        String fileName = ConsoleLogger.getNextLine();
+    private static final ICommand exportCommand = (consoleFileName) -> {
+        String fileName;
+
+        if (consoleFileName.length > 0) {
+            fileName = consoleFileName[0];
+        } else {
+            ConsoleLogger.println("File name:");
+            fileName = ConsoleLogger.getNextLine();
+        }
 
         try (FileWriter fileWriter = new FileWriter(fileName)) {
             for (var entrySet: CardManager.getAllCards().entrySet()) {
@@ -71,7 +85,7 @@ public class Menu {
         }
     };
 
-    private static final ICommand askCommand = () -> {
+    private static final ICommand askCommand = (ignore) -> {
         ConsoleLogger.println("How many times to ask?");
         int times = ConsoleLogger.getNextInt();
 
@@ -100,12 +114,13 @@ public class Menu {
         }
     };
 
-    private static final ICommand exitCommand = () -> {
+    private static final ICommand exitCommand = (ignore) -> {
         running = false;
         ConsoleLogger.println("Bye bye!");
+        CommandLineWrapper.onExit();
     };
 
-    private static final ICommand logCommand = () -> {
+    private static final ICommand logCommand = (ignore) -> {
         ConsoleLogger.println("File name:");
         String fileName = ConsoleLogger.getNextLine();
         try (FileWriter fileWriter = new FileWriter(fileName)) {
@@ -122,7 +137,7 @@ public class Menu {
         ConsoleLogger.println("The log has been saved.");
     };
 
-    private static final ICommand hardestCardCommand = () -> {
+    private static final ICommand hardestCardCommand = (ignore) -> {
         int biggestNumberOfMistakes = 0;
         List<Card> cardList = new ArrayList<>();
 
@@ -164,7 +179,7 @@ public class Menu {
         }
     };
 
-    private static final ICommand resetStatsCommand = () -> {
+    private static final ICommand resetStatsCommand = (ignore) -> {
         CardManager.getAllCards().forEach((term, card) -> card.resetMistakeCount());
         ConsoleLogger.println("Card statistics have been reset.");
     };
@@ -202,6 +217,14 @@ public class Menu {
                 exitCommand.execute();
                 break;
         }
+    }
+
+    public static void forceImport(String fileName) {
+        importCommand.execute(fileName);
+    }
+
+    public static void forceExport(String fileName) {
+        exportCommand.execute(fileName);
     }
 
     public static boolean isRunning() {

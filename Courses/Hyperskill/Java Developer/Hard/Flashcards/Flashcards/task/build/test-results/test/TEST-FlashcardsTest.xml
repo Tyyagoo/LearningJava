@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="FlashcardsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-21T16:57:08" hostname="LAPTOP-J1J60HSA" time="1.165">
+<testsuite name="FlashcardsTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-21T17:10:17" hostname="LAPTOP-J1J60HSA" time="1.157">
   <properties/>
-  <testcase name="start" classname="FlashcardsTest" time="1.165"/>
+  <testcase name="start" classname="FlashcardsTest" time="1.157"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
@@ -262,23 +262,23 @@ Input the action (add, remove, import, export, ask, exit, log, hardest card, res
 > ask
 How many times to ask?
 > 6
-Print the definition of "son":
-> a male child
-Correct!
-Print the definition of "str()":
-> converts to a string
-Correct!
 Print the definition of "ankle":
 > a part of the body where the foot and the leg meet
+Correct!
+Print the definition of "daughter":
+> a female child
 Correct!
 Print the definition of "uncle":
 > a brother of one's parent
 Correct!
+Print the definition of "son":
+> a male child
+Correct!
 Print the definition of "print()":
 > outputs text
 Correct!
-Print the definition of "daughter":
-> a female child
+Print the definition of "str()":
+> converts to a string
 Correct!
 Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
 > exit
@@ -331,6 +331,15 @@ Input the action (add, remove, import, export, ask, exit, log, hardest card, res
 > ask
 How many times to ask?
 > 6
+Print the definition of "daughter":
+> a female child or a male child
+Wrong. The right answer is "a female child".
+Print the definition of "ankle":
+> a part of the body where the foot and the leg meet or the arm
+Wrong. The right answer is "a part of the body where the foot and the leg meet".
+Print the definition of "uncle":
+> a brother of one's parent or grandparents
+Wrong. The right answer is "a brother of one's parent".
 Print the definition of "son":
 > a male child or a female child
 Wrong. The right answer is "a male child".
@@ -340,15 +349,6 @@ Wrong. The right answer is "converts to a string".
 Print the definition of "print()":
 > outputs text line by line
 Wrong. The right answer is "outputs text".
-Print the definition of "ankle":
-> a part of the body where the foot and the leg meet or the arm
-Wrong. The right answer is "a part of the body where the foot and the leg meet".
-Print the definition of "daughter":
-> a female child or a male child
-Wrong. The right answer is "a female child".
-Print the definition of "uncle":
-> a brother of one's parent or grandparents
-Wrong. The right answer is "a brother of one's parent".
 Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
 > exit
 Bye bye!
@@ -403,6 +403,9 @@ How many times to ask?
 Print the definition of "ankle":
 > a brother of one's parent
 Wrong. The right answer is "a part of the body where the foot and the leg meet", but your definition is correct for "uncle".
+Print the definition of "uncle":
+> a part of the body where the foot and the leg meet
+Wrong. The right answer is "a brother of one's parent", but your definition is correct for "ankle".
 Print the definition of "son":
 > a female child
 Wrong. The right answer is "a male child", but your definition is correct for "daughter".
@@ -415,9 +418,6 @@ Wrong. The right answer is "converts to a string", but your definition is correc
 Print the definition of "print()":
 > converts to a string
 Wrong. The right answer is "outputs text", but your definition is correct for "str()".
-Print the definition of "uncle":
-> a part of the body where the foot and the leg meet
-Wrong. The right answer is "a brother of one's parent", but your definition is correct for "ankle".
 Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
 > exit
 Bye bye!
@@ -616,6 +616,46 @@ The log has been saved.
 Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
 > exit
 Bye bye!
+?[1;31m
+Start test 17?[0m
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+> hardest card
+There are no cards with errors.
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+> add
+The card:
+> Movie
+The definition of the card.
+> A recorded sequence of images displayed on a screen at a rate sufficiently fast
+The pair ("Movie":"A recorded sequence of images displayed on a screen at a rate sufficiently fast") has been added
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+> exit
+Bye bye!
+1 cards have been saved.
+?[1;31m
+Start test 18?[0m
+1 cards have been loaded.
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+> add
+The card:
+> Movie
+The card "Movie" already exists. 
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+> remove
+Which card?
+> Movie
+The card has been removed.
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+> add
+The card:
+> Series
+The definition of the card.
+> A television program which consists of several episodes
+The pair ("Series":"A television program which consists of several episodes") has been added
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+> exit
+Bye bye!
+1 cards have been saved.
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
