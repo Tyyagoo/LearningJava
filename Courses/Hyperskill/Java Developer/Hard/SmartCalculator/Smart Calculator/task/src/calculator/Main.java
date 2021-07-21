@@ -9,14 +9,23 @@ public class Main {
 
         while (true) {
             String inputLine = scanner.nextLine();
-            if (inputLine.equals("/exit")) break;
             if (inputLine.length() == 0) continue;
+
+            if (inputLine.equals("/exit")) {
+                System.out.println("Bye!");
+                break;
+            }
+
+            if (inputLine.equals("/help")) {
+                System.out.println("The program calculates the sum of numbers");
+                continue;
+            }
+
             int sum = 0;
             for(String n: inputLine.split(" ")) {
                 sum += Integer.parseInt(n);
             }
             System.out.println(sum);
         }
-        System.out.println("Bye!");
     }
 }
