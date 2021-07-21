@@ -5,7 +5,7 @@ import java.util.*;
 
 public class ConsoleLogger {
 
-    private static final List<String> log = new ArrayList<>();
+    private static final List<String> log = new LinkedList<>();
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void println(String str) {
