@@ -17,4 +17,9 @@ public class Card {
     public String getDefinition() {
         return definition;
     }
+
+    @Override
+    public String toString() {
+        return String.format("(\"%s\":\"%s\")", term, definition);
+    }
 }

@@ -1,281 +1,443 @@
 [1;31m
 Start test 1[0m
-Input the number of cards:
+=Input the action (add, remove, import, export, ask, exit): 
+> exit
+
+Bye bye!
 [1;31m
 Start test 2[0m
-Input the number of cards:
-> 6
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+	> France
+The definition of the card.
+> Paris
+,The pair ("France":"Paris") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+	> France
+$The card "France" already exists. 
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> Great Britain
+The definition of the card.
+> Paris
+3The definition "Paris" already exists. Try again:
+=Input the action (add, remove, import, export, ask, exit): 
+> exit
 
-Card #1:
-
-> print()
-The definition for card #1:
-> outputs text
-
-Card #2:
-> str()
-The definition for card #2:
-> converts to a string
-
-Card #3:
-> son
-The definition for card #3:
-> a male child
-
-Card #4:
-> daughter
-The definition for card #4:
-> a female child
-
-Card #5:
-> uncle
-The definition for card #5:
-> a brother of one's parent
-
-Card #6:
-> ankle
-The definition for card #6:
-5> a part of the body where the foot and the leg meet
-$Print the definition of "print()":
-> outputs text
-
-Correct!
-"Print the definition of "str()":
-> converts to a string
-
-Correct!
- Print the definition of "son":
-> a male child
-
-Correct!
-%Print the definition of "daughter":
-> a female child
-
-Correct!
-"Print the definition of "uncle":
-> a brother of one's parent
-
-Correct!
-"Print the definition of "ankle":
-5> a part of the body where the foot and the leg meet
-
-Correct!
+Bye bye!
 [1;31m
 Start test 3[0m
-Input the number of cards:
-> 4
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+	> France
+The definition of the card.
+> Paris
+,The pair ("France":"Paris") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> Japan
+The definition of the card.
+> Tokyo
++The pair ("Japan":"Tokyo") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> Great Britain
+The definition of the card.
+	> London
+4The pair ("Great Britain":"London") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+	> remove
+Which card?
+> Japan
+The card has been removed.
+=Input the action (add, remove, import, export, ask, exit): 
+	> remove
+Which card?
 
-Card #1:
+> Wakanda
+0Can't remove "Wakanda": there is no such card.
+=Input the action (add, remove, import, export, ask, exit): 
+	> remove
+Which card?
+> Tokyo
+.Can't remove "Tokyo": there is no such card.
+=Input the action (add, remove, import, export, ask, exit): 
+> exit
 
-> print()
-The definition for card #1:
-> outputs text
-
-Card #2:
-
-> print()
-/The term "print()" already exists. Try again:
-> son
-The definition for card #2:
-> a male child
-
-Card #3:
-> str()
-The definition for card #3:
-> converts to a string
-
-Card #4:
-> daughter
-The definition for card #4:
-> a male child
-:The definition "a male child" already exists. Try again:
+Bye bye!
 [1;31m
 Start test 4[0m
-Input the number of cards:
-> 2
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> Japan
+The definition of the card.
+> Tokyo
++The pair ("Japan":"Tokyo") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+	> France
+The definition of the card.
+> Paris
+,The pair ("France":"Paris") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+	> export
+File name:
+> capitals.txt
+2 cards have been saved.
+=Input the action (add, remove, import, export, ask, exit): 
+> exit
 
-Card #1:
-
-> print()
-The definition for card #1:
-> outputs text
-
-Card #2:
-
-> print()
-/The term "print()" already exists. Try again:
-> str()
-The definition for card #2:
-> outputs text
-:The definition "outputs text" already exists. Try again:
-> converts to a string
-$Print the definition of "print()":
-> outputs text
-
-Correct!
-"Print the definition of "str()":
-> converts to a string
-
-Correct!
+Bye bye!
 [1;31m
 Start test 5[0m
-Input the number of cards:
-> 6
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+	> Canada
+The definition of the card.
+	> Ottawa
+-The pair ("Canada":"Ottawa") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> Netherlands
+The definition of the card.
+> Amsterdam
+5The pair ("Netherlands":"Amsterdam") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+	> Russia
+The definition of the card.
+	> Moscow
+-The pair ("Russia":"Moscow") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> United Kingdom
+The definition of the card.
+	> London
+5The pair ("United Kingdom":"London") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
 
-Card #1:
+> Nigeria
+The definition of the card.
+> Abuja
+-The pair ("Nigeria":"Abuja") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
 
-> print()
-The definition for card #1:
-> outputs text
+> Germany
+The definition of the card.
+	> Berlin
+.The pair ("Germany":"Berlin") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+	> export
+File name:
+> capitalsNew.txt
+6 cards have been saved.
+=Input the action (add, remove, import, export, ask, exit): 
+> exit
 
-Card #2:
-> str()
-The definition for card #2:
-> converts to a string
-
-Card #3:
-> son
-The definition for card #3:
-> a male child
-
-Card #4:
-> daughter
-The definition for card #4:
-> a female child
-
-Card #5:
-> uncle
-The definition for card #5:
-> a brother of one's parent
-
-Card #6:
-> ankle
-The definition for card #6:
-5> a part of the body where the foot and the leg meet
-$Print the definition of "print()":
-> converts to a string
-XWrong. The right answer is "outputs text", but your definition is correct for "str()".
-"Print the definition of "str()":
-> outputs text
-bWrong. The right answer is "converts to a string", but your definition is correct for "print()".
- Print the definition of "son":
-> a female child
-[Wrong. The right answer is "a male child", but your definition is correct for "daughter".
-%Print the definition of "daughter":
-> a male child
-XWrong. The right answer is "a female child", but your definition is correct for "son".
-"Print the definition of "uncle":
-5> a part of the body where the foot and the leg meet
-eWrong. The right answer is "a brother of one's parent", but your definition is correct for "ankle".
-"Print the definition of "ankle":
-> a brother of one's parent
-~Wrong. The right answer is "a part of the body where the foot and the leg meet", but your definition is correct for "uncle".
+Bye bye!
 [1;31m
 Start test 6[0m
-Input the number of cards:
-> 6
+=Input the action (add, remove, import, export, ask, exit): 
+	> import
+File name:
+> ghost_file.txt
+File not found.
+=Input the action (add, remove, import, export, ask, exit): 
+	> import
+File name:
+> capitals.txt
+2 cards have been loaded.
+=Input the action (add, remove, import, export, ask, exit): 
+	> remove
+Which card?
+> Japan
+The card has been removed.
+=Input the action (add, remove, import, export, ask, exit): 
+	> export
+File name:
+> capitals.txt
+1 cards have been saved.
+=Input the action (add, remove, import, export, ask, exit): 
+	> import
+File name:
+> capitalsNew.txt
+6 cards have been loaded.
+=Input the action (add, remove, import, export, ask, exit): 
+	> export
+File name:
+> capitalsNew.txt
+7 cards have been saved.
+=Input the action (add, remove, import, export, ask, exit): 
+> exit
 
-Card #1:
+Bye bye!
+[1;31m
+Start test 7[0m
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+	> France
+The definition of the card.
+> Eiffel Tower
+3The pair ("France":"Eiffel Tower") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+	> import
+File name:
+> capitals.txt
+1 cards have been loaded.
+=Input the action (add, remove, import, export, ask, exit): 
+> ask
+How many times to ask?
+> 1
+#Print the definition of "France":
+> Eiffel Tower
+%Wrong. The right answer is "Paris".
+=Input the action (add, remove, import, export, ask, exit): 
+> ask
+How many times to ask?
+> 1
+#Print the definition of "France":
+> Paris
+
+Correct!
+=Input the action (add, remove, import, export, ask, exit): 
+> exit
+
+Bye bye!
+[1;31m
+Start test 8[0m
+	tttest8
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
 
 > print()
-The definition for card #1:
+The definition of the card.
+> outputs text
+4The pair ("print()":"outputs text") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> str()
+The definition of the card.
+> converts to a string
+:The pair ("str()":"converts to a string") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> son
+The definition of the card.
+> a male child
+0The pair ("son":"a male child") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> daughter
+The definition of the card.
+> a female child
+7The pair ("daughter":"a female child") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> uncle
+The definition of the card.
+> a brother of one's parent
+?The pair ("uncle":"a brother of one's parent") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> ankle
+The definition of the card.
+5> a part of the body where the foot and the leg meet
+XThe pair ("ankle":"a part of the body where the foot and the leg meet") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> ask
+How many times to ask?
+> 6
+$Print the definition of "print()":
 > outputs text
 
-Card #2:
-> str()
-The definition for card #2:
-> converts to a string
-
-Card #3:
-> son
-The definition for card #3:
-> a male child
-
-Card #4:
-> daughter
-The definition for card #4:
+Correct!
+%Print the definition of "daughter":
 > a female child
 
-Card #5:
-> uncle
-The definition for card #5:
+Correct!
+"Print the definition of "uncle":
 > a brother of one's parent
 
-Card #6:
-> ankle
-The definition for card #6:
-5> a part of the body where the foot and the leg meet
-$Print the definition of "print()":
-> outputs text line by line
-,Wrong. The right answer is "outputs text".
+Correct!
 "Print the definition of "str()":
-&> converts to a string and an integer
-4Wrong. The right answer is "converts to a string".
+> converts to a string
+
+Correct!
+"Print the definition of "ankle":
+5> a part of the body where the foot and the leg meet
+
+Correct!
  Print the definition of "son":
-!> a male child or a female child
-,Wrong. The right answer is "a male child".
+> a male child
+
+Correct!
+=Input the action (add, remove, import, export, ask, exit): 
+> exit
+
+Bye bye!
+[1;31m
+Start test 9[0m
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+
+> print()
+The definition of the card.
+> outputs text
+4The pair ("print()":"outputs text") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> str()
+The definition of the card.
+> converts to a string
+:The pair ("str()":"converts to a string") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> son
+The definition of the card.
+> a male child
+0The pair ("son":"a male child") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> daughter
+The definition of the card.
+> a female child
+7The pair ("daughter":"a female child") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> uncle
+The definition of the card.
+> a brother of one's parent
+?The pair ("uncle":"a brother of one's parent") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
+> ankle
+The definition of the card.
+5> a part of the body where the foot and the leg meet
+XThe pair ("ankle":"a part of the body where the foot and the leg meet") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> ask
+How many times to ask?
+> 6
 %Print the definition of "daughter":
 !> a female child or a male child
 .Wrong. The right answer is "a female child".
-"Print the definition of "uncle":
-,> a brother of one's parent or grandparents
-9Wrong. The right answer is "a brother of one's parent".
 "Print the definition of "ankle":
 @> a part of the body where the foot and the leg meet or the arm
 RWrong. The right answer is "a part of the body where the foot and the leg meet".
-[1;31m
-Start test 7[0m
-Input the number of cards:
-> 6
+ Print the definition of "son":
+!> a male child or a female child
+,Wrong. The right answer is "a male child".
+"Print the definition of "str()":
+&> converts to a string and an integer
+4Wrong. The right answer is "converts to a string".
+$Print the definition of "print()":
+> outputs text line by line
+,Wrong. The right answer is "outputs text".
+"Print the definition of "uncle":
+,> a brother of one's parent or grandparents
+9Wrong. The right answer is "a brother of one's parent".
+=Input the action (add, remove, import, export, ask, exit): 
+> exit
 
-Card #1:
+Bye bye!
+[1;31m
+Start test 10[0m
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
 
 > print()
-The definition for card #1:
+The definition of the card.
 > outputs text
-
-Card #2:
+4The pair ("print()":"outputs text") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
 > str()
-The definition for card #2:
+The definition of the card.
 > converts to a string
-
-Card #3:
+:The pair ("str()":"converts to a string") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
 > son
-The definition for card #3:
+The definition of the card.
 > a male child
-
-Card #4:
+0The pair ("son":"a male child") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
 > daughter
-The definition for card #4:
+The definition of the card.
 > a female child
-
-Card #5:
+7The pair ("daughter":"a female child") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
 > uncle
-The definition for card #5:
+The definition of the card.
 > a brother of one's parent
-
-Card #6:
+?The pair ("uncle":"a brother of one's parent") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> add
+The card:
 > ankle
-The definition for card #6:
+The definition of the card.
 5> a part of the body where the foot and the leg meet
-$Print the definition of "print()":
-
-> outputs
-,Wrong. The right answer is "outputs text".
-"Print the definition of "str()":
-> converts a string
-4Wrong. The right answer is "converts to a string".
+XThe pair ("ankle":"a part of the body where the foot and the leg meet") has been added
+=Input the action (add, remove, import, export, ask, exit): 
+> ask
+How many times to ask?
+> 6
  Print the definition of "son":
-
-> a child
-,Wrong. The right answer is "a male child".
-%Print the definition of "daughter":
-
-> a child
-.Wrong. The right answer is "a female child".
-"Print the definition of "uncle":
-> a brother of one
-9Wrong. The right answer is "a brother of one's parent".
+> a female child
+[Wrong. The right answer is "a male child", but your definition is correct for "daughter".
+$Print the definition of "print()":
+> converts to a string
+XWrong. The right answer is "outputs text", but your definition is correct for "str()".
 "Print the definition of "ankle":
-)> a part of the body where the foot meet
-RWrong. The right answer is "a part of the body where the foot and the leg meet".
+> a brother of one's parent
+~Wrong. The right answer is "a part of the body where the foot and the leg meet", but your definition is correct for "uncle".
+"Print the definition of "uncle":
+5> a part of the body where the foot and the leg meet
+eWrong. The right answer is "a brother of one's parent", but your definition is correct for "ankle".
+%Print the definition of "daughter":
+> a brother of one's parent
+ZWrong. The right answer is "a female child", but your definition is correct for "uncle".
+"Print the definition of "str()":
+> a male child
+^Wrong. The right answer is "converts to a string", but your definition is correct for "son".
+=Input the action (add, remove, import, export, ask, exit): 
+> exit
+
+Bye bye!
