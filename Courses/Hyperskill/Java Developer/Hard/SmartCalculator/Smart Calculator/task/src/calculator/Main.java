@@ -6,6 +6,6 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        // put your code here
+        System.out.println(scanner.nextInt() + scanner.nextInt());
     }
 }
