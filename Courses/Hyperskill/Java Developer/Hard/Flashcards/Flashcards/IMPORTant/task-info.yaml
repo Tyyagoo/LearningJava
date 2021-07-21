@@ -641,6 +641,398 @@ files:
     \                \"Moscow\",\n                \"London\",\n                \"\
     Abuja\",\n                \"Berlin\"\n        );\n    }\n    \n}\n"
   learner_created: false
+- name: src/flashcards/ConsoleLogger.java
+  visible: true
+  text: |
+    package flashcards;
+
+    import java.io.*;
+    import java.util.*;
+
+    public class ConsoleLogger {
+
+        private static final List<String> log = new ArrayList<>();
+        private static final Scanner scanner = new Scanner(System.in);
+
+        public static void println(String str) {
+            System.out.println(str);
+            log.add(str);
+        }
+
+        public static void printf(String str, Object ... args) {
+            String formatted = String.format(str, args);
+            System.out.print(formatted);
+            log.add(formatted);
+        }
+
+        public static String getNextLine() {
+            String line = scanner.nextLine();
+            log.add(String.format("> %s", line));
+            return line;
+        }
+
+        public static int getNextInt() {
+            int n = scanner.nextInt();
+            scanner.nextLine();
+            log.add(String.format("> %d", n));
+            return n;
+        }
+
+        public static List<String> getLog() {
+            return log;
+        }
+    }
+  learner_created: true
+- name: src/flashcards/cards/CardFactory.java
+  visible: true
+  text: |
+    package flashcards.cards;
+
+    import flashcards.ConsoleLogger;
+
+    public class CardFactory {
+
+        public static Card createCardFromConsole() {
+            String term, definition;
+            ConsoleLogger.println("The card:");
+            term = ConsoleLogger.getNextLine();
+            if (CardManager.containsTerm(term)) {
+                ConsoleLogger.printf("The card \"%s\" already exists. %n", term);
+                return null;
+            }
+
+            ConsoleLogger.println("The definition of the card.");
+            definition = ConsoleLogger.getNextLine();
+            if (CardManager.containsDefinition(definition)) {
+                ConsoleLogger.printf("The definition \"%s\" already exists. Try again:%n", definition);
+                return null;
+            }
+            return new Card(term, definition, 0);
+        }
+
+        public static Card createCardFromString(String cardInfo) {
+            String term = cardInfo.split(":")[0];
+            String definition = cardInfo.split(":")[1];
+            int mistakes = Integer.parseInt(cardInfo.split(":")[2]);
+            return new Card(term, definition, mistakes);
+        }
+    }
+  learner_created: true
+- name: src/flashcards/cards/CardManager.java
+  visible: true
+  text: |
+    package flashcards.cards;
+
+    import java.util.*;
+
+    public class CardManager {
+
+        private static final Map<String, Card> map = new TreeMap<>();
+
+        public static void storeCard(Card card) {
+            map.put(card.getTerm(), card);
+        }
+
+        public static Card getCardByTerm(String term) {
+            return map.get(term);
+        }
+
+        public static Card getCardByDefinition(String definition) {
+            for (Card card: map.values()) {
+                if (card.getDefinition().equals(definition)) return card;
+            }
+            return null;
+        }
+
+        public static Map<String, Card> getAllCards() {
+            return map;
+        }
+
+        public static void removeCardByTerm(String term) {
+            map.remove(term);
+        }
+
+        public static void removeCardByDefinition(String definition) {
+            try {
+                map.remove(getCardByDefinition(definition).getTerm());
+            } catch (NullPointerException ignore) {
+
+            }
+
+        }
+
+        public static boolean containsTerm(String term) {
+            return getCardByTerm(term) != null;
+        }
+
+        public static boolean containsDefinition(String definition) {
+            return getCardByDefinition(definition) != null;
+        }
+    }
+  learner_created: true
+- name: src/flashcards/cards/Card.java
+  visible: true
+  text: |
+    package flashcards.cards;
+
+    public class Card {
+
+        private final String term;
+        private final String definition;
+        private int mistakeCount;
+
+        Card(String t, String d, int mistakes) {
+            this.term = t;
+            this.definition = d;
+            this.mistakeCount = mistakes;
+        }
+
+        public String getTerm() {
+            return term;
+        }
+
+        public String getDefinition() {
+            return definition;
+        }
+
+        public int getMistakeCount() { return mistakeCount; }
+
+        public void incMistakeCount() { mistakeCount++; }
+
+        public void resetMistakeCount() { mistakeCount = 0; }
+
+        @Override
+        public String toString() {
+            return String.format("(\"%s\":\"%s\")", term, definition);
+        }
+    }
+  learner_created: true
+- name: src/flashcards/ui/ICommand.java
+  visible: true
+  text: |
+    package flashcards.ui;
+
+    import java.io.FileNotFoundException;
+    import java.util.Scanner;
+
+    interface ICommand {
+        void execute();
+    }
+  learner_created: true
+- name: src/flashcards/ui/Menu.java
+  visible: true
+  text: |
+    package flashcards.ui;
+
+    import flashcards.ConsoleLogger;
+    import flashcards.cards.Card;
+    import flashcards.cards.CardFactory;
+    import flashcards.cards.CardManager;
+
+    import java.io.*;
+    import java.util.*;
+
+
+    public class Menu {
+
+        private static boolean running = true;
+
+        private static final ICommand addCommand = () -> {
+            Card card = CardFactory.createCardFromConsole();
+            if (card != null) {
+                CardManager.storeCard(card);
+                ConsoleLogger.printf("The pair %s has been added%n", card);
+            }
+        };
+
+        private static final ICommand removeCommand = () -> {
+            ConsoleLogger.println("Which card?");
+            String term = ConsoleLogger.getNextLine();
+
+            if (CardManager.containsTerm(term)) {
+                CardManager.removeCardByTerm(term);
+                ConsoleLogger.println("The card has been removed.");
+            } else {
+                ConsoleLogger.printf("Can't remove \"%s\": there is no such card.%n", term);
+            }
+        };
+
+        private static final ICommand importCommand = () -> {
+            ConsoleLogger.println("File name:");
+            String fileName = ConsoleLogger.getNextLine();
+            File file = new File(fileName);
+            try (Scanner fileReader = new Scanner(file)) {
+                int loadedCards = 0;
+                while (fileReader.hasNextLine()) {
+                    String cardInfo = fileReader.nextLine().replace("(", "").replace(")", "").replace("\"", "");
+                    CardManager.storeCard(CardFactory.createCardFromString(cardInfo));
+                    loadedCards++;
+                }
+                ConsoleLogger.printf("%d cards have been loaded.%n", loadedCards);
+            } catch (FileNotFoundException e) {
+                ConsoleLogger.println("File not found.");
+            }
+        };
+
+        private static final ICommand exportCommand = () -> {
+            ConsoleLogger.println("File name:");
+            String fileName = ConsoleLogger.getNextLine();
+
+            try (FileWriter fileWriter = new FileWriter(fileName)) {
+                for (var entrySet: CardManager.getAllCards().entrySet()) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.append(entrySet.getValue().toString());
+                    stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+                    stringBuilder.append(":");
+                    stringBuilder.append(entrySet.getValue().getMistakeCount());
+                    stringBuilder.append(")");
+                    String content = String.format("%s%n",stringBuilder);
+                    fileWriter.write(content);
+                }
+                ConsoleLogger.printf("%d cards have been saved.%n", CardManager.getAllCards().size());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        };
+
+        private static final ICommand askCommand = () -> {
+            ConsoleLogger.println("How many times to ask?");
+            int times = ConsoleLogger.getNextInt();
+
+            Random randomizer = new Random();
+            List<String> askKeys = new ArrayList<>(CardManager.getAllCards().keySet());
+
+            for (int c = 0; c < times; c++) {
+                int index = randomizer.nextInt(askKeys.size());
+                String term = askKeys.get(index);
+                Card card = CardManager.getCardByTerm(term);
+                ConsoleLogger.printf("Print the definition of \"%s\":%n", term);
+                String answer = ConsoleLogger.getNextLine();
+                if (answer.equals(card.getDefinition())) {
+                    ConsoleLogger.println("Correct!");
+                } else {
+                    card.incMistakeCount();
+                    ConsoleLogger.printf("Wrong. The right answer is \"%s\"", card.getDefinition());
+                    if (CardManager.containsDefinition(answer)) {
+                        String correctTerm = CardManager.getCardByDefinition(answer).getTerm();
+                        ConsoleLogger.printf(", but your definition is correct for \"%s\"", correctTerm);
+                    }
+                    ConsoleLogger.println(".");
+                }
+
+                askKeys.remove(index);
+            }
+        };
+
+        private static final ICommand exitCommand = () -> {
+            running = false;
+            ConsoleLogger.println("Bye bye!");
+        };
+
+        private static final ICommand logCommand = () -> {
+            ConsoleLogger.println("File name:");
+            String fileName = ConsoleLogger.getNextLine();
+            try (FileWriter fileWriter = new FileWriter(fileName)) {
+                ConsoleLogger.getLog().forEach(line -> {
+                    try {
+                        fileWriter.write(String.format("%s%n", line));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ConsoleLogger.println("The log has been saved.");
+        };
+
+        private static final ICommand hardestCardCommand = () -> {
+            int biggestNumberOfMistakes = 0;
+            List<Card> cardList = new ArrayList<>();
+
+            for (var entrySet: CardManager.getAllCards().entrySet()) {
+                Card card = entrySet.getValue();
+
+                if (card.getMistakeCount() > biggestNumberOfMistakes) {
+                    cardList.clear();
+                    cardList.add(card);
+                    biggestNumberOfMistakes = card.getMistakeCount();
+                    continue;
+                }
+
+                if (card.getMistakeCount() == biggestNumberOfMistakes) {
+                    cardList.add(card);
+                }
+            }
+
+            if (biggestNumberOfMistakes == 0) {
+                ConsoleLogger.println("There are no cards with errors.");
+            } else {
+                StringBuilder stringBuilder = new StringBuilder();
+                if (cardList.size() == 1) {
+                    Card card = cardList.get(0);
+                    stringBuilder.append(String.format("The hardest card is \"%s\". You have %d errors answering it.",
+                            card.getTerm(), card.getMistakeCount()));
+                } else {
+                    stringBuilder.append("The hardest cards are");
+
+                    for (Card card: cardList) {
+                        stringBuilder.append(String.format(" \"%s\",", card.getTerm()));
+                    }
+                    stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+                    stringBuilder.append(". ");
+                    stringBuilder.append(String.format("You have %d errors answering them.", biggestNumberOfMistakes));
+                }
+
+                ConsoleLogger.println(stringBuilder.toString());
+            }
+        };
+
+        private static final ICommand resetStatsCommand = () -> {
+            CardManager.getAllCards().forEach((term, card) -> card.resetMistakeCount());
+            ConsoleLogger.println("Card statistics have been reset.");
+        };
+
+        public static void invoke() {
+            ConsoleLogger.println("Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):");
+            String option = ConsoleLogger.getNextLine();
+
+            switch (option) {
+                case "add":
+                    addCommand.execute();
+                    break;
+                case "remove":
+                    removeCommand.execute();
+                    break;
+                case "import":
+                    importCommand.execute();
+                    break;
+                case "export":
+                    exportCommand.execute();
+                    break;
+                case "ask":
+                    askCommand.execute();
+                    break;
+                case "log":
+                    logCommand.execute();
+                    break;
+                case "hardest card":
+                    hardestCardCommand.execute();
+                    break;
+                case "reset stats":
+                    resetStatsCommand.execute();
+                    break;
+                case "exit":
+                    exitCommand.execute();
+                    break;
+            }
+        }
+
+        public static boolean isRunning() {
+            return running;
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/44/stages/238/implement#comment
 status: Unchecked
 record: -1

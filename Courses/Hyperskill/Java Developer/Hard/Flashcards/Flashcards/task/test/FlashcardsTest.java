@@ -24,9 +24,8 @@ public class FlashcardsTest extends StageTest<String> {
     private final String capitalsFile = "capitals.txt";
     private final String capitalsNewFile = "capitalsNew.txt";
     
-    
     @BeforeClass
-    public static void generateLists(){
+    public static void generateLists() {
         listOfTerms = getListOfTerms();
         listOfDefinitions = getListOfDefinitions();
         listOfAddedDefinitions = getListOfWrongDefinitions1();
@@ -47,6 +46,14 @@ public class FlashcardsTest extends StageTest<String> {
         File logFile = new File("todayLog.txt");
         //noinspection ResultOfMethodCallIgnored
         logFile.delete();
+    
+        File fridayFile = new File("fridayThe13th.txt");
+        //noinspection ResultOfMethodCallIgnored
+        fridayFile.delete();
+    
+        File newFridayFile = new File("newFridayThe13th.txt");
+        //noinspection ResultOfMethodCallIgnored
+        newFridayFile.delete();
         
     }
     
@@ -85,8 +92,8 @@ public class FlashcardsTest extends StageTest<String> {
         
         output = main.execute("add").toLowerCase();
         if (!output.contains("card")) {
-            return CheckResult.wrong("Your program should prompt the user for the name of the card with the message  " +
-                    "\"The card:\"");
+            return CheckResult.wrong("Your program should output the message \"The card:\" when the 'add' action is " +
+                    "selected");
         }
         
         output = main.execute("France").toLowerCase();
@@ -546,13 +553,13 @@ public class FlashcardsTest extends StageTest<String> {
         output = main.execute("6").toLowerCase();
         term = getTerm(output);
         
-        for (int i = 0; i < listOfTerms.size(); i++){
+        for (int i = 0; i < listOfTerms.size(); i++) {
             index = listOfTerms.indexOf(term);
 
             if (index == -1) {
                 return CheckResult.wrong("The card \"" + term + "\" wasn't added, but you ask to enter its definition!");
             }
-
+            
             output = main.execute(listOfDefinitions.get(index)).toLowerCase();
             lines = output.split("\n");
             lastLine = lines[lines.length - 1];
@@ -608,7 +615,7 @@ public class FlashcardsTest extends StageTest<String> {
         output = main.execute("6").toLowerCase();
         term = getTerm(output);
         
-        for (int i = 0; i < listOfTerms.size(); i++){
+        for (int i = 0; i < listOfTerms.size(); i++) {
             index = listOfTerms.indexOf(term);
 
             if (index == -1) {
@@ -671,7 +678,7 @@ public class FlashcardsTest extends StageTest<String> {
         output = main.execute("6").toLowerCase();
         term = getTerm(output);
         
-        for (int i = 0; i < listOfTerms.size(); i++){
+        for (int i = 0; i < listOfTerms.size(); i++) {
             index = listOfTerms.indexOf(term);
 
             if (index == -1) {
@@ -731,7 +738,7 @@ public class FlashcardsTest extends StageTest<String> {
         
         output = main.execute("hardest card").toLowerCase();
         lines = output.split("\n");
-        lastLine = lines[lines.length -1];
+        lastLine = lines[lines.length - 1];
         
         if (!output.contains("no cards with errors")) {
             return CheckResult.wrong("Your program should print \"There are no cards with errors.\" if there are no " +
@@ -765,7 +772,7 @@ public class FlashcardsTest extends StageTest<String> {
             return CheckResult.wrong("Your program should show the user the hardest card(s) in the format" +
                     " \"The hardest card is \"card\". You have n errors answering it.\"");
         }
-    
+        
         if (!output.contains("\"france\"")) {
             return CheckResult.wrong("Your program should print the hardest card in quotes");
         }
@@ -794,7 +801,7 @@ public class FlashcardsTest extends StageTest<String> {
     CheckResult test12() {
         TestedProgram main = new TestedProgram();
         main.start();
-    
+        
         String output;
         
         main.execute("add");
@@ -804,34 +811,34 @@ public class FlashcardsTest extends StageTest<String> {
         main.execute("ask");
         main.execute("1");
         main.execute("Saint Petersburg");
-    
+        
         main.execute("ask");
         main.execute("1");
         main.execute("Saint Petersburg");
-    
+        
         main.execute("ask");
         main.execute("1");
         main.execute("Saint Petersburg");
-    
+        
         output = main.execute("hardest card").toLowerCase();
         if (!output.contains("the hardest card is")) {
             return CheckResult.wrong("Your program should show the user the hardest card(s) in the format" +
                     " \"The hardest card is \"card\". You have n errors answering it.\"");
         }
-    
+        
         if (!output.contains("errors answering it")) {
             return CheckResult.wrong("Your program should show the user the hardest card(s) in the format" +
                     " \"The hardest card is \"card\". You have n errors answering it.\"");
         }
-    
+        
         if (!output.contains("\"russia\"")) {
             return CheckResult.wrong("Your program should print the hardest card in quotes");
         }
-    
+        
         if (!output.contains("3")) {
             return CheckResult.wrong("Your program shows wrong number of errors. Expected 3");
         }
-    
+        
         main.execute("export");
         main.execute(capitalsNewFile);
     
@@ -852,7 +859,7 @@ public class FlashcardsTest extends StageTest<String> {
     CheckResult test13() {
         TestedProgram main = new TestedProgram();
         main.start();
-    
+        
         String output;
         
         main.execute("import");
@@ -865,12 +872,12 @@ public class FlashcardsTest extends StageTest<String> {
         if (output.contains("no cards with errors")) {
             return CheckResult.wrong("Your program should print the hardest card(s) if such card(s) exists");
         }
-    
+        
         if (!output.contains("the hardest card is")) {
             return CheckResult.wrong("Your program should show the user the hardest card(s) in the format" +
                     " \"The hardest card is \"card\". You have n errors answering it.\"");
         }
-    
+        
         if (!output.contains("errors answering it")) {
             return CheckResult.wrong("Your program should show the user the hardest card(s) in the format" +
                     " \"The hardest card is \"card\". You have n errors answering it.\"");
@@ -879,11 +886,11 @@ public class FlashcardsTest extends StageTest<String> {
         if (output.contains("france")) {
             return CheckResult.wrong("Your program printed the wrong card");
         }
-    
+        
         if (!output.contains("\"russia\"")) {
             return CheckResult.wrong("Your program should print the hardest card in quotes");
         }
-    
+        
         if (!output.contains("3")) {
             return CheckResult.wrong("Your program shows wrong number of errors. Expected 3");
         }
@@ -905,7 +912,7 @@ public class FlashcardsTest extends StageTest<String> {
     CheckResult test14() {
         TestedProgram main = new TestedProgram();
         main.start();
-    
+        
         String output;
         
         main.execute("import");
@@ -922,13 +929,13 @@ public class FlashcardsTest extends StageTest<String> {
         if (output.contains("no cards with errors")) {
             return CheckResult.wrong("Your program should print the hardest card(s) if such card(s) exists");
         }
-    
+        
         if (!output.contains("hardest cards are")) {
             return CheckResult.wrong("Your program should show the user the hardest card(s) in the format" +
                     " \"The hardest cards are \"card#1\", \"card#2\"...\"card#n\". You have n errors answering them" +
                     ".\"");
         }
-    
+        
         if (!output.contains("errors answering them")) {
             return CheckResult.wrong("Your program should show the user the hardest card(s) in the format \"The " +
                     "hardest cards are \"card#1\", \"card#2\"...\"card#n\". You have n errors answering them\".");
@@ -937,15 +944,15 @@ public class FlashcardsTest extends StageTest<String> {
         if (!output.contains("france")) {
             return CheckResult.wrong("Your program should print all the cards with the highest number of errors");
         }
-    
+        
         if (!output.contains("russia")) {
             return CheckResult.wrong("Your program should print all the cards with the highest number of errors");
         }
-    
+        
         if (!output.contains("\"france\"")) {
             return CheckResult.wrong("Your program should print the hardest card(s) in quotes");
         }
-    
+        
         if (!output.contains("\"russia\"")) {
             return CheckResult.wrong("Your program should print the hardest card(s) in quotes");
         }
@@ -968,7 +975,7 @@ public class FlashcardsTest extends StageTest<String> {
     CheckResult test15() {
         TestedProgram main = new TestedProgram();
         main.start();
-    
+        
         String output;
         
         main.execute("hardest card");
@@ -983,7 +990,7 @@ public class FlashcardsTest extends StageTest<String> {
         main.execute("Tokyo");
         
         main.execute("hardest card");
-    
+        
         main.execute("import");
         main.execute(capitalsNewFile);
         
@@ -1016,33 +1023,33 @@ public class FlashcardsTest extends StageTest<String> {
     CheckResult test16() {
         TestedProgram main = new TestedProgram();
         main.start();
-    
+        
         String output;
-    
+        
         main.execute("hardest card");
-    
+        
         main.execute("import");
         main.execute(capitalsFile);
-    
+        
         main.execute("hardest card");
-    
+        
         main.execute("ask");
         main.execute("1");
         main.execute("Tokyo");
-    
+        
         main.execute("hardest card");
-    
+        
         output = main.execute("reset stats").toLowerCase();
         if (!output.contains("statistics have been reset")) {
             return CheckResult.wrong("Your program should notify the user if the stats have been reset with the " +
                     "message \"Card statistics have been reset.\"");
         }
-    
+        
         output = main.execute("hardest card").toLowerCase();
         if (!output.contains("no cards with errors")) {
             return CheckResult.wrong("Your program should reset the errors of all the cards back to zero");
         }
-    
+        
         output = main.execute("log").toLowerCase();
         if (!output.contains("file name")) {
             return CheckResult.wrong("Your program should prompt the user for the name of the file to be saved with " +
@@ -1050,7 +1057,7 @@ public class FlashcardsTest extends StageTest<String> {
         }
         
         output = main.execute("todayLog.txt").toLowerCase();
-        if (!output.contains("log has been saved")){
+        if (!output.contains("log has been saved")) {
             return CheckResult.wrong("Your program should notify the user if the log file was saved with the message" +
                     " \"The log has been saved.\"");
         }
@@ -1079,17 +1086,103 @@ public class FlashcardsTest extends StageTest<String> {
         return CheckResult.correct();
     }
     
+    //Test to check command line arguments"
+    @DynamicTestingMethod
+    CheckResult test17() {
+        TestedProgram main = new TestedProgram();
+        main.start("-export", "fridayThe13th.txt");
+        
+        String output;
+        String[] lines;
+        
+        output = main.execute("hardest card").toLowerCase();
+        lines = output.split("\n");
+        if (lines[0].contains("hardest card")) {
+            return CheckResult.wrong("The initial set of cards should be empty if no import argument is provided");
+        }
+        
+        main.execute("add");
+        main.execute("Movie");
+        main.execute("A recorded sequence of images displayed on a screen at a rate sufficiently fast");
+    
+        output = main.execute("exit").toLowerCase();
+        if (!output.contains("bye")) {
+            return CheckResult.wrong("Your program should print \"Bye bye!\" and terminate if the user enters " +
+                    "\"exit\"");
+        }
+        
+        boolean fileExist = checkFileExistence("fridayThe13th.txt");
+        if (!fileExist) {
+            return CheckResult.wrong("Your program did not save a file after exiting");
+        }
+        
+        boolean emptyFile = isEmpty("fridayThe13th.txt");
+        if (emptyFile) {
+            return CheckResult.wrong("The file your program saves is empty");
+        }
+    
+        if (!main.isFinished()) {
+            return CheckResult.wrong("Your program should terminate if the user enters \"exit\"");
+        }
+        
+        return CheckResult.correct();
+    }
+    
+    @DynamicTestingMethod
+    CheckResult test18() {
+        TestedProgram main = new TestedProgram();
+        main.start("-export", "newFridayThe13th.txt", "-import", "fridayThe13th.txt");
+    
+        String output;
+        
+        main.execute("add");
+        output = main.execute("Movie").toLowerCase();
+        if (output.contains("definition of the card")) {
+            return CheckResult.wrong("Seems like your program did not import the file specified in the " +
+                    "command-line argument");
+        }
+        
+        main.execute("remove");
+        main.execute("Movie");
+        
+        main.execute("add");
+        main.execute("Series");
+        main.execute("A television program which consists of several episodes");
+    
+        output = main.execute("exit").toLowerCase();
+        if (!output.contains("bye")) {
+            return CheckResult.wrong("Your program should print \"Bye bye!\" and terminate if the user enters " +
+                    "\"exit\"");
+        }
+    
+        boolean fileExist = checkFileExistence("newFridayThe13th.txt");
+        if (!fileExist) {
+            return CheckResult.wrong("Your program did not save a file after exiting");
+        }
+    
+        boolean emptyFile = isEmpty("newFridayThe13th.txt");
+        if (emptyFile) {
+            return CheckResult.wrong("The file your program saves is empty");
+        }
+    
+        if (!main.isFinished()) {
+            return CheckResult.wrong("Your program should terminate if the user enters \"exit\"");
+        }
+        
+        return CheckResult.correct();
+    }
+    
     private boolean checkLogFileLength(String fileName) {
         int lineCount = 0;
         int minimumLineExpected = 32;
-    
+        
         File file = new File(fileName);
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-        
+            
             while (reader.readLine() != null) {
                 lineCount++;
             }
-        }catch (IOException e) {}
+        } catch (IOException e) {}
         
         return minimumLineExpected < lineCount;
     }
@@ -1108,7 +1201,7 @@ public class FlashcardsTest extends StageTest<String> {
             while (reader.readLine() != null) {
                 lineCount++;
             }
-        }catch (IOException e) {}
+        } catch (IOException e) {}
         
         return lineCount <= 0;
     }
@@ -1181,7 +1274,3 @@ public class FlashcardsTest extends StageTest<String> {
     }
     
 }
-
-
-
-

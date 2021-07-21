@@ -861,6 +861,12 @@ files:
         }
     }
   learner_created: true
+- name: src/flashcards/ConsoleLogger.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/44/stages/237/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 21 Jul 2021 16:57:10 UTC
+record: 6
