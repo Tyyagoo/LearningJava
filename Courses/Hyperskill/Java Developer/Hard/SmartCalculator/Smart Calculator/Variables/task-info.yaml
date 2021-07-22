@@ -539,6 +539,17 @@ files:
         void execute(String ... args);
     }
   learner_created: true
+- name: src/calculator/exceptions/UnbalancedExpressionException.java
+  visible: true
+  text: |
+    package calculator.exceptions;
+
+    public class UnbalancedExpressionException extends RuntimeException {
+        public UnbalancedExpressionException() {
+            super("Unbalanced Expression.", null);
+        }
+    }
+  learner_created: true
 - name: src/calculator/Calculator.java
   visible: true
   text: |
@@ -554,17 +565,18 @@ files:
         }
     }
   learner_created: true
-- name: src/calculator/exceptions/UnbalancedExpressionException.java
+- name: src/calculator/exceptions/InvalidAssignmentException.java
   visible: true
-  text: |
-    package calculator.exceptions;
-
-    public class UnbalancedExpressionException extends RuntimeException {
-        public UnbalancedExpressionException() {
-            super("Unbalanced Expression.", null);
-        }
-    }
+  learner_created: true
+- name: src/calculator/exceptions/UnknownVariableException.java
+  visible: true
+  learner_created: true
+- name: src/calculator/exceptions/InvalidIdentifierException.java
+  visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/42/stages/225/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Thu, 22 Jul 2021 20:41:33 UTC
+record: 6

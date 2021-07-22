@@ -43,7 +43,7 @@ public class Menu {
             throw new UnknownCommandException();
         }
 
-        Calculator.calculate(formattedString);
+        Calculator.process(formattedString);
     }
 
     private static String formatInput(String input) {
