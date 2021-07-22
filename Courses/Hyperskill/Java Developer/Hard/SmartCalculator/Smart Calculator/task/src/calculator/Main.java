@@ -1,5 +1,8 @@
 package calculator;
 
+import calculator.exceptions.UnbalancedExpressionException;
+import calculator.exceptions.UnknownCommandException;
+import calculator.exceptions.UnsupportedOperationException;
 import calculator.ui.Menu;
 
 public class Main {
@@ -8,7 +11,7 @@ public class Main {
         while (Menu.isRunning()) {
             try {
                 Menu.invoke();
-            } catch (Exception e) {
+            } catch (UnsupportedOperationException | UnknownCommandException | UnbalancedExpressionException e) {
                 System.out.println(e.getMessage());
             }
         }

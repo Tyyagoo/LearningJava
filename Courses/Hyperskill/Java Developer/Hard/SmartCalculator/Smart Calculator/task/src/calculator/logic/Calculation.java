@@ -43,7 +43,7 @@ public class Calculation {
                         break;
                     case '+': case '-': case '*': case '/':
                         while (!operators.isEmpty() && checkPriority(s, operators.peek())) {
-                            numbers.push(applyOperator(operators.pop(), numbers.pop(), numbers.pop()));
+                            doSomeOperation();
                         }
                         operators.push(s);
                         break;

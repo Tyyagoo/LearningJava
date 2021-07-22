@@ -291,6 +291,280 @@ files:
         }
     }
   learner_created: false
+- name: src/calculator/ui/Menu.java
+  visible: true
+  text: |
+    package calculator.ui;
+
+    import calculator.Calculator;
+    import calculator.exceptions.UnknownCommandException;
+
+    import java.util.Locale;
+    import java.util.Scanner;
+    import java.util.concurrent.Callable;
+    import java.util.regex.Matcher;
+    import java.util.regex.Pattern;
+
+    public class Menu {
+
+        private static final Scanner scanner = new Scanner(System.in);
+        private static boolean running = true;
+
+        private static final Pattern commandPattern = Pattern.compile("/[a-zA-Z]*");
+
+        private static final ICommand helpCommand = (ignore) -> {
+            System.out.println("The program calculates the sum of numbers");
+        };
+        private static final ICommand exitCommand = (ignore) -> {
+            System.out.println("Bye!");
+            running = false;
+        };
+
+        public static void invoke() {
+            String inputLine = scanner.nextLine();
+            if (inputLine.isBlank()) return;
+            String formattedString = formatInput(inputLine);
+
+            Matcher commandMatcher = commandPattern.matcher(formattedString);
+            if (commandMatcher.matches()) {
+                String desiredCommand = formattedString.replace("/", "").toLowerCase();
+                if (desiredCommand.equals("help")) {
+                    helpCommand.execute();
+                    return;
+                }
+                if (desiredCommand.equals("exit")) {
+                    exitCommand.execute();
+                    return;
+                }
+                throw new UnknownCommandException();
+            }
+
+            Calculator.calculate(formattedString);
+        }
+
+        private static String formatInput(String input) {
+            String output = input;
+
+            /*
+            Remove unnecessary whitespaces from string, and returns an new String.
+             */
+            Pattern unnecessaryWhiteSpacesPattern = Pattern.compile("\\s+");
+            output = unnecessaryWhiteSpacesPattern.matcher(output).replaceAll(" ");
+
+            /*
+            Arranging the operators
+             */
+            Pattern stackablePlus = Pattern.compile("\\+{2,}");
+            output = stackablePlus.matcher(output).replaceAll("+");
+
+            Pattern stackableMinus = Pattern.compile("-{3}");
+            output = stackableMinus.matcher(output).replaceAll("-");
+
+            Pattern minusToPlus = Pattern.compile("-{2}");
+            output = minusToPlus.matcher(output).replaceAll("+");
+
+            Pattern allToMinus = Pattern.compile("(\\+-|-\\+)");
+            output = allToMinus.matcher(output).replaceAll("-");
+
+            /*
+            Handle initial number being negative.
+             */
+            output = output.trim();
+            if (output.charAt(0) == '-') return "0 " + output;
+            else if (output.charAt(0) == '+') return output.replaceFirst("\\+", "").trim();
+            return output;
+        }
+
+        public static boolean isRunning() { return running; }
+    }
+  learner_created: true
+- name: src/calculator/logic/Calculation.java
+  visible: true
+  text: |
+    package calculator.logic;
+
+    import calculator.exceptions.UnbalancedExpressionException;
+    import calculator.exceptions.UnsupportedOperationException;
+    import java.util.*;
+    import java.util.regex.Pattern;
+    import java.util.regex.Matcher;
+
+    @FunctionalInterface
+    interface Operation<T> {
+        T apply(T n1, T n2);
+    }
+
+    public class Calculation {
+
+        private static final Operation<Integer> sum = (n1, n2) -> n1 + n2;
+        private static final Operation<Integer> sub = (n1, n2) -> n2 - n1;
+
+        private final Map<Character, Operation<Integer>> supportedOperations = new HashMap<>();
+
+        Stack<Integer> numbers = new Stack<>();
+        Stack<Character> operators = new Stack<>();
+
+        public Calculation() {
+            supportedOperations.put('+', sum);
+            supportedOperations.put('-', sub);
+        }
+
+        public int evaluate(String exp) {
+            if (!isBalanced(exp)) throw new UnbalancedExpressionException();
+            Pattern isNumber = Pattern.compile("\\d");
+            Pattern isOperator = Pattern.compile("[\\+\\-\\*/\\(\\)]");
+            String[] tokens = exp.split("");
+
+            for (int i = 0; i < tokens.length; i++) {
+                if (tokens[i].equals(" ")) continue;
+
+                if (isOperator.matcher(tokens[i]).matches()) {
+                    char s = tokens[i].toCharArray()[0];
+                    switch (s) {
+                        case '(':
+                            operators.push(s);
+                            break;
+                        case '+': case '-': case '*': case '/':
+                            while (!operators.isEmpty() && checkPriority(s, operators.peek())) {
+                                doSomeOperation();
+                            }
+                            operators.push(s);
+                            break;
+                        case ')':
+                            while (operators.peek() != '(') {
+                                doSomeOperation();
+                            }
+                            operators.pop();
+                            break;
+                    }
+                    continue;
+                }
+
+                if (isNumber.matcher(tokens[i]).matches()) {
+                    List<Integer> nList = new LinkedList<>();
+                    while (isNumber.matcher(tokens[i]).matches()) {
+                        nList.add(Integer.parseInt(tokens[i++]));
+                        if (i == tokens.length) break;
+                    }
+                    --i;
+
+                    int position = nList.size() - 1;
+                    int number = 0;
+                    for (int n : nList) {
+                        int magnitude = (int) Math.pow(10, position--);
+                        number += n * magnitude;
+                    }
+                    numbers.push(number);
+                }
+            }
+
+            while (!operators.isEmpty()) {
+                doSomeOperation();
+            }
+
+            if (numbers.isEmpty()) throw new UnsupportedOperationException("Invalid expression");
+            return numbers.pop();
+        }
+
+        private boolean isBalanced(String exp) {
+            Stack<Character> parenthesesStack = new Stack<>();
+            try {
+                for (char token: exp.toCharArray()) {
+                    if (token == '(') parenthesesStack.push(token);
+                    if (token == ')') parenthesesStack.pop();
+                }
+            } catch (EmptyStackException e) {
+                return false;
+            }
+            return parenthesesStack.isEmpty();
+        }
+
+        private void doSomeOperation() {
+            try {
+                numbers.push(applyOperator(operators.pop(), numbers.pop(), numbers.pop()));
+            } catch (EmptyStackException e) {
+                throw new UnsupportedOperationException("Invalid expression");
+            }
+        }
+
+        private int applyOperator(char op, int n1, int n2) {
+            /*
+            Calculate the desired operation.
+            If this is not supported, throws an UnsupportedOperationException.
+             */
+            if (supportedOperations.containsKey(op)) {
+                Operation<Integer> operation = supportedOperations.get(op);
+                return operation.apply(n1, n2);
+            }
+            throw new UnsupportedOperationException();
+        }
+
+        private boolean checkPriority(char op1, char op2) {
+            /*
+            Checks if the first operator have arithmetic priority over second operator.
+             */
+            if (op2 == '(' || op2 == ')') return false;
+            return (op1 != '*' && op1 != '/') || (op2 != '+' && op2 != '-');
+        }
+    }
+  learner_created: true
+- name: src/calculator/exceptions/UnsupportedOperationException.java
+  visible: true
+  text: |
+    package calculator.exceptions;
+
+    public class UnsupportedOperationException extends RuntimeException {
+        public UnsupportedOperationException(String ... args) {
+            super(args.length == 0 ? "Unsupported Operation." : args[0], null);
+        }
+    }
+  learner_created: true
+- name: src/calculator/exceptions/UnknownCommandException.java
+  visible: true
+  text: |
+    package calculator.exceptions;
+
+    public class UnknownCommandException extends RuntimeException {
+        public UnknownCommandException() {
+            super("Unknown Command.", null);
+        }
+    }
+  learner_created: true
+- name: src/calculator/ui/ICommand.java
+  visible: true
+  text: |
+    package calculator.ui;
+
+    public interface ICommand {
+        void execute(String ... args);
+    }
+  learner_created: true
+- name: src/calculator/Calculator.java
+  visible: true
+  text: |
+    package calculator;
+
+    import calculator.logic.Calculation;
+
+    public class Calculator {
+
+        public static void calculate(String expression) {
+            Calculation calc = new Calculation();
+            System.out.println(calc.evaluate(expression));
+        }
+    }
+  learner_created: true
+- name: src/calculator/exceptions/UnbalancedExpressionException.java
+  visible: true
+  text: |
+    package calculator.exceptions;
+
+    public class UnbalancedExpressionException extends RuntimeException {
+        public UnbalancedExpressionException() {
+            super("Unbalanced Expression.", null);
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/42/stages/225/implement#comment
 status: Unchecked
 record: -1

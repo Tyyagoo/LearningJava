@@ -75,6 +75,7 @@ public class Menu {
          */
         output = output.trim();
         if (output.charAt(0) == '-') return "0 " + output;
+        else if (output.charAt(0) == '+') return output.replaceFirst("\\+", "").trim();
         return output;
     }
 

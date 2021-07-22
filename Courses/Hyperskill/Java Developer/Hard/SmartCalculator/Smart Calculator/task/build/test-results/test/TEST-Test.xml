@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-22T19:26:44" hostname="LAPTOP-J1J60HSA" time="0.32">
+<testsuite name="Test" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-22T19:38:55" hostname="LAPTOP-J1J60HSA" time="0.243">
   <properties/>
-  <testcase name="start" classname="Test" time="0.32"/>
+  <testcase name="start" classname="Test" time="0.243"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 > /help
@@ -13,12 +13,8 @@ Bye!
 Start test 2?[0m
 > 7 + 1 + 4
 12
-> 23 - 17 - 4
-2
 > 23 - 17 - 13
 -7
-> -9 - 4 - 21
--34
 > 33 + 21 + 11 + 49 - 32 - 9 + 1 - 80 + 4
 -2
 > 101
@@ -28,18 +24,28 @@ Start test 2?[0m
 > 
 > 10 - 7 - 3
 0
+> 5 --- 2 ++++++ 4 -- 2 ---- 1
+10
 > /exit
 Bye!
 ?[1;31m
 Start test 3?[0m
-> 8 --- 3
-5
-> 8 -- 3
-11
-> 32 ++++++++++++++ 4
-36
-> 5 --- 2 ++++++ 4 -- 2 ---- 1
-10
+> 123+
+Invalid expression
+> 321-
+Invalid expression
+> +7
+7
+> /exit
+Bye!
+?[1;31m
+Start test 4?[0m
+> abc
+Invalid expression
+> one + two + three
+Invalid expression
+> /go
+Unknown Command.
 > /exit
 Bye!
 ]]></system-out>
