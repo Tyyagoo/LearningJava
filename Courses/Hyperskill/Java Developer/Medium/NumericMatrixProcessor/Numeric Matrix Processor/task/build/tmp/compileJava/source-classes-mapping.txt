@@ -1,9 +1,9 @@
+processor/Exceptions/DeterminantEqualsZeroException.java
+ processor.Exceptions.DeterminantEqualsZeroException
 processor/Exceptions/MatrixIndexOutOfBoundsException.java
  processor.Exceptions.MatrixIndexOutOfBoundsException
 processor/Exceptions/InvalidMatrixSizeException.java
  processor.Exceptions.InvalidMatrixSizeException
-processor/Exceptions/DeterminantEqualsZeroException.java
- processor.Exceptions.DeterminantEqualsZeroException
 processor/Main.java
  processor.Command
  processor.Main

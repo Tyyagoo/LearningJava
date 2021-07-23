@@ -12,7 +12,7 @@ public class Main {
     public static boolean forceProgramEnd = false;
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
         UserInterface.scanner = scanner;
         MatrixFactory.scanner = scanner;
 

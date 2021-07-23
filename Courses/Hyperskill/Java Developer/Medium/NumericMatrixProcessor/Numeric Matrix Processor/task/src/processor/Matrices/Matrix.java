@@ -200,11 +200,9 @@ public class Matrix {
         // O(1) Time - O(1) Memory
         if (n == 2) return (getPosition(0, 0) * getPosition(1,1)) - (getPosition(0, 1) * getPosition(1, 0));
 
-        int sign = 1;
         double determinant = 0.0;
         for (int j = 0; j < n; j++) {
-            determinant += getPosition(0, j) * getCofactorOfElement(0, j) * sign;
-            sign = -sign;
+            determinant += getPosition(0, j) * getCofactorOfElement(0, j);
         }
 
         return determinant;
@@ -232,17 +230,21 @@ public class Matrix {
 
     private double getCofactorOfElement(int i, int j) {
         Matrix subMatrix = getSubMatrix(i, j);
-        return subMatrix.getDeterminant();
+        /*
+        THIS FUCKING LINE OF CODE SAVED ME:
+        return Math.pow(-1, 2 + j + i) * determinantOfMatrix(minor);
+        FROM:
+        @mlompar
+         */
+        return Math.pow(-1, 2 + i + j) * subMatrix.getDeterminant();
     }
 
     private Matrix getCofactorMatrix() {
         Matrix cofactorMatrix = new Matrix(n, m);
-        int sign = 1;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                double cofactor = getCofactorOfElement(i, j) * sign;
+                double cofactor = getCofactorOfElement(i, j);
                 cofactorMatrix.fillPosition(cofactor, i, j);
-                sign = -sign;
             }
         }
 
@@ -264,7 +266,7 @@ public class Matrix {
         System.out.println("The result is:");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                System.out.printf("%5.2f ", object[i][j]);
+                System.out.printf("%8.5f ", object[i][j]);
             }
             System.out.println();
         }

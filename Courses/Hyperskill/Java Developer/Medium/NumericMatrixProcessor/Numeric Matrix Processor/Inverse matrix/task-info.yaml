@@ -806,18 +806,9 @@ files:
   visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/60/stages/328/implement#comment
-status: Failed
+status: Solved
 feedback:
-  message: "Wrong answer in test #19\n\nChecking if inversion algorithm is correct\n\
-    \nPlease find below the output of your program during this failed test.\nNote\
-    \ that the &#39;&gt;&#39; character indicates the beginning of the input line.\n\
-    \n---\n\n\n1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n\
-    4. Transpose matrix\n5. Calculate determinant\n6. Inverse matrix\n0. Exit\nYour\
-    \ choice: &gt; 6\nEnter matrix size: &gt; 4 4\nEnter matrix:\n&gt; 2.65 3.54 3.88\
-    \ 8.99\n&gt; 3.12 5.45 7.77 5.56\n&gt; 5.31 2.23 2.33 9.81\n&gt; 1.67 1.67 1.01\
-    \ 9.99\nThe result is:\n 0.40  0.21  0.28  0.51 \n 5.20  2.07 -0.39  3.14 \n-3.38\
-    \ -1.50  0.16 -2.05 \n-0.59 -0.23  0.00 -0.50 \n\n\n1. Add matrices\n2. Multiply\
-    \ matrix by a constant\n3. Multiply matrices\n4. Transpose matrix\n5. Calculate\
-    \ determinant\n6. Inverse matrix\n0. Exit\nYour choice: &gt; 0"
-  time: Sat, 10 Jul 2021 15:55:05 UTC
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
+    Academy</a> to continue learning.
+  time: Fri, 23 Jul 2021 20:04:32 UTC
 record: -1
