@@ -2,6 +2,8 @@ package calculator.logic;
 
 import calculator.exceptions.UnbalancedExpressionException;
 import calculator.exceptions.UnsupportedOperationException;
+
+import java.math.BigInteger;
 import java.util.*;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -13,15 +15,15 @@ interface Operation<T> {
 
 public class Calculation {
 
-    private static final Operation<Integer> sum = (n1, n2) -> n1 + n2;
-    private static final Operation<Integer> sub = (n1, n2) -> n2 - n1;
-    private static final Operation<Integer> mult = (n1, n2) -> n1 * n2;
-    private static final Operation<Integer> div = (n1, n2) -> n2 / n1;
-    private static final Operation<Integer> pow = (n1, n2) -> (int) Math.pow(n2, n1);
+    private static final Operation<BigInteger> sum = (n1, n2) -> n1.add(n2);
+    private static final Operation<BigInteger> sub = (n1, n2) -> n2.subtract(n1);
+    private static final Operation<BigInteger> mult = (n1, n2) -> n1.multiply(n2);
+    private static final Operation<BigInteger> div = (n1, n2) -> n2.divide(n1);
+    private static final Operation<BigInteger> pow = (n1, n2) -> n2.pow(n1.intValue());
 
-    private final Map<Character, Operation<Integer>> supportedOperations = new HashMap<>();
+    private final Map<Character, Operation<BigInteger>> supportedOperations = new HashMap<>();
 
-    Stack<Integer> numbers = new Stack<>();
+    Stack<BigInteger> numbers = new Stack<>();
     Stack<Character> operators = new Stack<>();
 
     public Calculation() {
@@ -32,7 +34,7 @@ public class Calculation {
         supportedOperations.put('^', pow);
     }
 
-    public int evaluate(String exp) {
+    public BigInteger evaluate(String exp) {
         if (!isBalanced(exp)) throw new UnbalancedExpressionException();
         Pattern isNumber = Pattern.compile("\\d");
         Pattern isOperator = Pattern.compile("[\\+\\-\\*/\\(\\)\\^]");
@@ -64,20 +66,13 @@ public class Calculation {
             }
 
             if (isNumber.matcher(tokens[i]).matches()) {
-                List<Integer> nList = new LinkedList<>();
+                StringBuilder stringBuilder = new StringBuilder();
                 while (isNumber.matcher(tokens[i]).matches()) {
-                    nList.add(Integer.parseInt(tokens[i++]));
+                    stringBuilder.append(tokens[i++]);
                     if (i == tokens.length) break;
                 }
                 --i;
-
-                int position = nList.size() - 1;
-                int number = 0;
-                for (int n : nList) {
-                    int magnitude = (int) Math.pow(10, position--);
-                    number += n * magnitude;
-                }
-                numbers.push(number);
+                numbers.push(new BigInteger(stringBuilder.toString()));
             }
         }
 
@@ -110,13 +105,13 @@ public class Calculation {
         }
     }
 
-    private int applyOperator(char op, int n1, int n2) {
+    private BigInteger applyOperator(char op, BigInteger n1, BigInteger n2) {
         /*
         Calculate the desired operation.
         If this is not supported, throws an UnsupportedOperationException.
          */
         if (supportedOperations.containsKey(op)) {
-            Operation<Integer> operation = supportedOperations.get(op);
+            Operation<BigInteger> operation = supportedOperations.get(op);
             return operation.apply(n1, n2);
         }
         throw new UnsupportedOperationException();

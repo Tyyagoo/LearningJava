@@ -6,12 +6,13 @@ import calculator.exceptions.UnknownVariableException;
 import calculator.logic.Calculation;
 import calculator.ui.Menu;
 
+import java.math.BigInteger;
 import java.util.*;
 import java.util.regex.*;
 
 public class Calculator {
 
-    private static final Map<String, Integer> memory = new HashMap<>();
+    private static final Map<String, BigInteger> memory = new HashMap<>();
 
     public static void process(String line) throws UnknownVariableException {
         if (line.contains("=")) {
@@ -49,10 +50,10 @@ public class Calculator {
 
         Pattern isNumber = Pattern.compile("[\\+\\-]?\\d+");
         Matcher checkNumber = isNumber.matcher(keyValue[1]);
-        memory.put(keyValue[0], checkNumber.matches() ? Integer.parseInt(keyValue[1]) : getMemoryValue(keyValue[1]));
+        memory.put(keyValue[0], checkNumber.matches() ? new BigInteger(keyValue[1]) : getMemoryValue(keyValue[1]));
     }
 
-    private static Integer getMemoryValue(String key) throws UnknownVariableException {
+    private static BigInteger getMemoryValue(String key) throws UnknownVariableException {
         if (memory.containsKey(key)) {
             return memory.get(key);
         }
@@ -61,6 +62,6 @@ public class Calculator {
 
     private static void calculate(String expression) {
         Calculation calc = new Calculation();
-        System.out.println(calc.evaluate(expression));
+        System.out.println(calc.evaluate(expression).toString());
     }
 }

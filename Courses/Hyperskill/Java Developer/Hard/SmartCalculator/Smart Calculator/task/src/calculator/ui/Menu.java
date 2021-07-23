@@ -15,7 +15,7 @@ public class Menu {
     private static final Pattern commandPattern = Pattern.compile("/[a-zA-Z]*");
 
     private static final ICommand helpCommand = (ignore) -> {
-        System.out.println("The program calculates the sum of numbers");
+        System.out.println("This is a help command. I hope I helped you!");
     };
     private static final ICommand exitCommand = (ignore) -> {
         System.out.println("Bye!");
