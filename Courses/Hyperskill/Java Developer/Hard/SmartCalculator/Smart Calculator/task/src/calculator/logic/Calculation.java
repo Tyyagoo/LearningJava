@@ -15,6 +15,9 @@ public class Calculation {
 
     private static final Operation<Integer> sum = (n1, n2) -> n1 + n2;
     private static final Operation<Integer> sub = (n1, n2) -> n2 - n1;
+    private static final Operation<Integer> mult = (n1, n2) -> n1 * n2;
+    private static final Operation<Integer> div = (n1, n2) -> n2 / n1;
+    private static final Operation<Integer> pow = (n1, n2) -> (int) Math.pow(n2, n1);
 
     private final Map<Character, Operation<Integer>> supportedOperations = new HashMap<>();
 
@@ -24,12 +27,15 @@ public class Calculation {
     public Calculation() {
         supportedOperations.put('+', sum);
         supportedOperations.put('-', sub);
+        supportedOperations.put('*', mult);
+        supportedOperations.put('/', div);
+        supportedOperations.put('^', pow);
     }
 
     public int evaluate(String exp) {
         if (!isBalanced(exp)) throw new UnbalancedExpressionException();
         Pattern isNumber = Pattern.compile("\\d");
-        Pattern isOperator = Pattern.compile("[\\+\\-\\*/\\(\\)]");
+        Pattern isOperator = Pattern.compile("[\\+\\-\\*/\\(\\)\\^]");
         String[] tokens = exp.split("");
 
         for (int i = 0; i < tokens.length; i++) {
@@ -41,7 +47,7 @@ public class Calculation {
                     case '(':
                         operators.push(s);
                         break;
-                    case '+': case '-': case '*': case '/':
+                    case '+': case '-': case '*': case '/': case '^':
                         while (!operators.isEmpty() && checkPriority(s, operators.peek())) {
                             doSomeOperation();
                         }
@@ -121,6 +127,7 @@ public class Calculation {
         Checks if the first operator have arithmetic priority over second operator.
          */
         if (op2 == '(' || op2 == ')') return false;
+        if ((op1 == '^') && ((op2 == '*' || op2 == '/') || (op2 == '+' || op2 == '-'))) return false;
         return (op1 != '*' && op1 != '/') || (op2 != '+' && op2 != '-');
     }
 }

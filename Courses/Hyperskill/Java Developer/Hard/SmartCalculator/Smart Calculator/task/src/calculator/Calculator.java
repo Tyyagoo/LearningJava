@@ -4,14 +4,14 @@ import calculator.exceptions.InvalidAssignmentException;
 import calculator.exceptions.InvalidIdentifierException;
 import calculator.exceptions.UnknownVariableException;
 import calculator.logic.Calculation;
+import calculator.ui.Menu;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.*;
 
 public class Calculator {
 
-    private static Map<String, Integer> memory = new HashMap<>();
+    private static final Map<String, Integer> memory = new HashMap<>();
 
     public static void process(String line) throws UnknownVariableException {
         if (line.contains("=")) {
@@ -23,7 +23,7 @@ public class Calculator {
         if (hasVariables.matcher(line).find()) {
             String[] possibleVariables = line.split(" ");
             for (int i = 0; i < possibleVariables.length; i++) {
-                String w = possibleVariables[i];
+                String w = possibleVariables[i].trim();
                 if (w.matches("[a-zA-Z]+")) {
                     possibleVariables[i] = String.valueOf(getMemoryValue(w));
                 }
@@ -36,6 +36,7 @@ public class Calculator {
             line = stringBuilder.toString().trim();
         }
 
+        line = Menu.formatInput(line);
         calculate(line);
     }
 
@@ -44,9 +45,9 @@ public class Calculator {
         if (keyValue.length != 2) throw new InvalidAssignmentException();
 
         if (!keyValue[0].matches("[a-zA-Z]+")) throw new InvalidIdentifierException();
-        if (!keyValue[1].matches("([a-zA-Z]+|\\d+)")) throw new InvalidAssignmentException();
+        if (!keyValue[1].matches("([a-zA-Z]+|[\\+\\-]?\\d+)")) throw new InvalidAssignmentException();
 
-        Pattern isNumber = Pattern.compile("\\d+");
+        Pattern isNumber = Pattern.compile("[\\+\\-]?\\d+");
         Matcher checkNumber = isNumber.matcher(keyValue[1]);
         memory.put(keyValue[0], checkNumber.matches() ? Integer.parseInt(keyValue[1]) : getMemoryValue(keyValue[1]));
     }

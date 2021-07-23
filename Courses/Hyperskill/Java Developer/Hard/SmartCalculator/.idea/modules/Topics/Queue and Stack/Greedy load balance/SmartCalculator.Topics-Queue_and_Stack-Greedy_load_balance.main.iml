@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module external.linked.project.id=":Topics-Queue_and_Stack-Greedy_load_balance:main" external.linked.project.path="$MODULE_DIR$/../../../../../Topics/Queue and Stack/Greedy load balance" external.root.project.path="$MODULE_DIR$/../../../../.." external.system.id="GRADLE" external.system.module.group="SmartCalculator" external.system.module.type="sourceSet" external.system.module.version="unspecified" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../../../../Topics/Queue and Stack/Greedy load balance/out/production/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../../../../Topics/Queue and Stack/Greedy load balance/src">
+      <sourceFolder url="file://$MODULE_DIR$/../../../../../Topics/Queue and Stack/Greedy load balance/src" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

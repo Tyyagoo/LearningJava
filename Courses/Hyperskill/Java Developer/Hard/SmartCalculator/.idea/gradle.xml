@@ -12,6 +12,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Smart Calculator/task" />
+            <option value="$PROJECT_DIR$/Topics/Comparable/Implement comparing by additional fields" />
+            <option value="$PROJECT_DIR$/Topics/Comparable/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Queue and Stack/Greedy load balance" />
+            <option value="$PROJECT_DIR$/Topics/Queue and Stack/Theory" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>

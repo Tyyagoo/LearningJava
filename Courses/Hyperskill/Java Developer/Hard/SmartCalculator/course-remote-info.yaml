@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/203965/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Thu, 22 Jul 2021 16:37:35 UTC
+update_date: Fri, 23 Jul 2021 15:00:03 UTC
 stages:
 - id: 220
   step: 5316
@@ -25,7 +25,7 @@ stages:
   is_completed: true
 - id: 226
   step: 5322
-  is_completed: false
+  is_completed: true
 - id: 227
   step: 5323
   is_completed: false
@@ -92,6 +92,10 @@ topics:
     theory_id: 3523
   - title: Processing strings
     theory_id: 3551
+  - title: Interface
+    theory_id: 3615
+  - title: Comparable
+    theory_id: 14456
   2:
   - title: Write, compile, and run
     theory_id: 3739
@@ -226,10 +230,6 @@ topics:
     theory_id: 3585
   - title: The Object class
     theory_id: 3596
-  - title: Polymorphism
-    theory_id: 3587
-  - title: Interface
-    theory_id: 3615
   - title: Boxing and unboxing
     theory_id: 3595
   6:

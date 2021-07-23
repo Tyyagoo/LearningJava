@@ -3,9 +3,7 @@ package calculator.ui;
 import calculator.Calculator;
 import calculator.exceptions.UnknownCommandException;
 
-import java.util.Locale;
 import java.util.Scanner;
-import java.util.concurrent.Callable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,7 +44,7 @@ public class Menu {
         Calculator.process(formattedString);
     }
 
-    private static String formatInput(String input) {
+    public static String formatInput(String input) {
         String output = input;
 
         /*
@@ -54,6 +52,11 @@ public class Menu {
          */
         Pattern unnecessaryWhiteSpacesPattern = Pattern.compile("\\s+");
         output = unnecessaryWhiteSpacesPattern.matcher(output).replaceAll(" ");
+
+        Matcher commandMatcher = commandPattern.matcher(output);
+        if (commandMatcher.matches()) {
+            return output;
+        }
 
         /*
         Arranging the operators
@@ -67,7 +70,7 @@ public class Menu {
         Pattern minusToPlus = Pattern.compile("-{2}");
         output = minusToPlus.matcher(output).replaceAll("+");
 
-        Pattern allToMinus = Pattern.compile("(\\+-|-\\+)");
+        Pattern allToMinus = Pattern.compile("(\\+\\s*-|-\\s*\\+)");
         output = allToMinus.matcher(output).replaceAll("-");
 
         /*
@@ -76,7 +79,29 @@ public class Menu {
         output = output.trim();
         if (output.charAt(0) == '-') return "0 " + output;
         else if (output.charAt(0) == '+') return output.replaceFirst("\\+", "").trim();
-        return output;
+
+        StringBuilder stringBuilder = new StringBuilder();
+        char[] chars = output.toCharArray();
+        int i = 0;
+        do {
+            char c = chars[i];
+            switch (c) {
+                case ' ':
+                    i++;
+                    continue;
+                case '*': case '+': case '-': case '/': case '^':
+                    stringBuilder.append(" ");
+                    stringBuilder.append(c);
+                    stringBuilder.append(" ");
+                    break;
+                default:
+                    stringBuilder.append(c);
+                    break;
+            }
+            i++;
+        } while(i < chars.length);
+
+        return stringBuilder.toString();
     }
 
     public static boolean isRunning() { return running; }
