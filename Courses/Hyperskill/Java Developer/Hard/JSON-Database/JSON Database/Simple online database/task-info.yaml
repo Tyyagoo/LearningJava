@@ -197,6 +197,151 @@ files:
         }
     }
   learner_created: false
+- name: src/exceptions/InvalidDatabaseAccessException.java
+  visible: true
+  text: |
+    package exceptions;
+
+    public class InvalidDatabaseAccessException extends RuntimeException {
+        public InvalidDatabaseAccessException() {
+            super("ERROR", null);
+        }
+    }
+  learner_created: true
+- name: src/server/console/Console.java
+  visible: true
+  text: |
+    package server.console;
+
+    import java.util.Scanner;
+
+    public class Console {
+        private static final Scanner scanner = new Scanner(System.in);
+
+        private Console() {
+            throw new UnsupportedOperationException();
+        }
+
+        /*
+        INPUT
+         */
+        public static String getLine() {
+            return scanner.nextLine();
+        }
+
+        /*
+        OUTPUT
+         */
+
+        public static void println(String text) {
+            System.out.println(text);
+        }
+
+        public static void printf(String text, Object ... args) {
+            System.out.printf(text, args);
+        }
+
+        public static void print(String text, Object ... args) {
+            printf(text + "%n", args);
+        }
+
+        /*
+        GETTERS
+         */
+
+        public static Scanner getScanner() {
+            return scanner;
+        }
+    }
+  learner_created: true
+- name: src/server/console/UserInterface.java
+  visible: true
+  text: |
+    package server.console;
+
+    import server.database.Database;
+
+    public class UserInterface {
+
+        private static Database database = null;
+        private static boolean running = true;
+
+        private static Command exitCommand = args -> running = false;
+
+        private static Command setCommand = args -> {
+            int position = Integer.parseInt(args[0]);
+            database.set(position, args[1]);
+            Console.println("OK");
+        };
+
+        private static Command getCommand = args -> {
+            int position = Integer.parseInt(args[0]);
+            String output = database.get(position);
+            Console.println(output);
+        };
+
+        private static Command deleteCommand = args -> {
+            int position = Integer.parseInt(args[0]);
+            database.delete(position);
+            Console.println("OK");
+        };
+
+        public static void invoke() {
+            String input = Console.getLine();
+            String[] args = input.split(" ");
+            switch(args[0]) {
+                case "get":
+                    getCommand.execute(args[1]);
+                    break;
+                case "set":
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (int i = 2; i < args.length; i++) {
+                        stringBuilder.append(args[i]);
+                        stringBuilder.append(" ");
+                    }
+                    setCommand.execute(args[1], stringBuilder.toString());
+                    break;
+                case "delete":
+                    deleteCommand.execute(args[1]);
+                    break;
+                default:
+                    exitCommand.execute();
+                    break;
+            }
+        }
+
+        public static boolean isRunning() {
+            return running;
+        }
+
+        public static void setDatabase(Database db) {
+            database = db;
+        }
+    }
+  learner_created: true
+- name: src/server/console/Command.java
+  visible: true
+  text: |
+    package server.console;
+
+    public interface Command {
+        void execute(String ... args);
+    }
+  learner_created: true
+- name: src/server/database/Database.java
+  visible: true
+  text: "package server.database;\n\nimport exceptions.InvalidDatabaseAccessException;\n\
+    \nimport java.util.Arrays;\n\npublic class Database {\n    private String[] db;\n\
+    \n    public Database() {\n        this.db =  new String[100];\n        Arrays.fill(db,\
+    \ \"\");\n    }\n\n    public void set(int position, String content) {\n     \
+    \   checkPosition(position);\n        db[position - 1] = content;\n    }\n\n \
+    \   public String get(int position) {\n        checkPosition(position);\n    \
+    \    if (\"\".equals(db[position - 1])) throw new InvalidDatabaseAccessException();\n\
+    \        return db[position - 1];\n    }\n    \n    public void delete(int position)\
+    \ {\n        checkPosition(position);\n        db[position - 1] = \"\";\n    }\n\
+    \n    private void checkPosition(int position) {\n        if (position < 1 ||\
+    \ position > 100) throw new InvalidDatabaseAccessException();\n    }\n\n}\n"
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/65/stages/350/implement#comment
 status: Unchecked
 record: -1

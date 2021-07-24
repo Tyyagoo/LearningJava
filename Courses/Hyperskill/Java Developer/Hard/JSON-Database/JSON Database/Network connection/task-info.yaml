@@ -238,5 +238,8 @@ files:
     \ position > 100) throw new InvalidDatabaseAccessException();\n    }\n\n}\n"
   learner_created: true
 feedback_link: https://hyperskill.org/projects/65/stages/349/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sat, 24 Jul 2021 18:42:16 UTC
+record: 2
