@@ -342,6 +342,27 @@ files:
     \n    private void checkPosition(int position) {\n        if (position < 1 ||\
     \ position > 100) throw new InvalidDatabaseAccessException();\n    }\n\n}\n"
   learner_created: true
+- name: src/server/commands/ICommand.java
+  visible: true
+  learner_created: true
+- name: src/server/commands/list/SetCommand.java
+  visible: true
+  learner_created: true
+- name: src/server/commands/list/GetCommand.java
+  visible: true
+  learner_created: true
+- name: src/server/commands/list/DeleteCommand.java
+  visible: true
+  learner_created: true
+- name: src/server/commands/list/ExitCommand.java
+  visible: true
+  learner_created: true
+- name: src/server/commands/Controller.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/65/stages/350/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sat, 24 Jul 2021 21:53:45 UTC
+record: 3

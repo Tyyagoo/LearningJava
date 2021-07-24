@@ -379,6 +379,203 @@ files:
 
     }
   learner_created: false
+- name: src/exceptions/InvalidDatabaseAccessException.java
+  visible: true
+  text: |
+    package exceptions;
+
+    public class InvalidDatabaseAccessException extends RuntimeException {
+        public InvalidDatabaseAccessException() {
+            super("ERROR", null);
+        }
+    }
+  learner_created: true
+- name: src/server/commands/Controller.java
+  visible: true
+  text: |
+    package server.commands;
+
+    import server.commands.list.*;
+    import server.database.Database;
+
+    public class Controller {
+
+        private ICommand command;
+        private final Database database;
+
+        public Controller(Database db) {
+            this.database = db;
+        }
+
+        public String invoke(String cmd) {
+            fetch(cmd);
+            executeCommand();
+            return getCommandResult();
+        }
+
+        public void fetch(String cmd) {
+            String[] tokens = cmd.split(" ");
+            switch (tokens[0]) {
+                case "get":
+                    this.command = new GetCommand(database, Integer.parseInt(tokens[1]));
+                    break;
+                case "delete":
+                    this.command = new DeleteCommand(database, Integer.parseInt(tokens[1]));
+                    break;
+                case "set":
+                    StringBuilder textBuilder = new StringBuilder();
+                    for (int i = 2; i < tokens.length; i++) {
+                        textBuilder.append(tokens[i]);
+                        textBuilder.append(" ");
+                    }
+                    this.command = new SetCommand(database, Integer.parseInt(tokens[1]), textBuilder.toString());
+                    break;
+                default:
+                    this.command = new ExitCommand();
+            }
+        }
+
+        public void executeCommand() {
+            command.execute();
+        }
+
+        public String getCommandResult() {
+            return command.getResult();
+        }
+    }
+  learner_created: true
+- name: src/server/commands/ICommand.java
+  visible: true
+  text: |
+    package server.commands;
+
+    public interface ICommand {
+        void execute();
+        String getResult();
+    }
+  learner_created: true
+- name: src/server/commands/list/ExitCommand.java
+  visible: true
+  text: |
+    package server.commands.list;
+
+    import server.commands.ICommand;
+
+    public class ExitCommand implements ICommand {
+
+        @Override
+        public void execute() {
+
+        }
+
+        @Override
+        public String getResult() {
+            return null;
+        }
+    }
+  learner_created: true
+- name: src/server/commands/list/GetCommand.java
+  visible: true
+  text: |+
+    package server.commands.list;
+
+    import server.commands.ICommand;
+    import server.database.Database;
+
+    public class GetCommand implements ICommand {
+        private final int position;
+        private final Database database;
+        private String result = "unknown";
+
+        public GetCommand(Database db, int pos) {
+            this.database = db;
+            this.position = pos;
+        }
+
+        @Override
+        public void execute() {
+            result = database.get(position);
+        }
+
+        @Override
+        public String getResult() {
+            return result;
+        }
+    }
+
+  learner_created: true
+- name: src/server/commands/list/DeleteCommand.java
+  visible: true
+  text: |
+    package server.commands.list;
+
+    import server.commands.ICommand;
+    import server.database.Database;
+
+    public class DeleteCommand implements ICommand {
+        private final int position;
+        private final Database database;
+
+        public DeleteCommand(Database db, int pos) {
+            this.database = db;
+            this.position = pos;
+        }
+
+        @Override
+        public void execute() {
+            database.delete(position);
+        }
+
+        @Override
+        public String getResult() {
+            return "OK";
+        }
+    }
+  learner_created: true
+- name: src/server/commands/list/SetCommand.java
+  visible: true
+  text: |
+    package server.commands.list;
+
+    import server.commands.ICommand;
+    import server.database.Database;
+
+    public class SetCommand implements ICommand {
+        private final int position;
+        private final String text;
+        private final Database database;
+
+        public SetCommand(Database db, int pos, String txt) {
+            this.database = db;
+            this.text = txt;
+            this.position = pos;
+        }
+
+        @Override
+        public void execute() {
+            database.set(position, text);
+        }
+
+        @Override
+        public String getResult() {
+            return "OK";
+        }
+    }
+  learner_created: true
+- name: src/server/database/Database.java
+  visible: true
+  text: "package server.database;\n\nimport exceptions.InvalidDatabaseAccessException;\n\
+    \nimport java.util.Arrays;\n\npublic class Database {\n    private String[] db;\n\
+    \n    public Database() {\n        this.db =  new String[1000];\n        Arrays.fill(db,\
+    \ \"\");\n    }\n\n    public void set(int position, String content) {\n     \
+    \   checkPosition(position);\n        db[position - 1] = content;\n    }\n\n \
+    \   public String get(int position) {\n        checkPosition(position);\n    \
+    \    if (\"\".equals(db[position - 1])) throw new InvalidDatabaseAccessException();\n\
+    \        return db[position - 1];\n    }\n    \n    public void delete(int position)\
+    \ {\n        checkPosition(position);\n        db[position - 1] = \"\";\n    }\n\
+    \n    private void checkPosition(int position) {\n        if (position < 1 ||\
+    \ position > 100) throw new InvalidDatabaseAccessException();\n    }\n\n}\n"
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/65/stages/351/implement#comment
 status: Unchecked
 record: -1

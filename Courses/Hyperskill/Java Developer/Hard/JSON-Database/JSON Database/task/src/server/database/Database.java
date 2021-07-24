@@ -8,7 +8,7 @@ public class Database {
     private String[] db;
 
     public Database() {
-        this.db =  new String[100];
+        this.db =  new String[1000];
         Arrays.fill(db, "");
     }
 
