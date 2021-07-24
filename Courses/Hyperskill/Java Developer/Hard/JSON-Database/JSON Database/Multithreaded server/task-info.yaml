@@ -586,6 +586,217 @@ files:
         }
     }
   learner_created: false
+- name: src/exceptions/InvalidDatabaseAccessException.java
+  visible: true
+  text: |
+    package exceptions;
+
+    public class InvalidDatabaseAccessException extends RuntimeException {
+        public InvalidDatabaseAccessException() {
+            super("ERROR", null);
+        }
+    }
+  learner_created: true
+- name: src/server/commands/Controller.java
+  visible: true
+  text: |
+    package server.commands;
+
+    import java.lang.reflect.Type;
+    import com.google.gson.reflect.TypeToken;
+    import com.google.gson.Gson;
+    import server.commands.list.*;
+    import server.database.Database;
+
+    import java.util.*;
+
+    public class Controller {
+
+        private ICommand command;
+        private final Database database;
+
+        public Controller(Database db) {
+            this.database = db;
+        }
+
+        public String invoke(String json) {
+            fetch(json);
+            executeCommand();
+            return getCommandResult();
+        }
+
+        public void fetch(String json) {
+            Gson gson = new Gson();
+            Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+            HashMap<String, String> map = gson.fromJson(json, type);
+
+            switch (map.getOrDefault("type", "exit")) {
+                case "get":
+                    this.command = new GetCommand(database, map.get("key"));
+                    break;
+                case "delete":
+                    this.command = new DeleteCommand(database, map.get("key"));
+                    break;
+                case "set":
+                    this.command = new SetCommand(database, map.get("key"), map.get("value"));
+                    break;
+                default:
+                    this.command = new ExitCommand();
+            }
+        }
+
+        public void executeCommand() {
+            command.execute();
+        }
+
+        public String getCommandResult() {
+            return command.getResult();
+        }
+    }
+  learner_created: true
+- name: src/server/commands/ICommand.java
+  visible: true
+  text: |
+    package server.commands;
+
+    public interface ICommand {
+        void execute();
+        String getResult();
+    }
+  learner_created: true
+- name: src/server/commands/list/ExitCommand.java
+  visible: true
+  text: |
+    package server.commands.list;
+
+    import server.commands.ICommand;
+
+    public class ExitCommand implements ICommand {
+
+        @Override
+        public void execute() {
+
+        }
+
+        @Override
+        public String getResult() {
+            return null;
+        }
+    }
+  learner_created: true
+- name: src/server/commands/list/GetCommand.java
+  visible: true
+  text: |+
+    package server.commands.list;
+
+    import exceptions.InvalidDatabaseAccessException;
+    import server.commands.ICommand;
+    import server.database.Database;
+
+    public class GetCommand implements ICommand {
+        private final String key;
+        private final Database database;
+        private String result = "unknown";
+
+        public GetCommand(Database db, String key) {
+            this.database = db;
+            this.key = key;
+        }
+
+        @Override
+        public void execute() {
+            try {
+                result = String.format("{\"response\":\"OK\", \"value\": \"%s\"}", database.get(key));
+            } catch (InvalidDatabaseAccessException e) {
+                result = "{ \"response\": \"ERROR\", \"reason\": \"No such key\" }";
+            }
+        }
+
+        @Override
+        public String getResult() {
+            return result;
+        }
+    }
+
+  learner_created: true
+- name: src/server/commands/list/DeleteCommand.java
+  visible: true
+  text: |
+    package server.commands.list;
+
+    import exceptions.InvalidDatabaseAccessException;
+    import server.commands.ICommand;
+    import server.database.Database;
+
+    public class DeleteCommand implements ICommand {
+        private final String key;
+        private final Database database;
+        private String result = "";
+
+        public DeleteCommand(Database db, String key) {
+            this.database = db;
+            this.key = key;
+        }
+
+        @Override
+        public void execute() {
+            try {
+                database.delete(key);
+                result = "{\"response\":\"OK\"}";
+            } catch (InvalidDatabaseAccessException e) {
+                result = "{ \"response\": \"ERROR\", \"reason\": \"No such key\" }";
+            }
+        }
+
+        @Override
+        public String getResult() {
+            return result;
+        }
+    }
+  learner_created: true
+- name: src/server/commands/list/SetCommand.java
+  visible: true
+  text: |
+    package server.commands.list;
+
+    import exceptions.InvalidDatabaseAccessException;
+    import server.commands.ICommand;
+    import server.database.Database;
+
+    public class SetCommand implements ICommand {
+        private final String key;
+        private final String text;
+        private final Database database;
+
+        public SetCommand(Database db, String key, String txt) {
+            this.database = db;
+            this.text = txt;
+            this.key = key;
+        }
+
+        @Override
+        public void execute() {
+            database.set(key, text);
+        }
+
+        @Override
+        public String getResult() {
+            return "{\"response\":\"OK\"}";
+        }
+    }
+  learner_created: true
+- name: src/server/database/Database.java
+  visible: true
+  text: "package server.database;\n\nimport exceptions.InvalidDatabaseAccessException;\n\
+    \nimport java.util.*;\n\npublic class Database {\n    private Map<String, String>\
+    \ db;\n\n    public Database() {\n        this.db =  new HashMap<>();\n    }\n\
+    \n    public void set(String key, String content) {\n        db.put(key, content);\n\
+    \    }\n\n    public String get(String key) {\n        if (!db.containsKey(key))\
+    \ throw new InvalidDatabaseAccessException();\n        return db.get(key);\n \
+    \   }\n    \n    public void delete(String key) {\n        if (!db.containsKey(key))\
+    \ throw new InvalidDatabaseAccessException();\n        db.remove(key);\n    }\n\
+    }\n"
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/65/stages/352/implement#comment
 status: Unchecked
 record: -1

@@ -1,6 +1,5 @@
 package server;
 
-import exceptions.InvalidDatabaseAccessException;
 import server.commands.Controller;
 import server.database.Database;
 
@@ -27,15 +26,9 @@ public class Main {
                      DataOutputStream output  = new DataOutputStream(socket.getOutputStream())) {
 
                     String received = input.readUTF();
-                    String response = "404";
-                    try {
-                        response = controller.invoke(received);
-                        if (response == null) break;
-                    } catch (InvalidDatabaseAccessException e) {
-                        response = e.getMessage();
-                    } finally {
-                        output.writeUTF(response != null ? response : "OK");
-                    }
+                    String response = controller.invoke(received);
+                    output.writeUTF(response != null ? response : "{ \"response\": \"OK\" }");
+                    if (response == null) break;
                 }
             }
         } catch (IOException e) {

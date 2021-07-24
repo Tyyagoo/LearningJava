@@ -1,24 +1,31 @@
 package server.commands.list;
 
+import exceptions.InvalidDatabaseAccessException;
 import server.commands.ICommand;
 import server.database.Database;
 
 public class DeleteCommand implements ICommand {
-    private final int position;
+    private final String key;
     private final Database database;
+    private String result = "";
 
-    public DeleteCommand(Database db, int pos) {
+    public DeleteCommand(Database db, String key) {
         this.database = db;
-        this.position = pos;
+        this.key = key;
     }
 
     @Override
     public void execute() {
-        database.delete(position);
+        try {
+            database.delete(key);
+            result = "{\"response\":\"OK\"}";
+        } catch (InvalidDatabaseAccessException e) {
+            result = "{ \"response\": \"ERROR\", \"reason\": \"No such key\" }";
+        }
     }
 
     @Override
     public String getResult() {
-        return "OK";
+        return result;
     }
 }

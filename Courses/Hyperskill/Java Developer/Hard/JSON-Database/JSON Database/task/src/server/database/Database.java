@@ -2,34 +2,26 @@ package server.database;
 
 import exceptions.InvalidDatabaseAccessException;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Database {
-    private String[] db;
+    private Map<String, String> db;
 
     public Database() {
-        this.db =  new String[1000];
-        Arrays.fill(db, "");
+        this.db =  new HashMap<>();
     }
 
-    public void set(int position, String content) {
-        checkPosition(position);
-        db[position - 1] = content;
+    public void set(String key, String content) {
+        db.put(key, content);
     }
 
-    public String get(int position) {
-        checkPosition(position);
-        if ("".equals(db[position - 1])) throw new InvalidDatabaseAccessException();
-        return db[position - 1];
+    public String get(String key) {
+        if (!db.containsKey(key)) throw new InvalidDatabaseAccessException();
+        return db.get(key);
     }
     
-    public void delete(int position) {
-        checkPosition(position);
-        db[position - 1] = "";
+    public void delete(String key) {
+        if (!db.containsKey(key)) throw new InvalidDatabaseAccessException();
+        db.remove(key);
     }
-
-    private void checkPosition(int position) {
-        if (position < 1 || position > 100) throw new InvalidDatabaseAccessException();
-    }
-
 }

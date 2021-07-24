@@ -1,7 +1,12 @@
 package server.commands;
 
+import java.lang.reflect.Type;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
 import server.commands.list.*;
 import server.database.Database;
+
+import java.util.*;
 
 public class Controller {
 
@@ -12,28 +17,26 @@ public class Controller {
         this.database = db;
     }
 
-    public String invoke(String cmd) {
-        fetch(cmd);
+    public String invoke(String json) {
+        fetch(json);
         executeCommand();
         return getCommandResult();
     }
 
-    public void fetch(String cmd) {
-        String[] tokens = cmd.split(" ");
-        switch (tokens[0]) {
+    public void fetch(String json) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<HashMap<String, String>>(){}.getType();
+        HashMap<String, String> map = gson.fromJson(json, type);
+
+        switch (map.getOrDefault("type", "exit")) {
             case "get":
-                this.command = new GetCommand(database, Integer.parseInt(tokens[1]));
+                this.command = new GetCommand(database, map.get("key"));
                 break;
             case "delete":
-                this.command = new DeleteCommand(database, Integer.parseInt(tokens[1]));
+                this.command = new DeleteCommand(database, map.get("key"));
                 break;
             case "set":
-                StringBuilder textBuilder = new StringBuilder();
-                for (int i = 2; i < tokens.length; i++) {
-                    textBuilder.append(tokens[i]);
-                    textBuilder.append(" ");
-                }
-                this.command = new SetCommand(database, Integer.parseInt(tokens[1]), textBuilder.toString());
+                this.command = new SetCommand(database, map.get("key"), map.get("value"));
                 break;
             default:
                 this.command = new ExitCommand();
