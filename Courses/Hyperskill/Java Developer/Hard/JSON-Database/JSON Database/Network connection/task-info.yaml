@@ -1,0 +1,242 @@
+type: edu
+files:
+- name: src/client/Main.java
+  visible: true
+  text: |
+    package client;
+
+    public class Main {
+
+        public static void main(String[] args) {
+            System.out.println("Hello, world!");
+        }
+    }
+  learner_created: false
+- name: src/server/Main.java
+  visible: true
+  text: |
+    package server;
+
+    public class Main {
+
+        public static void main(String[] args) {
+            System.out.println("Hello, world!");
+        }
+    }
+  learner_created: false
+- name: test/JsonDatabaseTest.java
+  visible: false
+  text: |
+    import org.hyperskill.hstest.dynamic.input.DynamicTestingMethod;
+    import org.hyperskill.hstest.stage.StageTest;
+    import org.hyperskill.hstest.testcase.CheckResult;
+    import org.hyperskill.hstest.testing.TestedProgram;
+
+    public class JsonDatabaseTest extends StageTest<String> {
+
+        private static final String CORRECT_SERVER_OUTPUT =
+            "Server started!\n" +
+                "Received: Give me a record # N\n" +
+                "Sent: A record # N was sent!";
+
+        private static final String CORRECT_CLIENT_OUTPUT =
+            "Client started!\n" +
+                "Sent: Give me a record # N\n" +
+                "Received: A record # N was sent!";
+
+        @DynamicTestingMethod
+        CheckResult test() throws InterruptedException {
+
+            TestedProgram server = new TestedProgram("server");
+            server.startInBackground();
+            Thread.sleep(500);
+
+            String serverOutput = server.getOutput().trim();
+
+            if (!serverOutput.trim().equals("Server started!")) {
+                return CheckResult.wrong("Server output should be 'Server started!' until a client connects!");
+            }
+
+            TestedProgram client = new TestedProgram("client");
+
+            String clientOutput = client.start();
+            serverOutput += "\n" + server.getOutput();
+
+            String[] serverOutputLines = serverOutput.split("\n");
+
+            if (serverOutputLines.length != 3) {
+                return CheckResult.wrong("After the client connects to the server, the server output should contain 3 lines!");
+            }
+
+            String serverOutputLastLine = serverOutputLines[serverOutputLines.length - 1];
+
+            if (!serverOutputLastLine.contains("Sent: A record #") || !serverOutputLastLine.contains("was sent!")) {
+                return CheckResult.wrong("Server output after client connects to the server should be:\n"
+                    + CORRECT_SERVER_OUTPUT + "\n\nWhere N is some number.\n\nYour output:\n" + serverOutput);
+            }
+
+            String[] clientOutputLines = clientOutput.split("\n");
+
+            if (clientOutputLines.length != 3) {
+                return CheckResult.wrong("After the client connects to the server, the client output should contain 3 lines!");
+            }
+
+            String clientOutputLastLine = clientOutputLines[clientOutputLines.length - 1];
+
+            if (!clientOutputLastLine.contains("Received: A record #") || !clientOutputLastLine.contains("was sent!")) {
+                return CheckResult.wrong("Client output after client connects to the server should be:\n"
+                    + CORRECT_CLIENT_OUTPUT + "\n\nWhere N is some number.\n\nYour output:\n" + clientOutput);
+            }
+
+            return CheckResult.correct();
+        }
+    }
+  learner_created: false
+- name: src/exceptions/InvalidDatabaseAccessException.java
+  visible: true
+  text: |
+    package exceptions;
+
+    public class InvalidDatabaseAccessException extends RuntimeException {
+        public InvalidDatabaseAccessException() {
+            super("ERROR", null);
+        }
+    }
+  learner_created: true
+- name: src/server/console/Console.java
+  visible: true
+  text: |
+    package server.console;
+
+    import java.util.Scanner;
+
+    public class Console {
+        private static final Scanner scanner = new Scanner(System.in);
+
+        private Console() {
+            throw new UnsupportedOperationException();
+        }
+
+        /*
+        INPUT
+         */
+        public static String getLine() {
+            return scanner.nextLine();
+        }
+
+        /*
+        OUTPUT
+         */
+
+        public static void println(String text) {
+            System.out.println(text);
+        }
+
+        public static void printf(String text, Object ... args) {
+            System.out.printf(text, args);
+        }
+
+        public static void print(String text, Object ... args) {
+            printf(text + "%n", args);
+        }
+
+        /*
+        GETTERS
+         */
+
+        public static Scanner getScanner() {
+            return scanner;
+        }
+    }
+  learner_created: true
+- name: src/server/console/UserInterface.java
+  visible: true
+  text: |
+    package server.console;
+
+    import server.database.Database;
+
+    public class UserInterface {
+
+        private static Database database = null;
+        private static boolean running = true;
+
+        private static Command exitCommand = args -> running = false;
+
+        private static Command setCommand = args -> {
+            int position = Integer.parseInt(args[0]);
+            database.set(position, args[1]);
+            Console.println("OK");
+        };
+
+        private static Command getCommand = args -> {
+            int position = Integer.parseInt(args[0]);
+            String output = database.get(position);
+            Console.println(output);
+        };
+
+        private static Command deleteCommand = args -> {
+            int position = Integer.parseInt(args[0]);
+            database.delete(position);
+            Console.println("OK");
+        };
+
+        public static void invoke() {
+            String input = Console.getLine();
+            String[] args = input.split(" ");
+            switch(args[0]) {
+                case "get":
+                    getCommand.execute(args[1]);
+                    break;
+                case "set":
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (int i = 2; i < args.length; i++) {
+                        stringBuilder.append(args[i]);
+                        stringBuilder.append(" ");
+                    }
+                    setCommand.execute(args[1], stringBuilder.toString());
+                    break;
+                case "delete":
+                    deleteCommand.execute(args[1]);
+                    break;
+                default:
+                    exitCommand.execute();
+                    break;
+            }
+        }
+
+        public static boolean isRunning() {
+            return running;
+        }
+
+        public static void setDatabase(Database db) {
+            database = db;
+        }
+    }
+  learner_created: true
+- name: src/server/console/Command.java
+  visible: true
+  text: |
+    package server.console;
+
+    public interface Command {
+        void execute(String ... args);
+    }
+  learner_created: true
+- name: src/server/database/Database.java
+  visible: true
+  text: "package server.database;\n\nimport exceptions.InvalidDatabaseAccessException;\n\
+    \nimport java.util.Arrays;\n\npublic class Database {\n    private String[] db;\n\
+    \n    public Database() {\n        this.db =  new String[100];\n        Arrays.fill(db,\
+    \ \"\");\n    }\n\n    public void set(int position, String content) {\n     \
+    \   checkPosition(position);\n        db[position - 1] = content;\n    }\n\n \
+    \   public String get(int position) {\n        checkPosition(position);\n    \
+    \    if (\"\".equals(db[position - 1])) throw new InvalidDatabaseAccessException();\n\
+    \        return db[position - 1];\n    }\n    \n    public void delete(int position)\
+    \ {\n        checkPosition(position);\n        db[position - 1] = \"\";\n    }\n\
+    \n    private void checkPosition(int position) {\n        if (position < 1 ||\
+    \ position > 100) throw new InvalidDatabaseAccessException();\n    }\n\n}\n"
+  learner_created: true
+feedback_link: https://hyperskill.org/projects/65/stages/349/implement#comment
+status: Unchecked
+record: -1
