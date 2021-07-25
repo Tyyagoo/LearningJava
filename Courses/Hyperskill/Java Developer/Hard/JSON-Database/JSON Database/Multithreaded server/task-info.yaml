@@ -797,6 +797,24 @@ files:
     \ throw new InvalidDatabaseAccessException();\n        db.remove(key);\n    }\n\
     }\n"
   learner_created: true
+- name: src/server/Session.java
+  visible: true
+  learner_created: true
+- name: src/server/data/db.json
+  visible: true
+  learner_created: true
+- name: src/client/data/testGet.json
+  visible: true
+  learner_created: true
+- name: src/client/data/testDelete.json
+  visible: true
+  learner_created: true
+- name: src/client/data/testSet.json
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/65/stages/352/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Sun, 25 Jul 2021 01:58:29 UTC
+record: 5

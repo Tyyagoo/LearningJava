@@ -11,6 +11,7 @@ import java.util.*;
 public class Main {
     public static final String address = "127.0.0.1";
     public static final int port = 8080;
+    public static final String filepath = "src/client/data/";
 
     @Parameter(names = "-t", description = "Type of the request")
     private String type;
@@ -18,6 +19,8 @@ public class Main {
     private String key = "";
     @Parameter(names = "-v", description = "Value to save in the database (only on -t set)")
     private String text = "";
+    @Parameter(names = "-in", description = "File with processable request")
+    private String inputFileName = "";
 
     public static void main(String[] argv) {
         Main main = new Main();
@@ -35,16 +38,28 @@ public class Main {
              DataOutputStream output = new DataOutputStream(socket.getOutputStream())) {
 
             Map<String, String> map = new LinkedHashMap<>();
-            map.put("type", type);
-            if (!"".equals(key)) map.put("key", key);
-            if (!"".equals(text)) map.put("value", text);
-
             Gson gson = new Gson();
-            String json = gson.toJson(map);
+            String json = "";
+            if ("".equals(inputFileName)) {
+                map.put("type", type);
+                if (!"".equals(key)) map.put("key", key);
+                if (!"".equals(text)) map.put("value", text);
+
+                json = gson.toJson(map);
+            } else {
+                try (Scanner scanner = new Scanner(new File(filepath + inputFileName))) {
+                    json = scanner.nextLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if ("".equals(json)) return;
             output.writeUTF(json);
             System.out.printf("Sent: %s%n", json);
             String received = input.readUTF();
             System.out.printf("Received: %s%n", received);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
