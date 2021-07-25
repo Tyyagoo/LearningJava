@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/JSON-Database.iml" filepath="$PROJECT_DIR$/.idea/modules/JSON-Database.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/JSON Database/task/JSON-Database.JSON_Database-task.iml" filepath="$PROJECT_DIR$/.idea/modules/JSON Database/task/JSON-Database.JSON_Database-task.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/JSON Database/task/JSON-Database.JSON_Database-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/JSON Database/task/JSON-Database.JSON_Database-task.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/JSON Database/task/JSON-Database.JSON_Database-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/JSON Database/task/JSON-Database.JSON_Database-task.test.iml" />

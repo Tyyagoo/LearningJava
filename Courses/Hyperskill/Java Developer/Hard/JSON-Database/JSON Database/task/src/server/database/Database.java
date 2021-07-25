@@ -1,61 +1,185 @@
 package server.database;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.google.gson.*;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import exceptions.InvalidDatabaseAccessException;
 
 import java.io.*;
-import java.lang.reflect.Type;
 import java.util.*;
+import java.util.concurrent.locks.*;
 
 public class Database {
-    private static final String filepath = "./src/server/data/";
+    private static final String FILEPATH_TEST_ENVIRONMENT = System.getProperty("user.dir") + "/src/server/data/";
+    private static final String FILEPATH_LOCAL_ENVIRONMENT = System.getProperty("user.dir") + "/JSON Database/task/src/server/data/";
+    private static final String filepath = FILEPATH_TEST_ENVIRONMENT;
     private final String filename;
-    private Map<String, String> db;
+
+    private JsonObject db;
+    private final ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock(true);
+    private final ReentrantReadWriteLock.ReadLock readLock = reentrantReadWriteLock.readLock();
+    private final ReentrantReadWriteLock.WriteLock writeLock = reentrantReadWriteLock.writeLock();
+    private final Gson gson = new Gson();
 
     public Database(String filename) {
         this.filename = filename;
-        this.db =  new HashMap<>();
         try {
-            loadDatabase();
+            initializeDatabase();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    private void loadDatabase() throws FileNotFoundException {
+    private void initializeDatabase() {
+        writeLock.lock();
         File file = new File(filepath + filename);
-        if (file.isFile()) {
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
-            Gson gson = new Gson();
-            Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-            db = gson.fromJson(bufferedReader, type);
+        if (!file.isFile()) {
+            try {
+                createDatabase(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            db = loadDatabase(file).getAsJsonObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            writeLock.unlock();
         }
     }
 
-    public synchronized void set(String key, String content) {
-        db.put(key, content);
-        updateFile();
+    private void createDatabase(File file) throws IOException {
+        file.createNewFile();
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+            String emptyJson = "{}";
+            writer.write(emptyJson);
+        }
+    }
+
+    private JsonElement loadDatabase(File from) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(from))) {
+            return JsonParser.parseReader(reader);
+        }
+    }
+
+    public void set(String key, String object) {
+        writeLock.lock();
+        try {
+            JsonElement jsonKey = JsonParser.parseString(key);
+            JsonElement value = JsonParser.parseString(object);
+            if (jsonKey.isJsonPrimitive()) { // ex: set "people"
+                set(jsonKey.getAsString(), value);
+            } else if (jsonKey.isJsonArray()) { // ex: set "age" of "people"
+                set(jsonKey.getAsJsonArray(), value);
+            }
+            updateFile();
+        } catch (IOException ignored) {
+        } finally {
+            writeLock.unlock();
+        }
+    }
+
+    private void set(String key, JsonElement value) {
+        db.add(key, value);
+    }
+
+    private void set(JsonArray keys, JsonElement value) {
+        JsonElement currentJson = db;
+
+        for (int i = 0; i < keys.size(); i++) {
+            if (currentJson.isJsonObject()) {
+                JsonElement currentValue = currentJson.getAsJsonObject().get(keys.get(i).getAsString());
+                if (currentValue.isJsonObject()) {
+                    currentJson = currentValue;
+                    continue;
+                }
+                currentJson.getAsJsonObject().remove(keys.get(i).getAsString());
+                currentJson.getAsJsonObject().add(keys.get(i).getAsString(), value);
+            }
+        }
     }
 
     public String get(String key) {
-        if (!db.containsKey(key)) throw new InvalidDatabaseAccessException();
-        return db.get(key);
-    }
-    
-    public synchronized void delete(String key) {
-        if (!db.containsKey(key)) throw new InvalidDatabaseAccessException();
-        db.remove(key);
-        updateFile();
+        readLock.lock();
+        try {
+            JsonElement jsonKey = JsonParser.parseString(key);
+            if (jsonKey.isJsonArray()) {
+                JsonElement value = get(jsonKey.getAsJsonArray());
+                if (value != null) {
+                    Gson gson = new Gson();
+                    return gson.toJson(value);
+                }
+            }
+        } finally {
+            readLock.unlock();
+        }
+        throw new InvalidDatabaseAccessException();
     }
 
-    private void updateFile() {
-        try (FileWriter fileWriter = new FileWriter(filepath + filename)) {
-            Gson gson = new Gson();
+    private JsonElement get(JsonPrimitive key) {
+        return db.get(key.getAsString());
+    }
+
+    private JsonElement get(JsonArray keys) {
+        JsonElement currentJson = db;
+        for (JsonElement key: keys) {
+            JsonElement currentValue = currentJson.getAsJsonObject().get(key.getAsString());
+            if (currentValue.isJsonObject()) {
+                currentJson = currentValue.getAsJsonObject();
+                continue;
+            }
+            if (currentValue.isJsonPrimitive()) {
+                currentJson = currentValue;
+            }
+        }
+        return currentJson;
+    }
+
+    public void delete(String key) {
+        writeLock.lock();
+        try {
+            JsonElement jsonKey = JsonParser.parseString(key);
+            if (jsonKey.isJsonPrimitive()) { // ex: get "people"
+                JsonElement value = delete(jsonKey.getAsJsonPrimitive());
+                if (value != null) return;
+            } else if (jsonKey.isJsonArray()) { // ex: get "age" of "people"
+                JsonElement value = delete(jsonKey.getAsJsonArray());
+                if (value != null) return;
+            }
+            updateFile();
+        } catch (IOException ignored) {
+        } finally {
+            writeLock.unlock();
+        }
+        throw new InvalidDatabaseAccessException();
+    }
+
+    private JsonElement delete(JsonPrimitive key) {
+        return db.remove(key.getAsString());
+    }
+
+    private JsonElement delete(JsonArray keys) {
+        JsonElement currentJson = db;
+        JsonElement removedValue = null;
+        for (JsonElement key: keys) {
+            JsonElement currentValue = currentJson.getAsJsonObject().get(key.getAsString());
+            if (currentValue.isJsonObject()) {
+                currentJson = currentValue.getAsJsonObject();
+                continue;
+            }
+            if (currentValue.isJsonPrimitive() || currentValue.isJsonArray() || currentValue.isJsonNull()) {
+                removedValue = currentJson.getAsJsonObject().remove(key.getAsString());
+            }
+        }
+        return removedValue;
+    }
+
+    private void updateFile() throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filepath + filename))) {
             String json = gson.toJson(db);
-            fileWriter.write(json);
-        } catch (IOException e) {
-            e.printStackTrace();
+            writer.write(json);
         }
     }
 }

@@ -17,7 +17,7 @@ public class GetCommand implements ICommand {
     @Override
     public void execute() {
         try {
-            result = String.format("{\"response\":\"OK\", \"value\": \"%s\"}", database.get(key));
+            result = String.format("{\"response\":\"OK\", \"value\": %s}", database.get(key));
         } catch (InvalidDatabaseAccessException e) {
             result = "{ \"response\": \"ERROR\", \"reason\": \"No such key\" }";
         }

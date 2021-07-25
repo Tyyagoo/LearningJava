@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">1.238s</div>
+<div class="counter">0.500s</div>
 <p>duration</p>
 </div>
 </td>
@@ -79,7 +79,7 @@
 </thead>
 <tr>
 <td class="success">start</td>
-<td class="success">1.238s</td>
+<td class="success">0.500s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -89,66 +89,36 @@
 <span class="code">
 <pre>?[1;31m
 Start test 1?[0m
-?[1;31m
-Start test 2?[0m
-Client started!
 Server started!
+Client started!
 Sent: {&quot;type&quot;:&quot;exit&quot;}
 Received: { &quot;response&quot;: &quot;OK&quot; }
 ?[1;31m
+Start test 2?[0m
+?[1;31m
 Start test 3?[0m
-Client started!
 Server started!
-Sent: {&quot;type&quot;:&quot;get&quot;,&quot;key&quot;:&quot;1&quot;}
-Received: { &quot;response&quot;: &quot;ERROR&quot;, &quot;reason&quot;: &quot;No such key&quot; }
 Client started!
 Sent: {&quot;type&quot;:&quot;set&quot;,&quot;key&quot;:&quot;1&quot;,&quot;value&quot;:&quot;Hello world!&quot;}
 Received: {&quot;response&quot;:&quot;OK&quot;}
 Client started!
-Sent: {&quot;type&quot;:&quot;set&quot;,&quot;key&quot;:&quot;1&quot;,&quot;value&quot;:&quot;HelloWorld!&quot;}
+Sent: {&quot;type&quot;:&quot;set&quot;,&quot;key&quot;:&quot;person&quot;,&quot;value&quot;:{&quot;name&quot;:&quot;Elon Musk&quot;,&quot;car&quot;:{&quot;model&quot;:&quot;Tesla Roadster&quot;,&quot;year&quot;:&quot;2018&quot;},&quot;rocket&quot;:{&quot;name&quot;:&quot;Falcon 9&quot;,&quot;launches&quot;:&quot;87&quot;}}}
 Received: {&quot;response&quot;:&quot;OK&quot;}
 Client started!
-Sent: {&quot;type&quot;:&quot;get&quot;,&quot;key&quot;:&quot;1&quot;}
-Received: {&quot;response&quot;:&quot;OK&quot;, &quot;value&quot;: &quot;HelloWorld!&quot;}
+Sent: {&quot;type&quot;:&quot;get&quot;,&quot;key&quot;:[&quot;person&quot;,&quot;name&quot;]}
+Received: {&quot;response&quot;:&quot;OK&quot;, &quot;value&quot;: &quot;Elon Musk&quot;}
 Client started!
-Sent: {&quot;type&quot;:&quot;delete&quot;,&quot;key&quot;:&quot;1&quot;}
+Sent: {&quot;type&quot;:&quot;set&quot;,&quot;key&quot;:[&quot;person&quot;,&quot;rocket&quot;,&quot;launches&quot;],&quot;value&quot;:&quot;88&quot;}
 Received: {&quot;response&quot;:&quot;OK&quot;}
 Client started!
-Sent: {&quot;type&quot;:&quot;delete&quot;,&quot;key&quot;:&quot;1&quot;}
-Received: { &quot;response&quot;: &quot;ERROR&quot;, &quot;reason&quot;: &quot;No such key&quot; }
+Sent: {&quot;type&quot;:&quot;get&quot;,&quot;key&quot;:[&quot;person&quot;]}
+Received: {&quot;response&quot;:&quot;OK&quot;, &quot;value&quot;: {&quot;name&quot;:&quot;Elon Musk&quot;,&quot;car&quot;:{&quot;model&quot;:&quot;Tesla Roadster&quot;,&quot;year&quot;:&quot;2018&quot;},&quot;rocket&quot;:{&quot;name&quot;:&quot;Falcon 9&quot;,&quot;launches&quot;:&quot;88&quot;}}}
 Client started!
-Sent: {&quot;type&quot;:&quot;get&quot;,&quot;key&quot;:&quot;1&quot;}
-Received: { &quot;response&quot;: &quot;ERROR&quot;, &quot;reason&quot;: &quot;No such key&quot; }
-Client started!
-Sent: {&quot;type&quot;:&quot;set&quot;,&quot;key&quot;:&quot;text&quot;,&quot;value&quot;:&quot;Some text here&quot;}
+Sent: {&quot;type&quot;:&quot;delete&quot;,&quot;key&quot;:[&quot;person&quot;,&quot;car&quot;,&quot;year&quot;]}
 Received: {&quot;response&quot;:&quot;OK&quot;}
 Client started!
-Sent: {&quot;type&quot;:&quot;get&quot;,&quot;key&quot;:&quot;text&quot;}
-Received: {&quot;response&quot;:&quot;OK&quot;, &quot;value&quot;: &quot;Some text here&quot;}
-Client started!
-Sent: {&quot;type&quot;:&quot;get&quot;,&quot;key&quot;:&quot;56&quot;}
-Received: { &quot;response&quot;: &quot;ERROR&quot;, &quot;reason&quot;: &quot;No such key&quot; }
-Client started!
-Sent: {&quot;type&quot;:&quot;delete&quot;,&quot;key&quot;:&quot;56&quot;}
-Received: { &quot;response&quot;: &quot;ERROR&quot;, &quot;reason&quot;: &quot;No such key&quot; }
-Client started!
-Sent: {&quot;type&quot;:&quot;delete&quot;,&quot;key&quot;:&quot;100&quot;}
-Received: { &quot;response&quot;: &quot;ERROR&quot;, &quot;reason&quot;: &quot;No such key&quot; }
-Client started!
-Sent: {&quot;type&quot;:&quot;delete&quot;,&quot;key&quot;:&quot;That key doesn\u0027t exist&quot;}
-Received: { &quot;response&quot;: &quot;ERROR&quot;, &quot;reason&quot;: &quot;No such key&quot; }
-Client started!
-Sent: {&quot;type&quot;:&quot;set&quot;,&quot;key&quot;:&quot;name&quot;,&quot;value&quot;:&quot;Kate&quot;}
-Received: {&quot;response&quot;:&quot;OK&quot;}
-Client started!
-Sent: {&quot;type&quot;:&quot;get&quot;,&quot;key&quot;:&quot;name&quot;}
-Received: {&quot;response&quot;:&quot;OK&quot;, &quot;value&quot;: &quot;Kate&quot;}
-Client started!
-Sent: {&quot;type&quot;:&quot;delete&quot;,&quot;key&quot;:&quot;name&quot;}
-Received: {&quot;response&quot;:&quot;OK&quot;}
-Client started!
-Sent: {&quot;type&quot;:&quot;get&quot;,&quot;key&quot;:&quot;name&quot;}
-Received: { &quot;response&quot;: &quot;ERROR&quot;, &quot;reason&quot;: &quot;No such key&quot; }
+Sent: {&quot;type&quot;:&quot;get&quot;,&quot;key&quot;:[&quot;person&quot;]}
+Received: {&quot;response&quot;:&quot;OK&quot;, &quot;value&quot;: {&quot;name&quot;:&quot;Elon Musk&quot;,&quot;car&quot;:{&quot;model&quot;:&quot;Tesla Roadster&quot;},&quot;rocket&quot;:{&quot;name&quot;:&quot;Falcon 9&quot;,&quot;launches&quot;:&quot;88&quot;}}}
 Client started!
 Sent: {&quot;type&quot;:&quot;exit&quot;}
 Received: { &quot;response&quot;: &quot;OK&quot; }
@@ -163,7 +133,7 @@ Received: { &quot;response&quot;: &quot;OK&quot; }
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.1.1</a> at 24 de jul de 2021 22:58:28</p>
+<a href="http://www.gradle.org">Gradle 7.1.1</a> at 25 de jul de 2021 13:22:01</p>
 </div>
 </div>
 </body>

@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/210138/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Sat, 24 Jul 2021 22:49:12 UTC
+update_date: Sun, 25 Jul 2021 13:28:08 UTC
 stages:
 - id: 348
   step: 5490
@@ -22,7 +22,7 @@ stages:
   is_completed: true
 - id: 353
   step: 5495
-  is_completed: false
+  is_completed: true
 topics:
   0:
   - title: Write, compile, and run

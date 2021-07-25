@@ -1,6 +1,10 @@
 package server.commands;
 
 import java.lang.reflect.Type;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import server.commands.list.*;
@@ -23,20 +27,21 @@ public class Controller {
         return getCommandResult();
     }
 
-    public void fetch(String json) {
+    public void fetch(String request) {
         Gson gson = new Gson();
-        Type type = new TypeToken<HashMap<String, String>>(){}.getType();
-        HashMap<String, String> map = gson.fromJson(json, type);
+        JsonObject json = gson.fromJson(request, JsonObject.class);
+        String key = gson.toJson(json.get("key"));
 
-        switch (map.getOrDefault("type", "exit")) {
+        switch (json.get("type").getAsString()) {
             case "get":
-                this.command = new GetCommand(database, map.get("key"));
+                this.command = new GetCommand(database, key);
                 break;
             case "delete":
-                this.command = new DeleteCommand(database, map.get("key"));
+                this.command = new DeleteCommand(database, key);
                 break;
             case "set":
-                this.command = new SetCommand(database, map.get("key"), map.get("value"));
+                String value = gson.toJson(json.get("value"));
+                this.command = new SetCommand(database, key, value);
                 break;
             default:
                 this.command = new ExitCommand();

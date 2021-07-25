@@ -3,6 +3,8 @@ package client;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 
 import java.io.*;
 import java.net.*;
@@ -11,7 +13,9 @@ import java.util.*;
 public class Main {
     public static final String address = "127.0.0.1";
     public static final int port = 8080;
-    public static final String filepath = "src/client/data/";
+    private static final String FILEPATH_TEST_ENVIRONMENT = System.getProperty("user.dir") + "/src/client/data/";
+    private static final String FILEPATH_LOCAL_ENVIRONMENT = System.getProperty("user.dir") + "/JSON Database/task/src/client/data/";
+    private static final String filepath = FILEPATH_TEST_ENVIRONMENT;
 
     @Parameter(names = "-t", description = "Type of the request")
     private String type;
@@ -47,9 +51,10 @@ public class Main {
 
                 json = gson.toJson(map);
             } else {
-                try (Scanner scanner = new Scanner(new File(filepath + inputFileName))) {
-                    json = scanner.nextLine();
-                } catch (IOException e) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(filepath + inputFileName))) {
+                    JsonElement data = JsonParser.parseReader(reader);
+                    json = gson.toJson(data);
+                } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
             }

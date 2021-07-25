@@ -1,69 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="JsonDatabaseTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-25T01:58:27" hostname="LAPTOP-J1J60HSA" time="1.238">
+<testsuite name="JsonDatabaseTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-07-25T16:22:00" hostname="LAPTOP-J1J60HSA" time="0.5">
   <properties/>
-  <testcase name="start" classname="JsonDatabaseTest" time="1.238"/>
+  <testcase name="start" classname="JsonDatabaseTest" time="0.5"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
-?[1;31m
-Start test 2?[0m
-Client started!
 Server started!
+Client started!
 Sent: {"type":"exit"}
 Received: { "response": "OK" }
 ?[1;31m
+Start test 2?[0m
+?[1;31m
 Start test 3?[0m
-Client started!
 Server started!
-Sent: {"type":"get","key":"1"}
-Received: { "response": "ERROR", "reason": "No such key" }
 Client started!
 Sent: {"type":"set","key":"1","value":"Hello world!"}
 Received: {"response":"OK"}
 Client started!
-Sent: {"type":"set","key":"1","value":"HelloWorld!"}
+Sent: {"type":"set","key":"person","value":{"name":"Elon Musk","car":{"model":"Tesla Roadster","year":"2018"},"rocket":{"name":"Falcon 9","launches":"87"}}}
 Received: {"response":"OK"}
 Client started!
-Sent: {"type":"get","key":"1"}
-Received: {"response":"OK", "value": "HelloWorld!"}
+Sent: {"type":"get","key":["person","name"]}
+Received: {"response":"OK", "value": "Elon Musk"}
 Client started!
-Sent: {"type":"delete","key":"1"}
+Sent: {"type":"set","key":["person","rocket","launches"],"value":"88"}
 Received: {"response":"OK"}
 Client started!
-Sent: {"type":"delete","key":"1"}
-Received: { "response": "ERROR", "reason": "No such key" }
+Sent: {"type":"get","key":["person"]}
+Received: {"response":"OK", "value": {"name":"Elon Musk","car":{"model":"Tesla Roadster","year":"2018"},"rocket":{"name":"Falcon 9","launches":"88"}}}
 Client started!
-Sent: {"type":"get","key":"1"}
-Received: { "response": "ERROR", "reason": "No such key" }
-Client started!
-Sent: {"type":"set","key":"text","value":"Some text here"}
+Sent: {"type":"delete","key":["person","car","year"]}
 Received: {"response":"OK"}
 Client started!
-Sent: {"type":"get","key":"text"}
-Received: {"response":"OK", "value": "Some text here"}
-Client started!
-Sent: {"type":"get","key":"56"}
-Received: { "response": "ERROR", "reason": "No such key" }
-Client started!
-Sent: {"type":"delete","key":"56"}
-Received: { "response": "ERROR", "reason": "No such key" }
-Client started!
-Sent: {"type":"delete","key":"100"}
-Received: { "response": "ERROR", "reason": "No such key" }
-Client started!
-Sent: {"type":"delete","key":"That key doesn\u0027t exist"}
-Received: { "response": "ERROR", "reason": "No such key" }
-Client started!
-Sent: {"type":"set","key":"name","value":"Kate"}
-Received: {"response":"OK"}
-Client started!
-Sent: {"type":"get","key":"name"}
-Received: {"response":"OK", "value": "Kate"}
-Client started!
-Sent: {"type":"delete","key":"name"}
-Received: {"response":"OK"}
-Client started!
-Sent: {"type":"get","key":"name"}
-Received: { "response": "ERROR", "reason": "No such key" }
+Sent: {"type":"get","key":["person"]}
+Received: {"response":"OK", "value": {"name":"Elon Musk","car":{"model":"Tesla Roadster"},"rocket":{"name":"Falcon 9","launches":"88"}}}
 Client started!
 Sent: {"type":"exit"}
 Received: { "response": "OK" }
