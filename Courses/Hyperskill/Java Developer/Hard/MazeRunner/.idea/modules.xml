@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MazeRunner.iml" filepath="$PROJECT_DIR$/.idea/modules/MazeRunner.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maze Runner/task/MazeRunner.Maze_Runner-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Maze Runner/task/MazeRunner.Maze_Runner-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maze Runner/task/MazeRunner.Maze_Runner-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Maze Runner/task/MazeRunner.Maze_Runner-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Maze Runner/task/MazeRunner.Maze_Runner-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Maze Runner/task/MazeRunner.Maze_Runner-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/MazeRunner.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/MazeRunner.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/MazeRunner.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/MazeRunner.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/MazeRunner.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/MazeRunner.util.test.iml" />
+    </modules>
+  </component>
+</project>
