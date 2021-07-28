@@ -364,8 +364,12 @@ class Maze {
 
 class Clue {
     int size;
-    Clue(int s) {
+    boolean withPath;
+    int count;
+    Clue(int s, int c, boolean wp) {
         size = s;
+        count = c;
+        withPath = wp;
     }
 }
 
@@ -375,19 +379,28 @@ public class MazeRunnerTest extends StageTest<Clue> {
     public List<TestCase<Clue>> generate() {
         return List.of(
             new TestCase<Clue>()
-                .setInput("0"),
-
-            new TestCase<Clue>()
                 .setInput("1\n17\n0")
-                .setAttach(new Clue(17)),
+                .setAttach(new Clue(17, 1, false)),
 
             new TestCase<Clue>()
-                .setInput("1\n15\n3\ntest_maze.txt\n0")
-                .setAttach(new Clue(15)),
+                .setInput("1\n29\n3\ntest_maze.txt\n0")
+                .setAttach(new Clue(29, 1, false)),
 
             new TestCase<Clue>()
                 .setInput("2\ntest_maze.txt\n4\n0")
-                .setAttach(new Clue(15))
+                .setAttach(new Clue(29, 1, false)),
+
+            new TestCase<Clue>()
+                .setInput("1\n35\n3\ntest_maze.txt\n0")
+                .setAttach(new Clue(35, 1, false)),
+
+            new TestCase<Clue>()
+                .setInput("2\ntest_maze.txt\n4\n0")
+                .setAttach(new Clue(35, 1, false)),
+
+            new TestCase<Clue>()
+                .setInput("2\ntest_maze.txt\n4\n5\n0")
+                .setAttach(new Clue(35, 2, true))
         );
     }
 
@@ -403,37 +416,50 @@ public class MazeRunnerTest extends StageTest<Clue> {
             );
         }
 
-        if (clue == null && mazes.size() == 0) {
-            return CheckResult.correct();
-        } else if (clue == null) {
-            return CheckResult.wrong(
-                "In this test no maze should be shown, but one was shown. " +
-                    "Try to use \\u2588 character only to print the maze."
-            );
-        } else if (mazes.size() == 0) {
+        if (mazes.size() == 0) {
             return CheckResult.wrong(
                 "No mazes found in the output. Check if you are using " +
                     "\\u2588 character to print the maze."
             );
         }
 
-        if (mazes.size() > 1) {
+        if (mazes.size() != clue.count) {
+            if (clue.count == 1) {
+                return CheckResult.wrong(
+                    "Found " + mazes.size() + " mazes in the output. " +
+                        "Should be only one maze."
+                );
+            } else {
+                return CheckResult.wrong(
+                    "Found " + mazes.size() + " mazes in the output. " +
+                        "Should be two mazes."
+                );
+            }
+        }
+
+        Maze fst = mazes.get(0);
+        Maze snd = mazes.size() == 2 ? mazes.get(1) : null;
+
+        if (snd != null && !fst.equals(snd)) {
             return CheckResult.wrong(
-                "Found " + mazes.size() + " mazes in the output. " +
-                    "Should be only one maze."
+                "The two mazes shown should be equal, but they are different."
             );
         }
 
-        Maze maze = mazes.get(0);
+        if (fst.count(Elem.PATH) != 0) {
+            return CheckResult.wrong(
+                "The first maze should not contain '/' characters."
+            );
+        }
 
-        int entrances = maze.countEntrances();
+        int entrances = fst.countEntrances();
         if (entrances != 2) {
             return new CheckResult(false,
                 "There are " + entrances + " entrances to the maze, " +
                     "should be only two.");
         }
 
-        int emptyLeft = maze.checkAccessibility();
+        int emptyLeft = fst.checkAccessibility();
         if (emptyLeft > 0) {
             return new CheckResult(false,
                 "There are " + emptyLeft + " empty " +
@@ -442,16 +468,33 @@ public class MazeRunnerTest extends StageTest<Clue> {
             );
         }
 
-        if (maze.getHeight() != clue.size) {
+        if (fst.getHeight() != clue.size) {
             return new CheckResult(false,
                 "Number of rows in the maze is incorrect. " +
-                    "It's " + maze.getHeight() + ", but should be " + clue.size);
+                    "It's " + fst.getHeight() + ", but should be " + clue.size);
         }
 
-        if (maze.getWidth() != clue.size) {
+        if (fst.getWidth() != clue.size) {
             return new CheckResult(false,
                 "Number of columns in the maze is incorrect. " +
-                    "It's " + maze.getWidth() + ", but should be " + clue.size);
+                    "It's " + fst.getWidth() + ", but should be " + clue.size);
+        }
+
+        if (snd != null && clue.withPath) {
+            try {
+                int pathLeft = snd.checkPath();
+                if (pathLeft > 0) {
+                    return new CheckResult(false,
+                        "There are " + pathLeft + " escape path ('//') " +
+                            "cells that are separated from the escape path of the maze " +
+                            "(or there is a break somewhere in the escape path)."
+                    );
+                }
+            } catch (Exception e) {
+                return CheckResult.wrong(
+                    e.getMessage()
+                );
+            }
         }
 
         return CheckResult.correct();

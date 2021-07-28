@@ -634,6 +634,18 @@ files:
         }
     }
   learner_created: true
+- name: src/maze/Menu.java
+  visible: true
+  learner_created: true
+- name: src/maze/ICommand.java
+  visible: true
+  learner_created: true
+- name: test_maze.txt
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/47/stages/253/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 28 Jul 2021 18:22:44 UTC
+record: 3

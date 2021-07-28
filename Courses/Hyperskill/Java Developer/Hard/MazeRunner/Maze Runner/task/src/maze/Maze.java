@@ -25,6 +25,12 @@ public class Maze {
     private final int y;
     private Cell[][] cells;
 
+    private int[][] adjacencyMatrix;
+
+    public Maze(int size) {
+        this(size, size);
+    }
+
     public Maze(int x, int y) {
         this.x = x;
         this.y = y;
@@ -39,10 +45,31 @@ public class Maze {
         }
     }
 
+    public String saveMaze() {
+        StringBuilder mazeContent = new StringBuilder();
+        mazeContent.append(x);
+        mazeContent.append("\n");
+
+        for (int i = 0; i < adjacencyMatrix.length; i++) {
+            for (int j = 0; j < adjacencyMatrix.length; j++) {
+                mazeContent.append(adjacencyMatrix[i][j]);
+                mazeContent.append(" ");
+            }
+            mazeContent.append("\n");
+        }
+        return mazeContent.toString();
+    }
+
+    public void loadMaze(int[][] adjMatrix) {
+        cells = getInitialGrid();
+        adjacencyMatrix = adjMatrix;
+        modifyMazeByMst(getMinimumSpanningTree(adjacencyMatrix));
+    }
+
     public void generate() {
         cells = getInitialGrid();
-        int[][] adjMatrix = getAdjacencyMatrix();
-        int[][] mst = getMinimumSpanningTree(adjMatrix);
+        adjacencyMatrix = getAdjacencyMatrix();
+        int[][] mst = getMinimumSpanningTree(adjacencyMatrix);
         modifyMazeByMst(mst);
     }
 
