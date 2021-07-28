@@ -303,6 +303,207 @@ files:
         }
     }
   learner_created: false
+- name: src/advisor/ui/Menu.java
+  visible: true
+  text: |
+    package advisor.ui;
+
+    import advisor.api.Spotify;
+    import advisor.exceptions.UnauthorizedException;
+    import advisor.exceptions.UnknownCommandException;
+    import advisor.utils.Console;
+
+    import java.util.Map;
+    import java.util.HashMap;
+
+    public class Menu {
+        private static boolean running = true;
+
+        private static final ICommand newCommand = (args) -> {
+            Spotify.GET();
+            Console.println("---NEW RELEASES---");
+            Console.println("Mountains [Sia, Diplo, Labrinth]\n" +
+                    "Runaway [Lil Peep]\n" +
+                    "The Greatest Show [Panic! At The Disco]\n" +
+                    "All Out Life [Slipknot]");
+        };
+
+        private static final ICommand featuredCommand = (args) -> {
+            Spotify.GET();
+            Console.println("---FEATURED---");
+            Console.println("Mellow Morning\n" +
+                    "Wake Up and Smell the Coffee\n" +
+                    "Monday Motivation\n" +
+                    "Songs to Sing in the Shower");
+        };
+
+        private static final ICommand categoriesCommand = (args) -> {
+            Spotify.GET();
+            Console.println("---CATEGORIES---");
+            Console.println("Top Lists\n" +
+                    "Pop\n" +
+                    "Mood\n" +
+                    "Latin");
+        };
+
+        private static final ICommand playlistsCommand = (args) -> {
+            Spotify.GET();
+            String playlistName = (String) args[0];
+            Console.print("---%s PLAYLISTS---", playlistName.toUpperCase());
+            Console.println("Walk Like A Badass  \n" +
+                    "Rage Beats  \n" +
+                    "Arab Mood Booster  \n" +
+                    "Sunday Stroll");
+        };
+
+        private static final ICommand authCommand = (args) -> {
+            Console.println(Spotify.doAuth());
+            Console.println("---SUCCESS---");
+        };
+
+        private static final ICommand exitCommand = (args) -> {
+            Console.println("---GOODBYE!---");
+            running = false;
+        };
+
+        private static final Map<String, ICommand> commandMap = new HashMap<>();
+
+
+        public static void initialize() {
+            commandMap.put("new", newCommand);
+            commandMap.put("featured", featuredCommand);
+            commandMap.put("categories", categoriesCommand);
+            commandMap.put("playlists", playlistsCommand);
+            commandMap.put("auth", authCommand);
+            commandMap.put("exit", exitCommand);
+        }
+
+        public static void invoke() {
+            String input = Console.getLine();
+            ICommand command;
+            Object[] args;
+            if (input.contains(" ")) {
+                String[] tokens = input.split(" ");
+                command = getCommandFromName(tokens[0]);
+                args = new Object[]{tokens[1]};
+            } else {
+                command = getCommandFromName(input);
+                args = null;
+            }
+            try {
+                command.execute(args);
+            } catch (UnauthorizedException e) {
+                Console.println(e.getMessage());
+            }
+        }
+
+        public static ICommand getCommandFromName(String name) throws UnknownCommandException {
+            if (commandMap.containsKey(name)) {
+                return commandMap.get(name);
+            }
+            throw new UnknownCommandException();
+        }
+
+        public static boolean isRunning() {
+            return running;
+        }
+    }
+  learner_created: true
+- name: src/advisor/exceptions/UnknownCommandException.java
+  visible: true
+  text: |
+    package advisor.exceptions;
+
+    public class UnknownCommandException extends RuntimeException {
+        public UnknownCommandException() {
+            super("Unknown command.", null);
+        }
+    }
+  learner_created: true
+- name: src/advisor/api/Spotify.java
+  visible: true
+  text: |
+    package advisor.api;
+
+    import advisor.exceptions.UnauthorizedException;
+
+    public class Spotify {
+        private static final String clientID = "0d7cdbd67fde4af792a1745e5c10605f";
+        private static final String redirectUrl = "http://localhost:8080";
+        private static final String OAuthUrl = "https://accounts.spotify.com/authorize?client_id=%s&redirect_uri=%s&response_type=code";
+
+        private static boolean authenticated = false;
+
+        public static String doAuth() {
+            authenticated = true;
+            return String.format(OAuthUrl, clientID, redirectUrl);
+        }
+
+        public static void POST() throws UnauthorizedException {
+            if (!authenticated) throw new UnauthorizedException();
+        }
+
+        public static void GET() throws UnauthorizedException {
+            if (!authenticated) throw new UnauthorizedException();
+        }
+
+        public static boolean isAuthenticated() {
+            return isAuthenticated();
+        }
+    }
+  learner_created: true
+- name: src/advisor/utils/Console.java
+  visible: true
+  text: |
+    package advisor.utils;
+
+    import java.util.Scanner;
+
+    public class Console {
+        public static final Scanner scanner = new Scanner(System.in);
+
+        public static String getLine() {
+            return scanner.nextLine();
+        }
+
+        public static void print(String str, Object ... args) {
+            printf(str, args);
+            println();
+        }
+
+        public static void printf(String str, Object ... args) {
+            System.out.printf(str, args);
+        }
+
+        public static void println() {
+            System.out.println();
+        }
+
+        public static void println(String str) {
+            System.out.println(str);
+        }
+    }
+  learner_created: true
+- name: src/advisor/ui/ICommand.java
+  visible: true
+  text: |
+    package advisor.ui;
+
+    public interface ICommand {
+        void execute(Object ... args);
+    }
+  learner_created: true
+- name: src/advisor/exceptions/UnauthorizedException.java
+  visible: true
+  text: |
+    package advisor.exceptions;
+
+    public class UnauthorizedException extends RuntimeException {
+        public UnauthorizedException() {
+            super("Please, provide access for application.", null);
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/62/stages/337/implement#comment
 status: Unchecked
 record: -1
