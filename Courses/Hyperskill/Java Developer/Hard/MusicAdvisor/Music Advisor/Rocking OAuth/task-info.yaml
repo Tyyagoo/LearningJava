@@ -128,6 +128,148 @@ files:
         }
     }
   learner_created: false
+- name: src/advisor/ui/Menu.java
+  visible: true
+  text: |
+    package advisor.ui;
+
+    import advisor.exceptions.UnknownCommandException;
+    import advisor.utils.Console;
+
+    import java.util.Map;
+    import java.util.HashMap;
+
+    public class Menu {
+        private static boolean running = true;
+
+        private static final ICommand newCommand = (args) -> {
+            Console.println("---NEW RELEASES---");
+            Console.println("Mountains [Sia, Diplo, Labrinth]\n" +
+                    "Runaway [Lil Peep]\n" +
+                    "The Greatest Show [Panic! At The Disco]\n" +
+                    "All Out Life [Slipknot]");
+        };
+
+        private static final ICommand featuredCommand = (args) -> {
+            Console.println("---FEATURED---");
+            Console.println("Mellow Morning\n" +
+                    "Wake Up and Smell the Coffee\n" +
+                    "Monday Motivation\n" +
+                    "Songs to Sing in the Shower");
+        };
+
+        private static final ICommand categoriesCommand = (args) -> {
+            Console.println("---CATEGORIES---");
+            Console.println("Top Lists\n" +
+                    "Pop\n" +
+                    "Mood\n" +
+                    "Latin");
+        };
+
+        private static final ICommand playlistsCommand = (args) -> {
+            String playlistName = (String) args[0];
+            Console.print("---%s PLAYLISTS---", playlistName.toUpperCase());
+            Console.println("Walk Like A Badass  \n" +
+                    "Rage Beats  \n" +
+                    "Arab Mood Booster  \n" +
+                    "Sunday Stroll");
+        };
+
+        private static final ICommand exitCommand = (args) -> {
+            Console.println("---GOODBYE!---");
+            running = false;
+        };
+
+        private static final Map<String, ICommand> commandMap = new HashMap<>();
+
+
+        public static void initialize() {
+            commandMap.put("new", newCommand);
+            commandMap.put("featured", featuredCommand);
+            commandMap.put("categories", categoriesCommand);
+            commandMap.put("playlists", playlistsCommand);
+            commandMap.put("exit", exitCommand);
+        }
+
+        public static void invoke() {
+            String input = Console.getLine();
+            ICommand command;
+            Object[] args;
+            if (input.contains(" ")) {
+                String[] tokens = input.split(" ");
+                command = getCommandFromName(tokens[0]);
+                args = new Object[]{tokens[1]};
+            } else {
+                command = getCommandFromName(input);
+                args = null;
+            }
+            command.execute(args);
+        }
+
+        public static ICommand getCommandFromName(String name) throws UnknownCommandException {
+            if (commandMap.containsKey(name)) {
+                return commandMap.get(name);
+            }
+            throw new UnknownCommandException();
+        }
+
+        public static boolean isRunning() {
+            return running;
+        }
+    }
+  learner_created: true
+- name: src/advisor/exceptions/UnknownCommandException.java
+  visible: true
+  text: |
+    package advisor.exceptions;
+
+    public class UnknownCommandException extends RuntimeException {
+        public UnknownCommandException() {
+            super("Unknown command.", null);
+        }
+    }
+  learner_created: true
+- name: src/advisor/utils/Console.java
+  visible: true
+  text: |
+    package advisor.utils;
+
+    import java.util.Scanner;
+
+    public class Console {
+        public static final Scanner scanner = new Scanner(System.in);
+
+        public static String getLine() {
+            return scanner.nextLine();
+        }
+
+        public static void print(String str, Object ... args) {
+            printf(str, args);
+            println();
+        }
+
+        public static void printf(String str, Object ... args) {
+            System.out.printf(str, args);
+        }
+
+        public static void println() {
+            System.out.println();
+        }
+
+        public static void println(String str) {
+            System.out.println(str);
+        }
+    }
+  learner_created: true
+- name: src/advisor/ui/ICommand.java
+  visible: true
+  text: |
+    package advisor.ui;
+
+    public interface ICommand {
+        void execute(Object ... args);
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/62/stages/336/implement#comment
 status: Unchecked
 record: -1

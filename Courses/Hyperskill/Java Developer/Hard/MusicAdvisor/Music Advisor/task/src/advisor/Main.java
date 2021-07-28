@@ -1,7 +1,12 @@
 package advisor;
 
+import advisor.ui.Menu;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Menu.initialize();
+        while (Menu.isRunning()) {
+            Menu.invoke();
+        }
     }
 }
