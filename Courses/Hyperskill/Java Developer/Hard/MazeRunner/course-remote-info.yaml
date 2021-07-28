@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/209893/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Thu, 01 Jan 1970 00:00:00 UTC
+update_date: Wed, 28 Jul 2021 16:10:58 UTC
 stages:
 - id: 251
   step: 5393
@@ -23,10 +23,10 @@ topics:
     theory_id: 3739
   - title: JVM, JRE, and JDK
     theory_id: 3499
-  - title: Immutability
-    theory_id: 7929
   - title: Units of information
     theory_id: 6865
+  - title: Immutability
+    theory_id: 7929
   - title: IDE
     theory_id: 10996
   - title: Computer algorithms
@@ -45,6 +45,10 @@ topics:
     theory_id: 3749
   - title: Types and variables
     theory_id: 3518
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
   - title: Comments
     theory_id: 3520
   - title: Coding style conventions
@@ -79,10 +83,6 @@ topics:
     theory_id: 3507
   - title: Switch statement
     theory_id: 3504
-  - title: Sizes and ranges
-    theory_id: 3532
-  - title: Type casting
-    theory_id: 3510
   - title: Calling a method
     theory_id: 10973
   - title: Declaring a method
