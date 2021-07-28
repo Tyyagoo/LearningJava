@@ -57,6 +57,10 @@ public class Menu {
         currentMaze.draw();
     };
 
+    private static final ICommand solveMaze = () -> {
+        currentMaze.solve();
+    };
+
     private static final ICommand exit = () -> {
         running = false;
         System.out.println("Bye!");
@@ -88,6 +92,7 @@ public class Menu {
         } else {
             System.out.println("3. Save the maze");
             System.out.println("4. Display the maze");
+            System.out.println("5. Find the escape");
             System.out.println("0. Exit");
             int option = scanner.nextInt();
             scanner.nextLine();
@@ -103,6 +108,9 @@ public class Menu {
                     break;
                 case 4:
                     showMaze.execute();
+                    break;
+                case 5:
+                    solveMaze.execute();
                     break;
                 case 0:
                     exit.execute();

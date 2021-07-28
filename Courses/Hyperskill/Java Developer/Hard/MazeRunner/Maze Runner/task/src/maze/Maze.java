@@ -5,7 +5,10 @@ import java.util.*;
 public class Maze {
     enum Cell{
         EMPTY(' '),
-        WALL('\u2588');
+        WALL('\u2588'),
+        PATH('/'),
+        DEAD_END(' '),
+        EXIT(' ');
 
         private final char graphic;
 
@@ -37,9 +40,13 @@ public class Maze {
     }
 
     public void draw() {
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                cells[i][j].draw();
+        draw(cells);
+    }
+
+    private void draw(Cell[][] maze) {
+        for (int i = 0; i < maze.length; i++) {
+            for (int j = 0; j < maze[0].length; j++) {
+                maze[i][j].draw();
             }
             System.out.println();
         }
@@ -64,6 +71,44 @@ public class Maze {
         cells = getInitialGrid();
         adjacencyMatrix = adjMatrix;
         modifyMazeByMst(getMinimumSpanningTree(adjacencyMatrix));
+    }
+
+    public Cell[][] cloneMaze() {
+        Cell[][] clone = new Cell[x][y];
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j< y; j++) {
+                clone[i][j] = cells[i][j];
+            }
+        }
+        return clone;
+    }
+
+    public void solve() {
+        Cell[][] solved = cloneMaze();
+        solveHelper(solved, 1, 0);
+        draw(solved);
+    }
+
+    public boolean solveHelper(Cell[][] maze, int i, int j) {
+        if (maze[i][j] == Cell.EXIT) {
+            maze[i][j] = Cell.PATH;
+            return true;
+        }
+
+        if (maze[i][j] == Cell.WALL || maze[i][j] == Cell.DEAD_END) return false;
+
+        if (i < x && j < y) {
+            if (maze[i][j] == Cell.PATH) return false;
+            maze[i][j] = Cell.PATH;
+
+            if (solveHelper(maze, i + 1, j)) return true;
+            if (solveHelper(maze, i, j + 1)) return true;
+            if (solveHelper(maze, i - 1, j)) return true;
+            if (solveHelper(maze, i, j - 1)) return true;
+
+            maze[i][j] = Cell.DEAD_END;
+        }
+        return false;
     }
 
     public void generate() {
@@ -174,7 +219,7 @@ public class Maze {
 
             currentEdge++;
             if (currentEdge == xSize * ySize) {
-                cells[mazeRow - 2][y - 1] = Cell.EMPTY;
+                cells[mazeRow - 2][y - 1] = Cell.EXIT;
                 cells[mazeRow - 2][y - 2] = Cell.EMPTY;
             }
         }
