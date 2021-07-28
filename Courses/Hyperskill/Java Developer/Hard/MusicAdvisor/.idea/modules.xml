@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MusicAdvisor.iml" filepath="$PROJECT_DIR$/.idea/modules/MusicAdvisor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Music Advisor/task/MusicAdvisor.Music_Advisor-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Music Advisor/task/MusicAdvisor.Music_Advisor-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Music Advisor/task/MusicAdvisor.Music_Advisor-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Music Advisor/task/MusicAdvisor.Music_Advisor-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Music Advisor/task/MusicAdvisor.Music_Advisor-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Music Advisor/task/MusicAdvisor.Music_Advisor-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/MusicAdvisor.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/MusicAdvisor.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/MusicAdvisor.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/MusicAdvisor.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/MusicAdvisor.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/MusicAdvisor.util.test.iml" />
+    </modules>
+  </component>
+</project>
