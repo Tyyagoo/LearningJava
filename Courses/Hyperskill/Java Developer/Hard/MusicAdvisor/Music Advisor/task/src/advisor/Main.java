@@ -2,15 +2,22 @@ package advisor;
 
 import advisor.api.Spotify;
 import advisor.ui.Menu;
-import advisor.utils.Console;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
     public static void main(String[] args) {
+        Map<String, String> commandLineArguments = new HashMap<>();
+        for (int i = 0; i < args.length; i++) {
+            commandLineArguments.put(args[i], args[++i]);
+        }
         try {
-            Menu.initialize(new Spotify(args[1]));
+            String accessUrl = commandLineArguments.getOrDefault("-access", "https://accounts.spotify.com");
+            String apiUrl = commandLineArguments.getOrDefault("-resource", "https://api.spotify.com");
+            Menu.initialize(new Spotify(accessUrl, apiUrl));
         } catch (IOException e) {
             e.printStackTrace();
             return;
@@ -18,5 +25,6 @@ public class Main {
         while (Menu.isRunning()) {
             Menu.invoke();
         }
+        System.exit(0);
     }
 }

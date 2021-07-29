@@ -851,6 +851,402 @@ files:
         }
     }
   learner_created: false
+- name: src/advisor/ui/Menu.java
+  visible: true
+  text: |
+    package advisor.ui;
+
+    import advisor.api.Spotify;
+    import advisor.exceptions.UnauthorizedException;
+    import advisor.exceptions.UnknownCommandException;
+    import advisor.utils.Console;
+    import com.google.gson.*;
+
+    import java.util.Map;
+    import java.util.HashMap;
+
+    public class Menu {
+        private static boolean running = true;
+        private static Gson gson = new Gson();
+        private static Spotify spotifyApi;
+
+        private static final ICommand newCommand = (args) -> {
+            JsonObject response = spotifyApi.GET("new-releases");
+            if (response.has("error")) {
+                Console.println(response.get("error").getAsJsonObject().get("message").getAsString());
+                return;
+            }
+            JsonArray items = response.get("albums").getAsJsonObject().get("items").getAsJsonArray();
+            for (JsonElement n: items) {
+                JsonObject newObject = n.getAsJsonObject();
+                Console.println(newObject.get("name").getAsString());
+                StringBuilder artistsString = new StringBuilder();
+                artistsString.append("[");
+                for (JsonElement artist: newObject.get("artists").getAsJsonArray()) {
+                    artistsString.append(artist.getAsJsonObject().get("name").getAsString());
+                    artistsString.append(", ");
+                }
+                artistsString.deleteCharAt(artistsString.length() - 1);
+                artistsString.deleteCharAt(artistsString.length() - 1);
+                artistsString.append("]");
+                Console.println(artistsString.toString());
+                Console.println(newObject.get("external_urls").getAsJsonObject().get("spotify").getAsString());
+                Console.println();
+            }
+        };
+
+        private static final ICommand featuredCommand = (args) -> {
+            JsonObject response = spotifyApi.GET("featured-playlists");
+            if (response.has("error")) {
+                Console.println(response.get("error").getAsJsonObject().get("message").getAsString());
+                return;
+            }
+            JsonArray items = response.get("playlists").getAsJsonObject().get("items").getAsJsonArray();
+            for (JsonElement i: items) {
+                JsonObject playlist = i.getAsJsonObject();
+                Console.println(playlist.get("name").getAsString());
+                Console.println(playlist.get("external_urls").getAsJsonObject().get("spotify").getAsString());
+                Console.println();
+            }
+        };
+
+        private static final ICommand categoriesCommand = (args) -> {
+            JsonObject response = spotifyApi.GET("categories");
+            if (response.has("error")) {
+                Console.println(response.get("error").getAsJsonObject().get("message").getAsString());
+                return;
+            }
+            JsonArray items = response.get("categories").getAsJsonObject().get("items").getAsJsonArray();
+            for (JsonElement i: items) {
+                JsonObject obj = i.getAsJsonObject();
+                Console.println(obj.get("name").getAsString());
+            }
+        };
+
+        private static final ICommand playlistsCommand = (args) -> {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (int i = 1; i < args.length; i++) {
+                stringBuilder.append((String) args[i]);
+                stringBuilder.append(" ");
+            }
+            String categoryName = stringBuilder.toString().trim();
+            JsonObject response = spotifyApi.GET("categories");
+            if (response.has("error")) {
+                Console.println(response.get("error").getAsJsonObject().get("message").getAsString());
+                return;
+            }
+            JsonArray categories = response.get("categories").getAsJsonObject().get("items").getAsJsonArray();
+            String categoryID = "null";
+            for (JsonElement i: categories) {
+                JsonObject category = i.getAsJsonObject();
+                if (categoryName.equals(category.get("name").getAsString())) {
+                    categoryID = category.get("id").getAsString();
+                }
+            }
+
+            response = spotifyApi.GET(String.format("categories/%s/playlists", categoryID));
+            if (response.has("error")) {
+                Console.println(response.get("error").getAsJsonObject().get("message").getAsString());
+                return;
+            }
+            JsonArray playlists = response.get("playlists").getAsJsonObject().get("items").getAsJsonArray();
+            for (JsonElement pl: playlists) {
+                JsonObject playlist = pl.getAsJsonObject();
+                Console.println(playlist.get("name").getAsString());
+                Console.println(playlist.get("external_urls").getAsJsonObject().get("spotify").getAsString());
+            }
+        };
+
+        private static final ICommand authCommand = (args) -> {
+            spotifyApi.auth();
+            if (spotifyApi.isAuthenticated()) Console.println("Success!");
+        };
+
+        private static final ICommand exitCommand = (args) -> {
+            Console.println("---GOODBYE!---");
+            running = false;
+        };
+
+        private static final Map<String, ICommand> commandMap = new HashMap<>();
+
+
+        public static void initialize(Spotify api) {
+            spotifyApi = api;
+            commandMap.put("new", newCommand);
+            commandMap.put("featured", featuredCommand);
+            commandMap.put("categories", categoriesCommand);
+            commandMap.put("playlists", playlistsCommand);
+            commandMap.put("auth", authCommand);
+            commandMap.put("exit", exitCommand);
+        }
+
+        public static void invoke() {
+            String input = Console.getLine();
+            ICommand command;
+            String[] tokens = input.split(" ");
+            command = getCommandFromName(tokens[0]);
+            Object[] args = (tokens.length != 1) ? tokens : new Object[0];
+            try {
+                command.execute(args);
+            } catch (UnauthorizedException e) {
+                Console.println(e.getMessage());
+            }
+        }
+
+        public static ICommand getCommandFromName(String name) throws UnknownCommandException {
+            if (commandMap.containsKey(name)) {
+                return commandMap.get(name);
+            }
+            throw new UnknownCommandException();
+        }
+
+        public static boolean isRunning() {
+            return running;
+        }
+    }
+  learner_created: true
+- name: src/advisor/exceptions/UnknownCommandException.java
+  visible: true
+  text: |
+    package advisor.exceptions;
+
+    public class UnknownCommandException extends RuntimeException {
+        public UnknownCommandException() {
+            super("Unknown command.", null);
+        }
+    }
+  learner_created: true
+- name: src/advisor/api/Spotify.java
+  visible: true
+  text: |
+    package advisor.api;
+
+    import advisor.exceptions.UnauthorizedException;
+    import advisor.utils.Console;
+    import com.google.gson.*;
+    import com.sun.net.httpserver.*;
+    import java.io.IOException;
+    import java.net.*;
+    import java.net.http.*;
+    import java.util.*;
+    import java.util.concurrent.TimeUnit;
+
+    public class Spotify {
+        private static final Gson gson = new Gson();
+        private static final String clientID = "0d7cdbd67fde4af792a1745e5c10605f";
+        private static final String clientSecret = System.getenv("CLIENT_SECRET");
+        private static final int port = new Random().nextInt(20000) + 9000;
+        private static final String redirectURI = String.format("http://localhost:%s", port);
+
+        private final HttpServer server;
+        private final HttpClient client;
+
+        private final String accessUrl;
+        private final String apiUrl;
+        private volatile String code = null;
+        private volatile boolean serverIsClosed = true;
+        private boolean authenticated = false;
+
+        private Map<String, String> tokenUtils = new HashMap<>();
+        private final Timer TOKEN_TIMER = new Timer();
+
+        public Spotify(String url, String api) throws IOException {
+            this.accessUrl = url;
+            this.apiUrl = api;
+            this.server = HttpServer.create(new InetSocketAddress(port), 10);
+            this.client = HttpClient.newBuilder().build();
+        }
+
+        public void auth() {
+            if (authenticated) return;
+            initializeSever();
+            String authUrl = getOAuthUrl();
+            Console.print("use this link to request the access code:\n%s\nwaiting for code...", authUrl);
+            while (!serverIsClosed) {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (code != null) {
+                getToken();
+            }
+        }
+
+        public void getToken() {
+            Console.print("code received\nmaking http request for access_token...");
+
+            String body = String.format("grant_type=authorization_code&code=%s&redirect_uri=%s&client_id=%s&client_secret=%s", code, redirectURI, clientID, clientSecret);
+            HttpRequest request = HttpRequest.newBuilder()
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .uri(URI.create(String.format("%s/api/token", accessUrl)))
+                    .POST(HttpRequest.BodyPublishers.ofString(body))
+                    .build();
+            try {
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                JsonObject jsonObject = JsonParser.parseString(response.body()).getAsJsonObject();
+                if (jsonObject.has("error")) {
+                    Console.println(jsonObject.get("error").getAsJsonObject().get("message").getAsString());
+                    return;
+                }
+                setToken(jsonObject);
+                tokenUtils.put("refresh_token", jsonObject.get("refresh_token").getAsString());
+                authenticated = true;
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public void setToken(JsonObject jsonObject) {
+            tokenUtils.put("access_token", jsonObject.get("access_token").getAsString());
+            tokenUtils.put("token_type", jsonObject.get("token_type").getAsString());
+            tokenUtils.put("expires_in", jsonObject.get("expires_in").getAsString());
+            TimerTask tokenExpirationTimer = new TimerTask() {
+                @Override
+                public void run() {
+                    refreshToken();
+                }
+            };
+            TOKEN_TIMER.schedule(tokenExpirationTimer, TimeUnit.SECONDS.toMillis(Long.parseLong(tokenUtils.get("expires_in"))));
+        }
+
+        public void refreshToken() {
+            String body = String.format("grant_type=refresh_token&refresh_token=%s", tokenUtils.get("refresh_token"));
+            HttpRequest request = HttpRequest.newBuilder()
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .header("Authorization: Basic", String.format("%s:%s", clientID, clientSecret))
+                    .uri(URI.create(String.format("%s/api/token", accessUrl)))
+                    .POST(HttpRequest.BodyPublishers.ofString(body))
+                    .build();
+
+            try {
+                HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                JsonObject jsonObject = JsonParser.parseString(response.body()).getAsJsonObject();
+                if (jsonObject.has("error")) {
+                    Console.println(jsonObject.get("error").getAsJsonObject().get("message").getAsString());
+                    return;
+                }
+                setToken(jsonObject);
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        public void initializeSever() {
+            server.createContext("/", httpExchange -> {
+                // http:localhost:8080?code=123
+                String query = httpExchange.getRequestURI().getQuery();
+                if (query == null) query ="void";
+                if (query.contains("code=")) {
+                    String[] tokens = query.split("=");
+                    if (tokens.length == 2) {
+                        code = tokens[1];
+                    }
+                }
+
+                String response = (code != null) ? "Got the code. Return back to your program." :
+                        "Authorization code not found. Try again.";
+                httpExchange.sendResponseHeaders(200, response.length());
+                httpExchange.getResponseBody().write(response.getBytes());
+                httpExchange.getResponseBody().close();
+                if (code != null) {
+                    Console.println("Closing the server.");
+                    serverIsClosed = true;
+                    server.stop(10);
+                }
+            });
+            serverIsClosed = false;
+            server.start();
+            try {
+                Thread.sleep(2);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
+        public String getOAuthUrl() {
+            return String.format("%s/authorize?client_id=%s&response_type=code&redirect_uri=%s", accessUrl, clientID, redirectURI);
+        }
+
+        public JsonObject GET(String req) throws UnauthorizedException {
+            if (!isAuthenticated()) throw new UnauthorizedException();
+            HttpRequest httpRequest = HttpRequest.newBuilder()
+                    .header("Content-Type", "application/x-www-form-urlencoded")
+                    .header("Authorization", String.format("%s %s", tokenUtils.get("token_type"), tokenUtils.get("access_token")))
+                    .uri(URI.create(String.format("%s/v1/browse/%s", apiUrl, req)))
+                    .build();
+            try {
+                HttpResponse<String> response = client.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+                return JsonParser.parseString(response.body()).getAsJsonObject();
+            } catch (IOException | InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        public void POST() throws UnauthorizedException {
+            if (!isAuthenticated()) throw new UnauthorizedException();
+        }
+
+        public boolean isAuthenticated() {
+            return authenticated;
+        }
+    }
+  learner_created: true
+- name: src/advisor/utils/Console.java
+  visible: true
+  text: |
+    package advisor.utils;
+
+    import java.util.Scanner;
+
+    public class Console {
+        public static final Scanner scanner = new Scanner(System.in);
+
+        public static String getLine() {
+            return scanner.nextLine();
+        }
+
+        public static void print(String str, Object ... args) {
+            printf(str, args);
+            println();
+        }
+
+        public static void printf(String str, Object ... args) {
+            System.out.printf(str, args);
+        }
+
+        public static void println() {
+            System.out.println();
+        }
+
+        public static void println(String str) {
+            System.out.println(str);
+        }
+    }
+  learner_created: true
+- name: src/advisor/ui/ICommand.java
+  visible: true
+  text: |
+    package advisor.ui;
+
+    public interface ICommand {
+        void execute(Object ... args);
+    }
+  learner_created: true
+- name: src/advisor/exceptions/UnauthorizedException.java
+  visible: true
+  text: |
+    package advisor.exceptions;
+
+    public class UnauthorizedException extends RuntimeException {
+        public UnauthorizedException(String ... args) {
+            super(args.length == 0 ? "Please, provide access for application." : args[0], null);
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/62/stages/339/implement#comment
 status: Unchecked
 record: -1
