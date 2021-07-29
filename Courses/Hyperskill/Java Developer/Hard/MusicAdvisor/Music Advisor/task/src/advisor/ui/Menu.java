@@ -13,6 +13,23 @@ public class Menu {
     private static boolean running = true;
     private static Gson gson = new Gson();
     private static Spotify spotifyApi;
+    private static SubMenu subMenu;
+
+    private static final ICommand nextCommand = (args) -> {
+        if (subMenu != null) {
+            subMenu.nextPage();
+            return;
+        }
+        Console.println("No more pages.");
+    };
+
+    private static final ICommand previousCommand = (args) -> {
+        if (subMenu != null) {
+            subMenu.previousPage();
+            return;
+        }
+        Console.println("No more pages.");
+    };
 
     private static final ICommand newCommand = (args) -> {
         JsonObject response = spotifyApi.GET("new-releases");
@@ -21,22 +38,8 @@ public class Menu {
             return;
         }
         JsonArray items = response.get("albums").getAsJsonObject().get("items").getAsJsonArray();
-        for (JsonElement n: items) {
-            JsonObject newObject = n.getAsJsonObject();
-            Console.println(newObject.get("name").getAsString());
-            StringBuilder artistsString = new StringBuilder();
-            artistsString.append("[");
-            for (JsonElement artist: newObject.get("artists").getAsJsonArray()) {
-                artistsString.append(artist.getAsJsonObject().get("name").getAsString());
-                artistsString.append(", ");
-            }
-            artistsString.deleteCharAt(artistsString.length() - 1);
-            artistsString.deleteCharAt(artistsString.length() - 1);
-            artistsString.append("]");
-            Console.println(artistsString.toString());
-            Console.println(newObject.get("external_urls").getAsJsonObject().get("spotify").getAsString());
-            Console.println();
-        }
+        subMenu = SubMenu.getNewsPage(items);
+        subMenu.drawPage();
     };
 
     private static final ICommand featuredCommand = (args) -> {
@@ -46,12 +49,8 @@ public class Menu {
             return;
         }
         JsonArray items = response.get("playlists").getAsJsonObject().get("items").getAsJsonArray();
-        for (JsonElement i: items) {
-            JsonObject playlist = i.getAsJsonObject();
-            Console.println(playlist.get("name").getAsString());
-            Console.println(playlist.get("external_urls").getAsJsonObject().get("spotify").getAsString());
-            Console.println();
-        }
+        subMenu = SubMenu.getFeaturedPage(items);
+        subMenu.drawPage();
     };
 
     private static final ICommand categoriesCommand = (args) -> {
@@ -61,10 +60,8 @@ public class Menu {
             return;
         }
         JsonArray items = response.get("categories").getAsJsonObject().get("items").getAsJsonArray();
-        for (JsonElement i: items) {
-            JsonObject obj = i.getAsJsonObject();
-            Console.println(obj.get("name").getAsString());
-        }
+        subMenu = SubMenu.getCategoriesPage(items);
+        subMenu.drawPage();
     };
 
     private static final ICommand playlistsCommand = (args) -> {
@@ -94,11 +91,8 @@ public class Menu {
             return;
         }
         JsonArray playlists = response.get("playlists").getAsJsonObject().get("items").getAsJsonArray();
-        for (JsonElement pl: playlists) {
-            JsonObject playlist = pl.getAsJsonObject();
-            Console.println(playlist.get("name").getAsString());
-            Console.println(playlist.get("external_urls").getAsJsonObject().get("spotify").getAsString());
-        }
+        subMenu = SubMenu.getPlaylistsPage(playlists);
+        subMenu.drawPage();
     };
 
     private static final ICommand authCommand = (args) -> {
@@ -113,7 +107,6 @@ public class Menu {
 
     private static final Map<String, ICommand> commandMap = new HashMap<>();
 
-
     public static void initialize(Spotify api) {
         spotifyApi = api;
         commandMap.put("new", newCommand);
@@ -122,6 +115,8 @@ public class Menu {
         commandMap.put("playlists", playlistsCommand);
         commandMap.put("auth", authCommand);
         commandMap.put("exit", exitCommand);
+        commandMap.put("next", nextCommand);
+        commandMap.put("prev", previousCommand);
     }
 
     public static void invoke() {

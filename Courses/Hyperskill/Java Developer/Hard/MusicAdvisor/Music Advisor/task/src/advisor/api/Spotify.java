@@ -11,10 +11,13 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Spotify {
+    private static final int TEST_PORT = new Random().nextInt(20000) + 9000;
+    private static final int LOCAL_PORT = 8080;
+
     private static final Gson gson = new Gson();
     private static final String clientID = "0d7cdbd67fde4af792a1745e5c10605f";
     private static final String clientSecret = System.getenv("CLIENT_SECRET");
-    private static final int port = new Random().nextInt(20000) + 9000;
+    private static final int port = TEST_PORT;
     private static final String redirectURI = String.format("http://localhost:%s", port);
 
     private final HttpServer server;
