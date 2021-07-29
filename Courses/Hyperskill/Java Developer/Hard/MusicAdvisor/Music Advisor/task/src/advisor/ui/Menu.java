@@ -10,9 +10,10 @@ import java.util.HashMap;
 
 public class Menu {
     private static boolean running = true;
+    private static Spotify spotifyApi;
 
     private static final ICommand newCommand = (args) -> {
-        Spotify.GET();
+        spotifyApi.GET();
         Console.println("---NEW RELEASES---");
         Console.println("Mountains [Sia, Diplo, Labrinth]\n" +
                 "Runaway [Lil Peep]\n" +
@@ -21,7 +22,7 @@ public class Menu {
     };
 
     private static final ICommand featuredCommand = (args) -> {
-        Spotify.GET();
+        spotifyApi.GET();
         Console.println("---FEATURED---");
         Console.println("Mellow Morning\n" +
                 "Wake Up and Smell the Coffee\n" +
@@ -30,7 +31,7 @@ public class Menu {
     };
 
     private static final ICommand categoriesCommand = (args) -> {
-        Spotify.GET();
+        spotifyApi.GET();
         Console.println("---CATEGORIES---");
         Console.println("Top Lists\n" +
                 "Pop\n" +
@@ -39,7 +40,7 @@ public class Menu {
     };
 
     private static final ICommand playlistsCommand = (args) -> {
-        Spotify.GET();
+        spotifyApi.GET();
         String playlistName = (String) args[0];
         Console.print("---%s PLAYLISTS---", playlistName.toUpperCase());
         Console.println("Walk Like A Badass  \n" +
@@ -49,8 +50,8 @@ public class Menu {
     };
 
     private static final ICommand authCommand = (args) -> {
-        Console.println(Spotify.doAuth());
-        Console.println("---SUCCESS---");
+        spotifyApi.auth();
+        if (spotifyApi.isAuthenticated()) Console.println("---SUCCESS---");
     };
 
     private static final ICommand exitCommand = (args) -> {
@@ -61,7 +62,8 @@ public class Menu {
     private static final Map<String, ICommand> commandMap = new HashMap<>();
 
 
-    public static void initialize() {
+    public static void initialize(Spotify api) {
+        spotifyApi = api;
         commandMap.put("new", newCommand);
         commandMap.put("featured", featuredCommand);
         commandMap.put("categories", categoriesCommand);
