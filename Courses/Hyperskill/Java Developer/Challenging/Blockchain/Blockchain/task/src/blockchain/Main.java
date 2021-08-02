@@ -1,24 +1,22 @@
 package blockchain;
 
+import java.util.Date;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        Block[] blockchain = new Block[5];
+        System.out.print("Enter how many zeros the hash must start with: ");
+        int n = new Scanner(System.in).nextInt();
+        System.out.println();
+        Chain blockchain = new Chain(n);
+        while (blockchain.getSize() < 5) {
+            long timestampStart = new Date().getTime();
+            while (!blockchain.mine());
+            long timestampFinish = new Date().getTime();
+            long timeDelta = timestampFinish - timestampStart;
 
-        String previousHash = "0";
-        for (int i = 0; i < blockchain.length; i++) {
-            blockchain[i] = new Block(i + 1, previousHash);
-            previousHash = blockchain[i].getHash();
-        }
-
-        for (Block block: blockchain) {
-            System.out.println("Block:");
-            System.out.printf("Id: %d%n", block.getId());
-            System.out.printf("Timestamp: %s%n", block.getTimestamp());
-            System.out.println("Hash of the previous block: ");
-            System.out.println(block.getPreviousHash());
-            System.out.println("Hash of the block: ");
-            System.out.println(block.getHash());
-            System.out.println();
+            System.out.println(blockchain.getLastBlock());
+            System.out.printf("Block was generating for %d seconds%n%n", timeDelta / 1000);
         }
     }
 }

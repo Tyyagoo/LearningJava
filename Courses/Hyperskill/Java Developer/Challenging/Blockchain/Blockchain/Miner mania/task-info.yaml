@@ -235,6 +235,178 @@ files:
         }
     }
   learner_created: false
+- name: src/blockchain/util/StringUtil.java
+  visible: true
+  text: |
+    package blockchain.util;
+
+    import java.security.MessageDigest;
+
+    public class StringUtil {
+        /* Applies Sha256 to a string and returns a hash. */
+        public static String applySha256(String input){
+            try {
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                /* Applies sha256 to our input */
+                byte[] hash = digest.digest(input.getBytes("UTF-8"));
+                StringBuilder hexString = new StringBuilder();
+                for (byte elem: hash) {
+                    String hex = Integer.toHexString(0xff & elem);
+                    if(hex.length() == 1) hexString.append('0');
+                    hexString.append(hex);
+                }
+                return hexString.toString();
+            }
+            catch(Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+  learner_created: true
+- name: src/blockchain/Chain.java
+  visible: true
+  text: |
+    package blockchain;
+
+    import java.io.Serializable;
+    import java.util.List;
+    import java.util.ArrayList;
+    import java.util.Random;
+
+    public class Chain implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        private final int difficultFactor;
+        private final List<Block> chain;
+        private final String requiredStart;
+
+        Chain (int difficultFactor) {
+            this.difficultFactor = difficultFactor;
+            this.chain = new ArrayList<>();
+            this.requiredStart = "0".repeat(difficultFactor);
+        }
+
+        public boolean mine() {
+            String previousHash = (chain.size() > 0) ? chain.get(chain.size() - 1).getHash() : "0";
+            Block block = new Block(chain.size() + 1,
+                    new Random().nextInt(Integer.MAX_VALUE),
+                    previousHash);
+            // verify block hash
+            if (block.getHash().substring(0, difficultFactor).equals(requiredStart)) {
+                chain.add(block);
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        public Block getLastBlock() {
+            return chain.get(chain.size() - 1);
+        }
+
+        public int getSize() {
+            return chain.size();
+        }
+    }
+  learner_created: true
+- name: src/blockchain/util/SerializationUtils.java
+  visible: true
+  text: |-
+    package blockchain.util;
+
+    import java.io.*;
+
+    public class SerializationUtils {
+        /**
+         * Serialize the given object to the file
+         */
+        public static void serialize(Object obj, String fileName) throws IOException {
+            FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
+            objectOutputStream.writeObject(obj);
+            objectOutputStream.close();
+        }
+
+        /**
+         * Deserialize to an object from the file
+         */
+        public static Object deserialize(String fileName) throws IOException, ClassNotFoundException {
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+            ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
+            Object obj = objectInputStream.readObject();
+            objectInputStream.close();
+            return obj;
+        }
+    }
+  learner_created: true
+- name: src/blockchain/Block.java
+  visible: true
+  text: |
+    package blockchain;
+
+    import blockchain.util.*;
+
+    import java.io.Serializable;
+    import java.util.Date;
+
+    public class Block implements Serializable {
+        private static final long serialVersionUID = 1L;
+        private final int nonce;
+        private final int id;
+        private final long timestamp;
+        private final String previousHash;
+        private final String hash;
+
+        public Block (int id, int nonce, String previousHash) {
+            this.id = id;
+            this.nonce = nonce;
+            this.timestamp = new Date().getTime();
+            this.previousHash = previousHash;
+            this.hash = generateHash();
+        }
+
+        private String generateHash() {
+            String blockData = serialVersionUID +
+                    previousHash +
+                    timestamp +
+                    id +
+                    nonce;
+
+            return StringUtil.applySha256(blockData);
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public long getTimestamp() {
+            return timestamp;
+        }
+
+        public String getPreviousHash() {
+            return previousHash;
+        }
+
+        public String getHash() {
+            return hash;
+        }
+
+        @Override
+        public String toString() {
+            return "Block:\n" +
+                    "Id: " + id + "\n" +
+                    "Timestamp: " + timestamp + "\n" +
+                    "Magic number: " + nonce + "\n" +
+                    "Hash of the previous block: \n" +
+                    previousHash + "\n" +
+                    "Hash of the block: \n" +
+                    hash;
+        }
+
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/50/stages/273/implement#comment
 status: Unchecked
 record: -1
