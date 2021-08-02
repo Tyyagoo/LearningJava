@@ -12,6 +12,10 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Blockchain/task" />
+            <option value="$PROJECT_DIR$/Topics/Abstract factory/Burgers" />
+            <option value="$PROJECT_DIR$/Topics/Abstract factory/Laptop factory" />
+            <option value="$PROJECT_DIR$/Topics/Abstract factory/Phone factory" />
+            <option value="$PROJECT_DIR$/Topics/Abstract factory/Theory" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
