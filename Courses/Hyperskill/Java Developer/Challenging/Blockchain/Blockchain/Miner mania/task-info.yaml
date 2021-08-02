@@ -407,6 +407,12 @@ files:
 
     }
   learner_created: true
+- name: src/blockchain/Miner.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/50/stages/273/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Mon, 02 Aug 2021 23:12:25 UTC
+record: 3

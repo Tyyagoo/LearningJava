@@ -1,22 +1,24 @@
 package blockchain;
 
-import java.util.Date;
-import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.print("Enter how many zeros the hash must start with: ");
-        int n = new Scanner(System.in).nextInt();
-        System.out.println();
-        Chain blockchain = new Chain(n);
-        while (blockchain.getSize() < 5) {
-            long timestampStart = new Date().getTime();
-            while (!blockchain.mine());
-            long timestampFinish = new Date().getTime();
-            long timeDelta = timestampFinish - timestampStart;
+        int numberOfMiners = 10;
+        Chain blockchain = new Chain();
+        ExecutorService botnet = Executors.newFixedThreadPool(numberOfMiners);
 
-            System.out.println(blockchain.getLastBlock());
-            System.out.printf("Block was generating for %d seconds%n%n", timeDelta / 1000);
+        for (int c = 0; c < numberOfMiners; c++) {
+            Miner miner = new Miner(c + 1, blockchain);
+            botnet.submit(miner);
+        }
+        botnet.shutdown();
+        try {
+            botnet.awaitTermination(1000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }

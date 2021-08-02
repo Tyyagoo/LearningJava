@@ -9,13 +9,15 @@ public class Block implements Serializable {
     private static final long serialVersionUID = 1L;
     private final int nonce;
     private final int id;
+    private final int minerId;
     private final long timestamp;
     private final String previousHash;
     private final String hash;
 
-    public Block (int id, int nonce, String previousHash) {
+    public Block (int id, int nonce, int minerId, String previousHash) {
         this.id = id;
         this.nonce = nonce;
+        this.minerId = minerId;
         this.timestamp = new Date().getTime();
         this.previousHash = previousHash;
         this.hash = generateHash();
@@ -50,6 +52,7 @@ public class Block implements Serializable {
     @Override
     public String toString() {
         return "Block:\n" +
+                "Created by miner # " + minerId + "\n" +
                 "Id: " + id + "\n" +
                 "Timestamp: " + timestamp + "\n" +
                 "Magic number: " + nonce + "\n" +
