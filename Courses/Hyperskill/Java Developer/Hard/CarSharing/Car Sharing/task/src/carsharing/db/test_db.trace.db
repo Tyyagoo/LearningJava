@@ -1,0 +1,33 @@
+2021-08-04 17:00:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Invalid value "0" for parameter "parameterIndex" [90008-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:590)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:280)
+	at org.h2.jdbc.JdbcPreparedStatement.setParameter(JdbcPreparedStatement.java:1503)
+	at org.h2.jdbc.JdbcPreparedStatement.setString(JdbcPreparedStatement.java:413)
+	at carsharing.core.Database.insertCompany(Database.java:55)
+	at carsharing.ui.ManagerMenu.lambda$new$1(ManagerMenu.java:28)
+	at carsharing.ui.ManagerMenu.invoke(ManagerMenu.java:42)
+	at carsharing.ui.LoginMenu.lambda$new$0(LoginMenu.java:8)
+	at carsharing.ui.LoginMenu.invoke(LoginMenu.java:20)
+	at carsharing.core.Facade.start(Facade.java:19)
+	at carsharing.Main.main(Main.java:25)
+2021-08-04 17:03:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "COMPANY" already exists; SQL statement:
+CREATE TABLE company(id IDENTITY NOT NULL PRIMARY KEY, name VARCHAR(255) UNIQUE NOT NULL) [42101-200]
+2021-08-04 17:06:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Invalid value "0" for parameter "parameterIndex" [90008-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:590)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.getInvalidValueException(DbException.java:280)
+	at org.h2.jdbc.JdbcPreparedStatement.setParameter(JdbcPreparedStatement.java:1503)
+	at org.h2.jdbc.JdbcPreparedStatement.setString(JdbcPreparedStatement.java:413)
+	at carsharing.core.Database.insertCompany(Database.java:57)
+	at carsharing.ui.ManagerMenu.lambda$new$1(ManagerMenu.java:28)
+	at carsharing.ui.ManagerMenu.invoke(ManagerMenu.java:42)
+	at carsharing.ui.LoginMenu.lambda$new$0(LoginMenu.java:8)
+	at carsharing.ui.LoginMenu.invoke(LoginMenu.java:20)
+	at carsharing.core.Facade.start(Facade.java:19)
+	at carsharing.Main.main(Main.java:25)

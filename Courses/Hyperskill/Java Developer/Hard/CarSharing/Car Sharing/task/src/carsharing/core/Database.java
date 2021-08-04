@@ -1,9 +1,8 @@
 package carsharing.core;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database {
     // JDBC driver name and database URL
@@ -25,11 +24,13 @@ public class Database {
             conn = DriverManager.getConnection(DB_BASE_URL + filepath);
             stmt = conn.createStatement();
 
-            String sql = "CREATE TABLE  COMPANY " +
-                    "(ID INTEGER not NULL, " +
-                    "NAME VARCHAR(255), " +
-                    "PRIMARY KEY ( ID ))";
+            String preSql = "DROP TABLE IF EXISTS company";
+            String sql = "CREATE TABLE company(" +
+                    "id IDENTITY NOT NULL PRIMARY KEY, " +
+                    "name VARCHAR(255) UNIQUE NOT NULL" +
+                    ")";
 
+            stmt.executeUpdate(preSql);
             stmt.executeUpdate(sql);
             stmt.close();
             conn.close();
@@ -47,5 +48,39 @@ public class Database {
                 se.printStackTrace();
             }
         }
+    }
+
+    public void insertCompany(Company company) {
+        String sql = "INSERT INTO COMPANY (name) VALUES(?)";
+        try (Connection conn = DriverManager.getConnection(DB_BASE_URL + filepath);
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, company.getName());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Company> getAllCompanies() {
+        String sql = "SELECT id, name " +
+                "FROM COMPANY";
+        try (Connection conn = DriverManager.getConnection(DB_BASE_URL + filepath);
+            PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                List<Company> companies = new ArrayList<>();
+                while (resultSet.next()) {
+                    Company company = new Company.Builder()
+                            .setId(resultSet.getInt(1))
+                            .setName(resultSet.getString(2))
+                            .build();
+                    companies.add(company);
+                }
+                return companies;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return List.of();
     }
 }
