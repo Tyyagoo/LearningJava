@@ -17,6 +17,9 @@
             <option value="$PROJECT_DIR$/Topics/Abstract factory/Laptop factory" />
             <option value="$PROJECT_DIR$/Topics/Abstract factory/Phone factory" />
             <option value="$PROJECT_DIR$/Topics/Abstract factory/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Currying/Curried function" />
+            <option value="$PROJECT_DIR$/Topics/Currying/Reducer operator" />
+            <option value="$PROJECT_DIR$/Topics/Currying/Theory" />
             <option value="$PROJECT_DIR$/Topics/Function composition/The chain of responsibility" />
             <option value="$PROJECT_DIR$/Topics/Function composition/Theory" />
             <option value="$PROJECT_DIR$/util" />
