@@ -1,5 +1,8 @@
 package carsharing.core;
 
+import carsharing.core.model.Car;
+import carsharing.core.model.Company;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +27,9 @@ public class Database {
             conn = DriverManager.getConnection(DB_BASE_URL + filepath);
             stmt = conn.createStatement();
 
-            String preSql = "DROP TABLE IF EXISTS company";
-            String sql = "CREATE TABLE company(" +
-                    "id IDENTITY NOT NULL PRIMARY KEY, " +
-                    "name VARCHAR(255) UNIQUE NOT NULL" +
-                    ")";
+            initializeCompanyTable(stmt);
+            initializeCarTable(stmt);
 
-            stmt.executeUpdate(preSql);
-            stmt.executeUpdate(sql);
             stmt.close();
             conn.close();
         } catch (ClassNotFoundException | SQLException e) {
@@ -48,6 +46,33 @@ public class Database {
                 se.printStackTrace();
             }
         }
+    }
+
+    public void initializeCompanyTable(Statement stmt) throws SQLException {
+        String preSql = "DROP TABLE IF EXISTS company";
+        String sql = "CREATE TABLE company(" +
+                "id IDENTITY NOT NULL PRIMARY KEY, " +
+                "name VARCHAR(255) UNIQUE NOT NULL" +
+                ")";
+
+        stmt.executeUpdate(preSql);
+        stmt.executeUpdate(sql);
+    }
+
+    public void initializeCarTable(Statement stmt) throws SQLException {
+        String preSql = "DROP TABLE IF EXISTS car";
+        String sql = "CREATE TABLE car(" +
+                "id IDENTITY NOT NULL PRIMARY KEY, " +
+                "name VARCHAR(255) UNIQUE NOT NULL, " +
+                "company_id INT NOT NULL, " +
+                "CONSTRAINT fk_company_id FOREIGN KEY (company_id) " +
+                "REFERENCES company(id) " +
+                "ON UPDATE CASCADE " +
+                "ON DELETE SET NULL " +
+                ")";
+
+        stmt.executeUpdate(preSql);
+        stmt.executeUpdate(sql);
     }
 
     public void insertCompany(Company company) {
@@ -77,10 +102,49 @@ public class Database {
                 }
                 return companies;
             }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
         return List.of();
     }
+
+    public void insertCar(Car car) {
+        String sql = "INSERT INTO car (name, company_id) VALUES(?, ?)";
+        try (Connection conn = DriverManager.getConnection(DB_BASE_URL + filepath);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, car.getName());
+            stmt.setInt(2, car.getCompanyId());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Car> getAllCarsOfCompany(Company company) {
+        String sql = "SELECT id, name, company_id " +
+                "FROM car WHERE company_id = ?";
+
+        try (Connection conn = DriverManager.getConnection(DB_BASE_URL + filepath);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, company.getId());
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                List<Car> cars = new ArrayList<>();
+                while (resultSet.next()) {
+                    Car car = new Car.Builder()
+                            .setId(resultSet.getInt(1))
+                            .setName(resultSet.getString(2))
+                            .setCompanyId(resultSet.getInt(3))
+                            .build();
+                    cars.add(car);
+                }
+                return cars;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return List.of();
+    }
+
 }

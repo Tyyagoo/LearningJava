@@ -1,6 +1,6 @@
 package carsharing.ui;
 
-import carsharing.core.Company;
+import carsharing.core.model.Company;
 import carsharing.core.Facade;
 
 import java.util.List;
@@ -10,11 +10,24 @@ public class ManagerMenu extends AbstractMenu {
     private final ICommand showCompanyList = () -> {
         List<Company> companyList = Facade.getInstance().getDatabase().getAllCompanies();
         if (companyList.size() != 0) {
-            System.out.println("Company list:");
-            for (Company company: companyList) {
-                System.out.printf("%d. %s%n", company.getId(), company.getName());
+            System.out.println("Choose the company:");
+            for (int i = 0; i < companyList.size(); i++) {
+                System.out.printf("%d. %s%n", i + 1, companyList.get(i).getName());
             }
+            System.out.println("0. Back");
+            int option = readIntegerLine();
             System.out.println();
+
+            switch (option) {
+                case 0:
+                    break;
+                default:
+                    AbstractMenu companyMenu = new CompanyMenu(companyList.get(option - 1));
+                    while (companyMenu.isRunning() && companyMenu.isInvokable()) {
+                        companyMenu.invoke();
+                    }
+                    break;
+            }
         } else {
             System.out.println("The company list is empty!\n");
         }

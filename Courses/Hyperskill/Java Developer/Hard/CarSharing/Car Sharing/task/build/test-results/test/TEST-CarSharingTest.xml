@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CarSharingTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-04T20:12:16" hostname="LAPTOP-J1J60HSA" time="1.825">
+<testsuite name="CarSharingTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-04T21:37:40" hostname="LAPTOP-J1J60HSA" time="2.498">
   <properties/>
-  <testcase name="start" classname="CarSharingTest" time="1.825"/>
+  <testcase name="start" classname="CarSharingTest" time="2.498"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 1. Log in as a manager
@@ -54,8 +54,10 @@ The company was created!
 0. Back
 > 1
 
-Company list:
+Choose the company:
 1. Super company
+0. Back
+> 0
 
 1. Company list
 2. Create a company
@@ -80,10 +82,139 @@ The company was created!
 0. Back
 > 1
 
-Company list:
+Choose the company:
 1. Super company
 2. Another company
 3. One more company
+0. Back
+> 2
+
+'Another company' company:
+1. Car list
+2. Create a car
+0. Back
+?[1;31m
+Start test 7?[0m
+1. Log in as a manager
+0. Exit
+> 1
+
+1. Company list
+2. Create a company
+0. Back
+> 2
+
+Enter the company name:
+> Car To Go
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+> 2
+
+Enter the company name:
+> Drive Now
+The company was created!
+
+1. Company list
+2. Create a company
+0. Back
+> 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+> 1
+
+'Car To Go' company:
+1. Car list
+2. Create a car
+0. Back
+> 1
+
+The car list is empty!
+
+'Car To Go' company:
+1. Car list
+2. Create a car
+0. Back
+> 2
+
+Enter the car name:
+> Hyundai Venue
+The car was added!
+
+'Car To Go' company:
+1. Car list
+2. Create a car
+0. Back
+> 2
+
+Enter the car name:
+> Maruti Suzuki Dzire
+The car was added!
+
+'Car To Go' company:
+1. Car list
+2. Create a car
+0. Back
+> 1
+
+Car list:
+1. Hyundai Venue
+2. Maruti Suzuki Dzire
+
+'Car To Go' company:
+1. Car list
+2. Create a car
+0. Back
+> 0
+
+1. Company list
+2. Create a company
+0. Back
+> 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+> 2
+
+'Drive Now' company:
+1. Car list
+2. Create a car
+0. Back
+> 1
+
+The car list is empty!
+
+'Drive Now' company:
+1. Car list
+2. Create a car
+0. Back
+> 2
+
+Enter the car name:
+> Lamborghini Urraco
+The car was added!
+
+'Drive Now' company:
+1. Car list
+2. Create a car
+0. Back
+> 1
+
+Car list:
+1. Lamborghini Urraco
+
+'Drive Now' company:
+1. Car list
+2. Create a car
+0. Back
+> 0
 
 1. Company list
 2. Create a company
@@ -95,5 +226,83 @@ Company list:
 > 0
 
 ]]></system-out>
-  <system-err><![CDATA[]]></system-err>
+  <system-err><![CDATA[org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
+DROP TABLE IF EXISTS company [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
+	at carsharing.core.Database.initialize(Database.java:30)
+	at carsharing.core.Facade.start(Facade.java:16)
+	at carsharing.Main.main(Main.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.invokeMain(MainMethodExecutor.java:173)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.lambda$launch$0(MainMethodExecutor.java:200)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
+DROP TABLE IF EXISTS company [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
+	at carsharing.core.Database.initialize(Database.java:30)
+	at carsharing.core.Facade.start(Facade.java:16)
+	at carsharing.Main.main(Main.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.invokeMain(MainMethodExecutor.java:173)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.lambda$launch$0(MainMethodExecutor.java:200)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
+DROP TABLE IF EXISTS company [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
+	at carsharing.core.Database.initialize(Database.java:30)
+	at carsharing.core.Facade.start(Facade.java:16)
+	at carsharing.Main.main(Main.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.invokeMain(MainMethodExecutor.java:173)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.lambda$launch$0(MainMethodExecutor.java:200)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+]]></system-err>
 </testsuite>

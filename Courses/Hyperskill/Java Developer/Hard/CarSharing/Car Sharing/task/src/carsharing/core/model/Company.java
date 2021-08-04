@@ -1,4 +1,4 @@
-package carsharing.core;
+package carsharing.core.model;
 
 public class Company {
     private int id;
