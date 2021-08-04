@@ -1,140 +1,467 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="BlockchainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-04T02:10:06" hostname="LAPTOP-J1J60HSA" time="1.438">
+<testsuite name="BlockchainTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-04T03:46:28" hostname="LAPTOP-J1J60HSA" time="6.71">
   <properties/>
-  <testcase name="start" classname="BlockchainTest" time="1.438"/>
+  <testcase name="start" classname="BlockchainTest" time="6.71"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 Block:
-Created by miner # 7
+Created by miner6
+miner6 gets 100 VC
 Id: 1
-Timestamp: 1628043006433
-Magic number: 8047384984043641667
+Timestamp: 1628048788354
+Magic number: 5079266930637942056
 Hash of the previous block: 
 0
 Hash of the block: 
-02b1ae6feafa560250116f0d6686df492f6b13c021b8e34dc819beb27e112e8e
-Block data: no messages
+60282511e0c5bb12b35e38ec194ed803807f7c7d4ce41ac8932a39cf0a8179f9
+Block data: 
+User #1: Private content
+User #2: Private content
+User #3: Private content
+User #4: Private content
+User #5: Private content
 Block was generating for 0 seconds
 N was increased to 1
 
 Block:
-Created by miner # 6
+Created by miner13
+miner13 gets 100 VC
 Id: 2
-Timestamp: 1628043006597
-Magic number: 5604682571046397892
+Timestamp: 1628048788402
+Magic number: 361233961472447212
 Hash of the previous block: 
-02b1ae6feafa560250116f0d6686df492f6b13c021b8e34dc819beb27e112e8e
+60282511e0c5bb12b35e38ec194ed803807f7c7d4ce41ac8932a39cf0a8179f9
 Hash of the block: 
-0e1019e43e6df4f64d181cdff53a17d1e96c6980ee7a1cfb94ee098bc03f919d
+094b6d77259e3f00fa38e1be65136b1229f505b042e9d295c6fee5103e489b4c
 Block data: no messages
 Block was generating for 0 seconds
 N was increased to 2
 
 Block:
-Created by miner # 5
+Created by miner9
+miner9 gets 100 VC
 Id: 3
-Timestamp: 1628043006666
-Magic number: 7921357645765245613
+Timestamp: 1628048788442
+Magic number: 866622117654834790
 Hash of the previous block: 
-0e1019e43e6df4f64d181cdff53a17d1e96c6980ee7a1cfb94ee098bc03f919d
+094b6d77259e3f00fa38e1be65136b1229f505b042e9d295c6fee5103e489b4c
 Hash of the block: 
-007c27292d46fe998186d7acb5eeadae1a1cb9c045eba525fa6fcf64474804af
-Block data: no messages
+0091c7355a2f7ecd497974eb7aa6770bf0fae82558e850f8906d032afb2d9433
+Block data: 
+miner13: transferred 200 VC to GOVERNMENT.
 Block was generating for 0 seconds
 N was increased to 3
 
 Block:
-Created by miner # 3
+Created by miner3
+miner3 gets 100 VC
 Id: 4
-Timestamp: 1628043006822
-Magic number: 6158526644609079180
+Timestamp: 1628048788535
+Magic number: 2038243177002757756
 Hash of the previous block: 
-007c27292d46fe998186d7acb5eeadae1a1cb9c045eba525fa6fcf64474804af
+0091c7355a2f7ecd497974eb7aa6770bf0fae82558e850f8906d032afb2d9433
 Hash of the block: 
-000d28060db35cb5ecef2dd5f519b5c2226900bbea604a68614515da498e6ae1
-Block data: no messages
+0000601b493d35e55f99ddc2fe7461c456f6033550050c72d24588993853f01f
+Block data: 
+miner9: transferred 200 VC to GOVERNMENT.
+miner6: transferred 200 VC to GOVERNMENT.
 Block was generating for 0 seconds
 N was increased to 4
 
 Block:
-Created by miner # 1
+Created by miner2
+miner2 gets 100 VC
 Id: 5
-Timestamp: 1628043007106
-Magic number: 8130630022790888799
+Timestamp: 1628048791130
+Magic number: 5755392165780799736
 Hash of the previous block: 
-000d28060db35cb5ecef2dd5f519b5c2226900bbea604a68614515da498e6ae1
+0000601b493d35e55f99ddc2fe7461c456f6033550050c72d24588993853f01f
 Hash of the block: 
-00008dd5774cc25acf6cbcd11459be9da5edb55d762bd714b4c75d86b7039cfd
-Block data: no messages
+0000ef42b6ec7dd7fee23befb80a7579d42cc1b2c0205daef6af7335d10d0928
+Block data: 
+miner3: transferred 200 VC to GOVERNMENT.
+Block was generating for 2 seconds
+N stays the same
+
+Block:
+Created by miner14
+miner14 gets 100 VC
+Id: 6
+Timestamp: 1628048791290
+Magic number: 1836221996035194703
+Hash of the previous block: 
+0000ef42b6ec7dd7fee23befb80a7579d42cc1b2c0205daef6af7335d10d0928
+Hash of the block: 
+0002b2e9316e8405826ed276e3170b4cccae14312a4a667632f6bb23f2d89385
+Block data: 
+miner2: transferred 200 VC to GOVERNMENT.
 Block was generating for 0 seconds
-N was increased to 5
+N was increased to 4
+
+Block:
+Created by miner3
+miner3 gets 100 VC
+Id: 7
+Timestamp: 1628048791580
+Magic number: 7682102071117279288
+Hash of the previous block: 
+0002b2e9316e8405826ed276e3170b4cccae14312a4a667632f6bb23f2d89385
+Hash of the block: 
+000012f0474075b4a47e3ae19a8c951f46d8d5c09ee02b4f9f374ae402a7350f
+Block data: 
+miner14: transferred 200 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N stays the same
+
+Block:
+Created by miner9
+miner9 gets 100 VC
+Id: 8
+Timestamp: 1628048791646
+Magic number: 7118724478194340612
+Hash of the previous block: 
+000012f0474075b4a47e3ae19a8c951f46d8d5c09ee02b4f9f374ae402a7350f
+Hash of the block: 
+000e4b2c3d3eb91415a544565d5f5661355289b5a6e6a0cc2665f0f6ceb53eb6
+Block data: 
+miner3: transferred 100 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N was increased to 4
+
+Block:
+Created by miner15
+miner15 gets 100 VC
+Id: 9
+Timestamp: 1628048791855
+Magic number: 1864073485123876701
+Hash of the previous block: 
+000e4b2c3d3eb91415a544565d5f5661355289b5a6e6a0cc2665f0f6ceb53eb6
+Hash of the block: 
+0000499203354d28b7cc290bb8441955931aaebd23f7a3256fa5142c79d6e293
+Block data: 
+miner9: transferred 100 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N stays the same
+
+Block:
+Created by miner13
+miner13 gets 100 VC
+Id: 10
+Timestamp: 1628048791926
+Magic number: 6307633099877558787
+Hash of the previous block: 
+0000499203354d28b7cc290bb8441955931aaebd23f7a3256fa5142c79d6e293
+Hash of the block: 
+0000859af5eca66c7ed60320539a5a55ce8eeec6e576c2861c9f08f3bfde2d36
+Block data: 
+miner15: transferred 200 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N was increased to 4
+
+Block:
+Created by miner1
+miner1 gets 100 VC
+Id: 11
+Timestamp: 1628048792015
+Magic number: 406804460974228822
+Hash of the previous block: 
+0000859af5eca66c7ed60320539a5a55ce8eeec6e576c2861c9f08f3bfde2d36
+Hash of the block: 
+000061effa47eba908fe97d5684a2ea53c661e240fdc2fa943fdfb408fba9d6f
+Block data: 
+miner13: transferred 100 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N stays the same
+
+Block:
+Created by miner7
+miner7 gets 100 VC
+Id: 12
+Timestamp: 1628048792121
+Magic number: 5569448726249478772
+Hash of the previous block: 
+000061effa47eba908fe97d5684a2ea53c661e240fdc2fa943fdfb408fba9d6f
+Hash of the block: 
+0008d448097c104c424dd58abd2b9ada4f2fe5ee5b8451bf485c8af4ba2a4c4e
+Block data: 
+miner1: transferred 200 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N was increased to 4
+
+Block:
+Created by miner15
+miner15 gets 100 VC
+Id: 13
+Timestamp: 1628048792374
+Magic number: 3313009035584304453
+Hash of the previous block: 
+0008d448097c104c424dd58abd2b9ada4f2fe5ee5b8451bf485c8af4ba2a4c4e
+Hash of the block: 
+0000e030a1f8c31ccb71861688150365f7cf8473c8f28032d48848c32ec1316f
+Block data: 
+miner7: transferred 200 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N stays the same
+
+Block:
+Created by miner13
+miner13 gets 100 VC
+Id: 14
+Timestamp: 1628048792435
+Magic number: 2596422036651270439
+Hash of the previous block: 
+0000e030a1f8c31ccb71861688150365f7cf8473c8f28032d48848c32ec1316f
+Hash of the block: 
+000d14522faa8583cbceb1ec3c0af2f0dd3edb56c3cfb0d88d3865b244a6e4bb
+Block data: 
+miner15: transferred 100 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N was increased to 4
+
+Block:
+Created by miner12
+miner12 gets 100 VC
+Id: 15
+Timestamp: 1628048792588
+Magic number: 3042587680900856666
+Hash of the previous block: 
+000d14522faa8583cbceb1ec3c0af2f0dd3edb56c3cfb0d88d3865b244a6e4bb
+Hash of the block: 
+0000c8254ab7c7f2baa2f7936ad7482a98337a4d526a08177b9b9513ef059af2
+Block data: 
+miner13: transferred 100 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N stays the same
 
 ?[1;31m
 Start test 2?[0m
 Block:
-Created by miner # 7
+Created by miner7
+miner7 gets 100 VC
 Id: 1
-Timestamp: 1628043007183
-Magic number: 1805753996753542708
+Timestamp: 1628048792674
+Magic number: 8166796464171514506
 Hash of the previous block: 
 0
 Hash of the block: 
-6e7d44fd041e9db1ad0b92c0addc15966d2fd00339bb2b03cc70f0ebc8bfb82b
-Block data: no messages
+470bec3b1f6e4f8a322ff2f0fc5b1febeb966e3fb07225d257ebd6fb454b6e8f
+Block data: 
+User #1: Private content
+User #2: Private content
+User #3: Private content
+User #4: Private content
+User #5: Private content
 Block was generating for 0 seconds
 N was increased to 1
 
 Block:
-Created by miner # 3
+Created by miner13
+miner13 gets 100 VC
 Id: 2
-Timestamp: 1628043007229
-Magic number: 7930301859753851460
+Timestamp: 1628048792700
+Magic number: 4370147476806122775
 Hash of the previous block: 
-6e7d44fd041e9db1ad0b92c0addc15966d2fd00339bb2b03cc70f0ebc8bfb82b
+470bec3b1f6e4f8a322ff2f0fc5b1febeb966e3fb07225d257ebd6fb454b6e8f
 Hash of the block: 
-08fea8bdf7cf5b7b524665d8373be13c95857aa96d96a1db091c7c2207447bac
+03104e2fca87b615a9ad8e0b4e4ea0da8381cda3355a127d123dda4659f61e9f
 Block data: no messages
 Block was generating for 0 seconds
 N was increased to 2
 
 Block:
-Created by miner # 5
+Created by miner3
+miner3 gets 100 VC
 Id: 3
-Timestamp: 1628043007258
-Magic number: 3918369468857392808
+Timestamp: 1628048792725
+Magic number: 1535693940096884292
 Hash of the previous block: 
-08fea8bdf7cf5b7b524665d8373be13c95857aa96d96a1db091c7c2207447bac
+03104e2fca87b615a9ad8e0b4e4ea0da8381cda3355a127d123dda4659f61e9f
 Hash of the block: 
-0067634ad49b58d92c749e4a32a5c4e3a8803a1b9d2c1dd1a0107e7ced277915
-Block data: no messages
+008296286ffcf8b6f0b467f894e49d85e742bd4394d7566593b40597fd2a91c2
+Block data: 
+miner13: transferred 200 VC to GOVERNMENT.
 Block was generating for 0 seconds
 N was increased to 3
 
 Block:
-Created by miner # 5
+Created by miner14
+miner14 gets 100 VC
 Id: 4
-Timestamp: 1628043007287
-Magic number: 7006636852173798677
+Timestamp: 1628048792769
+Magic number: 9195399704279117449
 Hash of the previous block: 
-0067634ad49b58d92c749e4a32a5c4e3a8803a1b9d2c1dd1a0107e7ced277915
+008296286ffcf8b6f0b467f894e49d85e742bd4394d7566593b40597fd2a91c2
 Hash of the block: 
-0000a119796e823ee41a295dfa4cceab169cc2037a8f530a031e32c20daf7fc9
-Block data: no messages
+0005522876b276eff3c3bc1110f7214de63fea3f68f7ba2640d3ecc3ce7092b4
+Block data: 
+miner3: transferred 200 VC to GOVERNMENT.
 Block was generating for 0 seconds
 N was increased to 4
 
 Block:
-Created by miner # 6
+Created by miner10
+miner10 gets 100 VC
 Id: 5
-Timestamp: 1628043007577
-Magic number: 8726017635313348917
+Timestamp: 1628048793873
+Magic number: 8520997065406106767
 Hash of the previous block: 
-0000a119796e823ee41a295dfa4cceab169cc2037a8f530a031e32c20daf7fc9
+0005522876b276eff3c3bc1110f7214de63fea3f68f7ba2640d3ecc3ce7092b4
 Hash of the block: 
-0000cfa36b6b864f97ed3c6b34bd67074b7f1ea2cf8ab0b7ef4c134f6000e61b
+000052e45427ee8b720ba662d2f0ea675c577fc12175a0c41b3b25f1a87b4b9f
+Block data: 
+miner14: transferred 200 VC to GOVERNMENT.
+miner7: transferred 200 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N stays the same
+
+Block:
+Created by miner5
+miner5 gets 100 VC
+Id: 6
+Timestamp: 1628048793943
+Magic number: 8680109461138295495
+Hash of the previous block: 
+000052e45427ee8b720ba662d2f0ea675c577fc12175a0c41b3b25f1a87b4b9f
+Hash of the block: 
+0003e05f8b32daf4a06779dbcd5e3772833014d63f1cd1373f65c1adaf897edc
+Block data: 
+miner10: transferred 200 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N was increased to 4
+
+Block:
+Created by miner14
+miner14 gets 100 VC
+Id: 7
+Timestamp: 1628048794005
+Magic number: 5818191190379373590
+Hash of the previous block: 
+0003e05f8b32daf4a06779dbcd5e3772833014d63f1cd1373f65c1adaf897edc
+Hash of the block: 
+000074cf8d52ef7c608530c7865eab98ebc2df55608644b6e962299f5d76d51c
+Block data: 
+miner5: transferred 200 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N stays the same
+
+Block:
+Created by miner12
+miner12 gets 100 VC
+Id: 8
+Timestamp: 1628048794132
+Magic number: 7466823765761528398
+Hash of the previous block: 
+000074cf8d52ef7c608530c7865eab98ebc2df55608644b6e962299f5d76d51c
+Hash of the block: 
+00075317f4cd5e45bd2c4e1fc6303bba0c9a3102935670c9470afd7cef6ac17e
+Block data: 
+miner14: transferred 100 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N was increased to 4
+
+Block:
+Created by miner7
+miner7 gets 100 VC
+Id: 9
+Timestamp: 1628048794239
+Magic number: 5410266295632527332
+Hash of the previous block: 
+00075317f4cd5e45bd2c4e1fc6303bba0c9a3102935670c9470afd7cef6ac17e
+Hash of the block: 
+0000b401093e6ccdfdad68bb7a16374baa634fd991a09cb1fe690efd77c2c644
+Block data: 
+miner12: transferred 200 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N stays the same
+
+Block:
+Created by miner6
+miner6 gets 100 VC
+Id: 10
+Timestamp: 1628048794385
+Magic number: 7527190769870118315
+Hash of the previous block: 
+0000b401093e6ccdfdad68bb7a16374baa634fd991a09cb1fe690efd77c2c644
+Hash of the block: 
+0002983a8790b36f551c870ceb03ab8930f67bc22485da717c207a97aaa3a21b
+Block data: 
+miner7: transferred 100 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N was increased to 4
+
+Block:
+Created by miner12
+miner12 gets 100 VC
+Id: 11
+Timestamp: 1628048794536
+Magic number: 6108251694613190597
+Hash of the previous block: 
+0002983a8790b36f551c870ceb03ab8930f67bc22485da717c207a97aaa3a21b
+Hash of the block: 
+0000caa06acde1345d726a872a893524040e43c42ce051b2d9ae35a39e005679
+Block data: 
+miner6: transferred 200 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N stays the same
+
+Block:
+Created by miner12
+miner12 gets 100 VC
+Id: 12
+Timestamp: 1628048794570
+Magic number: 2868377332605685605
+Hash of the previous block: 
+0000caa06acde1345d726a872a893524040e43c42ce051b2d9ae35a39e005679
+Hash of the block: 
+00093453c336b4bd0445db284ae2a1182c231cf0b8557338d3f8224e1349b65b
+Block data: 
+miner12: transferred 100 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N was increased to 4
+
+Block:
+Created by miner3
+miner3 gets 100 VC
+Id: 13
+Timestamp: 1628048794697
+Magic number: 3948343548574377483
+Hash of the previous block: 
+00093453c336b4bd0445db284ae2a1182c231cf0b8557338d3f8224e1349b65b
+Hash of the block: 
+0000afaca9c66aedc431b48ebc8b864fd14c3ff51a21ac255057ecdc6a24bc85
+Block data: 
+miner12: transferred 100 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N stays the same
+
+Block:
+Created by miner2
+miner2 gets 100 VC
+Id: 14
+Timestamp: 1628048794746
+Magic number: 3536709011792617800
+Hash of the previous block: 
+0000afaca9c66aedc431b48ebc8b864fd14c3ff51a21ac255057ecdc6a24bc85
+Hash of the block: 
+00056b343150f9b5f98ca4a312ecc40e9618e18b0e80922d21a1d610d3f827a8
+Block data: 
+miner3: transferred 100 VC to GOVERNMENT.
+Block was generating for 0 seconds
+N was increased to 4
+
+Block:
+Created by miner8
+miner8 gets 100 VC
+Id: 15
+Timestamp: 1628048794790
+Magic number: 7757139631348679577
+Hash of the previous block: 
+00056b343150f9b5f98ca4a312ecc40e9618e18b0e80922d21a1d610d3f827a8
+Hash of the block: 
+000026a499a0485058858e155469eda90416d551f01b1dff606ff9cef057f4cb
 Block data: no messages
 Block was generating for 0 seconds
-N was increased to 5
+N stays the same
 
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

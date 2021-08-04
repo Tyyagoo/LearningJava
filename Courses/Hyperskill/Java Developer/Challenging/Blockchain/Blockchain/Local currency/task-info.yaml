@@ -245,6 +245,461 @@ files:
         }
     }
   learner_created: false
+- name: src/blockchain/util/StringUtil.java
+  visible: true
+  text: |
+    package blockchain.util;
+
+    import java.security.MessageDigest;
+
+    public class StringUtil {
+        /* Applies Sha256 to a string and returns a hash. */
+        public static String applySha256(String input){
+            try {
+                MessageDigest digest = MessageDigest.getInstance("SHA-256");
+                /* Applies sha256 to our input */
+                byte[] hash = digest.digest(input.getBytes("UTF-8"));
+                StringBuilder hexString = new StringBuilder();
+                for (byte elem: hash) {
+                    String hex = Integer.toHexString(0xff & elem);
+                    if(hex.length() == 1) hexString.append('0');
+                    hexString.append(hex);
+                }
+                return hexString.toString();
+            }
+            catch(Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+  learner_created: true
+- name: src/blockchain/client/User.java
+  visible: true
+  text: |
+    package blockchain.client;
+
+    import blockchain.client.action.Message;
+    import blockchain.core.Blockchain;
+
+    public class User implements Runnable {
+
+        private final Message message;
+        private final Blockchain target;
+
+        public User(String name, String message, Blockchain target) {
+            this.message = new Message(name, message);
+            this.target = target;
+        }
+
+        @Override
+        public void run() {
+            target.addMessageToBlockchain(message);
+        }
+    }
+  learner_created: true
+- name: src/blockchain/core/Blockchain.java
+  visible: true
+  text: |
+    package blockchain.core;
+
+    import blockchain.core.Block;
+    import blockchain.client.action.Message;
+
+    import java.util.ArrayList;
+    import java.util.Date;
+    import java.util.List;
+    import java.util.concurrent.locks.ReentrantReadWriteLock;
+    import java.util.stream.Collectors;
+
+    public class Blockchain {
+        private static final long serialVersionUID = 1L;
+        private static final int blockThreshold = 5;
+
+        private final List<Block> blocks;
+        private volatile int difficultFactor;
+
+        private final List<Message> messages;
+        private final ReentrantReadWriteLock reentrantReadWriteLock = new ReentrantReadWriteLock();
+        private final ReentrantReadWriteLock.WriteLock writeLock = reentrantReadWriteLock.writeLock();
+
+        private long timestampStart;
+        private long timestampFinish;
+
+        private boolean online;
+
+        public Blockchain() {
+            this.blocks = new ArrayList<>();
+            this.messages = new ArrayList<>();
+            this.difficultFactor = 0;
+            timestampStart = new Date().getTime();
+            this.online = true;
+        }
+
+        public synchronized void validateBlock(Block block) {
+            if (block == null || !isOnline()) return;
+            writeLock.lock();
+            String lastBlockHash = getLastBlockHash();
+            if (lastBlockHash.equals(block.getPreviousHash()) &&
+                    block.getHash().substring(0, difficultFactor).equals(getRequiredStart()) &&
+                    block.getFormattedData().equals(getFormattedData())) {
+                messages.clear();
+                blocks.add(block);
+                timestampFinish = new Date().getTime();
+                long delta = timestampFinish - timestampStart;
+                System.out.println(block);
+                System.out.printf("Block was generating for %d seconds%n", delta / 1000);
+                balanceChainGrowth(delta);
+                System.out.println();
+                timestampStart = new Date().getTime();
+            }
+
+            if (getSize() >= blockThreshold) {
+                online = false;
+            }
+
+            writeLock.unlock();
+        }
+
+        public synchronized void addMessageToBlockchain(Message message) {
+            writeLock.lock();
+            messages.add(message);
+            writeLock.unlock();
+        }
+
+        public synchronized void balanceChainGrowth(long delta) {
+            if (delta / 1000 < 10) {
+                difficultFactor++;
+                System.out.printf("N was increased to %d%n", difficultFactor);
+                return;
+            }
+
+            if (delta / 1000 > 60) {
+                difficultFactor--;
+                System.out.printf("N was decreased by %d%n", difficultFactor);
+                return;
+            }
+
+            System.out.println("N stays the same");
+        }
+
+        /*
+        GETTERS
+         */
+
+        public String getLastBlockHash() {
+            return (getSize() > 0) ? blocks.get(getSize() - 1).getHash() : "0";
+        }
+
+        public Block getLastBlock() {
+            return (getSize() > 0) ? blocks.get(getSize() - 1) : null;
+        }
+
+        public int getSize() {
+            return blocks.size();
+        }
+
+        public int getDifficultFactor() {
+            return difficultFactor;
+        }
+
+        public String getRequiredStart() {
+            return "0".repeat(difficultFactor);
+        }
+
+        public boolean isOnline() {
+            return online;
+        }
+
+        public List<Message> getMessages() {
+            return messages;
+        }
+
+        public String getFormattedData() {
+            return (getMessages().isEmpty()) ? "no messages" : "\n" + getMessages().stream()
+                    .map(Message::toString)
+                    .collect(Collectors.joining("\n"));
+        }
+    }
+  learner_created: true
+- name: src/blockchain/client/action/Message.java
+  visible: true
+  text: |
+    package blockchain.client.action;
+
+    public class Message {
+        private final String author;
+        private final String content;
+
+        public Message(String author, String content) {
+            this.author = author;
+            this.content = content;
+        }
+
+        public String getAuthor() {
+            return author;
+        }
+
+        public String getContent() {
+            return content;
+        }
+
+        @Override
+        public String toString() {
+            return String.format("%s: %s", author, content);
+        }
+    }
+  learner_created: true
+- name: src/blockchain/core/Block.java
+  visible: true
+  text: |-
+    package blockchain.core;
+
+    import blockchain.client.action.Message;
+    import blockchain.util.StringUtil;
+
+    import java.io.Serializable;
+    import java.util.List;
+    import java.util.stream.Collectors;
+
+    public class Block implements Serializable {
+        private static final long serialVersionUID = 1L;
+
+        /*
+        BLOCK HEADER
+         */
+        private final long ID;
+        private final long NONCE;
+        private final long MINER_ID;
+        private final String HASH;
+        private final long TIMESTAMP;
+        private final String PREVIOUS_HASH;
+
+
+        /*
+        BLOCK CONTENT
+         */
+        private final List<Message> DATA;
+
+
+        public Block(long id, long nonce, long minerId, long timestamp, String previousHash, List<Message> data) {
+            this.ID = id;
+            this.NONCE = nonce;
+            this.MINER_ID = minerId;
+            this.TIMESTAMP = timestamp;
+            this.PREVIOUS_HASH = previousHash;
+            this.DATA = data;
+            this.HASH = calculateHash();
+        }
+
+        private String calculateHash() {
+            return StringUtil.applySha256(
+                    Long.toString(ID) +
+                            NONCE +
+                            MINER_ID +
+                            TIMESTAMP +
+                            PREVIOUS_HASH +
+                            getFormattedData()
+            );
+        }
+
+        @Override
+        public String toString() {
+            return String.format("Block:\n" +
+                            "Created by miner # %s\n" +
+                            "Id: %s\n" +
+                            "Timestamp: %s\n" +
+                            "Magic number: %s\n" +
+                            "Hash of the previous block: \n" +
+                            "%s\n" +
+                            "Hash of the block: \n" +
+                            "%s\n" +
+                            "Block data: %s",
+                    getMinerId(), getId(), getTimestamp(), getNonce(), getPreviousHash(), getHash(), getFormattedData());
+        }
+
+        /*
+        GETTERS
+         */
+
+        public long getId() {
+            return ID;
+        }
+
+        public long getNonce() {
+            return NONCE;
+        }
+
+        public long getMinerId() {
+            return MINER_ID;
+        }
+
+        public long getTimestamp() {
+            return TIMESTAMP;
+        }
+
+        public String getHash() {
+            return HASH;
+        }
+
+        public String getPreviousHash() {
+            return PREVIOUS_HASH;
+        }
+
+        public List<Message> getData() {
+            return DATA;
+        }
+
+        public String getFormattedData() {
+            return (getData().isEmpty()) ? "no messages" : "\n" + getData().stream()
+                                                                .map(Message::toString)
+                                                                .collect(Collectors.joining("\n"));
+        }
+    }
+  learner_created: true
+- name: src/blockchain/util/Facade.java
+  visible: true
+  text: |
+    package blockchain.util;
+
+    import blockchain.client.Miner;
+    import blockchain.client.User;
+    import blockchain.core.Blockchain;
+
+    import java.util.concurrent.ExecutorService;
+    import java.util.concurrent.Executors;
+    import java.util.concurrent.TimeUnit;
+
+    public class Facade {
+
+        private final Blockchain blockchain;
+        private final ExecutorService usersPool;
+        private final ExecutorService minersPool;
+
+        public Facade(Blockchain blockchain) {
+            this.blockchain = blockchain;
+            this.usersPool = Executors.newSingleThreadExecutor();
+            int poolSize = Runtime.getRuntime().availableProcessors();
+            this.minersPool = Executors.newFixedThreadPool(poolSize);
+
+            initializeMiners(poolSize);
+            initializeUsers();
+        }
+
+        private void initializeUsers() {
+            for (int i = 0; i < 5; i++) {
+                usersPool.submit(new User(String.format("User #%d", i + 1),
+                        "Private content",
+                        blockchain));
+            }
+        }
+
+        private void initializeMiners(int numbersOfMiners) {
+            for (int i = 0; i < numbersOfMiners; i++) {
+                minersPool.submit(new Miner(i + 1, blockchain));
+            }
+        }
+
+        public void exit() {
+            usersPool.shutdown();
+            minersPool.shutdown();
+
+            try {
+                usersPool.awaitTermination(3, TimeUnit.SECONDS);
+                minersPool.awaitTermination(10, TimeUnit.SECONDS);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+  learner_created: true
+- name: src/blockchain/util/SerializationUtils.java
+  visible: true
+  text: |-
+    package blockchain.util;
+
+    import java.io.*;
+
+    public class SerializationUtils {
+        /**
+         * Serialize the given object to the file
+         */
+        public static void serialize(Object obj, String fileName) throws IOException {
+            FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(bufferedOutputStream);
+            objectOutputStream.writeObject(obj);
+            objectOutputStream.close();
+        }
+
+        /**
+         * Deserialize to an object from the file
+         */
+        public static Object deserialize(String fileName) throws IOException, ClassNotFoundException {
+            FileInputStream fileInputStream = new FileInputStream(fileName);
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+            ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
+            Object obj = objectInputStream.readObject();
+            objectInputStream.close();
+            return obj;
+        }
+    }
+  learner_created: true
+- name: src/blockchain/client/Miner.java
+  visible: true
+  text: |
+    package blockchain.client;
+
+    import blockchain.core.Block;
+    import blockchain.core.Blockchain;
+
+    import java.util.Date;
+    import java.util.Optional;
+    import java.util.concurrent.ThreadLocalRandom;
+
+    public class Miner implements Runnable {
+
+        private long id;
+        private Blockchain ledger;
+
+        public Miner(long id, Blockchain ledger) {
+            this.id = id;
+            this.ledger = ledger;
+        }
+
+        @Override
+        public void run() {
+            while (ledger.isOnline()) {
+                Block block = mine();
+                if (validateBlockPreviously(block)) {
+                    ledger.validateBlock(block);
+                }
+            }
+        }
+
+        private Block mine() {
+            // long id, long nonce, long minerId, long timestamp, String previousHash, List<Message> data
+            return new Block(ledger.getSize() + 1,
+                    ThreadLocalRandom.current().nextLong(Long.MAX_VALUE),
+                    id,
+                    new Date().getTime(),
+                    ledger.getLastBlockHash(),
+                    ledger.getMessages());
+        }
+
+        private boolean validateBlockPreviously(Block block) {
+            if (block == null) return false;
+            return ledger.getLastBlockHash().equals(block.getPreviousHash()) &&
+                    block.getHash().substring(0, ledger.getDifficultFactor()).equals(ledger.getRequiredStart());
+        }
+    }
+  learner_created: true
+- name: src/blockchain/core/Wallet.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/50/stages/276/implement#comment
-status: Unchecked
+status: Solved
+feedback:
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">JetBrains
+    Academy</a> to continue learning.
+  time: Wed, 04 Aug 2021 03:46:35 UTC
 record: -1

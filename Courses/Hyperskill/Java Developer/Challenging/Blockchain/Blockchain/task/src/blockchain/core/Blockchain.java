@@ -11,7 +11,8 @@ import java.util.stream.Collectors;
 
 public class Blockchain {
     private static final long serialVersionUID = 1L;
-    private static final int blockThreshold = 5;
+    private static final int blockThreshold = 15;
+    public static final int miningReward = 100;
 
     private final List<Block> blocks;
     private volatile int difficultFactor;
@@ -33,15 +34,18 @@ public class Blockchain {
         this.online = true;
     }
 
-    public synchronized void validateBlock(Block block) {
-        if (block == null || !isOnline()) return;
+    public synchronized boolean validateBlock(Block block) {
+        if (getSize() >= blockThreshold) {
+            online = false;
+        }
+        if (block == null || !isOnline()) return false;
         writeLock.lock();
         String lastBlockHash = getLastBlockHash();
         if (lastBlockHash.equals(block.getPreviousHash()) &&
                 block.getHash().substring(0, difficultFactor).equals(getRequiredStart()) &&
                 block.getFormattedData().equals(getFormattedData())) {
-            messages.clear();
             blocks.add(block);
+            messages.clear();
             timestampFinish = new Date().getTime();
             long delta = timestampFinish - timestampStart;
             System.out.println(block);
@@ -49,13 +53,11 @@ public class Blockchain {
             balanceChainGrowth(delta);
             System.out.println();
             timestampStart = new Date().getTime();
+            writeLock.unlock();
+            return true;
         }
-
-        if (getSize() >= blockThreshold) {
-            online = false;
-        }
-
         writeLock.unlock();
+        return false;
     }
 
     public synchronized void addMessageToBlockchain(Message message) {
@@ -65,13 +67,19 @@ public class Blockchain {
     }
 
     public synchronized void balanceChainGrowth(long delta) {
-        if (delta / 1000 < 10) {
+        if (difficultFactor > 3) {
+            System.out.println("N stays the same");
+            difficultFactor = 3;
+            return;
+        }
+
+        if (delta / 1000 < 1) {
             difficultFactor++;
             System.out.printf("N was increased to %d%n", difficultFactor);
             return;
         }
 
-        if (delta / 1000 > 60) {
+        if (delta / 1000 > 2) {
             difficultFactor--;
             System.out.printf("N was decreased by %d%n", difficultFactor);
             return;

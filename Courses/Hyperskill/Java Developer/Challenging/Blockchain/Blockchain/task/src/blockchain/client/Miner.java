@@ -1,7 +1,10 @@
 package blockchain.client;
 
+import blockchain.client.action.Message;
 import blockchain.core.Block;
 import blockchain.core.Blockchain;
+import blockchain.core.Wallet;
+import blockchain.util.Facade;
 
 import java.util.Date;
 import java.util.Optional;
@@ -10,10 +13,12 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Miner implements Runnable {
 
     private long id;
+    private Wallet wallet;
     private Blockchain ledger;
 
     public Miner(long id, Blockchain ledger) {
         this.id = id;
+        this.wallet = new Wallet(String.format("miner%d", id));
         this.ledger = ledger;
     }
 
@@ -22,7 +27,12 @@ public class Miner implements Runnable {
         while (ledger.isOnline()) {
             Block block = mine();
             if (validateBlockPreviously(block)) {
-                ledger.validateBlock(block);
+                if (ledger.validateBlock(block)) {
+                    wallet.receive(block.getReward()); // this is really dangerous lol
+                    Optional<Message> transaction = wallet.makeTransaction(Facade.governmentWallet,
+                            wallet.getTotalCurrency()); // oops, it looks like taxes on this coin are 100%
+                    transaction.ifPresent(t -> ledger.addMessageToBlockchain(t));
+                }
             }
         }
     }

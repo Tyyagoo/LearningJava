@@ -3,6 +3,7 @@ package blockchain.util;
 import blockchain.client.Miner;
 import blockchain.client.User;
 import blockchain.core.Blockchain;
+import blockchain.core.Wallet;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -10,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Facade {
 
+    public static final Wallet governmentWallet = new Wallet("GOVERNMENT");
     private final Blockchain blockchain;
     private final ExecutorService usersPool;
     private final ExecutorService minersPool;
@@ -17,7 +19,7 @@ public class Facade {
     public Facade(Blockchain blockchain) {
         this.blockchain = blockchain;
         this.usersPool = Executors.newSingleThreadExecutor();
-        int poolSize = Runtime.getRuntime().availableProcessors();
+        int poolSize = 16; //Runtime.getRuntime().availableProcessors();
         this.minersPool = Executors.newFixedThreadPool(poolSize);
 
         initializeMiners(poolSize);
@@ -43,7 +45,7 @@ public class Facade {
         minersPool.shutdown();
 
         try {
-            usersPool.awaitTermination(3, TimeUnit.SECONDS);
+            usersPool.awaitTermination(10, TimeUnit.SECONDS);
             minersPool.awaitTermination(10, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();

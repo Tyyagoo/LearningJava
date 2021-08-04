@@ -4,6 +4,7 @@ import blockchain.client.action.Message;
 import blockchain.util.StringUtil;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,7 +20,7 @@ public class Block implements Serializable {
     private final String HASH;
     private final long TIMESTAMP;
     private final String PREVIOUS_HASH;
-
+    private final int reward;
 
     /*
     BLOCK CONTENT
@@ -33,7 +34,8 @@ public class Block implements Serializable {
         this.MINER_ID = minerId;
         this.TIMESTAMP = timestamp;
         this.PREVIOUS_HASH = previousHash;
-        this.DATA = data;
+        this.DATA = new ArrayList<>(data);
+        this.reward = Blockchain.miningReward;
         this.HASH = calculateHash();
     }
 
@@ -51,7 +53,8 @@ public class Block implements Serializable {
     @Override
     public String toString() {
         return String.format("Block:\n" +
-                        "Created by miner # %s\n" +
+                        "Created by miner%s\n" +
+                        "miner%s gets %d VC\n" +
                         "Id: %s\n" +
                         "Timestamp: %s\n" +
                         "Magic number: %s\n" +
@@ -60,7 +63,7 @@ public class Block implements Serializable {
                         "Hash of the block: \n" +
                         "%s\n" +
                         "Block data: %s",
-                getMinerId(), getId(), getTimestamp(), getNonce(), getPreviousHash(), getHash(), getFormattedData());
+                getMinerId(), getMinerId(), getReward(), getId(), getTimestamp(), getNonce(), getPreviousHash(), getHash(), getFormattedData());
     }
 
     /*
@@ -81,6 +84,10 @@ public class Block implements Serializable {
 
     public long getTimestamp() {
         return TIMESTAMP;
+    }
+
+    public int getReward() {
+        return reward;
     }
 
     public String getHash() {
