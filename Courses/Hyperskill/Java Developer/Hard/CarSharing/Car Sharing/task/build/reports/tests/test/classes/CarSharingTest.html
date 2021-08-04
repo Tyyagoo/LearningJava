@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">2.498s</div>
+<div class="counter">7.309s</div>
 <p>duration</p>
 </div>
 </td>
@@ -82,7 +82,7 @@
 </thead>
 <tr>
 <td class="success">start</td>
-<td class="success">2.498s</td>
+<td class="success">7.309s</td>
 <td class="success">passed</td>
 </tr>
 </table>
@@ -93,12 +93,16 @@
 <pre>?[1;31m
 Start test 1?[0m
 1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
 0. Exit
 &gt; 0
 
 ?[1;31m
 Start test 2?[0m
 1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
 0. Exit
 &gt; 1
 
@@ -108,6 +112,8 @@ Start test 2?[0m
 &gt; 0
 
 1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
 0. Exit
 ?[1;31m
 Start test 3?[0m
@@ -118,6 +124,8 @@ Start test 5?[0m
 ?[1;31m
 Start test 6?[0m
 1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
 0. Exit
 &gt; 1
 
@@ -184,6 +192,8 @@ Choose the company:
 ?[1;31m
 Start test 7?[0m
 1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
 0. Exit
 &gt; 1
 
@@ -310,6 +320,217 @@ Car list:
 &gt; 0
 
 1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 0
+
+?[1;31m
+Start test 8?[0m
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 2
+
+The customer list is empty!
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 3
+
+Enter the customer name:
+&gt; First customer
+The customer was added!
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 3
+
+Enter the customer name:
+&gt; Second customer
+The customer was added!
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 2
+
+Choose a customer:
+1. First customer
+2. Second customer
+0. Back
+&gt; 1
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 3
+
+You didn't rent a car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 2
+
+You didn't rent a car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+?[1;31m
+Start test 9?[0m
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 2
+
+Choose a customer:
+1. First customer
+2. Second customer
+0. Back
+&gt; 1
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+&gt; 1
+
+Choose a car:
+1. Hyundai Venue
+2. Maruti Suzuki Dzire
+0. Back
+&gt; 1
+You rented 'Hyundai Venue'
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 3
+
+Your rented car:
+Hyundai Venue
+Company:
+Car To Go
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 1
+
+You've already rented a car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 2
+
+You've returned a rented car!
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 0
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 0
+
+?[1;31m
+Start test 10?[0m
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 2
+
+Choose a customer:
+1. First customer
+2. Second customer
+0. Back
+&gt; 2
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+&gt; 1
+
+Choose a car:
+1. Hyundai Venue
+2. Maruti Suzuki Dzire
+0. Back
+&gt; 1
+You rented 'Hyundai Venue'
+
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 0
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
+0. Exit
+&gt; 2
+
+Choose a customer:
+1. First customer
+2. Second customer
+0. Back
+&gt; 1
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 1
+
+Choose the company:
+1. Car To Go
+2. Drive Now
+0. Back
+&gt; 1
+
+Choose a car:
+1. Maruti Suzuki Dzire
+0. Back
+&gt; 0
+1. Rent a car
+2. Return a rented car
+3. My rented car
+0. Back
+&gt; 0
+
+1. Log in as a manager
+2. Log in as a customer
+3. Create a customer
 0. Exit
 &gt; 0
 
@@ -330,9 +551,9 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
-	at carsharing.core.Facade.start(Facade.java:16)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -356,9 +577,9 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
-	at carsharing.core.Facade.start(Facade.java:16)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -382,9 +603,87 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
-	at carsharing.core.Facade.start(Facade.java:16)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
+	at carsharing.Main.main(Main.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.invokeMain(MainMethodExecutor.java:173)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.lambda$launch$0(MainMethodExecutor.java:200)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop &quot;COMPANY&quot; because &quot;FK_COMPANY_ID&quot; depends on it; SQL statement:
+DROP TABLE IF EXISTS company [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
+	at carsharing.Main.main(Main.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.invokeMain(MainMethodExecutor.java:173)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.lambda$launch$0(MainMethodExecutor.java:200)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop &quot;COMPANY&quot; because &quot;FK_COMPANY_ID&quot; depends on it; SQL statement:
+DROP TABLE IF EXISTS company [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
+	at carsharing.Main.main(Main.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.invokeMain(MainMethodExecutor.java:173)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.lambda$launch$0(MainMethodExecutor.java:200)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop &quot;COMPANY&quot; because &quot;FK_COMPANY_ID&quot; depends on it; SQL statement:
+DROP TABLE IF EXISTS company [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -408,7 +707,7 @@ DROP TABLE IF EXISTS company [90107-200]
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 7.1.1</a> at 4 de ago de 2021 18:37:43</p>
+<a href="http://www.gradle.org">Gradle 7.1.1</a> at 4 de ago de 2021 19:51:51</p>
 </div>
 </div>
 </body>

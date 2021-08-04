@@ -1,4 +1,4 @@
-2021-08-04 18:33:53 jdbc[3]: exception
+2021-08-04 19:40:48 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
 DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
@@ -10,8 +10,8 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
 	at carsharing.core.Facade.start(Facade.java:16)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS company [90107-200]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-2021-08-04 18:33:54 jdbc[3]: exception
+2021-08-04 19:40:49 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
 DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
@@ -37,8 +37,8 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
 	at carsharing.core.Facade.start(Facade.java:16)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS company [90107-200]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-2021-08-04 18:34:32 jdbc[3]: exception
+2021-08-04 19:40:50 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
 DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
@@ -64,8 +64,8 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
 	at carsharing.core.Facade.start(Facade.java:16)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -79,7 +79,7 @@ DROP TABLE IF EXISTS company [90107-200]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-2021-08-04 18:34:33 jdbc[3]: exception
+2021-08-04 19:40:50 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
 DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
@@ -91,8 +91,8 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
 	at carsharing.core.Facade.start(Facade.java:16)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -106,7 +106,7 @@ DROP TABLE IF EXISTS company [90107-200]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-2021-08-04 18:35:59 jdbc[3]: exception
+2021-08-04 19:40:51 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
 DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
@@ -118,8 +118,8 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
 	at carsharing.core.Facade.start(Facade.java:16)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -133,7 +133,7 @@ DROP TABLE IF EXISTS company [90107-200]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-2021-08-04 18:36:00 jdbc[3]: exception
+2021-08-04 19:40:52 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
 DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
@@ -145,8 +145,8 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
 	at carsharing.core.Facade.start(Facade.java:16)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
@@ -160,7 +160,7 @@ DROP TABLE IF EXISTS company [90107-200]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-2021-08-04 18:37:41 jdbc[3]: exception
+2021-08-04 19:51:44 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
 DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
@@ -172,9 +172,9 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
-	at carsharing.core.Facade.start(Facade.java:16)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -187,7 +187,7 @@ DROP TABLE IF EXISTS company [90107-200]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-2021-08-04 18:37:42 jdbc[3]: exception
+2021-08-04 19:51:45 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
 DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
@@ -199,9 +199,9 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
-	at carsharing.core.Facade.start(Facade.java:16)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
@@ -214,7 +214,7 @@ DROP TABLE IF EXISTS company [90107-200]
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
 	at java.base/java.lang.Thread.run(Thread.java:829)
-2021-08-04 18:37:42 jdbc[3]: exception
+2021-08-04 19:51:46 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
 DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
@@ -226,9 +226,90 @@ DROP TABLE IF EXISTS company [90107-200]
 	at org.h2.command.Command.executeUpdate(Command.java:251)
 	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
 	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
-	at carsharing.core.Database.initializeCompanyTable(Database.java:58)
-	at carsharing.core.Database.initialize(Database.java:30)
-	at carsharing.core.Facade.start(Facade.java:16)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
+	at carsharing.Main.main(Main.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.invokeMain(MainMethodExecutor.java:173)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.lambda$launch$0(MainMethodExecutor.java:200)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2021-08-04 19:51:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
+DROP TABLE IF EXISTS company [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
+	at carsharing.Main.main(Main.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.invokeMain(MainMethodExecutor.java:173)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.lambda$launch$0(MainMethodExecutor.java:200)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2021-08-04 19:51:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
+DROP TABLE IF EXISTS company [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
+	at carsharing.Main.main(Main.java:25)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.invokeMain(MainMethodExecutor.java:173)
+	at org.hyperskill.hstest.testing.execution.MainMethodExecutor.lambda$launch$0(MainMethodExecutor.java:200)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2021-08-04 19:51:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Cannot drop "COMPANY" because "FK_COMPANY_ID" depends on it; SQL statement:
+DROP TABLE IF EXISTS company [90107-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.command.ddl.DropTable.prepareDrop(DropTable.java:98)
+	at org.h2.command.ddl.DropTable.update(DropTable.java:124)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeUpdateInternal(JdbcStatement.java:168)
+	at org.h2.jdbc.JdbcStatement.executeUpdate(JdbcStatement.java:126)
+	at carsharing.core.Database.initializeCompanyTable(Database.java:60)
+	at carsharing.core.Database.initialize(Database.java:31)
+	at carsharing.core.Facade.start(Facade.java:22)
 	at carsharing.Main.main(Main.java:25)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)

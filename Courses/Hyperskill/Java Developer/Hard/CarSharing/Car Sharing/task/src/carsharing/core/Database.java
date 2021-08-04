@@ -2,6 +2,7 @@ package carsharing.core;
 
 import carsharing.core.model.Car;
 import carsharing.core.model.Company;
+import carsharing.core.model.Customer;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class Database {
 
             initializeCompanyTable(stmt);
             initializeCarTable(stmt);
+            initializeCustomerTable(stmt);
 
             stmt.close();
             conn.close();
@@ -68,7 +70,23 @@ public class Database {
                 "CONSTRAINT fk_company_id FOREIGN KEY (company_id) " +
                 "REFERENCES company(id) " +
                 "ON UPDATE CASCADE " +
-                "ON DELETE SET NULL " +
+                "ON DELETE CASCADE " +
+                ")";
+
+        stmt.executeUpdate(preSql);
+        stmt.executeUpdate(sql);
+    }
+
+    public void initializeCustomerTable(Statement stmt) throws SQLException {
+        String preSql = "DROP TABLE IF EXISTS customer";
+        String sql = "CREATE TABLE customer(" +
+                "id IDENTITY NOT NULL PRIMARY KEY, " +
+                "name VARCHAR(255) UNIQUE NOT NULL, " +
+                "rented_car_id INT, " +
+                "CONSTRAINT fk_car_id FOREIGN KEY (rented_car_id) " +
+                "REFERENCES car(id) " +
+                "ON UPDATE CASCADE " +
+                "ON DELETE CASCADE " +
                 ")";
 
         stmt.executeUpdate(preSql);
@@ -84,6 +102,27 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public Company getCompanyById(int id) {
+        String sql = "SELECT id, name " +
+                "FROM company WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(DB_BASE_URL + filepath);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                resultSet.next();
+                return new Company.Builder()
+                        .setId(resultSet.getInt(1))
+                        .setName(resultSet.getString(2))
+                        .build();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public List<Company> getAllCompanies() {
@@ -121,6 +160,28 @@ public class Database {
         }
     }
 
+    public Car getCarById(int id) {
+        String sql = "SELECT id, name, company_id " +
+                "FROM car WHERE id = ?";
+
+        try (Connection conn = DriverManager.getConnection(DB_BASE_URL + filepath);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                resultSet.next();
+                return new Car.Builder()
+                        .setId(resultSet.getInt(1))
+                        .setName(resultSet.getString(2))
+                        .setCompanyId(resultSet.getInt(3))
+                        .build();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
     public List<Car> getAllCarsOfCompany(Company company) {
         String sql = "SELECT id, name, company_id " +
                 "FROM car WHERE company_id = ?";
@@ -139,6 +200,63 @@ public class Database {
                     cars.add(car);
                 }
                 return cars;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return List.of();
+    }
+
+    public void insertCustomer(Customer customer) {
+        String sql = "INSERT INTO customer (name, rented_car_id) VALUES(?, ?)";
+        try (Connection conn = DriverManager.getConnection(DB_BASE_URL + filepath);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, customer.getName());
+            stmt.setNull(2, Types.INTEGER);
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateCustomer(Customer customer) {
+        String sql = "UPDATE customer " +
+                "SET rented_car_id = ? " +
+                "WHERE id = ? AND name = ?";
+        try (Connection conn = DriverManager.getConnection(DB_BASE_URL + filepath);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            if (customer.getRentedCarId() == null) {
+                stmt.setNull(1, Types.INTEGER);
+            } else {
+                stmt.setInt(1, customer.getRentedCarId());
+            }
+            stmt.setInt(2, customer.getId());
+            stmt.setString(3, customer.getName());
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Customer> getAllCustomers() {
+        String sql = "SELECT id, name, rented_car_id FROM customer";
+
+        try (Connection conn = DriverManager.getConnection(DB_BASE_URL + filepath);
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                List<Customer> customers = new ArrayList<>();
+                while (resultSet.next()) {
+                    Integer carId = resultSet.getInt(3);
+                    Customer customer = new Customer.Builder()
+                            .setId(resultSet.getInt(1))
+                            .setName(resultSet.getString(2))
+                            .setCarId(carId.equals(0) ? null : carId)
+                            .build();
+                    customers.add(customer);
+                }
+                return customers;
             }
         } catch (SQLException e) {
             e.printStackTrace();
