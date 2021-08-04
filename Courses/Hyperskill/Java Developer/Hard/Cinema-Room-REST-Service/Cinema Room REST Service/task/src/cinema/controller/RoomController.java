@@ -1,5 +1,6 @@
 package cinema.controller;
 
+import cinema.exception.InvalidPasswordException;
 import cinema.exception.InvalidSeatException;
 import cinema.model.Room;
 import cinema.model.Seat;
@@ -15,7 +16,8 @@ import java.util.UUID;
 @RestController
 public class RoomController {
 
-    private Map<UUID, Ticket> ticketMap = new HashMap<>();
+    private final Map<UUID, Ticket> ticketMap = new HashMap<>();
+    private final String mySuperSecretPassword = "super_secret";
 
     @GetMapping("/seats")
     public ResponseEntity<Room> getRoomInfo() {
@@ -55,6 +57,18 @@ public class RoomController {
         return new ResponseEntity<>(Map.of("returned_ticket", ticket.getSeat()), HttpStatus.OK);
     }
 
+    @PostMapping("/stats")
+    public ResponseEntity<Map<String, Integer>> showStatistics(@RequestParam(required = false) String password) {
+        if (!mySuperSecretPassword.equals(password)) throw new InvalidPasswordException();
+        Map<String, Integer> statsMap = new HashMap<>();
+        statsMap.put("current_income", ticketMap.values().stream()
+                                        .mapToInt(t -> t.getSeat().getPrice())
+                                        .sum());
+        statsMap.put("number_of_available_seats", Room.getInstance().getAvailableSeats().size());
+        statsMap.put("number_of_purchased_tickets", ticketMap.size());
+
+        return new ResponseEntity<>(statsMap, HttpStatus.OK);
+    }
 
     /*
     CUSTOM EXCEPTION HANDLER
@@ -64,6 +78,15 @@ public class RoomController {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public @ResponseBody
     Map<String,Object> handleBadRequestException(InvalidSeatException exception) {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("error", exception.getMessage());
+        return result;
+    }
+
+    @ExceptionHandler(InvalidPasswordException.class)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
+    public @ResponseBody
+    Map<String,Object> handleUnauthorizedException(InvalidPasswordException exception) {
         HashMap<String, Object> result = new HashMap<>();
         result.put("error", exception.getMessage());
         return result;
