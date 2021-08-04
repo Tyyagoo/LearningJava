@@ -268,130 +268,6 @@ files:
         }
     }
   learner_created: true
-- name: src/blockchain/Miner.java
-  visible: true
-  text: |
-    package blockchain;
-
-    import java.util.Random;
-
-    public class Miner implements Runnable {
-
-        private final int id;
-        private final Chain blockchain;
-
-        public Miner(int id, Chain blockchain) {
-            this.blockchain = blockchain;
-            this.id = id;
-        }
-
-        @Override
-        public void run() {
-            while (true) {
-                if (blockchain.getSize() == 5) break;
-
-                Block block = mine();
-                if (validateHash(block)) {
-                    blockchain.validateBlock(block);
-                }
-            }
-        }
-
-        private Block mine() {
-            Block previousBlock = blockchain.getLastBlock();
-            String previousHash = (previousBlock != null) ? previousBlock.getHash() : "0";
-            // int id, int nonce, int minerId, String previousHash
-            return new Block(blockchain.getSize() + 1,
-                    new Random().nextInt(Integer.MAX_VALUE),
-                    id,
-                    previousHash);
-        }
-
-        private boolean validateHash(Block block) {
-            if (block == null) return false;
-            return block.getHash().substring(0, blockchain.getDifficultFactor()).equals(blockchain.getRequiredStart());
-        }
-    }
-  learner_created: true
-- name: src/blockchain/Chain.java
-  visible: true
-  text: |
-    package blockchain;
-
-    import java.io.Serializable;
-    import java.util.Date;
-    import java.util.List;
-    import java.util.ArrayList;
-    import java.util.concurrent.ConcurrentLinkedQueue;
-
-    public class Chain implements Serializable {
-        private static final long serialVersionUID = 1L;
-
-        private volatile int difficultFactor;
-        private final List<Block> chain;
-
-        private long timestampStart;
-        private long timestampFinish;
-
-        Chain () {
-            this.difficultFactor = 0;
-            this.chain = new ArrayList<>();
-            timestampStart = new Date().getTime();
-        }
-
-        synchronized public boolean validateBlock(Block block) {
-            if (block == null) return false;
-            if (getSize() == 5) return false;
-            Block previousBlock = getLastBlock();
-            String previousHash = (previousBlock != null) ? previousBlock.getHash() : "0";
-            if (previousHash.equals(block.getPreviousHash()) &&
-                    block.getHash().substring(0, difficultFactor).equals(getRequiredStart())) {
-                chain.add(block);
-                timestampFinish = new Date().getTime();
-                long delta = timestampFinish - timestampStart;
-                System.out.println(block);
-                System.out.printf("Block was generating for %d seconds%n", delta / 1000);
-                balanceChainGrowth(delta);
-                System.out.println();
-                timestampStart = new Date().getTime();
-                return true;
-            }
-            return false;
-        }
-
-        public synchronized void balanceChainGrowth(long delta) {
-            if (delta / 1000 < 10) {
-                difficultFactor++;
-                System.out.printf("N was increased to %d%n", difficultFactor);
-                return;
-            }
-
-            if (delta / 1000 > 60) {
-                difficultFactor--;
-                System.out.printf("N was decreased by %d%n", difficultFactor);
-                return;
-            }
-
-            System.out.println("N stays the same");
-        }
-
-        public Block getLastBlock() {
-            return (getSize() > 0) ? chain.get(getSize() - 1) : null;
-        }
-
-        public int getSize() {
-            return chain.size();
-        }
-
-        public int getDifficultFactor() {
-            return difficultFactor;
-        }
-
-        public String getRequiredStart() {
-            return "0".repeat(difficultFactor);
-        }
-    }
-  learner_created: true
 - name: src/blockchain/util/SerializationUtils.java
   visible: true
   text: |-
@@ -424,75 +300,27 @@ files:
         }
     }
   learner_created: true
-- name: src/blockchain/Block.java
+- name: src/blockchain/core/Blockchain.java
   visible: true
-  text: |
-    package blockchain;
-
-    import blockchain.util.*;
-
-    import java.io.Serializable;
-    import java.util.Date;
-
-    public class Block implements Serializable {
-        private static final long serialVersionUID = 1L;
-        private final int nonce;
-        private final int id;
-        private final int minerId;
-        private final long timestamp;
-        private final String previousHash;
-        private final String hash;
-
-        public Block (int id, int nonce, int minerId, String previousHash) {
-            this.id = id;
-            this.nonce = nonce;
-            this.minerId = minerId;
-            this.timestamp = new Date().getTime();
-            this.previousHash = previousHash;
-            this.hash = generateHash();
-        }
-
-        private String generateHash() {
-            String blockData = serialVersionUID +
-                    previousHash +
-                    timestamp +
-                    id +
-                    nonce;
-
-            return StringUtil.applySha256(blockData);
-        }
-
-        public int getId() {
-            return id;
-        }
-
-        public long getTimestamp() {
-            return timestamp;
-        }
-
-        public String getPreviousHash() {
-            return previousHash;
-        }
-
-        public String getHash() {
-            return hash;
-        }
-
-        @Override
-        public String toString() {
-            return "Block:\n" +
-                    "Created by miner # " + minerId + "\n" +
-                    "Id: " + id + "\n" +
-                    "Timestamp: " + timestamp + "\n" +
-                    "Magic number: " + nonce + "\n" +
-                    "Hash of the previous block: \n" +
-                    previousHash + "\n" +
-                    "Hash of the block: \n" +
-                    hash;
-        }
-
-    }
+  learner_created: true
+- name: src/blockchain/core/Block.java
+  visible: true
+  learner_created: true
+- name: src/blockchain/client/action/Message.java
+  visible: true
+  learner_created: true
+- name: src/blockchain/client/Miner.java
+  visible: true
+  learner_created: true
+- name: src/blockchain/client/User.java
+  visible: true
+  learner_created: true
+- name: src/blockchain/util/Facade.java
+  visible: true
   learner_created: true
 feedback_link: https://hyperskill.org/projects/50/stages/274/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 04 Aug 2021 02:10:08 UTC
+record: 4
