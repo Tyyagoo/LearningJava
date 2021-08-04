@@ -475,6 +475,12 @@ files:
         };
     }
   learner_created: false
+- name: src/cinema/model/Ticket.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/189/stages/947/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 04 Aug 2021 14:36:45 UTC
+record: 3

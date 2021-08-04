@@ -3,17 +3,19 @@ package cinema.controller;
 import cinema.exception.InvalidSeatException;
 import cinema.model.Room;
 import cinema.model.Seat;
+import cinema.model.Ticket;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 public class RoomController {
+
+    private Map<UUID, Ticket> ticketMap = new HashMap<>();
 
     @GetMapping("/seats")
     public ResponseEntity<Room> getRoomInfo() {
@@ -21,7 +23,7 @@ public class RoomController {
     }
 
     @PostMapping("/purchase")
-    public ResponseEntity<?> purchaseSeat(@RequestBody Seat seat) {
+    public ResponseEntity<Ticket> purchaseTicket(@RequestBody Seat seat) {
         int x = Room.getInstance().getRows();
         int y = Room.getInstance().getColumns();
         if (seat.getRowNumber() < 1 || seat.getRowNumber() > x ||
@@ -34,9 +36,23 @@ public class RoomController {
             // return new ResponseEntity<>("The ticket has been already purchased!", HttpStatus.BAD_REQUEST);
             throw new InvalidSeatException("The ticket has been already purchased!");
         }
+
         Room.getInstance().getAvailableSeats().remove(seat);
         seat.updatePrice();
-        return new ResponseEntity<>(seat, HttpStatus.OK);
+        Ticket ticket = new Ticket(seat);
+        ticketMap.put(ticket.getToken(), ticket);
+        return new ResponseEntity<>(ticket, HttpStatus.OK);
+    }
+
+    @PostMapping("/return")
+    public ResponseEntity<Map<String, Seat>> refundTicket(@RequestBody Map<String, String> json) {
+        if (!json.containsKey("token")) throw new InvalidSeatException("Wrong token!");
+        UUID token = UUID.fromString(json.get("token"));
+        Ticket ticket = ticketMap.getOrDefault(token, null);
+        if (ticket == null) throw new InvalidSeatException("Wrong token!");
+        Room.getInstance().getAvailableSeats().add(ticket.getSeat());
+        ticketMap.remove(token);
+        return new ResponseEntity<>(Map.of("returned_ticket", ticket.getSeat()), HttpStatus.OK);
     }
 
 
