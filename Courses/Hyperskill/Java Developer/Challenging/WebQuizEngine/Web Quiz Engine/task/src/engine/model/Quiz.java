@@ -2,28 +2,37 @@ package engine.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
+@Entity(name = "quiz")
 public class Quiz {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @Column
     @NotBlank
     private String title;
 
+    @Column
     @NotBlank
     private String text;
 
+    @ElementCollection
+    @OrderColumn
     @NotNull
     @Size(min = 2)
     private String[] options;
 
+    @ElementCollection
+    @OrderColumn
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Integer> answer = List.of();
 
-    public Quiz() {}
+    protected Quiz() {}
 
     public Quiz(Integer id, String title, String text, String[] options, List<Integer> answer) {
         this.id = id;
