@@ -2,16 +2,30 @@ package engine.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
 public class Quiz {
     private Integer id;
+
+    @NotBlank
     private String title;
+
+    @NotBlank
     private String text;
+
+    @NotNull
+    @Size(min = 2)
     private String[] options;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private Integer answer;
+    private List<Integer> answer = List.of();
 
-    public Quiz(Integer id, String title, String text, String[] options, Integer answer) {
+    public Quiz() {}
+
+    public Quiz(Integer id, String title, String text, String[] options, List<Integer> answer) {
         this.id = id;
         this.title = title;
         this.text = text;
@@ -19,8 +33,7 @@ public class Quiz {
         this.answer = answer;
     }
 
-    public boolean solve(Integer choice) {
-        if (answer == null || choice == null) return false;
+    public boolean solve(List<Integer> choice) {
         return answer.equals(choice);
     }
 
@@ -56,48 +69,16 @@ public class Quiz {
         this.options = options;
     }
 
-    public Integer getAnswer() {
+    public List<Integer> getAnswer() {
         return answer;
     }
 
-    public void setAnswer(Integer answer) {
-        this.answer = answer;
-    }
-
-    public static class Builder {
-        private Integer id;
-        private String title;
-        private String text;
-        private String[] options;
-        private Integer answer;
-
-        public Builder setId(Integer id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder setTitle(String title) {
-            this.title = title;
-            return this;
-        }
-
-        public Builder setText(String text) {
-            this.text = text;
-            return this;
-        }
-
-        public Builder setOptions(String[] options) {
-            this.options = options;
-            return this;
-        }
-
-        public Builder setAnswer(Integer answer) {
+    public void setAnswer(List<Integer> answer) {
+        if (answer == null) {
+            answer = List.of();
+        } else {
+            Collections.sort(answer);
             this.answer = answer;
-            return this;
-        }
-
-        public Quiz build() {
-            return new Quiz(id, title, text, options, answer);
         }
     }
 }

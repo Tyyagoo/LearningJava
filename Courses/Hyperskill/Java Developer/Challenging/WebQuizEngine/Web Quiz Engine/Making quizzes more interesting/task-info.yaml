@@ -599,6 +599,12 @@ files:
         }
     }
   learner_created: true
+- name: src/engine/model/AttemptWrapper.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/91/stages/506/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Fri, 06 Aug 2021 18:01:13 UTC
+record: 3
