@@ -2,10 +2,15 @@ package engine.controller;
 
 import engine.model.AttemptWrapper;
 import engine.model.Quiz;
+import engine.model.Submission;
+import engine.model.Submission.SubmissionDTO;
 import engine.model.User;
 import engine.service.QuizService;
+import engine.service.SubmissionService;
 import engine.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Slice;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,9 +34,23 @@ public class QuizController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    SubmissionService submissionService;
+
     @GetMapping("/api/quizzes")
-    public ResponseEntity<List<Quiz>> getAllQuizzes() {
-        return new ResponseEntity<>(quizService.getAllQuizzes(), HttpStatus.OK);
+    public ResponseEntity<Page<Quiz>> getAllQuizzes(@RequestParam(defaultValue = "0") Integer page) {
+        final int pageSize = 10;
+        final String sortBy = "id";
+        return new ResponseEntity<>(quizService.getAllQuizzes(page, pageSize, sortBy), HttpStatus.OK);
+    }
+
+    @GetMapping("/api/quizzes/completed")
+    public ResponseEntity<Slice<SubmissionDTO>> getAllSubmissions(
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "completedAt") String sortBy) {
+        String email = getUserEmailByContext();
+        return new ResponseEntity<>(submissionService.getAllSubmissionsFromEmail(email, page, pageSize, sortBy), HttpStatus.OK);
     }
 
     @GetMapping("/api/quizzes/{id}")
@@ -88,8 +107,14 @@ public class QuizController {
     @PostMapping("/api/quizzes/{id}/solve")
     public ResponseEntity<?> solveQuiz(@PathVariable @Min(1) Integer id, @Valid @RequestBody AttemptWrapper attempt) {
         Optional<Quiz> quiz = quizService.getQuizById(id);
+        Optional<User> user = userService.retrieveUserByEmail(getUserEmailByContext());
         return quiz.map(value -> {
             boolean result = value.solve(attempt.getAnswer());
+            user.ifPresent(u -> {
+                if (result) {
+                    submissionService.saveSubmission(new Submission(value, u));
+                }
+            });
             String feedback = result ? "Congratulations, you're right!" : "Wrong answer! Please, try again.";
             return new ResponseEntity<>(Map.of("success" , result, "feedback", feedback), HttpStatus.OK);
         }).orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));

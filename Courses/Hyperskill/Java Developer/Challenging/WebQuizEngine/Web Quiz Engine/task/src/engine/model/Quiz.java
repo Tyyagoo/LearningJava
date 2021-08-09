@@ -5,13 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 @Entity(name = "quiz")
 public class Quiz {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -37,6 +38,10 @@ public class Quiz {
     @JoinColumn(name="user_id", nullable=false)
     @JsonIgnore
     private User owner;
+
+    @OneToMany(targetEntity=Submission.class, cascade=CascadeType.ALL, mappedBy="quiz", fetch = FetchType.EAGER)
+    @JsonIgnore
+    private List<Submission> submissions;
 
     protected Quiz() {}
 
@@ -104,5 +109,13 @@ public class Quiz {
 
     public void setOwner(User owner) {
         this.owner = owner;
+    }
+
+    public List<Submission> getSubmissions() {
+        return submissions;
+    }
+
+    public void setSubmissions(List<Submission> submissions) {
+        this.submissions = submissions;
     }
 }
