@@ -1,5 +1,6 @@
 package engine.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ import java.util.List;
 public class Quiz {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private int id;
 
     @Column
     @NotBlank
@@ -32,25 +33,31 @@ public class Quiz {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Integer> answer = List.of();
 
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    @JsonIgnore
+    private User owner;
+
     protected Quiz() {}
 
-    public Quiz(Integer id, String title, String text, String[] options, List<Integer> answer) {
+    public Quiz(int id, String title, String text, String[] options, List<Integer> answer, User owner) {
         this.id = id;
         this.title = title;
         this.text = text;
         this.options = options;
         this.answer = answer;
+        this.owner = owner;
     }
 
     public boolean solve(List<Integer> choice) {
         return answer.equals(choice);
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -89,5 +96,13 @@ public class Quiz {
             Collections.sort(answer);
             this.answer = answer;
         }
+    }
+
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

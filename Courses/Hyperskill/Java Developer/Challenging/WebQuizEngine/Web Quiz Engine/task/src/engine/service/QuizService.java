@@ -34,4 +34,12 @@ public class QuizService {
     public Quiz save(Quiz quiz) {
         return quizRepository.save(quiz);
     }
+
+    public void deleteQuizById(Integer id) {
+        try {
+            quizRepository.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
