@@ -12,6 +12,16 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Topics/Inner classes/Christmas tree" />
+            <option value="$PROJECT_DIR$/Topics/Inner classes/Improve your vehicle" />
+            <option value="$PROJECT_DIR$/Topics/Inner classes/Theory" />
+            <option value="$PROJECT_DIR$/Topics/Inner classes/Your vehicle" />
+            <option value="$PROJECT_DIR$/Topics/Nested classes/Create class" />
+            <option value="$PROJECT_DIR$/Topics/Nested classes/Find min and max" />
+            <option value="$PROJECT_DIR$/Topics/Nested classes/Make slices" />
+            <option value="$PROJECT_DIR$/Topics/Nested classes/Theory" />
+            <option value="$PROJECT_DIR$/Topics/hashCode() and equals()/Complex numbers" />
+            <option value="$PROJECT_DIR$/Topics/hashCode() and equals()/Theory" />
             <option value="$PROJECT_DIR$/Web Quiz Engine/task" />
           </set>
         </option>

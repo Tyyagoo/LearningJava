@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/287312/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Mon, 09 Aug 2021 20:40:59 UTC
+update_date: Tue, 10 Aug 2021 20:28:09 UTC
 stages:
 - id: 504
   step: 8252
@@ -276,8 +276,6 @@ topics:
   3:
   - title: The concept of patterns
     theory_id: 3611
-  - title: Files
-    theory_id: 13025
   - title: Introduction to databases
     theory_id: 8497
   - title: Relational Data Model
@@ -292,6 +290,8 @@ topics:
     theory_id: 8936
   - title: CRUD repositories
     theory_id: 9536
+  - title: '@Bean vs @Component'
+    theory_id: 14771
   - title: Application layers
     theory_id: 13971
   - title: Data and object mapping
