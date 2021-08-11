@@ -19,15 +19,14 @@ public class NaiveStrategy implements Strategy {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         for (int i = 0; i < str.length; i++) {
             boolean result = searchForPattern(str, pattern, i);
             if (result) {
-                System.out.println(type);
-                return;
+                return type;
             }
         }
-        System.out.println(unknownType);
+        return unknownType;
     }
 
     private boolean searchForPattern(byte[] bytes, String pattern, int initialPosition) {

@@ -167,6 +167,157 @@ files:
     \    Files.deleteIfExists(Paths.get(CURRENT_DIR + testFolder));\n        }\n \
     \       catch (IOException ex) {\n\n\n        }\n    }\n\n}\n"
   learner_created: false
+- name: src/analyzer/sp/KmpStrategy.java
+  visible: true
+  text: |
+    package analyzer.sp;
+
+    import java.util.Arrays;
+    import java.util.HashMap;
+    import java.util.Map;
+
+    public class KmpStrategy implements Strategy {
+        byte[] str;
+        String pattern;
+        String type;
+
+        public KmpStrategy(byte[] str, String pattern, String type) {
+            this.str = str;
+            this.pattern = pattern;
+            this.type = type;
+        }
+
+        @Override
+        public String execute() {
+            char[] p = pattern.toCharArray();
+            int[] lps = getPrefixFunction(p);
+            if (searchPattern(this.str, p, lps)) {
+                return type;
+            }
+            return unknownType;
+        }
+
+        public int[] getPrefixFunction(char[] s) {
+            int[] p = new int[s.length];
+            int j = 0;
+            for (int i = 1; i < p.length; i++) {
+                while (j > 0 && s[j] != s[i]) {
+                    j = p[j - 1];
+                }
+
+                if (s[j] == s[i]) {
+                    j++;
+                }
+
+                p[i] = j;
+            }
+
+            return p;
+        }
+
+        public boolean searchPattern(byte[] str, char[] pattern, int[] lps) {
+            int i = 0, j = 0;
+
+            while (i < str.length) {
+                while (str[i] == pattern[j]) {
+                    i++;
+                    j++;
+                    if (j == pattern.length) {
+                        return true;
+                    }
+                }
+                // if str[i] != pattern[j], reset j
+                if (j > 0) {
+                    j = lps[j - 1];
+                } else {
+                    i++;
+                }
+            }
+            return false;
+        }
+
+    }
+  learner_created: true
+- name: src/analyzer/sp/NaiveStrategy.java
+  visible: true
+  text: |
+    package analyzer.sp;
+
+    import java.io.IOException;
+    import java.nio.file.Files;
+    import java.nio.file.Paths;
+    import java.util.HashMap;
+    import java.util.Map;
+
+    public class NaiveStrategy implements Strategy {
+
+        private byte[] str;
+        private String pattern;
+        private String type;
+
+        public NaiveStrategy(byte[] str, String pattern, String type) {
+            this.str = str;
+            this.pattern = pattern;
+            this.type = type;
+        }
+
+        @Override
+        public String execute() {
+            for (int i = 0; i < str.length; i++) {
+                boolean result = searchForPattern(str, pattern, i);
+                if (result) {
+                    return type;
+                }
+            }
+            return unknownType;
+        }
+
+        private boolean searchForPattern(byte[] bytes, String pattern, int initialPosition) {
+            for (int i = initialPosition; i < initialPosition + pattern.length(); i++) {
+                if (bytes[i] != pattern.charAt(i - initialPosition)) return false;
+            }
+            return true;
+        }
+
+    }
+  learner_created: true
+- name: src/analyzer/sp/Context.java
+  visible: true
+  text: |
+    package analyzer.sp;
+
+    public class Context {
+        private Strategy strategy;
+
+        public Context () {}
+
+        public Context(Strategy strategy) {
+            this.strategy = strategy;
+        }
+
+        public String execute() {
+            return (strategy != null) ? strategy.execute() : "";
+        }
+
+        public Strategy getStrategy() {
+            return strategy;
+        }
+
+        public void setStrategy(Strategy strategy) {
+            this.strategy = strategy;
+        }
+    }
+  learner_created: true
+- name: src/analyzer/sp/Strategy.java
+  visible: true
+  text: |
+    package analyzer.sp;
+
+    public interface Strategy {
+        String unknownType = "Unknown file type";
+        String execute();
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/64/stages/346/implement#comment
 status: Unchecked
 record: -1

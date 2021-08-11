@@ -9,13 +9,8 @@ public class Context {
         this.strategy = strategy;
     }
 
-    public void execute() {
-        if (strategy != null) {
-            long start = System.nanoTime();
-            strategy.execute();
-            long finish = System.nanoTime();
-            System.out.printf("It took %1.3f seconds%n", (finish - start) / 1000000.0);
-        }
+    public String execute() {
+        return (strategy != null) ? strategy.execute() : "";
     }
 
     public Strategy getStrategy() {

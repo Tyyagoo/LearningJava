@@ -16,14 +16,13 @@ public class KmpStrategy implements Strategy {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         char[] p = pattern.toCharArray();
         int[] lps = getPrefixFunction(p);
         if (searchPattern(this.str, p, lps)) {
-            System.out.println(type);
-            return;
+            return type;
         }
-        System.out.println(unknownType);
+        return unknownType;
     }
 
     public int[] getPrefixFunction(char[] s) {
