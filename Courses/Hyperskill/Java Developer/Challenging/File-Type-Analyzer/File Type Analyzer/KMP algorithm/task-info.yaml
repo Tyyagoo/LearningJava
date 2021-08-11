@@ -179,6 +179,21 @@ files:
         }
     }
   learner_created: false
+- name: src/analyzer/sp/Strategy.java
+  visible: true
+  learner_created: true
+- name: src/analyzer/sp/Context.java
+  visible: true
+  learner_created: true
+- name: src/analyzer/sp/NaiveStrategy.java
+  visible: true
+  learner_created: true
+- name: src/analyzer/sp/KmpStrategy.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/64/stages/344/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 11 Aug 2021 19:40:50 UTC
+record: 2
