@@ -1,11 +1,5 @@
 package analyzer.sp;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-
 public class NaiveStrategy implements Strategy {
 
     private byte[] str;
@@ -19,14 +13,14 @@ public class NaiveStrategy implements Strategy {
     }
 
     @Override
-    public String execute() {
+    public boolean execute() {
         for (int i = 0; i < str.length; i++) {
             boolean result = searchForPattern(str, pattern, i);
             if (result) {
-                return type;
+                return true;
             }
         }
-        return unknownType;
+        return false;
     }
 
     private boolean searchForPattern(byte[] bytes, String pattern, int initialPosition) {

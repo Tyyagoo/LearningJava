@@ -1,28 +1,23 @@
 package analyzer.sp;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import analyzer.FilePattern;
 
 public class KmpStrategy implements Strategy {
     byte[] str;
     String pattern;
     String type;
 
-    public KmpStrategy(byte[] str, String pattern, String type) {
+    public KmpStrategy(byte[] str, FilePattern filePattern) {
         this.str = str;
-        this.pattern = pattern;
-        this.type = type;
+        this.pattern = filePattern.getPattern();
+        this.type = filePattern.getType();
     }
 
     @Override
-    public String execute() {
+    public boolean execute() {
         char[] p = pattern.toCharArray();
         int[] lps = getPrefixFunction(p);
-        if (searchPattern(this.str, p, lps)) {
-            return type;
-        }
-        return unknownType;
+        return searchPattern(this.str, p, lps);
     }
 
     public int[] getPrefixFunction(char[] s) {
@@ -46,12 +41,20 @@ public class KmpStrategy implements Strategy {
     public boolean searchPattern(byte[] str, char[] pattern, int[] lps) {
         int i = 0, j = 0;
 
+        if (str.length < pattern.length) {
+            return false;
+        }
+
         while (i < str.length) {
             while (str[i] == pattern[j]) {
                 i++;
                 j++;
                 if (j == pattern.length) {
                     return true;
+                }
+
+                if (i == str.length) {
+                    return false;
                 }
             }
             // if str[i] != pattern[j], reset j

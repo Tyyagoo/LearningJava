@@ -318,6 +318,12 @@ files:
         String execute();
     }
   learner_created: true
+- name: src/analyzer/FilePattern.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/64/stages/346/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Thu, 12 Aug 2021 15:26:50 UTC
+record: 4

@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/210127/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Wed, 11 Aug 2021 17:49:50 UTC
+update_date: Thu, 12 Aug 2021 13:48:54 UTC
 stages:
 - id: 343
   step: 5485
@@ -16,7 +16,7 @@ stages:
   is_completed: true
 - id: 346
   step: 5488
-  is_completed: false
+  is_completed: true
 - id: 347
   step: 5489
   is_completed: false
@@ -148,8 +148,6 @@ topics:
     theory_id: 3746
   - title: Command-line arguments
     theory_id: 3566
-  - title: IntelliJ Run Configurations
-    theory_id: 10630
   - title: Files
     theory_id: 3635
   - title: Reading files
@@ -158,6 +156,8 @@ topics:
     theory_id: 3652
   - title: Input streams
     theory_id: 9723
+  - title: IntelliJ Run Configurations
+    theory_id: 10630
   - title: Introduction to generic programming
     theory_id: 3492
   - title: What are collections

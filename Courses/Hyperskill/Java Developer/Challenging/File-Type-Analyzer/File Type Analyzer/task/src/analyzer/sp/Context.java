@@ -9,8 +9,8 @@ public class Context {
         this.strategy = strategy;
     }
 
-    public String execute() {
-        return (strategy != null) ? strategy.execute() : "";
+    public boolean execute() {
+        return strategy != null && strategy.execute();
     }
 
     public Strategy getStrategy() {
