@@ -1,0 +1,23 @@
+<h2>The longest repetitive substring</h2>
+<html>
+ <head></head>
+ <body>
+  <p></p>
+  <div class="alert alert-primary">
+   Wow! This problem is kind of tricky. If you're ready to put your thinking cap on, brace yourself, and good luck! If, however, you find the problem too difficult, you may try to solve its 
+   <a target="_blank" href="https://hyperskill.org/learn/step/9636" rel="noopener noreferrer nofollow">simpler version</a> first, and then return to this one.
+  </div>
+  <p></p> 
+  <p>Given a string <span class="math-tex">\( s \)</span>. Write a program that finds a substring of the maximal length that appears in <span class="math-tex">\( s \)</span> at least twice.</p> 
+  <p><strong>Input</strong>: a string $s$.</p> 
+  <p><strong>Output</strong>: a maximum number $k$ such that there is a substring of length $k$ that appears in $s$ at least twice. </p> 
+  <p><button class="btn-sm btn-outline-secondary" onclick="getElementById('hint-752').style.display='inline'"> Hint </button> </p>
+  <div id="hint-752" style="display:none;">
+   Try to come up with an algorithm that checks if there is a substring of length 
+   <span class="math-tex">\( k \)</span> that appears in 
+   <span class="math-tex">\( s \)</span> at least twice. Then, use binary search to find the maximal 
+   <span class="math-tex">\( k \)</span>.
+  </div>
+  <p></p>
+ </body>
+</html><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">ACTTGATTGA</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">4</code></pre><br><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">ABCD</code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">0</code></pre><br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br>

@@ -1,0 +1,16 @@
+<h2>The number of equal substring pairs</h2>
+<html>
+ <head></head>
+ <body>
+  <p></p>
+  <div class="alert alert-primary">
+   Wow! This problem is kind of tricky. If you're ready to put your thinking cap on, brace yourself, and good luck! If, however, you find the problem too difficult, you may try to solve its 
+   <a target="_blank" href="https://hyperskill.org/learn/step/9637" rel="noopener noreferrer nofollow">simpler version</a> first, and then return to this one.
+  </div>
+  <p></p> 
+  <p>Given a string <span class="math-tex">\( s \)</span> and a set of pairs, where each element represents the starting and the ending position of a substring of <span class="math-tex">\( s \)</span>. Write a program that counts the number of pairs of equal substrings.</p> 
+  <p><strong>Input: </strong>the first line contains a string <span class="math-tex">\( s \)</span>. The second line contains an integer <span class="math-tex">\(t\)</span>. Each of the following <span class="math-tex">\(t\)</span> lines contains 4 integers <span class="math-tex">\( i, j, k \)</span> and <span class="math-tex">\(n\)</span> separated by space, such that <span class="math-tex">\(0 \le i \lt j \le |s|, 0 \le k \lt n \le |s|\)</span>.</p> 
+  <p><strong>Output: </strong>the number of pairs, such that <span class="math-tex">\( s[i:j] \)</span> is equal to <span class="math-tex">\(s[k:n]\)</span>.</p> 
+  <p>In this problem for a polynomial hash with constants <span class="math-tex">\( a = 53 \)</span> and <span class="math-tex">\( m = 10^{9} + 9 \)</span> it is guaranteed that if hash values for two substrings are equal, then the strings are equal as well.</p>
+ </body>
+</html><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">abacabad<br>2<br>1 4 5 8<br>0 3 4 7<br></code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">1</code></pre><br><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">seamlessness<br>3<br>4 8 8 12<br>5 8 9 12<br>0 1 11 12<br></code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">2</code></pre><br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 5 seconds</font><br><br>

@@ -1,0 +1,23 @@
+<h2>Calculating a substring hash</h2>
+<html>
+ <head></head>
+ <body>
+  <p>Before solving this problem, let's learn a bit more about the polynomial hash function.</p> 
+  <h2>One property of the polynomial hash function</h2> 
+  <p>The polynomial hash function has the following property: if we know hash values for all prefixes of some string, we can find a hash value for any substring of this string in $O(1)$. In other words, if we precalculate hashes for prefixes of a string only once, we will get a fast way to compute a hash for arbitrary substrings of this string. Let's now take a look at how this approach works in details.</p> 
+  <p>Consider a string $s = s_0s_1...s_{n-1}$. A polynomial hash for a substring $s[i : j]$ can be calculated as follows:</p> 
+  <p>$$ h_P(s[i : j]) = \left(s_i \cdot a^0 + s_{i + 1} \cdot a^1 + ... + s_{j-1} \cdot a^{j - i - 1} \right) \ mod \ m.$$</p> 
+  <p>If we multiply the expression by $a^i$, we will get the following:</p> 
+  <p>$$ h_P(s[i : j]) \cdot a^{i} = \left(s_i \cdot a^i + s_{i + 1} \cdot a^{i+1} + ... + s_{j-1} \cdot a^{j - 1} \right) \ mod \ m = \left(\sum_{k=i}^{j-1} s_k \cdot a^{k} \right) \ mod \ m.$$</p> 
+  <p>The last sum can be rewritten as a difference of two sums, each being a polynomial hash for a prefix of $s$:</p> 
+  <p>$$ h_P(s[i : j]) \cdot a^{i} = \left(\sum_{k=i}^{j-1} s_k \cdot a^{k} \right) \ mod \ m = \left(\left(\sum_{k=0}^{j-1} s_k \cdot a^{k} \right) - \left(\sum_{k=0}^{i-1} s_k \cdot a^{k} \right) \right) \ mod \ m.$$</p> 
+  <p>Using the slice notation, the expression above can be written as follows:</p> 
+  <p>$$h_P(s[i : j]) \cdot a^{i} = \left(h_P(s[0:j]) - h_P(s[0:i])\right) \ mod \ m.$$</p> 
+  <p>This formula gives us an explicit way to calculate a hash value for any substring of $s$ in $O(1)$ given that hashes for all prefixes are precalculated.</p> 
+  <h2>Formulating the problem</h2> 
+  <p>In this task, you need to apply the described approach to calculate hash values for given substrings of a string. One thing to keep in mind here is that we got hash value multiplied by $a^{i}$. Thus, to get the hash value itself, we need to perform a modulo division by $a^{i}$. For the sake of simplicity, we will avoid this step here and ask you to calculate hash values with this additional multiplier.</p> 
+  <p><strong>Input</strong>: the first line contains a string $s$. The second one contains an integer $k$. Each of the following $k$ lines contain a pair of indexes $i$ and $j$ separated by space, such that $0 \le i &lt; j \le |s|$.</p> 
+  <p><strong>Output</strong>: the first line should contain hash values for all prefixes of $s$. The second line should contain $k$ integers, each equal to $h_P(s[i : j]) \cdot a^{i}$ for the given in the input indexes $i$ and $j$. Note that all hash values have to be non-negative.</p> 
+  <p>In this problem, you are expected to use a polynomial hash with the following parameters: $a=53$ and $m=10^9 + 9$.</p>
+ </body>
+</html><br><b>Sample Input:</b><br><pre><code class="language-no-highlight">abacabad<br>3<br>1 3<br>3 7<br>7 8<br></code></pre><br><b>Sample Output:</b><br><pre><code class="language-no-highlight">33 1835 94532 5305227 265691100 484337736 908248414 508901936<br>94499 908153882 600653531<br></code></pre><br><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 8 seconds</font><br><br>
