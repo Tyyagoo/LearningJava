@@ -5,9 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8ea4cfe1-106c-4f32-b21c-e55b319c2e06" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Simple Search Engine/task/src/search/Command.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Simple Search Engine/task/src/search/Menu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Simple Search Engine/task/test/SearchEngineTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.bin" afterDir="false" />
@@ -18,7 +15,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Simple Search Engine/User menu/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/User menu/task-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simple Search Engine/Inverted Index search/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/Inverted Index search/task-info.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Simple Search Engine/X-files/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/X-files/task-info.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Simple Search Engine/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/lesson-info.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Simple Search Engine/task/build/reports/tests/test/classes/SimpleSearchEngineTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/task/build/reports/tests/test/classes/SimpleSearchEngineTest.html" afterDir="false" />
@@ -31,7 +28,10 @@
       <change beforePath="$PROJECT_DIR$/Simple Search Engine/task/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/task/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Simple Search Engine/task/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/task/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Simple Search Engine/task/src/search/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/task/src/search/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simple Search Engine/task/src/search/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/task/src/search/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Simple Search Engine/task/test/SearchEngineTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/task/test/SearchEngineTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Simple Search Engine/task/test/SimpleSearchEngineTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Simple Search Engine/task/test/SimpleSearchEngineTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/course-remote-info.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="SimpleSearchEngineTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-21T16:08:04" hostname="LAPTOP-J1J60HSA" time="0.338">
+<testsuite name="SimpleSearchEngineTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-21T16:12:39" hostname="LAPTOP-J1J60HSA" time="0.877">
   <properties/>
-  <testcase name="start" classname="SimpleSearchEngineTest" time="0.338"/>
+  <testcase name="start" classname="SimpleSearchEngineTest" time="0.877"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
-Enter the number of people:
-> 6
-Enter all people:
-> Dwight Joseph djo@gmail.com
-> Rene Webb webb@gmail.com
-> Katie Jacobs
-> Erick Harrington harrington@gmail.com
-> Myrtle Medina
-> Erick Burgess
-
 === Menu ===
 1. Find a person
 2. Print all people
@@ -21,12 +11,56 @@ Enter all people:
 > 2
 
 === List of people ===
-Dwight Joseph djo@gmail.com
-Rene Webb webb@gmail.com
-Katie Jacobs
-Erick Harrington harrington@gmail.com
-Myrtle Medina
-Erick Burgess
+Kristofer Galley
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Regenia Enderle
+Malena Gray
+Colette Mattei
+Wendolyn Mcphillips
+Jim Gray
+Coreen Beckham
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Yer Fillion
+Margene Resendez marres@gmail.com
+Blossom Ambler
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Abram Goldsberry
+Yer Leopold
+Stefania Trunzo
+Alexis Leopold
+Carlene Pompa
+Oliver Dacruz
+Jonie Richter
+Pasquale Gallien gallien@evilcorp.com
+Verdie Gentle
+Gerardo Strouth gallien@evilcorp.com
+Agripina Dones
+Latricia Niebuhr
+Malena Schommer
+Drema Leopold
+Heide Payeur
+Ranae Digiovanni
+Simona Pereira
+Nick Digiovanni
+Angelita Wigington gallien@evilcorp.com
+Elin Gray
+Dwain Trunzo
+Boris Beiler
+Remi Malek fsociefy@gmail.com
+Demetria Hostetler gallien@evilcorp.com
+Nydia Mcduffie
+Florencio Defibaugh
+Warner Giblin
+May Mans
+Shu Gray
+Kaycee Gray
+Victorina Froehlich victory@gmail.com
+Roseanne Gray
+Erica Radford hisam@gmail.com
+Elyse Pauling
 
 === Menu ===
 1. Find a person
@@ -37,16 +71,6 @@ Erick Burgess
 Bye!
 ?[1;31m
 Start test 2?[0m
-Enter the number of people:
-> 6
-Enter all people:
-> Dwight Joseph djo@gmail.com
-> Rene Webb webb@gmail.com
-> Katie Jacobs
-> Erick Harrington harrington@gmail.com
-> Myrtle Medina
-> Erick Burgess
-
 === Menu ===
 1. Find a person
 2. Print all people
@@ -55,7 +79,7 @@ Enter all people:
 
 Enter a name or email to search all suitable people.
 > burgess
-Erick Burgess
+No matching people found.
 
 === Menu ===
 1. Find a person
@@ -66,16 +90,6 @@ Erick Burgess
 Bye!
 ?[1;31m
 Start test 3?[0m
-Enter the number of people:
-> 6
-Enter all people:
-> Dwight Joseph djo@gmail.com
-> Rene Webb webb@gmail.com
-> Katie Jacobs
-> Erick Harrington harrington@gmail.com
-> Myrtle Medina
-> Erick Burgess
-
 === Menu ===
 1. Find a person
 2. Print all people
@@ -84,8 +98,7 @@ Enter all people:
 
 Enter a name or email to search all suitable people.
 > erick
-Erick Harrington harrington@gmail.com
-Erick Burgess
+No matching people found.
 
 === Menu ===
 1. Find a person
@@ -96,16 +109,6 @@ Erick Burgess
 Bye!
 ?[1;31m
 Start test 4?[0m
-Enter the number of people:
-> 6
-Enter all people:
-> Dwight Joseph djo@gmail.com
-> Rene Webb webb@gmail.com
-> Katie Jacobs
-> Erick Harrington harrington@gmail.com
-> Myrtle Medina
-> Erick Burgess
-
 === Menu ===
 1. Find a person
 2. Print all people
@@ -122,7 +125,7 @@ Incorrect option! Try again.
 
 Enter a name or email to search all suitable people.
 > burgess
-Erick Burgess
+No matching people found.
 
 === Menu ===
 1. Find a person
@@ -131,12 +134,56 @@ Erick Burgess
 > 2
 
 === List of people ===
-Dwight Joseph djo@gmail.com
-Rene Webb webb@gmail.com
-Katie Jacobs
-Erick Harrington harrington@gmail.com
-Myrtle Medina
-Erick Burgess
+Kristofer Galley
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Regenia Enderle
+Malena Gray
+Colette Mattei
+Wendolyn Mcphillips
+Jim Gray
+Coreen Beckham
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Yer Fillion
+Margene Resendez marres@gmail.com
+Blossom Ambler
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Abram Goldsberry
+Yer Leopold
+Stefania Trunzo
+Alexis Leopold
+Carlene Pompa
+Oliver Dacruz
+Jonie Richter
+Pasquale Gallien gallien@evilcorp.com
+Verdie Gentle
+Gerardo Strouth gallien@evilcorp.com
+Agripina Dones
+Latricia Niebuhr
+Malena Schommer
+Drema Leopold
+Heide Payeur
+Ranae Digiovanni
+Simona Pereira
+Nick Digiovanni
+Angelita Wigington gallien@evilcorp.com
+Elin Gray
+Dwain Trunzo
+Boris Beiler
+Remi Malek fsociefy@gmail.com
+Demetria Hostetler gallien@evilcorp.com
+Nydia Mcduffie
+Florencio Defibaugh
+Warner Giblin
+May Mans
+Shu Gray
+Kaycee Gray
+Victorina Froehlich victory@gmail.com
+Roseanne Gray
+Erica Radford hisam@gmail.com
+Elyse Pauling
 
 === Menu ===
 1. Find a person
@@ -145,12 +192,56 @@ Erick Burgess
 > 2
 
 === List of people ===
-Dwight Joseph djo@gmail.com
-Rene Webb webb@gmail.com
-Katie Jacobs
-Erick Harrington harrington@gmail.com
-Myrtle Medina
-Erick Burgess
+Kristofer Galley
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Regenia Enderle
+Malena Gray
+Colette Mattei
+Wendolyn Mcphillips
+Jim Gray
+Coreen Beckham
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Yer Fillion
+Margene Resendez marres@gmail.com
+Blossom Ambler
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Abram Goldsberry
+Yer Leopold
+Stefania Trunzo
+Alexis Leopold
+Carlene Pompa
+Oliver Dacruz
+Jonie Richter
+Pasquale Gallien gallien@evilcorp.com
+Verdie Gentle
+Gerardo Strouth gallien@evilcorp.com
+Agripina Dones
+Latricia Niebuhr
+Malena Schommer
+Drema Leopold
+Heide Payeur
+Ranae Digiovanni
+Simona Pereira
+Nick Digiovanni
+Angelita Wigington gallien@evilcorp.com
+Elin Gray
+Dwain Trunzo
+Boris Beiler
+Remi Malek fsociefy@gmail.com
+Demetria Hostetler gallien@evilcorp.com
+Nydia Mcduffie
+Florencio Defibaugh
+Warner Giblin
+May Mans
+Shu Gray
+Kaycee Gray
+Victorina Froehlich victory@gmail.com
+Roseanne Gray
+Erica Radford hisam@gmail.com
+Elyse Pauling
 
 === Menu ===
 1. Find a person
@@ -160,8 +251,7 @@ Erick Burgess
 
 Enter a name or email to search all suitable people.
 > erick
-Erick Harrington harrington@gmail.com
-Erick Burgess
+No matching people found.
 
 === Menu ===
 1. Find a person
@@ -172,16 +262,6 @@ Erick Burgess
 Bye!
 ?[1;31m
 Start test 5?[0m
-Enter the number of people:
-> 6
-Enter all people:
-> Dwight Joseph djo@gmail.com
-> Rene Webb webb@gmail.com
-> Katie Jacobs
-> Erick Harrington harrington@gmail.com
-> Myrtle Medina
-> Erick Burgess
-
 === Menu ===
 1. Find a person
 2. Print all people
@@ -189,12 +269,56 @@ Enter all people:
 > 2
 
 === List of people ===
-Dwight Joseph djo@gmail.com
-Rene Webb webb@gmail.com
-Katie Jacobs
-Erick Harrington harrington@gmail.com
-Myrtle Medina
-Erick Burgess
+Kristofer Galley
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Regenia Enderle
+Malena Gray
+Colette Mattei
+Wendolyn Mcphillips
+Jim Gray
+Coreen Beckham
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Yer Fillion
+Margene Resendez marres@gmail.com
+Blossom Ambler
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Abram Goldsberry
+Yer Leopold
+Stefania Trunzo
+Alexis Leopold
+Carlene Pompa
+Oliver Dacruz
+Jonie Richter
+Pasquale Gallien gallien@evilcorp.com
+Verdie Gentle
+Gerardo Strouth gallien@evilcorp.com
+Agripina Dones
+Latricia Niebuhr
+Malena Schommer
+Drema Leopold
+Heide Payeur
+Ranae Digiovanni
+Simona Pereira
+Nick Digiovanni
+Angelita Wigington gallien@evilcorp.com
+Elin Gray
+Dwain Trunzo
+Boris Beiler
+Remi Malek fsociefy@gmail.com
+Demetria Hostetler gallien@evilcorp.com
+Nydia Mcduffie
+Florencio Defibaugh
+Warner Giblin
+May Mans
+Shu Gray
+Kaycee Gray
+Victorina Froehlich victory@gmail.com
+Roseanne Gray
+Erica Radford hisam@gmail.com
+Elyse Pauling
 
 === Menu ===
 1. Find a person
@@ -204,9 +328,20 @@ Erick Burgess
 
 Enter a name or email to search all suitable people.
 > @
-Dwight Joseph djo@gmail.com
-Rene Webb webb@gmail.com
-Erick Harrington harrington@gmail.com
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Margene Resendez marres@gmail.com
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Pasquale Gallien gallien@evilcorp.com
+Gerardo Strouth gallien@evilcorp.com
+Angelita Wigington gallien@evilcorp.com
+Remi Malek fsociefy@gmail.com
+Demetria Hostetler gallien@evilcorp.com
+Victorina Froehlich victory@gmail.com
+Erica Radford hisam@gmail.com
 
 === Menu ===
 1. Find a person
@@ -225,12 +360,56 @@ No matching people found.
 > 2
 
 === List of people ===
-Dwight Joseph djo@gmail.com
-Rene Webb webb@gmail.com
-Katie Jacobs
-Erick Harrington harrington@gmail.com
-Myrtle Medina
-Erick Burgess
+Kristofer Galley
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Regenia Enderle
+Malena Gray
+Colette Mattei
+Wendolyn Mcphillips
+Jim Gray
+Coreen Beckham
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Yer Fillion
+Margene Resendez marres@gmail.com
+Blossom Ambler
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Abram Goldsberry
+Yer Leopold
+Stefania Trunzo
+Alexis Leopold
+Carlene Pompa
+Oliver Dacruz
+Jonie Richter
+Pasquale Gallien gallien@evilcorp.com
+Verdie Gentle
+Gerardo Strouth gallien@evilcorp.com
+Agripina Dones
+Latricia Niebuhr
+Malena Schommer
+Drema Leopold
+Heide Payeur
+Ranae Digiovanni
+Simona Pereira
+Nick Digiovanni
+Angelita Wigington gallien@evilcorp.com
+Elin Gray
+Dwain Trunzo
+Boris Beiler
+Remi Malek fsociefy@gmail.com
+Demetria Hostetler gallien@evilcorp.com
+Nydia Mcduffie
+Florencio Defibaugh
+Warner Giblin
+May Mans
+Shu Gray
+Kaycee Gray
+Victorina Froehlich victory@gmail.com
+Roseanne Gray
+Erica Radford hisam@gmail.com
+Elyse Pauling
 
 === Menu ===
 1. Find a person
@@ -241,15 +420,318 @@ Erick Burgess
 Bye!
 ?[1;31m
 Start test 6?[0m
-Enter the number of people:
-> 6
-Enter all people:
-> Dwight Joseph djo@gmail.com
-> Rene Webb webb@gmail.com
-> Katie Jacobs
-> Erick Harrington harrington@gmail.com
-> Myrtle Medina
-> Erick Burgess
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 0
+
+Bye!
+?[1;31m
+Start test 7?[0m
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 1
+
+Enter a name or email to search all suitable people.
+> this text never find some match
+No matching people found.
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 0
+
+Bye!
+?[1;31m
+Start test 8?[0m
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 1
+
+Enter a name or email to search all suitable people.
+> h
+Wendolyn Mcphillips
+Coreen Beckham
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Jonie Richter
+Gerardo Strouth gallien@evilcorp.com
+Latricia Niebuhr
+Malena Schommer
+Heide Payeur
+Demetria Hostetler gallien@evilcorp.com
+Florencio Defibaugh
+Shu Gray
+Victorina Froehlich victory@gmail.com
+Erica Radford hisam@gmail.com
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 2
+
+=== List of people ===
+Kristofer Galley
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Regenia Enderle
+Malena Gray
+Colette Mattei
+Wendolyn Mcphillips
+Jim Gray
+Coreen Beckham
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Yer Fillion
+Margene Resendez marres@gmail.com
+Blossom Ambler
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Abram Goldsberry
+Yer Leopold
+Stefania Trunzo
+Alexis Leopold
+Carlene Pompa
+Oliver Dacruz
+Jonie Richter
+Pasquale Gallien gallien@evilcorp.com
+Verdie Gentle
+Gerardo Strouth gallien@evilcorp.com
+Agripina Dones
+Latricia Niebuhr
+Malena Schommer
+Drema Leopold
+Heide Payeur
+Ranae Digiovanni
+Simona Pereira
+Nick Digiovanni
+Angelita Wigington gallien@evilcorp.com
+Elin Gray
+Dwain Trunzo
+Boris Beiler
+Remi Malek fsociefy@gmail.com
+Demetria Hostetler gallien@evilcorp.com
+Nydia Mcduffie
+Florencio Defibaugh
+Warner Giblin
+May Mans
+Shu Gray
+Kaycee Gray
+Victorina Froehlich victory@gmail.com
+Roseanne Gray
+Erica Radford hisam@gmail.com
+Elyse Pauling
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 1
+
+Enter a name or email to search all suitable people.
+> @gmail.com
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Margene Resendez marres@gmail.com
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Remi Malek fsociefy@gmail.com
+Victorina Froehlich victory@gmail.com
+Erica Radford hisam@gmail.com
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 0
+
+Bye!
+?[1;31m
+Start test 9?[0m
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 4
+
+Incorrect option! Try again.
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 2
+
+=== List of people ===
+Kristofer Galley
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Regenia Enderle
+Malena Gray
+Colette Mattei
+Wendolyn Mcphillips
+Jim Gray
+Coreen Beckham
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Yer Fillion
+Margene Resendez marres@gmail.com
+Blossom Ambler
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Abram Goldsberry
+Yer Leopold
+Stefania Trunzo
+Alexis Leopold
+Carlene Pompa
+Oliver Dacruz
+Jonie Richter
+Pasquale Gallien gallien@evilcorp.com
+Verdie Gentle
+Gerardo Strouth gallien@evilcorp.com
+Agripina Dones
+Latricia Niebuhr
+Malena Schommer
+Drema Leopold
+Heide Payeur
+Ranae Digiovanni
+Simona Pereira
+Nick Digiovanni
+Angelita Wigington gallien@evilcorp.com
+Elin Gray
+Dwain Trunzo
+Boris Beiler
+Remi Malek fsociefy@gmail.com
+Demetria Hostetler gallien@evilcorp.com
+Nydia Mcduffie
+Florencio Defibaugh
+Warner Giblin
+May Mans
+Shu Gray
+Kaycee Gray
+Victorina Froehlich victory@gmail.com
+Roseanne Gray
+Erica Radford hisam@gmail.com
+Elyse Pauling
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 2
+
+=== List of people ===
+Kristofer Galley
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Regenia Enderle
+Malena Gray
+Colette Mattei
+Wendolyn Mcphillips
+Jim Gray
+Coreen Beckham
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Yer Fillion
+Margene Resendez marres@gmail.com
+Blossom Ambler
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Abram Goldsberry
+Yer Leopold
+Stefania Trunzo
+Alexis Leopold
+Carlene Pompa
+Oliver Dacruz
+Jonie Richter
+Pasquale Gallien gallien@evilcorp.com
+Verdie Gentle
+Gerardo Strouth gallien@evilcorp.com
+Agripina Dones
+Latricia Niebuhr
+Malena Schommer
+Drema Leopold
+Heide Payeur
+Ranae Digiovanni
+Simona Pereira
+Nick Digiovanni
+Angelita Wigington gallien@evilcorp.com
+Elin Gray
+Dwain Trunzo
+Boris Beiler
+Remi Malek fsociefy@gmail.com
+Demetria Hostetler gallien@evilcorp.com
+Nydia Mcduffie
+Florencio Defibaugh
+Warner Giblin
+May Mans
+Shu Gray
+Kaycee Gray
+Victorina Froehlich victory@gmail.com
+Roseanne Gray
+Erica Radford hisam@gmail.com
+Elyse Pauling
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 1
+
+Enter a name or email to search all suitable people.
+> this text never gonna be matched
+No matching people found.
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 1
+
+Enter a name or email to search all suitable people.
+> h
+Wendolyn Mcphillips
+Coreen Beckham
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Jonie Richter
+Gerardo Strouth gallien@evilcorp.com
+Latricia Niebuhr
+Malena Schommer
+Heide Payeur
+Demetria Hostetler gallien@evilcorp.com
+Florencio Defibaugh
+Shu Gray
+Victorina Froehlich victory@gmail.com
+Erica Radford hisam@gmail.com
+
+=== Menu ===
+1. Find a person
+2. Print all people
+0. Exit
+> 1
+
+Enter a name or email to search all suitable people.
+> @GMAIL
+Fernando Marbury fernando_marbury@gmail.com
+Kristyn Nix nix-kris@gmail.com
+Bob Yeh bobyeah@gmail.com
+Shannan Strope stropeshah@gmail.com
+Margene Resendez marres@gmail.com
+Teri Ledet teri_ledet@gmail.com
+Dana Baron baron@gmail.com
+Remi Malek fsociefy@gmail.com
+Victorina Froehlich victory@gmail.com
+Erica Radford hisam@gmail.com
 
 === Menu ===
 1. Find a person

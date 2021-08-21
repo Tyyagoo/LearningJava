@@ -1,8 +1,13 @@
 package search;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Menu {
     private static boolean running = true;
@@ -33,16 +38,10 @@ public class Menu {
         System.out.println();
     };
 
-    public static void initialize() {
-        System.out.println("Enter the number of people:");
-        int numberOfLines = Integer.parseInt(scanner.nextLine());
-
-        System.out.println("Enter all people:");
-        for (int i = 0; i < numberOfLines; i++) {
-            data.add(scanner.nextLine());
+    public static void initialize(String filename) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+            data = reader.lines().collect(Collectors.toList());
         }
-
-        System.out.println();
     }
 
     public static void invoke() {
