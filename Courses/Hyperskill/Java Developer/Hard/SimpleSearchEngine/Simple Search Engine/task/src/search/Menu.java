@@ -4,15 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Menu {
     private static boolean running = true;
-    private static Scanner scanner = new Scanner(System.in);
     private static List<String> data = new ArrayList<>();
+    private static final Scanner scanner = new Scanner(System.in);
 
     private static final Command exit = () -> {
         running = false;
@@ -22,13 +20,7 @@ public class Menu {
     private static final Command searchInfo = () -> {
         System.out.println("Enter a name or email to search all suitable people.");
         String pattern = scanner.nextLine().toLowerCase();
-        List<String> result = findDataByPattern(data, pattern);
-
-        if (result.isEmpty()) {
-            System.out.println("No matching people found.");
-        } else {
-            result.forEach(System.out::println);
-        }
+        Searcher.indexMapSearch.find(data, pattern);
         System.out.println();
     };
 
@@ -42,6 +34,7 @@ public class Menu {
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
             data = reader.lines().collect(Collectors.toList());
         }
+        Searcher.buildInvertedIndexMap(data);
     }
 
     public static void invoke() {
@@ -66,16 +59,6 @@ public class Menu {
                 System.out.println("Incorrect option! Try again.\n");
                 break;
         }
-    }
-
-    public static List<String> findDataByPattern(List<String> data, String pattern) {
-        List<String> list = new ArrayList<>();
-        for (String line: data) {
-            if (line.toLowerCase().contains(pattern)) {
-                list.add(line);
-            }
-        }
-        return list;
     }
 
     public static boolean isRunning() {

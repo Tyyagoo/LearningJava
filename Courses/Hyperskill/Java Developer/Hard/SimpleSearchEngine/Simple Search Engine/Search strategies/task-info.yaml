@@ -322,6 +322,151 @@ files:
         }
     }
   learner_created: false
+- name: src/search/Strategy.java
+  visible: true
+  text: |
+    package search;
+
+    import java.util.List;
+
+    public interface Strategy {
+        void find(List<String> data, String pattern);
+    }
+  learner_created: true
+- name: src/search/Searcher.java
+  visible: true
+  text: |
+    package search;
+
+
+    import java.util.ArrayList;
+    import java.util.HashMap;
+    import java.util.List;
+    import java.util.Map;
+
+    public class Searcher {
+        private static final Map<String, List<Integer>> invertedIndexMap = new HashMap<>();
+
+        public static final Strategy simpleSearch = (data, pattern) -> {
+            int matches = 0;
+            for (String line: data) {
+                if (line.toLowerCase().contains(pattern)) {
+                    System.out.println(line);
+                    matches++;
+                }
+            }
+
+            if (matches == 0) {
+                System.out.println("No matching people found.");
+            }
+        };
+
+        public static final Strategy indexMapSearch = (data, pattern) -> {
+            List<Integer> indexes = invertedIndexMap.getOrDefault(pattern, List.of());
+            if (indexes.isEmpty()) {
+                System.out.println("No matching people found.");
+            } else {
+                System.out.printf("%d persons found:%n", indexes.size());
+                indexes.forEach(index -> System.out.println(data.get(index)));
+            }
+        };
+
+        public static void buildInvertedIndexMap(List<String> data) {
+            for (int i = 0; i < data.size(); i++) {
+                String[] pieces = data.get(i).toLowerCase().split("\\s+");
+                for (String key: pieces) {
+                    if (invertedIndexMap.containsKey(key)) {
+                        invertedIndexMap.get(key).add(i);
+                    } else {
+                        List<Integer> indexes = new ArrayList<>();
+                        indexes.add(i);
+                        invertedIndexMap.put(key, indexes);
+                    }
+                }
+            }
+        }
+    }
+  learner_created: true
+- name: src/search/Menu.java
+  visible: true
+  text: |
+    package search;
+
+    import java.io.BufferedReader;
+    import java.io.FileNotFoundException;
+    import java.io.FileReader;
+    import java.io.IOException;
+    import java.util.*;
+    import java.util.stream.Collectors;
+
+    public class Menu {
+        private static boolean running = true;
+        private static List<String> data = new ArrayList<>();
+        private static final Scanner scanner = new Scanner(System.in);
+
+        private static final Command exit = () -> {
+            running = false;
+            System.out.println("Bye!");
+        };
+
+        private static final Command searchInfo = () -> {
+            System.out.println("Enter a name or email to search all suitable people.");
+            String pattern = scanner.nextLine().toLowerCase();
+            Searcher.indexMapSearch.find(data, pattern);
+            System.out.println();
+        };
+
+        private static final Command printAllData = () -> {
+            System.out.println("=== List of people ===");
+            data.forEach(System.out::println);
+            System.out.println();
+        };
+
+        public static void initialize(String filename) throws IOException {
+            try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
+                data = reader.lines().collect(Collectors.toList());
+            }
+            Searcher.buildInvertedIndexMap(data);
+        }
+
+        public static void invoke() {
+            System.out.println("=== Menu ===");
+            System.out.println("1. Find a person");
+            System.out.println("2. Print all people");
+            System.out.println("0. Exit");
+            int option = Integer.parseInt(scanner.nextLine());
+            System.out.println();
+
+            switch (option) {
+                case 1:
+                    searchInfo.execute();
+                    break;
+                case 2:
+                    printAllData.execute();
+                    break;
+                case 0:
+                    exit.execute();
+                    break;
+                default:
+                    System.out.println("Incorrect option! Try again.\n");
+                    break;
+            }
+        }
+
+        public static boolean isRunning() {
+            return running;
+        }
+    }
+  learner_created: true
+- name: src/search/Command.java
+  visible: true
+  text: |
+    package search;
+
+    public interface Command {
+        void execute();
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/66/stages/359/implement#comment
 status: Unchecked
 record: -1
