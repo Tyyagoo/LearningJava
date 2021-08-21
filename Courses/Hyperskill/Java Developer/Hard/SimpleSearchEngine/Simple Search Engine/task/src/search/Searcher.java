@@ -5,32 +5,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Searcher {
     private static final Map<String, List<Integer>> invertedIndexMap = new HashMap<>();
 
     public static final Strategy simpleSearch = (data, pattern) -> {
-        int matches = 0;
+        List<String> list = new ArrayList<>();
         for (String line: data) {
             if (line.toLowerCase().contains(pattern)) {
-                System.out.println(line);
-                matches++;
+                list.add(line);
             }
         }
-
-        if (matches == 0) {
-            System.out.println("No matching people found.");
-        }
+        return list;
     };
 
     public static final Strategy indexMapSearch = (data, pattern) -> {
         List<Integer> indexes = invertedIndexMap.getOrDefault(pattern, List.of());
-        if (indexes.isEmpty()) {
-            System.out.println("No matching people found.");
-        } else {
-            System.out.printf("%d persons found:%n", indexes.size());
-            indexes.forEach(index -> System.out.println(data.get(index)));
-        }
+        return indexes.stream().map(data::get).collect(Collectors.toList());
     };
 
     public static void buildInvertedIndexMap(List<String> data) {

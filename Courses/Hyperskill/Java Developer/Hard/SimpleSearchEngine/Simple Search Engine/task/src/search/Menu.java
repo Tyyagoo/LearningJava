@@ -18,9 +18,45 @@ public class Menu {
     };
 
     private static final Command searchInfo = () -> {
+        System.out.println("Select a matching strategy: ALL, ANY, NONE");
+        String matchingType = scanner.nextLine().toUpperCase();
+
         System.out.println("Enter a name or email to search all suitable people.");
         String pattern = scanner.nextLine().toLowerCase();
-        Searcher.indexMapSearch.find(data, pattern);
+        Set<String> result = new LinkedHashSet<>();
+        switch (matchingType) {
+            case "ALL":
+                for (String query: pattern.split("\\s+")) {
+                    List<String> queryResult = Searcher.indexMapSearch.find(data, query);
+                    if (result.isEmpty()) {
+                        result.addAll(queryResult);
+                    } else {
+                        result.retainAll(queryResult);
+                    }
+                }
+                break;
+            case "ANY":
+                for (String query: pattern.split("\\s+")) {
+                    result.addAll(Searcher.indexMapSearch.find(data, query));
+                }
+                break;
+            case "NONE":
+                result.addAll(data);
+                for (String query: pattern.split("\\s+")) {
+                    Searcher.indexMapSearch.find(data, query).forEach(result::remove);
+                }
+                break;
+            default:
+                System.out.printf("The matching strategy \"%s\" doesn't exist.", matchingType);
+                break;
+        }
+
+        if (result.isEmpty()) {
+            System.out.println("No matching people found.");
+        } else {
+            System.out.printf("%d persons found:%n", result.size());
+            result.forEach(System.out::println);
+        }
         System.out.println();
     };
 
