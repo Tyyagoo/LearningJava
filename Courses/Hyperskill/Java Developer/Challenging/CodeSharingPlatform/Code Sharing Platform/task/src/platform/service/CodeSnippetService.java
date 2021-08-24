@@ -13,4 +13,9 @@ public class CodeSnippetService {
     public Optional<CodeSnippet> getCodeSnippetById(int id) {
         return Optional.of(code);
     }
+
+    public CodeSnippet saveCodeSnippet(CodeSnippet code) {
+        this.code = code;
+        return this.code;
+    }
 }
