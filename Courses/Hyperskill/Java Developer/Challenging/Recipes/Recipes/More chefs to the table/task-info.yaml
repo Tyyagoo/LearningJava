@@ -806,6 +806,192 @@ files:
         }
     }
   learner_created: false
+- name: src/recipes/controller/RecipeController.java
+  visible: true
+  text: |
+    package recipes.controller;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.*;
+    import recipes.model.Recipe;
+    import recipes.service.RecipesService;
+
+    import javax.validation.Valid;
+    import java.util.List;
+    import java.util.Map;
+    import java.util.Optional;
+
+    @RestController
+    @RequestMapping(path = "${v1API}/recipe")
+    public class RecipeController {
+
+        @Autowired
+        RecipesService recipesService;
+
+        @GetMapping(path = "/{id}")
+        public ResponseEntity<Recipe> getRecipe(@PathVariable Integer id) {
+            return recipesService.getRecipeById(id)
+                    .map(recipe -> new ResponseEntity<>(recipe, HttpStatus.OK))
+                    .orElse(new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
+        }
+
+        @PostMapping(path = "/new")
+        public ResponseEntity<Map<String, Integer>> createRecipe(@Valid @RequestBody Recipe recipe) {
+            Recipe newbyRecipe = recipesService.saveRecipe(recipe);
+            return new ResponseEntity<>(Map.of("id", newbyRecipe.getId()), HttpStatus.OK);
+        }
+
+        @DeleteMapping(path = "/{id}")
+        public ResponseEntity<?> deleteRecipe(@PathVariable Integer id) {
+            return recipesService.deleteRecipeById(id) ?
+                    new ResponseEntity<>(HttpStatus.NO_CONTENT) :
+                    new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        @PutMapping(path = "/{id}")
+        public ResponseEntity<?> updateRecipe(@PathVariable Integer id, @Valid @RequestBody Recipe recipe) {
+            return recipesService.updateRecipe(id, recipe) != null ?
+                    new ResponseEntity<>(HttpStatus.NO_CONTENT) :
+                    new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        @GetMapping(path = "/search")
+        public ResponseEntity<List<Recipe>> searchRecipe(@RequestParam(required = false) String category,
+                                                         @RequestParam(required = false) String name) {
+            if ((category != null && name != null) || (category == null && name == null))
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+            return new ResponseEntity<>(category != null ?
+                    recipesService.getAllByCategory(category) :
+                    recipesService.getAllByName(name), HttpStatus.OK);
+        }
+    }
+  learner_created: true
+- name: src/recipes/model/Recipe.java
+  visible: true
+  text: |
+    package recipes.model;
+
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonProperty;
+    import lombok.*;
+
+    import javax.persistence.*;
+    import javax.validation.constraints.*;
+    import java.time.LocalDateTime;
+    import java.util.List;
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Entity
+    public class Recipe {
+        @JsonIgnore
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Integer id;
+
+        @NotBlank
+        private String name;
+
+        @NotBlank
+        private String description;
+
+        @NotNull
+        @Size(min = 1)
+        @ElementCollection
+        @OrderColumn
+        private List<String> ingredients;
+
+        @NotNull
+        @Size(min = 1)
+        @ElementCollection
+        @OrderColumn
+        private List<String> directions;
+
+        @NotBlank
+        private String category;
+
+        @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+        private LocalDateTime date;
+    }
+  learner_created: true
+- name: src/recipes/service/RecipesService.java
+  visible: true
+  text: |
+    package recipes.service;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.stereotype.Service;
+    import recipes.model.Recipe;
+    import recipes.repository.RecipesRepository;
+
+    import java.time.LocalDateTime;
+    import java.util.List;
+    import java.util.Optional;
+
+    @Service
+    public class RecipesService {
+        private final RecipesRepository repository;
+
+        @Autowired
+        public RecipesService(RecipesRepository repository){
+            this.repository = repository;
+        }
+
+        public Optional<Recipe> getRecipeById(Integer id) {
+            return repository.findById(id);
+        }
+
+        public boolean deleteRecipeById(Integer id) {
+            return repository.findById(id).map(r -> {
+                repository.deleteById(id);
+                return true;
+            }).orElse(false);
+        }
+
+        public Recipe saveRecipe(Recipe recipe) {
+            recipe.setDate(LocalDateTime.now());
+            return repository.save(recipe);
+        }
+
+        public Recipe updateRecipe(Integer id, Recipe recipe) {
+            return repository.findById(id)
+                    .map(oldRecipe -> {
+                        recipe.setId(id);
+                        recipe.setDate(LocalDateTime.now());
+                        return repository.save(recipe);
+                    })
+                    .orElse(null);
+        }
+
+        public List<Recipe> getAllByCategory(String category) {
+            return repository.findAllByCategoryIgnoreCaseOrderByDateDesc(category);
+        }
+
+        public List<Recipe> getAllByName(String name) {
+            return repository.findDistinctByNameContainingIgnoreCaseOrderByDateDesc(name);
+        }
+
+    }
+  learner_created: true
+- name: src/recipes/repository/RecipesRepository.java
+  visible: true
+  text: |
+    package recipes.repository;
+
+    import org.springframework.data.repository.CrudRepository;
+    import recipes.model.Recipe;
+
+    import java.util.List;
+
+    public interface RecipesRepository extends CrudRepository<Recipe, Integer> {
+        List<Recipe> findAllByCategoryIgnoreCaseOrderByDateDesc(String category);
+        List<Recipe> findDistinctByNameContainingIgnoreCaseOrderByDateDesc(String name);
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/180/stages/921/implement#comment
 status: Unchecked
 record: -1

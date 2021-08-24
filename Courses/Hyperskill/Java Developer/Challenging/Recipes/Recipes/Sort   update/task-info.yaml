@@ -759,5 +759,8 @@ files:
     public interface RecipesRepository extends CrudRepository<Recipe, Integer> { }
   learner_created: true
 feedback_link: https://hyperskill.org/projects/180/stages/920/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Tue, 24 Aug 2021 03:01:47 UTC
+record: 4

@@ -8,7 +8,9 @@ import recipes.model.Recipe;
 import recipes.service.RecipesService;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "${v1API}/recipe")
@@ -35,5 +37,23 @@ public class RecipeController {
         return recipesService.deleteRecipeById(id) ?
                 new ResponseEntity<>(HttpStatus.NO_CONTENT) :
                 new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<?> updateRecipe(@PathVariable Integer id, @Valid @RequestBody Recipe recipe) {
+        return recipesService.updateRecipe(id, recipe) != null ?
+                new ResponseEntity<>(HttpStatus.NO_CONTENT) :
+                new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping(path = "/search")
+    public ResponseEntity<List<Recipe>> searchRecipe(@RequestParam(required = false) String category,
+                                                     @RequestParam(required = false) String name) {
+        if ((category != null && name != null) || (category == null && name == null))
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
+        return new ResponseEntity<>(category != null ?
+                recipesService.getAllByCategory(category) :
+                recipesService.getAllByName(name), HttpStatus.OK);
     }
 }
