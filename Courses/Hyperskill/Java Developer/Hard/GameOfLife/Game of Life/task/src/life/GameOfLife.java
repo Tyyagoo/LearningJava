@@ -16,7 +16,7 @@ public class GameOfLife extends JFrame {
     private JToggleButton pauseButton = new JToggleButton("Play/Pause");
     private JGamePanel gamePanel;
 
-    Generation gameGen = Generation.getInitialGeneration(50);
+    Generation gameGen = Generation.getInitialGeneration(100);
 
     public GameOfLife() {
         setTitle("Game Of Life");

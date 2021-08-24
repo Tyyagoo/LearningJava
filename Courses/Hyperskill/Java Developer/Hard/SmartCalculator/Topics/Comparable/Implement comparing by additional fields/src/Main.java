@@ -1,4 +1,4 @@
-class Article {
+class Article implements Comparable<Article> {
     private String title;
     private int size;
 
@@ -8,16 +8,20 @@ class Article {
     }
 
     public String getTitle() {
-        return this.title;
+        return title;
     }
 
     public Integer getSize() {
-        return this.size;
+        return size;
     }
 
     @Override
     public int compareTo(Article otherArticle) {
         // add your code here!
-        int sizeComparison = getSize().compareTo(otherArticle.compareTo());
+        int sizeComparison = getSize().compareTo(otherArticle.getSize());
+        if (sizeComparison != 0) {
+            return sizeComparison;
+        }
+        return getTitle().compareTo(otherArticle.getTitle());
     }
 }

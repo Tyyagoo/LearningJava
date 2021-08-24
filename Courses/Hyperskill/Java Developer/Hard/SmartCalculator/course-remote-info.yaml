@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/203965/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Fri, 23 Jul 2021 15:00:03 UTC
+update_date: Sun, 22 Aug 2021 17:30:26 UTC
 stages:
 - id: 220
   step: 5316
@@ -66,20 +66,34 @@ topics:
   - title: The for-loop
     theory_id: 3505
   1:
+  - title: Write, compile, and run
+    theory_id: 3739
   - title: Units of information
     theory_id: 6865
+  - title: Computer programming
+    theory_id: 8739
+  - title: Sizes and ranges
+    theory_id: 3532
+  - title: Type casting
+    theory_id: 3510
+  - title: Introduction to OOP
+    theory_id: 3614
   - title: Characters
     theory_id: 3514
   - title: The while and do-while loops
     theory_id: 3498
   - title: Branching statements
     theory_id: 3507
-  - title: Sizes and ranges
-    theory_id: 3532
-  - title: Type casting
-    theory_id: 3510
+  - title: Switch statement
+    theory_id: 3504
   - title: Calling a method
     theory_id: 10973
+  - title: Declaring a method
+    theory_id: 10982
+  - title: The main method
+    theory_id: 3489
+  - title: Functional decomposition
+    theory_id: 10570
   - title: Primitive and reference types
     theory_id: 5035
   - title: Array
@@ -92,19 +106,19 @@ topics:
     theory_id: 3523
   - title: Processing strings
     theory_id: 3551
+  - title: Defining classes
+    theory_id: 3618
+  - title: Objects
+    theory_id: 4727
   - title: Interface
     theory_id: 3615
   - title: Comparable
     theory_id: 14456
   2:
-  - title: Write, compile, and run
-    theory_id: 3739
   - title: JVM, JRE, and JDK
     theory_id: 3499
   - title: Introduction to operating systems
     theory_id: 9704
-  - title: Declaring a method
-    theory_id: 10982
   - title: Arrays as parameters
     theory_id: 3594
   - title: Command line overview
@@ -116,18 +130,8 @@ topics:
   3:
   - title: IDE
     theory_id: 10996
-  - title: Computer programming
-    theory_id: 8739
-  - title: Introduction to OOP
-    theory_id: 3614
-  - title: Switch statement
-    theory_id: 3504
   - title: Regexps basics
     theory_id: 7580
-  - title: The main method
-    theory_id: 3489
-  - title: Functional decomposition
-    theory_id: 10570
   - title: Regexps in Java
     theory_id: 3670
   - title: Sets, ranges, alternations
@@ -148,10 +152,6 @@ topics:
     theory_id: 3712
   - title: Replacing characters
     theory_id: 3708
-  - title: Defining classes
-    theory_id: 3618
-  - title: Objects
-    theory_id: 4727
   4:
   - title: Overloading
     theory_id: 3525
