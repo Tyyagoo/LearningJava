@@ -36,7 +36,7 @@ public class CodeController {
 
     @GetMapping(path = "/code/{id}", produces = MediaType.TEXT_HTML_VALUE)
     public String getCodeSnippet(Model model, @PathVariable Integer id) {
-        CodeSnippet code = codeSnippetService.getCodeSnippetById(id - 1)
+        CodeSnippet code = codeSnippetService.getCodeSnippetById(id)
                 .orElse(new CodeSnippet("404 - Not Found"));
         model.addAttribute("code", code);
         return "code";

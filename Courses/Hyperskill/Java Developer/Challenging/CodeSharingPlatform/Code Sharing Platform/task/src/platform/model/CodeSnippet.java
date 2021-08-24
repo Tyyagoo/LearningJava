@@ -3,10 +3,12 @@ package platform.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+@Entity
 public class CodeSnippet {
     /*
         way to standardize date formatting between the API and the web interface.
@@ -15,11 +17,15 @@ public class CodeSnippet {
      */
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @JsonIgnore
     private Integer id;
 
+    @Lob @Basic(optional = false)
     private String code;
 
+    @Column
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime date;
 

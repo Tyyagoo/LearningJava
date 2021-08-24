@@ -776,6 +776,12 @@ files:
         }
     }
   learner_created: true
+- name: src/platform/repository/CodeSnippetRepository.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/695/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Tue, 24 Aug 2021 23:34:35 UTC
+record: 4

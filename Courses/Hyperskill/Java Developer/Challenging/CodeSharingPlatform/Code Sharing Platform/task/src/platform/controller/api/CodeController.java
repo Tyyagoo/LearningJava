@@ -29,7 +29,7 @@ public class CodeController {
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<CodeSnippet> getCodeSnippet(@PathVariable Integer id) {
-        Optional<CodeSnippet> code = codeSnippetService.getCodeSnippetById(id - 1);
+        Optional<CodeSnippet> code = codeSnippetService.getCodeSnippetById(id);
         return code
                 .map(codeSnippet -> ResponseEntity.ok().headers(headers).body(codeSnippet))
                 .orElseGet(() -> new ResponseEntity<>(headers, HttpStatus.NOT_FOUND));

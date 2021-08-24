@@ -1,7 +1,12 @@
 package platform.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import platform.model.CodeSnippet;
+import platform.repository.CodeSnippetRepository;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,27 +15,24 @@ import java.util.Optional;
 
 @Service
 public class CodeSnippetService {
+    private final CodeSnippetRepository repository;
 
-    private final List<CodeSnippet> codeSnippetList = new ArrayList<>();
+    @Autowired
+    public CodeSnippetService(CodeSnippetRepository repository) {
+        this.repository = repository;
+    }
 
     public Optional<CodeSnippet> getCodeSnippetById(int id) {
-        return id >= codeSnippetList.size() ? Optional.empty() : Optional.of(codeSnippetList.get(id));
+        return repository.findById(id);
     }
 
     public CodeSnippet saveCodeSnippet(CodeSnippet code) {
         code.setDate(LocalDateTime.now());
-        codeSnippetList.add(code);
-        code.setId(codeSnippetList.size());
-        return code;
+        return repository.save(code);
     }
 
     public List<CodeSnippet> getLatestSnippets(int limit) {
-        int upper = codeSnippetList.size() - 1;
-        int lower = (limit > upper) ? 0 : upper - limit + 1;
-        List<CodeSnippet> result = new ArrayList<>(upper - lower + 1);
-        for (int i = upper; i >= lower; i--) {
-            result.add(codeSnippetList.get(i));
-        }
-        return result;
+        return repository.findAll(PageRequest.of(0, limit, Sort.by(Sort.Direction.DESC, "date")))
+                .getContent();
     }
 }
