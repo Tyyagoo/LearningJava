@@ -635,6 +635,18 @@ files:
         public static class EmptyJsonResponse { }
     }
   learner_created: true
+- name: src/resources/templates/code.ftlh
+  visible: true
+  learner_created: true
+- name: src/resources/templates/commit.ftlh
+  visible: true
+  learner_created: true
+- name: src/resources/templates/latest.ftlh
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/694/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Tue, 24 Aug 2021 22:34:19 UTC
+record: 3

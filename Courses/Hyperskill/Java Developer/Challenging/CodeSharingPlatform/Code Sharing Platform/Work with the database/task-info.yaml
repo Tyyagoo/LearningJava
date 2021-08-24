@@ -467,6 +467,315 @@ files:
         }
     }
   learner_created: false
+- name: src/resources/templates/commit.ftlh
+  visible: true
+  text: |-
+    <html>
+        <head>
+            <title>Create</title>
+            <meta charset="UTF-8"/>
+            <style>#code_snippet{width:400px;height:400px}</style>
+            <script>function send(){let e={code:document.getElementById("code_snippet").value},t=JSON.stringify(e),n=new XMLHttpRequest;n.open("POST","/api/code/new",!1),n.setRequestHeader("Content-type","application/json; charset=utf-8"),n.send(t),200==n.status&&alert("Success!")}</script>
+        </head>
+
+        <body>
+            <textarea id="code_snippet"> // write your code here </textarea><br>
+            <button id="send_snippet" type="submit" onclick="send()">Submit</button>
+        </body>
+    </html>
+  learner_created: true
+- name: src/platform/service/CodeSnippetService.java
+  visible: true
+  text: |
+    package platform.service;
+
+    import org.springframework.stereotype.Service;
+    import platform.model.CodeSnippet;
+
+    import java.time.LocalDateTime;
+    import java.util.ArrayList;
+    import java.util.List;
+    import java.util.Optional;
+
+    @Service
+    public class CodeSnippetService {
+
+        private final List<CodeSnippet> codeSnippetList = new ArrayList<>();
+
+        public Optional<CodeSnippet> getCodeSnippetById(int id) {
+            return id >= codeSnippetList.size() ? Optional.empty() : Optional.of(codeSnippetList.get(id));
+        }
+
+        public CodeSnippet saveCodeSnippet(CodeSnippet code) {
+            code.setDate(LocalDateTime.now());
+            codeSnippetList.add(code);
+            code.setId(codeSnippetList.size());
+            return code;
+        }
+
+        public List<CodeSnippet> getLatestSnippets(int limit) {
+            int upper = codeSnippetList.size() - 1;
+            int lower = (limit > upper) ? 0 : upper - limit + 1;
+            List<CodeSnippet> result = new ArrayList<>(upper - lower + 1);
+            for (int i = upper; i >= lower; i--) {
+                result.add(codeSnippetList.get(i));
+            }
+            return result;
+        }
+    }
+  learner_created: true
+- name: src/platform/model/CodeSnippet.java
+  visible: true
+  text: |
+    package platform.model;
+
+    import com.fasterxml.jackson.annotation.JsonIgnore;
+    import com.fasterxml.jackson.annotation.JsonProperty;
+
+    import java.time.LocalDateTime;
+    import java.time.format.DateTimeFormatter;
+    import java.util.Objects;
+
+    public class CodeSnippet {
+        static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+        @JsonIgnore
+        private Integer id;
+
+        private String code;
+
+        @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+        private LocalDateTime date;
+
+        public CodeSnippet() {}
+
+        public CodeSnippet(String code) {
+            this.code = code;
+            this.date = LocalDateTime.now();
+        }
+
+        public CodeSnippet(String code, LocalDateTime date) {
+            this.code = code;
+            this.date = date;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            CodeSnippet that = (CodeSnippet) o;
+
+            if (!Objects.equals(id, that.id)) return false;
+            if (!Objects.equals(code, that.code)) return false;
+            return Objects.equals(date, that.date);
+        }
+
+        @Override
+        public int hashCode() {
+            int result = id != null ? id.hashCode() : 0;
+            result = 31 * result + (code != null ? code.hashCode() : 0);
+            result = 31 * result + (date != null ? date.hashCode() : 0);
+            return result;
+        }
+
+        @Override
+        public String toString() {
+            return "CodeSnippet{" +
+                    "id=" + id +
+                    ", code='" + code + '\'' +
+                    ", date=" + date +
+                    '}';
+        }
+
+        public Integer getId() { return id; }
+
+        public void setId(Integer id) { this.id = id; }
+
+        public String getCode() {
+            return code;
+        }
+
+        public void setCode(String code) {
+            this.code = code;
+        }
+
+        @JsonProperty("date")
+        public String getFormattedDate() {
+            return date == null ? "" : formatter.format(date);
+        }
+
+        public LocalDateTime getDate() {
+            return date;
+        }
+
+        public void setDate(LocalDateTime date) {
+            this.date = date;
+        }
+    }
+  learner_created: true
+- name: src/resources/templates/code.ftlh
+  visible: true
+  text: |-
+    <html>
+        <head>
+            <title>Code</title>
+            <meta charset="UTF-8"/>
+        </head>
+
+        <body>
+            <span id="load_date">${code.formattedDate}</span>
+            <pre id="code_snippet">${code.code}</pre>
+        </body>
+    </html>
+  learner_created: true
+- name: src/resources/templates/latest.ftlh
+  visible: true
+  text: |-
+    <html>
+        <head>
+            <title>Latest</title>
+            <meta charset="UTF-8"/>
+        </head>
+
+        <body>
+            <#list snippets as code>
+            <div>
+                <span class="load_date">${code.formattedDate}</span>
+                <pre class="code_snippet">${code.code}</pre>
+            </div>
+            </#list>
+        </body>
+    </html>
+  learner_created: true
+- name: src/platform/controller/web/CodeController.java
+  visible: true
+  text: |
+    package platform.controller.web;
+
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpHeaders;
+    import org.springframework.http.MediaType;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.stereotype.Controller;
+    import org.springframework.ui.Model;
+    import org.springframework.web.bind.annotation.GetMapping;
+    import org.springframework.web.bind.annotation.PathVariable;
+    import org.springframework.web.bind.annotation.PostMapping;
+    import platform.model.CodeSnippet;
+    import platform.service.CodeSnippetService;
+
+    import java.time.LocalDateTime;
+    import java.time.format.DateTimeFormatter;
+    import java.util.List;
+    import java.util.Optional;
+
+    @Controller("webCodeController")
+    public class CodeController {
+
+        private final HttpHeaders headers = new HttpHeaders();
+
+        @Autowired
+        CodeSnippetService codeSnippetService;
+
+        public CodeController() {
+            headers.setContentType(MediaType.TEXT_HTML);
+        }
+
+        @GetMapping(path = "/code/new", produces = MediaType.TEXT_HTML_VALUE)
+        public String getSetupPage(Model model) {
+            return "commit";
+        }
+
+        @GetMapping(path = "/code/{id}", produces = MediaType.TEXT_HTML_VALUE)
+        public String getCodeSnippet(Model model, @PathVariable Integer id) {
+            CodeSnippet code = codeSnippetService.getCodeSnippetById(id - 1)
+                    .orElse(new CodeSnippet("404 - Not Found"));
+            model.addAttribute("code", code);
+            return "code";
+        }
+
+        @GetMapping(path = "/code/latest")
+        public String getLatestSnippets(Model model) {
+            List<CodeSnippet> list = codeSnippetService.getLatestSnippets(10);
+            model.addAttribute("snippets", list);
+            return "latest";
+        }
+    }
+  learner_created: true
+- name: src/platform/controller/api/CodeController.java
+  visible: true
+  text: |
+    package platform.controller.api;
+
+    import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+    import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.http.HttpHeaders;
+    import org.springframework.http.HttpStatus;
+    import org.springframework.http.MediaType;
+    import org.springframework.http.ResponseEntity;
+    import org.springframework.web.bind.annotation.*;
+    import platform.model.CodeSnippet;
+    import platform.service.CodeSnippetService;
+
+    import java.time.LocalDateTime;
+    import java.util.List;
+    import java.util.Optional;
+
+    @RestController("apiCodeController")
+    @RequestMapping(path = "${v1API}/code")
+    public class CodeController {
+
+        private final HttpHeaders headers = new HttpHeaders();
+
+        @Autowired
+        CodeSnippetService codeSnippetService;
+
+        public CodeController() {
+            headers.setContentType(MediaType.APPLICATION_JSON);
+        }
+
+        @GetMapping(path = "/{id}")
+        public ResponseEntity<CodeSnippet> getCodeSnippet(@PathVariable Integer id) {
+            Optional<CodeSnippet> code = codeSnippetService.getCodeSnippetById(id - 1);
+            return code
+                    .map(codeSnippet -> ResponseEntity.ok().headers(headers).body(codeSnippet))
+                    .orElseGet(() -> new ResponseEntity<>(headers, HttpStatus.NOT_FOUND));
+        }
+
+        @GetMapping(path = "/latest")
+        public ResponseEntity<List<CodeSnippet>> getLatestSnippets() {
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .body(codeSnippetService.getLatestSnippets(10));
+        }
+
+        @PostMapping(path = "/new")
+        public ResponseEntity<IdResponse> createCodeSnippet(@RequestBody CodeSnippet code) {
+            code = codeSnippetService.saveCodeSnippet(code);
+            return ResponseEntity.ok().headers(headers).body(new IdResponse(String.valueOf(code.getId())));
+        }
+
+        @JsonSerialize
+        public static class IdResponse {
+            private String id;
+
+            public IdResponse() {}
+
+            public IdResponse(String id) {
+                this.id = id;
+            }
+
+            public String getId() {
+                return id;
+            }
+
+            public void setId(String id) {
+                this.id = id;
+            }
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/130/stages/695/implement#comment
 status: Unchecked
 record: -1

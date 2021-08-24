@@ -11,6 +11,7 @@ import platform.model.CodeSnippet;
 import platform.service.CodeSnippetService;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RestController("apiCodeController")
@@ -26,21 +27,43 @@ public class CodeController {
         headers.setContentType(MediaType.APPLICATION_JSON);
     }
 
-    @GetMapping
-    public ResponseEntity<CodeSnippet> getCodeSnippet() {
-        Optional<CodeSnippet> code = codeSnippetService.getCodeSnippetById(0);
+    @GetMapping(path = "/{id}")
+    public ResponseEntity<CodeSnippet> getCodeSnippet(@PathVariable Integer id) {
+        Optional<CodeSnippet> code = codeSnippetService.getCodeSnippetById(id - 1);
         return code
                 .map(codeSnippet -> ResponseEntity.ok().headers(headers).body(codeSnippet))
                 .orElseGet(() -> new ResponseEntity<>(headers, HttpStatus.NOT_FOUND));
     }
 
+    @GetMapping(path = "/latest")
+    public ResponseEntity<List<CodeSnippet>> getLatestSnippets() {
+        return ResponseEntity.ok()
+                .headers(headers)
+                .body(codeSnippetService.getLatestSnippets(10));
+    }
+
     @PostMapping(path = "/new")
-    public ResponseEntity<?> createCodeSnippet(@RequestBody CodeSnippet code) {
-        code.setDate(LocalDateTime.now());
-        codeSnippetService.saveCodeSnippet(code);
-        return ResponseEntity.ok().headers(headers).body(new EmptyJsonResponse());
+    public ResponseEntity<IdResponse> createCodeSnippet(@RequestBody CodeSnippet code) {
+        code = codeSnippetService.saveCodeSnippet(code);
+        return ResponseEntity.ok().headers(headers).body(new IdResponse(String.valueOf(code.getId())));
     }
 
     @JsonSerialize
-    public static class EmptyJsonResponse { }
+    public static class IdResponse {
+        private String id;
+
+        public IdResponse() {}
+
+        public IdResponse(String id) {
+            this.id = id;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public void setId(String id) {
+            this.id = id;
+        }
+    }
 }

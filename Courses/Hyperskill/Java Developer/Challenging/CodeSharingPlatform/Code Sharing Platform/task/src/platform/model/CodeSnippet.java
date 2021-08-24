@@ -1,12 +1,23 @@
 package platform.model;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class CodeSnippet {
+    /*
+        way to standardize date formatting between the API and the web interface.
+        use: obj.formattedDate to call de getter to this.
+        from: https://github.com/droideparanoico/codesharingplatform
+     */
+    static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+
+    @JsonIgnore
+    private Integer id;
+
     private String code;
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -31,13 +42,15 @@ public class CodeSnippet {
 
         CodeSnippet that = (CodeSnippet) o;
 
+        if (!Objects.equals(id, that.id)) return false;
         if (!Objects.equals(code, that.code)) return false;
         return Objects.equals(date, that.date);
     }
 
     @Override
     public int hashCode() {
-        int result = code != null ? code.hashCode() : 0;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (code != null ? code.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
         return result;
     }
@@ -45,10 +58,15 @@ public class CodeSnippet {
     @Override
     public String toString() {
         return "CodeSnippet{" +
-                "code='" + code + '\'' +
+                "id=" + id +
+                ", code='" + code + '\'' +
                 ", date=" + date +
                 '}';
     }
+
+    public Integer getId() { return id; }
+
+    public void setId(Integer id) { this.id = id; }
 
     public String getCode() {
         return code;
@@ -56,6 +74,11 @@ public class CodeSnippet {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @JsonProperty("date")
+    public String getFormattedDate() {
+        return date == null ? "" : formatter.format(date);
     }
 
     public LocalDateTime getDate() {
