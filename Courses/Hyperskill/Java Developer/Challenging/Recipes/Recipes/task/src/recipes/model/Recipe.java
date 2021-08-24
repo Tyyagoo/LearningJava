@@ -20,9 +20,11 @@ public class Recipe {
     private Integer id;
 
     @NotBlank
+    @Column
     private String name;
 
     @NotBlank
+    @Column
     private String description;
 
     @NotNull
@@ -42,4 +44,9 @@ public class Recipe {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime date;
+
+    @ManyToOne
+    @JoinColumn(name="user_id", nullable=false)
+    @JsonIgnore
+    private User owner;
 }
