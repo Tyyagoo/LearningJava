@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CodeSharingPlatformTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-24T23:33:57" hostname="LAPTOP-J1J60HSA" time="36.734">
+<testsuite name="CodeSharingPlatformTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-25T13:57:59" hostname="LAPTOP-J1J60HSA" time="29.694">
   <properties/>
-  <testcase name="start" classname="CodeSharingPlatformTest" time="36.734"/>
+  <testcase name="start" classname="CodeSharingPlatformTest" time="29.694"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 
@@ -13,38 +13,40 @@ Start test 1?[0m
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.3.3.RELEASE)
 
-2021-08-24 20:33:59.004  INFO 13920 --- [    Test worker] platform.CodeSharingPlatform             : Starting CodeSharingPlatform on LAPTOP-J1J60HSA with PID 13920 (started by tyyag in C:\Users\tyyag\Documents\GitHub\LearningJava\Courses\Hyperskill\Java Developer\Challenging\CodeSharingPlatform\Code Sharing Platform\task)
-2021-08-24 20:33:59.011  INFO 13920 --- [    Test worker] platform.CodeSharingPlatform             : No active profile set, falling back to default profiles: default
-2021-08-24 20:34:01.214  INFO 13920 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-08-24 20:34:01.364  INFO 13920 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 132ms. Found 1 JPA repository interfaces.
-2021-08-24 20:34:02.960  INFO 13920 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
-2021-08-24 20:34:03.000  INFO 13920 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-08-24 20:34:03.001  INFO 13920 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
-2021-08-24 20:34:03.604  INFO 13920 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-08-24 20:34:03.607  INFO 13920 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4470 ms
-2021-08-24 20:34:03.902  INFO 13920 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
-2021-08-24 20:34:04.340  INFO 13920 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
-2021-08-24 20:34:04.356  INFO 13920 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../snippets'
-2021-08-24 20:34:04.830  INFO 13920 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-08-24 20:34:04.942  INFO 13920 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-08-24 20:34:05.033  WARN 13920 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-08-24 20:34:05.097  INFO 13920 --- [         task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.20.Final
-2021-08-24 20:34:05.614  INFO 13920 --- [         task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2021-08-24 20:34:06.025  INFO 13920 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2021-08-24 20:34:07.817  INFO 13920 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-08-24 20:34:07.839  INFO 13920 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-08-24 20:34:08.329  INFO 13920 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
-2021-08-24 20:34:08.628  INFO 13920 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
-2021-08-24 20:34:08.628  INFO 13920 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2021-08-24 20:34:10.772  INFO 13920 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2021-08-24 20:34:10.889  INFO 13920 --- [    Test worker] platform.CodeSharingPlatform             : Started CodeSharingPlatform in 12.756 seconds (JVM running for 14.62)
-2021-08-24 20:34:20.343  INFO 13920 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-08-24 20:34:20.343  INFO 13920 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-08-24 20:34:20.713  INFO 13920 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 370 ms
+2021-08-25 10:58:01.169  INFO 13704 --- [    Test worker] platform.CodeSharingPlatform             : Starting CodeSharingPlatform on LAPTOP-J1J60HSA with PID 13704 (started by tyyag in C:\Users\tyyag\Documents\GitHub\LearningJava\Courses\Hyperskill\Java Developer\Challenging\CodeSharingPlatform\Code Sharing Platform\task)
+2021-08-25 10:58:01.175  INFO 13704 --- [    Test worker] platform.CodeSharingPlatform             : No active profile set, falling back to default profiles: default
+2021-08-25 10:58:03.399  INFO 13704 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-08-25 10:58:03.520  INFO 13704 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 100ms. Found 1 JPA repository interfaces.
+2021-08-25 10:58:04.566  INFO 13704 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
+2021-08-25 10:58:04.595  INFO 13704 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-25 10:58:04.596  INFO 13704 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-08-25 10:58:04.876  INFO 13704 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-25 10:58:04.877  INFO 13704 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3572 ms
+2021-08-25 10:58:05.118  INFO 13704 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-08-25 10:58:05.553  INFO 13704 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-08-25 10:58:05.568  INFO 13704 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../snippets'
+2021-08-25 10:58:06.168  INFO 13704 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-08-25 10:58:06.399  INFO 13704 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-25 10:58:06.412  WARN 13704 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-25 10:58:06.741  INFO 13704 --- [         task-1] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.4.20.Final
+2021-08-25 10:58:07.826  INFO 13704 --- [         task-1] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2021-08-25 10:58:08.411  INFO 13704 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-08-25 10:58:11.301  INFO 13704 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-25 10:58:11.328  INFO 13704 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-25 10:58:11.866  INFO 13704 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2021-08-25 10:58:12.064  INFO 13704 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
+2021-08-25 10:58:12.066  INFO 13704 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2021-08-25 10:58:14.021  INFO 13704 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-08-25 10:58:14.071  INFO 13704 --- [    Test worker] platform.CodeSharingPlatform             : Started CodeSharingPlatform in 13.695 seconds (JVM running for 15.29)
+2021-08-25 10:58:15.258  INFO 13704 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-25 10:58:15.258  INFO 13704 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-25 10:58:15.294  INFO 13704 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 35 ms
 ?[1;31m
 Start test 2?[0m
+CodeSnippet{id=776fef83-cd13-4844-8a4b-3fbf3bb4929c, code='public static void ...', date=2021-08-25T10:58:16.412165600, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 3?[0m
+Optional[CodeSnippet{id=776fef83-cd13-4844-8a4b-3fbf3bb4929c, code='public static void ...', date=2021-08-25T10:58:16.412166, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 4?[0m
 ?[1;31m
@@ -53,12 +55,15 @@ Start test 5?[0m
 Start test 6?[0m
 ?[1;31m
 Start test 7?[0m
+CodeSnippet{id=5ecdc3fa-d689-438f-8f44-bb5b54fbfe56, code='class Code { ...', date=2021-08-25T10:58:17.632793, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 8?[0m
+Optional[CodeSnippet{id=776fef83-cd13-4844-8a4b-3fbf3bb4929c, code='public static void ...', date=2021-08-25T10:58:16.412166, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 9?[0m
 ?[1;31m
 Start test 10?[0m
+Optional[CodeSnippet{id=5ecdc3fa-d689-438f-8f44-bb5b54fbfe56, code='class Code { ...', date=2021-08-25T10:58:17.632793, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 11?[0m
 ?[1;31m
@@ -67,82 +72,108 @@ Start test 12?[0m
 Start test 13?[0m
 ?[1;31m
 Start test 14?[0m
+CodeSnippet{id=5f97932f-c10f-4cbe-b1d1-314489c79f62, code='Snippet #3', date=2021-08-25T10:58:17.776268700, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 15?[0m
+CodeSnippet{id=8f2e81f8-9f7d-4853-aa62-05f903a60a31, code='Snippet #4', date=2021-08-25T10:58:17.795269400, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 16?[0m
+CodeSnippet{id=616c100e-97bf-40c7-86b6-51f98d9eedd1, code='Snippet #5', date=2021-08-25T10:58:17.831271500, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 17?[0m
+CodeSnippet{id=5f11cf36-1bfa-4e96-85a8-d263269923d5, code='Snippet #6', date=2021-08-25T10:58:17.869275400, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 18?[0m
+CodeSnippet{id=2ce06506-e882-4a46-817d-b51ce4c589e0, code='Snippet #7', date=2021-08-25T10:58:17.891277100, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 19?[0m
+CodeSnippet{id=26042948-0acc-42d7-a9cd-89d844744a92, code='Snippet #8', date=2021-08-25T10:58:17.923279900, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 20?[0m
+CodeSnippet{id=72b5c3a0-350e-450f-b84f-e269227adad6, code='Snippet #9', date=2021-08-25T10:58:17.940280700, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 21?[0m
+CodeSnippet{id=fd74541f-09b8-4ec2-b2c6-6393a4b89907, code='Snippet #10', date=2021-08-25T10:58:17.957297500, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 22?[0m
+CodeSnippet{id=04f21485-0515-4028-8b7b-9155121067f3, code='Snippet #11', date=2021-08-25T10:58:17.974287100, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 23?[0m
+CodeSnippet{id=d34ceba1-867f-413e-9ebd-3e921239ab96, code='Snippet #12', date=2021-08-25T10:58:17.993809800, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 24?[0m
+CodeSnippet{id=a1dba89c-fc2a-47db-a7fa-02b0413ad24a, code='Snippet #13', date=2021-08-25T10:58:18.012808, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 25?[0m
+CodeSnippet{id=b2b3f03e-ca96-42fb-acb0-c85476a972dd, code='Snippet #14', date=2021-08-25T10:58:18.029810800, time=0, views=0, timeRestricted=false, viewsRestricted=false}
 ?[1;31m
 Start test 26?[0m
+Optional[CodeSnippet{id=776fef83-cd13-4844-8a4b-3fbf3bb4929c, code='public static void ...', date=2021-08-25T10:58:16.412166, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 27?[0m
 ?[1;31m
 Start test 28?[0m
+Optional[CodeSnippet{id=5ecdc3fa-d689-438f-8f44-bb5b54fbfe56, code='class Code { ...', date=2021-08-25T10:58:17.632793, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 29?[0m
 ?[1;31m
 Start test 30?[0m
+Optional[CodeSnippet{id=5f97932f-c10f-4cbe-b1d1-314489c79f62, code='Snippet #3', date=2021-08-25T10:58:17.776269, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 31?[0m
 ?[1;31m
 Start test 32?[0m
+Optional[CodeSnippet{id=8f2e81f8-9f7d-4853-aa62-05f903a60a31, code='Snippet #4', date=2021-08-25T10:58:17.795269, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 33?[0m
 ?[1;31m
 Start test 34?[0m
+Optional[CodeSnippet{id=616c100e-97bf-40c7-86b6-51f98d9eedd1, code='Snippet #5', date=2021-08-25T10:58:17.831272, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 35?[0m
 ?[1;31m
 Start test 36?[0m
+Optional[CodeSnippet{id=5f11cf36-1bfa-4e96-85a8-d263269923d5, code='Snippet #6', date=2021-08-25T10:58:17.869275, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 37?[0m
 ?[1;31m
 Start test 38?[0m
+Optional[CodeSnippet{id=2ce06506-e882-4a46-817d-b51ce4c589e0, code='Snippet #7', date=2021-08-25T10:58:17.891277, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 39?[0m
 ?[1;31m
 Start test 40?[0m
+Optional[CodeSnippet{id=26042948-0acc-42d7-a9cd-89d844744a92, code='Snippet #8', date=2021-08-25T10:58:17.923280, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 41?[0m
 ?[1;31m
 Start test 42?[0m
+Optional[CodeSnippet{id=72b5c3a0-350e-450f-b84f-e269227adad6, code='Snippet #9', date=2021-08-25T10:58:17.940281, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 43?[0m
 ?[1;31m
 Start test 44?[0m
+Optional[CodeSnippet{id=fd74541f-09b8-4ec2-b2c6-6393a4b89907, code='Snippet #10', date=2021-08-25T10:58:17.957298, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 45?[0m
 ?[1;31m
 Start test 46?[0m
+Optional[CodeSnippet{id=04f21485-0515-4028-8b7b-9155121067f3, code='Snippet #11', date=2021-08-25T10:58:17.974287, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 47?[0m
 ?[1;31m
 Start test 48?[0m
+Optional[CodeSnippet{id=d34ceba1-867f-413e-9ebd-3e921239ab96, code='Snippet #12', date=2021-08-25T10:58:17.993810, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 49?[0m
 ?[1;31m
 Start test 50?[0m
+Optional[CodeSnippet{id=a1dba89c-fc2a-47db-a7fa-02b0413ad24a, code='Snippet #13', date=2021-08-25T10:58:18.012808, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 51?[0m
 ?[1;31m
 Start test 52?[0m
+Optional[CodeSnippet{id=b2b3f03e-ca96-42fb-acb0-c85476a972dd, code='Snippet #14', date=2021-08-25T10:58:18.029811, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 53?[0m
 ?[1;31m
@@ -151,10 +182,10 @@ Start test 54?[0m
 Start test 55?[0m
 ?[1;31m
 Start test 56?[0m
-2021-08-24 20:34:30.781  INFO 13920 --- [       Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
-2021-08-24 20:34:30.781  INFO 13920 --- [       Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
-2021-08-24 20:34:30.791  INFO 13920 --- [       Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
-2021-08-24 20:34:30.811  INFO 13920 --- [       Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2021-08-25 10:58:19.318  INFO 13704 --- [       Thread-6] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-08-25 10:58:19.321  INFO 13704 --- [       Thread-6] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-08-25 10:58:19.323  INFO 13704 --- [       Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2021-08-25 10:58:19.346  INFO 13704 --- [       Thread-6] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
 
   .   ____          _            __ _ _
  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
@@ -164,92 +195,230 @@ Start test 56?[0m
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v2.3.3.RELEASE)
 
-2021-08-24 20:34:30.921  INFO 13920 --- [    Test worker] platform.CodeSharingPlatform             : Starting CodeSharingPlatform on LAPTOP-J1J60HSA with PID 13920 (started by tyyag in C:\Users\tyyag\Documents\GitHub\LearningJava\Courses\Hyperskill\Java Developer\Challenging\CodeSharingPlatform\Code Sharing Platform\task)
-2021-08-24 20:34:30.921  INFO 13920 --- [    Test worker] platform.CodeSharingPlatform             : No active profile set, falling back to default profiles: default
-2021-08-24 20:34:31.766  INFO 13920 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
-2021-08-24 20:34:31.796  INFO 13920 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 26ms. Found 1 JPA repository interfaces.
-2021-08-24 20:34:32.026  INFO 13920 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
-2021-08-24 20:34:32.026  INFO 13920 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2021-08-24 20:34:32.026  INFO 13920 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
-2021-08-24 20:34:32.712  INFO 13920 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2021-08-24 20:34:32.712  INFO 13920 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1781 ms
-2021-08-24 20:34:32.782  INFO 13920 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
-2021-08-24 20:34:32.812  INFO 13920 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
-2021-08-24 20:34:32.812  INFO 13920 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../snippets'
-2021-08-24 20:34:32.892  INFO 13920 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
-2021-08-24 20:34:32.902  INFO 13920 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2021-08-24 20:34:32.942  INFO 13920 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
-2021-08-24 20:34:32.962  WARN 13920 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2021-08-24 20:34:33.482  INFO 13920 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2021-08-24 20:34:33.482  INFO 13920 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2021-08-24 20:34:33.727  INFO 13920 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
-2021-08-24 20:34:33.757  INFO 13920 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
-2021-08-24 20:34:33.765  INFO 13920 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
-2021-08-24 20:34:33.838  INFO 13920 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
-2021-08-24 20:34:33.848  INFO 13920 --- [    Test worker] platform.CodeSharingPlatform             : Started CodeSharingPlatform in 3.022 seconds (JVM running for 37.577)
+2021-08-25 10:58:19.490  INFO 13704 --- [    Test worker] platform.CodeSharingPlatform             : Starting CodeSharingPlatform on LAPTOP-J1J60HSA with PID 13704 (started by tyyag in C:\Users\tyyag\Documents\GitHub\LearningJava\Courses\Hyperskill\Java Developer\Challenging\CodeSharingPlatform\Code Sharing Platform\task)
+2021-08-25 10:58:19.491  INFO 13704 --- [    Test worker] platform.CodeSharingPlatform             : No active profile set, falling back to default profiles: default
+2021-08-25 10:58:20.104  INFO 13704 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-08-25 10:58:20.126  INFO 13704 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 21ms. Found 1 JPA repository interfaces.
+2021-08-25 10:58:20.302  INFO 13704 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
+2021-08-25 10:58:20.304  INFO 13704 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-25 10:58:20.304  INFO 13704 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-08-25 10:58:20.386  INFO 13704 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-25 10:58:20.386  INFO 13704 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 890 ms
+2021-08-25 10:58:20.463  INFO 13704 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2021-08-25 10:58:20.486  INFO 13704 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2021-08-25 10:58:20.487  INFO 13704 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../snippets'
+2021-08-25 10:58:20.555  INFO 13704 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-08-25 10:58:20.569  INFO 13704 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-25 10:58:20.602  INFO 13704 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-08-25 10:58:20.629  WARN 13704 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-25 10:58:20.745  INFO 13704 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-25 10:58:20.746  INFO 13704 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-25 10:58:20.995  INFO 13704 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2021-08-25 10:58:21.027  INFO 13704 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
+2021-08-25 10:58:21.029  INFO 13704 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2021-08-25 10:58:21.117  INFO 13704 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-08-25 10:58:21.127  INFO 13704 --- [    Test worker] platform.CodeSharingPlatform             : Started CodeSharingPlatform in 1.704 seconds (JVM running for 22.347)
 ?[1;31m
 Start test 57?[0m
-2021-08-24 20:34:33.858  INFO 13920 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2021-08-24 20:34:33.858  INFO 13920 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2021-08-24 20:34:33.858  INFO 13920 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2021-08-25 10:58:21.139  INFO 13704 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-25 10:58:21.139  INFO 13704 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-25 10:58:21.144  INFO 13704 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+Optional[CodeSnippet{id=776fef83-cd13-4844-8a4b-3fbf3bb4929c, code='public static void ...', date=2021-08-25T10:58:16.412166, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 58?[0m
 ?[1;31m
 Start test 59?[0m
+Optional[CodeSnippet{id=5ecdc3fa-d689-438f-8f44-bb5b54fbfe56, code='class Code { ...', date=2021-08-25T10:58:17.632793, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 60?[0m
 ?[1;31m
 Start test 61?[0m
+Optional[CodeSnippet{id=5f97932f-c10f-4cbe-b1d1-314489c79f62, code='Snippet #3', date=2021-08-25T10:58:17.776269, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 62?[0m
 ?[1;31m
 Start test 63?[0m
+Optional[CodeSnippet{id=8f2e81f8-9f7d-4853-aa62-05f903a60a31, code='Snippet #4', date=2021-08-25T10:58:17.795269, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 64?[0m
 ?[1;31m
 Start test 65?[0m
+Optional[CodeSnippet{id=616c100e-97bf-40c7-86b6-51f98d9eedd1, code='Snippet #5', date=2021-08-25T10:58:17.831272, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 66?[0m
 ?[1;31m
 Start test 67?[0m
+Optional[CodeSnippet{id=5f11cf36-1bfa-4e96-85a8-d263269923d5, code='Snippet #6', date=2021-08-25T10:58:17.869275, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 68?[0m
 ?[1;31m
 Start test 69?[0m
+Optional[CodeSnippet{id=2ce06506-e882-4a46-817d-b51ce4c589e0, code='Snippet #7', date=2021-08-25T10:58:17.891277, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 70?[0m
 ?[1;31m
 Start test 71?[0m
+Optional[CodeSnippet{id=26042948-0acc-42d7-a9cd-89d844744a92, code='Snippet #8', date=2021-08-25T10:58:17.923280, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 72?[0m
 ?[1;31m
 Start test 73?[0m
+Optional[CodeSnippet{id=72b5c3a0-350e-450f-b84f-e269227adad6, code='Snippet #9', date=2021-08-25T10:58:17.940281, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 74?[0m
 ?[1;31m
 Start test 75?[0m
+Optional[CodeSnippet{id=fd74541f-09b8-4ec2-b2c6-6393a4b89907, code='Snippet #10', date=2021-08-25T10:58:17.957298, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 76?[0m
 ?[1;31m
 Start test 77?[0m
+Optional[CodeSnippet{id=04f21485-0515-4028-8b7b-9155121067f3, code='Snippet #11', date=2021-08-25T10:58:17.974287, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 78?[0m
 ?[1;31m
 Start test 79?[0m
+Optional[CodeSnippet{id=d34ceba1-867f-413e-9ebd-3e921239ab96, code='Snippet #12', date=2021-08-25T10:58:17.993810, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 80?[0m
 ?[1;31m
 Start test 81?[0m
+Optional[CodeSnippet{id=a1dba89c-fc2a-47db-a7fa-02b0413ad24a, code='Snippet #13', date=2021-08-25T10:58:18.012808, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 82?[0m
 ?[1;31m
 Start test 83?[0m
+Optional[CodeSnippet{id=b2b3f03e-ca96-42fb-acb0-c85476a972dd, code='Snippet #14', date=2021-08-25T10:58:18.029811, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
 ?[1;31m
 Start test 84?[0m
 ?[1;31m
 Start test 85?[0m
 ?[1;31m
 Start test 86?[0m
+?[1;31m
+Start test 87?[0m
+CodeSnippet{id=c9be2d83-92ad-40a8-a6cc-0ec60e440bc4, code='Snippet #15', date=2021-08-25T10:58:21.606624, time=0, views=0, timeRestricted=false, viewsRestricted=false}
+?[1;31m
+Start test 88?[0m
+CodeSnippet{id=9664a07d-4d05-49bc-ae4e-8e6bbda9edec, code='Snippet #16', date=2021-08-25T10:58:21.631143400, time=100, views=20, timeRestricted=true, viewsRestricted=true}
+?[1;31m
+Start test 89?[0m
+CodeSnippet{id=bdc7d269-c2d4-4462-9398-3c56b7fed557, code='Snippet #17', date=2021-08-25T10:58:21.657145400, time=0, views=0, timeRestricted=false, viewsRestricted=false}
+?[1;31m
+Start test 90?[0m
+CodeSnippet{id=8f9c8fad-07ee-4c61-993d-610d81cb76e9, code='Snippet #18', date=2021-08-25T10:58:21.674144200, time=0, views=5, timeRestricted=false, viewsRestricted=true}
+?[1;31m
+Start test 91?[0m
+CodeSnippet{id=7b47f331-f3ae-4c24-8f9d-8580a79d7569, code='Snippet #19', date=2021-08-25T10:58:21.688147100, time=0, views=0, timeRestricted=false, viewsRestricted=false}
+?[1;31m
+Start test 92?[0m
+CodeSnippet{id=9ca7dc96-666a-426e-b792-e616acf8edbf, code='Snippet #20', date=2021-08-25T10:58:21.703189600, time=3, views=0, timeRestricted=true, viewsRestricted=false}
+?[1;31m
+Start test 93?[0m
+CodeSnippet{id=96f103f1-a218-40d1-a16f-a7f5af43a91d, code='Snippet #21', date=2021-08-25T10:58:21.719147800, time=0, views=0, timeRestricted=false, viewsRestricted=false}
+?[1;31m
+Start test 94?[0m
+CodeSnippet{id=87d71a12-f452-4264-b49c-47789795b079, code='Snippet #22', date=2021-08-25T10:58:21.732147700, time=30, views=0, timeRestricted=true, viewsRestricted=false}
+?[1;31m
+Start test 95?[0m
+Optional[CodeSnippet{id=c9be2d83-92ad-40a8-a6cc-0ec60e440bc4, code='Snippet #15', date=2021-08-25T10:58:21.606624, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
+?[1;31m
+Start test 96?[0m
+?[1;31m
+Start test 97?[0m
+Optional[CodeSnippet{id=bdc7d269-c2d4-4462-9398-3c56b7fed557, code='Snippet #17', date=2021-08-25T10:58:21.657145, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
+?[1;31m
+Start test 98?[0m
+?[1;31m
+Start test 99?[0m
+Optional[CodeSnippet{id=7b47f331-f3ae-4c24-8f9d-8580a79d7569, code='Snippet #19', date=2021-08-25T10:58:21.688147, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
+?[1;31m
+Start test 100?[0m
+?[1;31m
+Start test 101?[0m
+Optional[CodeSnippet{id=96f103f1-a218-40d1-a16f-a7f5af43a91d, code='Snippet #21', date=2021-08-25T10:58:21.719148, time=0, views=0, timeRestricted=false, viewsRestricted=false}]
+?[1;31m
+Start test 102?[0m
+?[1;31m
+Start test 103?[0m
+2021-08-25 10:58:27.576  INFO 13704 --- [       Thread-9] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2021-08-25 10:58:27.577  INFO 13704 --- [       Thread-9] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2021-08-25 10:58:27.578  INFO 13704 --- [       Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2021-08-25 10:58:27.597  INFO 13704 --- [       Thread-9] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::        (v2.3.3.RELEASE)
+
+2021-08-25 10:58:27.704  INFO 13704 --- [    Test worker] platform.CodeSharingPlatform             : Starting CodeSharingPlatform on LAPTOP-J1J60HSA with PID 13704 (started by tyyag in C:\Users\tyyag\Documents\GitHub\LearningJava\Courses\Hyperskill\Java Developer\Challenging\CodeSharingPlatform\Code Sharing Platform\task)
+2021-08-25 10:58:27.704  INFO 13704 --- [    Test worker] platform.CodeSharingPlatform             : No active profile set, falling back to default profiles: default
+2021-08-25 10:58:28.344  INFO 13704 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2021-08-25 10:58:28.366  INFO 13704 --- [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 22ms. Found 1 JPA repository interfaces.
+2021-08-25 10:58:28.512  INFO 13704 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8889 (http)
+2021-08-25 10:58:28.513  INFO 13704 --- [    Test worker] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-08-25 10:58:28.513  INFO 13704 --- [    Test worker] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.37]
+2021-08-25 10:58:28.579  INFO 13704 --- [    Test worker] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-08-25 10:58:28.580  INFO 13704 --- [    Test worker] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 866 ms
+2021-08-25 10:58:28.643  INFO 13704 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2021-08-25 10:58:28.660  INFO 13704 --- [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2021-08-25 10:58:28.661  INFO 13704 --- [    Test worker] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:../snippets'
+2021-08-25 10:58:28.736  INFO 13704 --- [    Test worker] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-08-25 10:58:28.747  INFO 13704 --- [         task-1] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-08-25 10:58:28.772  INFO 13704 --- [         task-1] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-08-25 10:58:28.793  WARN 13704 --- [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-08-25 10:58:28.905  INFO 13704 --- [         task-1] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-08-25 10:58:28.906  INFO 13704 --- [         task-1] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-08-25 10:58:29.157  INFO 13704 --- [    Test worker] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 14 endpoint(s) beneath base path '/actuator'
+2021-08-25 10:58:29.180  INFO 13704 --- [    Test worker] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8889 (http) with context path ''
+2021-08-25 10:58:29.181  INFO 13704 --- [    Test worker] DeferredRepositoryInitializationListener : Triggering deferred initialization of Spring Data repositories…
+2021-08-25 10:58:29.272  INFO 13704 --- [    Test worker] DeferredRepositoryInitializationListener : Spring Data repositories initialized!
+2021-08-25 10:58:29.279  INFO 13704 --- [    Test worker] platform.CodeSharingPlatform             : Started CodeSharingPlatform in 1.641 seconds (JVM running for 30.498)
+?[1;31m
+Start test 104?[0m
+?[1;31m
+Start test 105?[0m
+2021-08-25 10:58:29.286  INFO 13704 --- [nio-8889-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-08-25 10:58:29.286  INFO 13704 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-08-25 10:58:29.292  INFO 13704 --- [nio-8889-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+Optional[CodeSnippet{id=9664a07d-4d05-49bc-ae4e-8e6bbda9edec, code='Snippet #16', date=2021-08-25T10:58:21.631143, time=93, views=19, timeRestricted=true, viewsRestricted=true}]
+?[1;31m
+Start test 106?[0m
+?[1;31m
+Start test 107?[0m
+Optional[CodeSnippet{id=8f9c8fad-07ee-4c61-993d-610d81cb76e9, code='Snippet #18', date=2021-08-25T10:58:21.674144, time=0, views=4, timeRestricted=false, viewsRestricted=true}]
+?[1;31m
+Start test 108?[0m
+?[1;31m
+Start test 109?[0m
+Optional.empty
+?[1;31m
+Start test 110?[0m
+?[1;31m
+Start test 111?[0m
+Optional[CodeSnippet{id=87d71a12-f452-4264-b49c-47789795b079, code='Snippet #22', date=2021-08-25T10:58:21.732148, time=23, views=0, timeRestricted=true, viewsRestricted=false}]
+?[1;31m
+Start test 112?[0m
+?[1;31m
+Start test 113?[0m
+?[1;31m
+Start test 114?[0m
+?[1;31m
+Start test 115?[0m
+Optional[CodeSnippet{id=8f9c8fad-07ee-4c61-993d-610d81cb76e9, code='Snippet #18', date=2021-08-25T10:58:21.674144, time=0, views=2, timeRestricted=false, viewsRestricted=true}]
+?[1;31m
+Start test 116?[0m
+Optional[CodeSnippet{id=8f9c8fad-07ee-4c61-993d-610d81cb76e9, code='Snippet #18', date=2021-08-25T10:58:21.674144, time=0, views=1, timeRestricted=false, viewsRestricted=true}]
+?[1;31m
+Start test 117?[0m
+?[1;31m
+Start test 118?[0m
+Optional.empty
+?[1;31m
+Start test 119?[0m
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -2,11 +2,14 @@ package platform.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sun.istack.NotNull;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+import java.util.UUID;
 
 @Entity
 public class CodeSnippet {
@@ -18,16 +21,33 @@ public class CodeSnippet {
     static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name="UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", updatable = false, nullable = false)
     @JsonIgnore
-    private Integer id;
+    private UUID id;
 
     @Lob @Basic(optional = false)
+    @NotNull
     private String code;
 
     @Column
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime date;
+
+    @Column
+    private Integer time;
+
+    @Column
+    private Integer views;
+
+    @Column(updatable = false)
+    @JsonIgnore
+    private boolean timeRestricted;
+
+    @Column(updatable = false)
+    @JsonIgnore
+    private boolean viewsRestricted;
 
     public CodeSnippet() {}
 
@@ -36,9 +56,16 @@ public class CodeSnippet {
         this.date = LocalDateTime.now();
     }
 
-    public CodeSnippet(String code, LocalDateTime date) {
-        this.code = code;
-        this.date = date;
+    public void checkRestrictions() {
+        // check this only on create.
+        Integer zero = 0;
+        timeRestricted = time != null && zero.compareTo(time) < 0;
+        viewsRestricted = views != null && zero.compareTo(views) < 0;
+    }
+
+    @JsonProperty("date")
+    public String getFormattedDate() {
+        return date == null ? "" : formatter.format(date);
     }
 
     @Override
@@ -48,9 +75,13 @@ public class CodeSnippet {
 
         CodeSnippet that = (CodeSnippet) o;
 
+        if (timeRestricted != that.timeRestricted) return false;
+        if (viewsRestricted != that.viewsRestricted) return false;
         if (!Objects.equals(id, that.id)) return false;
         if (!Objects.equals(code, that.code)) return false;
-        return Objects.equals(date, that.date);
+        if (!Objects.equals(date, that.date)) return false;
+        if (!Objects.equals(time, that.time)) return false;
+        return Objects.equals(views, that.views);
     }
 
     @Override
@@ -58,6 +89,10 @@ public class CodeSnippet {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (code != null ? code.hashCode() : 0);
         result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + (views != null ? views.hashCode() : 0);
+        result = 31 * result + (timeRestricted ? 1 : 0);
+        result = 31 * result + (viewsRestricted ? 1 : 0);
         return result;
     }
 
@@ -67,12 +102,20 @@ public class CodeSnippet {
                 "id=" + id +
                 ", code='" + code + '\'' +
                 ", date=" + date +
+                ", time=" + time +
+                ", views=" + views +
+                ", timeRestricted=" + timeRestricted +
+                ", viewsRestricted=" + viewsRestricted +
                 '}';
     }
 
-    public Integer getId() { return id; }
+    public UUID getId() {
+        return id;
+    }
 
-    public void setId(Integer id) { this.id = id; }
+    public void setId(UUID id) {
+        this.id = id;
+    }
 
     public String getCode() {
         return code;
@@ -82,16 +125,43 @@ public class CodeSnippet {
         this.code = code;
     }
 
-    @JsonProperty("date")
-    public String getFormattedDate() {
-        return date == null ? "" : formatter.format(date);
-    }
-
     public LocalDateTime getDate() {
         return date;
     }
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public Integer getTime() {
+        return time;
+    }
+
+    public void setTime(Integer time) {
+        this.time = time;
+    }
+
+    public Integer getViews() {
+        return views;
+    }
+
+    public void setViews(Integer views) {
+        this.views = views;
+    }
+
+    public boolean isTimeRestricted() {
+        return timeRestricted;
+    }
+
+    public void setTimeRestricted(boolean timeRestricted) {
+        this.timeRestricted = timeRestricted;
+    }
+
+    public boolean isViewsRestricted() {
+        return viewsRestricted;
+    }
+
+    public void setViewsRestricted(boolean viewsRestricted) {
+        this.viewsRestricted = viewsRestricted;
     }
 }

@@ -13,6 +13,7 @@ import platform.service.CodeSnippetService;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController("apiCodeController")
 @RequestMapping(path = "${v1API}/code")
@@ -28,8 +29,9 @@ public class CodeController {
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<CodeSnippet> getCodeSnippet(@PathVariable Integer id) {
+    public ResponseEntity<CodeSnippet> getCodeSnippet(@PathVariable String id) {
         Optional<CodeSnippet> code = codeSnippetService.getCodeSnippetById(id);
+        System.out.println(code);
         return code
                 .map(codeSnippet -> ResponseEntity.ok().headers(headers).body(codeSnippet))
                 .orElseGet(() -> new ResponseEntity<>(headers, HttpStatus.NOT_FOUND));
@@ -45,7 +47,7 @@ public class CodeController {
     @PostMapping(path = "/new")
     public ResponseEntity<IdResponse> createCodeSnippet(@RequestBody CodeSnippet code) {
         code = codeSnippetService.saveCodeSnippet(code);
-        return ResponseEntity.ok().headers(headers).body(new IdResponse(String.valueOf(code.getId())));
+        return ResponseEntity.ok().headers(headers).body(new IdResponse(code.getId().toString()));
     }
 
     @JsonSerialize

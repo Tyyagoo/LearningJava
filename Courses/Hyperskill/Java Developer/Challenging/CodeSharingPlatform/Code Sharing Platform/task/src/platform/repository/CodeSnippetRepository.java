@@ -5,6 +5,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import platform.model.CodeSnippet;
 
-public interface CodeSnippetRepository extends JpaRepository<CodeSnippet, Integer> {
-    Page<CodeSnippet> findAll(Pageable pageable);
+import java.util.UUID;
+
+public interface CodeSnippetRepository extends JpaRepository<CodeSnippet, UUID> {
+    Page<CodeSnippet> findByTimeRestrictedFalseAndViewsRestrictedFalse(Pageable pageable);
 }

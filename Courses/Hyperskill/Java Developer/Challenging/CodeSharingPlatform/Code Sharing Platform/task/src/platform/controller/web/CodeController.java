@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import platform.exception.ResourceNotFoundException;
 import platform.model.CodeSnippet;
 import platform.service.CodeSnippetService;
 
@@ -16,18 +17,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller("webCodeController")
 public class CodeController {
 
-    private final HttpHeaders headers = new HttpHeaders();
-
     @Autowired
     CodeSnippetService codeSnippetService;
-
-    public CodeController() {
-        headers.setContentType(MediaType.TEXT_HTML);
-    }
 
     @GetMapping(path = "/code/new", produces = MediaType.TEXT_HTML_VALUE)
     public String getSetupPage(Model model) {
@@ -35,14 +31,14 @@ public class CodeController {
     }
 
     @GetMapping(path = "/code/{id}", produces = MediaType.TEXT_HTML_VALUE)
-    public String getCodeSnippet(Model model, @PathVariable Integer id) {
+    public String getCodeSnippet(Model model, @PathVariable String id) {
         CodeSnippet code = codeSnippetService.getCodeSnippetById(id)
-                .orElse(new CodeSnippet("404 - Not Found"));
+                .orElseThrow(ResourceNotFoundException::new);
         model.addAttribute("code", code);
         return "code";
     }
 
-    @GetMapping(path = "/code/latest")
+    @GetMapping(path = "/code/latest", produces = MediaType.TEXT_HTML_VALUE)
     public String getLatestSnippets(Model model) {
         List<CodeSnippet> list = codeSnippetService.getLatestSnippets(10);
         model.addAttribute("snippets", list);
