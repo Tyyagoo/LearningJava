@@ -238,6 +238,12 @@ files:
         }
     }
   learner_created: false
+- name: src/recognition/Matrix.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/51/stages/278/implement#comment
-status: Unchecked
-record: -1
+status: Solved
+feedback:
+  message: Congratulations!
+  time: Wed, 25 Aug 2021 17:30:46 UTC
+record: 2

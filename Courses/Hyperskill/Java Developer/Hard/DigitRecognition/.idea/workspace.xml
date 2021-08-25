@@ -5,67 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="43e8ee77-448a-4d9e-a3c9-d996a6a2a1ed" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/executionHistory/executionHistory.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.8/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/configuration-cache/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/externalDependencies.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageData" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/frameworkLessonHistory/storage.storageRecordIndex" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_hyperskill_hs_test_release_SNAPSHOT.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_codec_commons_codec_1_11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_9.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_11.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_assertj_assertj_core_3_11_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_assertj_assertj_swing_3_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_assertj_assertj_swing_junit_3_9_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_easytesting_fest_reflect_1_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_easytesting_fest_util_1_2_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Digit Recognition/task/DigitRecognition.Digit_Recognition-task.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Digit Recognition/task/DigitRecognition.Digit_Recognition-task.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Digit Recognition/task/DigitRecognition.Digit_Recognition-task.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/DigitRecognition.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/util/DigitRecognition.util.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/util/DigitRecognition.util.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/util/DigitRecognition.util.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/Backpropagation/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/Backpropagation/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/Layers/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/Layers/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/Learning time/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/Learning time/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/Neuron creator/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/Neuron creator/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/On a bigger scale/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/On a bigger scale/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/The joy of recognition/task-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/The joy of recognition/task-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Digit Recognition/lesson-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/course-remote-info.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Digit Recognition/task/src/recognition/Matrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/Backpropagation/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/Backpropagation/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/Layers/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/Layers/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/Learning time/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/Learning time/task-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/Learning time/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/Learning time/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/Neuron creator/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/Neuron creator/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/On a bigger scale/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/On a bigger scale/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/The joy of recognition/task-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/The joy of recognition/task-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/The joy of recognition/task-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/The joy of recognition/task-remote-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/lesson-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/lesson-info.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/build/reports/tests/test/classes/DigitRecognitionTest.html" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/build/reports/tests/test/classes/DigitRecognitionTest.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/build/reports/tests/test/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/build/reports/tests/test/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/build/reports/tests/test/packages/default-package.html" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/build/reports/tests/test/packages/default-package.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/build/test-results/test/TEST-DigitRecognitionTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/build/test-results/test/TEST-DigitRecognitionTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/build/test-results/test/binary/output.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/build/test-results/test/binary/output.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/build/test-results/test/binary/output.bin.idx" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/build/test-results/test/binary/output.bin.idx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/build/test-results/test/binary/results.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/build/test-results/test/binary/results.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/build/tmp/compileTestJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/build/tmp/compileTestJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/src/recognition/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/src/recognition/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Digit Recognition/task/test/DigitRecognitionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Digit Recognition/task/test/DigitRecognitionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-remote-info.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/course-remote-info.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +50,13 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../.." />

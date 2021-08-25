@@ -7,21 +7,46 @@ public class Main {
         // write your code here
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input grid:");
-        List<String> input = scanner.tokens()
+        List<Integer> input = scanner.tokens()
                 .flatMap(s -> Arrays.stream(s.split("")))
-                .limit(9)
+                .limit(15)
+                .map(s -> "X".equals(s) ? 1 : 0)
                 .collect(Collectors.toList());
 
-        int[] weights = {2, 1, 2, 4, -4, 4, 2, -1, 2, -5};
-        int result = 0;
+        int[][] weights = {
+                {1, 1, 1, 1, -1, 1, 1, -1, 1, 1, -1, 1, 1, 1, 1},
+                {-1, 1, -1, -1, 1, -1, -1, 1, -1, -1, 1, -1, -1, 1, -1},
+                {1, 1, 1, -1, -1, 1, 1, 1, 1, 1, -1, -1, 1, 1, 1},
+                {1, 1, 1, -1, -1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1},
+                {1, -1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, -1, -1, 1},
+                {1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, 1, 1, 1, 1},
+                {1, 1, 1, 1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, 1},
+                {1, 1, 1, -1, -1, 1, -1, -1, 1, -1, -1, 1, -1, -1, 1},
+                {1, 1, 1, 1, -1, 1, 1, 1, 1, 1, -1, 1, 1, 1, 1},
+                {1, 1, 1, 1, -1, 1, 1, 1, 1, -1, -1, 1, 1, 1, 1}};
 
-        for (int i = 0; i < input.size(); i++) {
-            if ("X".equals(input.get(i))) {
-                result += weights[i];
+        int[] biases = {-1, 6, 1, 0, 2, 0, -1, 3, -2, -1};
+
+        int[] output = new int[10];
+
+        for (int i = 0; i < output.length; i++) {
+            output[i] = 0;
+            for (int j = 0; j < weights[0].length; j++) {
+                output[i] += (input.get(j) * weights[i][j]);
+            }
+            output[i] += biases[i];
+        }
+
+        int biggestProbability = Integer.MIN_VALUE;
+        int number = Integer.MIN_VALUE;
+
+        for (int i = 0; i < output.length; i++) {
+            if (output[i] >= biggestProbability) {
+                biggestProbability = output[i];
+                number = i;
             }
         }
 
-        result += weights[weights.length - 1];
-        System.out.printf("This number is %d%n", result >=0 ? 0 : 1);
+        System.out.printf("This number is %d%n", number);
     }
 }

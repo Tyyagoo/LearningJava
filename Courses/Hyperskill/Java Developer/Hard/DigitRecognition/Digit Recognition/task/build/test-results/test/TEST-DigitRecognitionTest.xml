@@ -1,63 +1,187 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="DigitRecognitionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-25T16:17:45" hostname="LAPTOP-J1J60HSA" time="0.312">
+<testsuite name="DigitRecognitionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-08-25T17:30:44" hostname="LAPTOP-J1J60HSA" time="0.658">
   <properties/>
-  <testcase name="start" classname="DigitRecognitionTest" time="0.312"/>
+  <testcase name="start" classname="DigitRecognitionTest" time="0.658"/>
   <system-out><![CDATA[?[1;31m
 Start test 1?[0m
 Input grid:
 > _X_
 > _X_
 > XX_
+> XX_
+> _XX
 This number is 1
 ?[1;31m
 Start test 2?[0m
 Input grid:
-> _XX
-> X_X
+> XX_
+> __X
+> __X
+> X__
 > XXX
-This number is 0
+This number is 2
 ?[1;31m
 Start test 3?[0m
 Input grid:
-> _X_
-> _X_
-> X__
-This number is 1
+> XXX
+> X_X
+> __X
+> __X
+> __X
+This number is 7
 ?[1;31m
 Start test 4?[0m
 Input grid:
-> _X_
+> XXX
 > X_X
-> _X_
-This number is 0
+> XXX
+> __X
+> _XX
+This number is 9
 ?[1;31m
 Start test 5?[0m
 Input grid:
-> _X_
-> _X_
-> _X_
-This number is 1
+> XXX
+> X_X
+> X_X
+> X_X
+> _XX
+This number is 0
 ?[1;31m
 Start test 6?[0m
 Input grid:
 > XXX
+> __X
+> XXX
+> __X
+> _XX
+This number is 3
+?[1;31m
+Start test 7?[0m
+Input grid:
+> X_X
+> __X
+> XXX
+> __X
+> __X
+This number is 4
+?[1;31m
+Start test 8?[0m
+Input grid:
+> XXX
+> X__
+> XXX
+> __X
+> XX_
+This number is 5
+?[1;31m
+Start test 9?[0m
+Input grid:
+> XXX
+> X_X
+> XXX
+> X_X
+> XX_
+This number is 8
+?[1;31m
+Start test 10?[0m
+Input grid:
+> _XX
+> X__
+> XXX
+> X_X
+> XXX
+This number is 6
+?[1;31m
+Start test 11?[0m
+Input grid:
+> XXX
+> X_X
+> X_X
 > X_X
 > XXX
 This number is 0
 ?[1;31m
-Start test 7?[0m
+Start test 12?[0m
 Input grid:
-> _XX
-> X_X
-> XX_
-This number is 0
-?[1;31m
-Start test 8?[0m
-Input grid:
-> _XX
+> _X_
+> _X_
+> _X_
 > _X_
 > _X_
 This number is 1
+?[1;31m
+Start test 13?[0m
+Input grid:
+> XXX
+> __X
+> XXX
+> X__
+> XXX
+This number is 2
+?[1;31m
+Start test 14?[0m
+Input grid:
+> XXX
+> __X
+> XXX
+> __X
+> XXX
+This number is 3
+?[1;31m
+Start test 15?[0m
+Input grid:
+> X_X
+> X_X
+> XXX
+> __X
+> __X
+This number is 4
+?[1;31m
+Start test 16?[0m
+Input grid:
+> XXX
+> X__
+> XXX
+> __X
+> XXX
+This number is 5
+?[1;31m
+Start test 17?[0m
+Input grid:
+> XXX
+> X__
+> XXX
+> X_X
+> XXX
+This number is 6
+?[1;31m
+Start test 18?[0m
+Input grid:
+> XXX
+> __X
+> __X
+> __X
+> __X
+This number is 7
+?[1;31m
+Start test 19?[0m
+Input grid:
+> XXX
+> X_X
+> XXX
+> X_X
+> XXX
+This number is 8
+?[1;31m
+Start test 20?[0m
+Input grid:
+> XXX
+> X_X
+> XXX
+> __X
+> XXX
+This number is 9
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
