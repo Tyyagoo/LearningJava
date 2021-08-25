@@ -1,0 +1,73 @@
+<h2>Theory</h2>
+
+<p>As you've noticed in the previous stages, you probably have a pretty low prediction accuracy. This is because of the learning method, which is easy and straightforward. In this stage, you will implement a more advanced universal method called <strong>backpropagation</strong>.</p>
+
+<p>The backpropagation algorithm uses the idea of a gradient descent to train the neural network. You can check out <a target="_blank" href="http://www.youtube.com/watch?v=IHZwWFHWa-w" rel="noopener noreferrer nofollow">this video</a> about gradient descent and <a target="_blank" href="http://www.youtube.com/watch?v=Ilg3gGewQ5U" rel="noopener noreferrer nofollow">this video</a> about backpropagation to get started.</p>
+
+<p>The backpropagation method consists of 4 steps:</p>
+
+<ol>
+	<li>Calculate the value of the neuron in the forward direction.</li>
+	<li>Calculate the error of each neuron. In the formulas below, this error is presented as $ \delta_{(a_i)} ^n$ where $ a_i $ is the neuron in which we calculated this error, and n is the layer's number. If n is -1 it means that this is the last layer of the network (output layer).</li>
+	<li>Calculate the error of each weight. In the formulas below, this error is presented as $ \Delta w_{(a_i, a_j)} ^n$ where the weight points from the neuron $ a_i $ to the neuron $ a_j $ and the n in a generation number. This is pretty much the same as in the previous stages.</li>
+	<li>Process steps 1-3 for all of the data (or only part of it, so you don’t have to wait a couple of hours or even days) and then adjust all of the weights with the mean error. This is also similar to the previous stages.</li>
+</ol>
+
+<p>The core backpropagation technique lies in the second step of the steps above.</p>
+
+<p>Like the video says, you need to go from the end of the network layer by layer to its beginning. First, you need to calculate the errors in the last layer of the network. For this, you can use the formula below:</p>
+
+<p>$ \delta^{-1}_{(a_i)} = (a_i^{ideal} - a_i) * (1 - a_i) * a_i $</p>
+
+<p>$ a_i^{ideal} $ is the ideal value for this neuron. In can be one or zero, depending on the input number. So, like in the previous stages, the last layer should contain a single 1 and all others should contain 0 as the ideal values. $ a_i $ is the real value of this neuron.</p>
+
+<p>After calculating all of the errors in the last layer, let's calculate all of the errors in the previous layer using the following formula:</p>
+
+<p>$ \delta ^n_{(a_i)} = a_i * (1-a_i) * \sum\limits_{\delta_{(a_j)} \in \delta^{n+1}} \delta_{(a_j)} * w_{(a_i, a_j)}$</p>
+
+<p>If some of the symbols are unclear, here is a quick explanation: The error of the current layer depends on the error of the next layers. Basically, the second half of the equation says that you need to take all of the errors already calculated in the next layer (since we process errors from the end to the start they are already calculated) and multiply them to the corresponding weights from the current processing neuron to the neuron in the next layer with this error. The sum of this pairwise multiplication is the right part of the equation.</p>
+
+<p>Notice, that you don't need to calculate an error in the biases even though they are also considered to be neurons. This is because bias neurons always have 1 inside them. Following the same logic, you also don't need to calculate an error in the input neurons. They always have some input image.</p>
+
+<p>The next step is to calculate the error in the weights. For each weight use this formula below:</p>
+
+<p>$ \Delta w_{(a_i, a_j)} = \eta * a_i * \delta_{(a_j)}$</p>
+
+<p>Where $\eta$ is the learning rate coefficient. In this stage use value 0.8. Then multiply it to the value of the neuron that this weight comes from and also multiply it to the error of the neuron that this weight points to. Note that in one case there is just value of the neuron; in another case, there is an error calculated in the previous step. This is important.</p>
+
+<p>After calculating errors in all of the weights in all of the training examples you can calculate the weights for the new generation. Use the following formula (it is the same as in the previous stages).</p>
+
+<p>$ w_{(a_i, a_j)}^{n+1} = w_{(a_i, a_j)}^{n} + \Delta w_{(a_i, a_j)}^{mean} $</p>
+
+<h2>Description</h2>
+
+<p>In this stage, you should implement this algorithm instead of the Delta rule you were using in the previous stages.</p>
+
+<p>Try to actually rewrite the code so it allows you to choose which algorithm to use, delta rule or backpropagation. In this case, the solver should be a separate class that processes the neural network and updates all the weights to the next generation.</p>
+
+<h2>Example</h2>
+
+<pre><code class="java">
+1. Learn the network
+2. Guess all the numbers
+3. Guess number from text file
+Your choice: 1
+Enter the sizes of the layers: 784 16 16 10
+Enter the algorithm (delta, backprop): backprop
+Learning...
+Done! Saved to the file.
+1. Learn the network
+2. Guess all the numbers
+3. Guess number from text file
+Your choice: 2
+Guessing...
+The network prediction accuracy: 56731/70000, 81%
+1. Learn the network
+2. Guess all the numbers
+3. Guess number from text file
+Your choice: 3
+Enter filename: test1.txt
+This number is 6
+
+
+</code></pre>

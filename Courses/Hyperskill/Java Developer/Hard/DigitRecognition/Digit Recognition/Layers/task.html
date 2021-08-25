@@ -1,0 +1,48 @@
+<h2>Theory</h2>
+
+<p>In this stage, you will improve your neural network. It will contain not only input and output layers, but also hidden layers.</p>
+
+<p>The general representation of the multilayer neural network is shown in the picture below:</p>
+
+<p><img alt="" height="433" src="https://ucarecdn.com/6e56356f-4948-4666-ab09-6bec5ee8f15f/" width="594"></p>
+
+<p>As you can see, it has a lot of layers. The one to the left is the input layer, and the one to the right is the output layer, and everything else is called hidden layers. Every layer can have a different number of neurons in it. But in practice, all hidden layers often have the same number of neurons.</p>
+
+<p>Remember, that biases always have a value of 1 inside the neuron so there are no arrows to biases.</p>
+
+<p>This specific neural network has $ r $ layers. The first layer has $ x $ input neurons and one bias, the second layer has $ n $ neurons and one bias, the third layer has $ m $ neurons and one bias, the pre-last layer has $ k $ neurons and one bias and the last layer has $ p $ output neurons.</p>
+
+<h2>Description</h2>
+
+<p>In this stage, you need to create such functionality that allows you to create neural networks with hidden layers and the ability to learn from a set of input data and the corresponding ideal output. The neural network should learn from 10 samples with 10 corresponding ideal outputs. Remember that ideal output is a set of numbers where there's just a single 1 and all others are zeros.</p>
+
+<p>One thing that hasn't been discussed before is how to update weights in the middle when there is no ideal value for the neurons in the middle. You already know how to update weights from the next-to-last layer to the last layer since the last layer contains the ideal values for the neurons.</p>
+
+<p>You can start from the end and define the ideal values for the neurons in the next-to-last layer. Just compute the value of the neuron in reverse order (from the last layer to the next-to-last one) using the same weights, but you should not multiply the value. You should divide the value of the output neuron to the corresponding weight. The ideal value of the neuron would be the mean of all the 10 input data, like in calculating $ \Delta w $ in the previous stage. Please do not rely on the number 10; it should be subject to change without rewriting the code. After that, you can repeat this process for the next-to-last layer and the layer before that, and so on to the input layer of the neural network. Then, you can update all the weights since all the neurons have the ideal value.</p>
+
+<p>Small tip: break down the logic into separate classes and methods, then the problem becomes much easier to program.</p>
+
+<p>By the way, the best way of storing weights, biases, and values of the neurons is by using matrices and calculating with matrix multiplication. You can check this <a target="_blank" href="https://en.wikipedia.org/wiki/Matrix_multiplication" rel="nofollow noopener noreferrer">link</a> to understand it better and <a target="_blank" href="https://www.youtube.com/watch?v=aircAruvnKk" rel="nofollow noopener noreferrer">watch this</a> to understand how to implement it in a neural network (this is the same video about neural networks). Since this project is not about matrix multiplication, you can use <a target="_blank" href="http://www.java67.com/2016/10/how-to-multiply-two-matrices-in-java.html" rel="noopener noreferrer nofollow">this implementation</a> in your program.</p>
+
+<p>Additionally, to get started with vectors and matrices, you can check out <a target="_blank" href="http://www.youtube.com/watch?v=fNk_zzaMoSs&amp;list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab" rel="noopener noreferrer nofollow">this series of videos</a>. You only need the first 4 videos. The other videos dig deeper into linear algebra instead of vectors and matrices.</p>
+
+<p>Tests of this stage only check for guessing numbers, not learning so you need to make sure the network is loading correctly at the start of the program. This means tests never check option 1 from the output examples below.</p>
+
+<h2>Example</h2>
+
+<pre><code class="java">1. Learn the network
+2. Guess a number
+Your choice: 1
+Enter the sizes of the layers: 15 12 12 10
+Learning...
+Done! Saved to the file.
+1. Learn the network
+2. Guess a number
+Your choice: 2
+Input grid:
+XX_
+__X
+_XX
+X__
+XXX
+This number is 2</code></pre>

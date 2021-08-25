@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/DigitRecognition.iml" filepath="$PROJECT_DIR$/.idea/modules/DigitRecognition.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Digit Recognition/task/DigitRecognition.Digit_Recognition-task.iml" filepath="$PROJECT_DIR$/.idea/modules/Digit Recognition/task/DigitRecognition.Digit_Recognition-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Digit Recognition/task/DigitRecognition.Digit_Recognition-task.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Digit Recognition/task/DigitRecognition.Digit_Recognition-task.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Digit Recognition/task/DigitRecognition.Digit_Recognition-task.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Digit Recognition/task/DigitRecognition.Digit_Recognition-task.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/DigitRecognition.util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/DigitRecognition.util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/DigitRecognition.util.main.iml" filepath="$PROJECT_DIR$/.idea/modules/util/DigitRecognition.util.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/DigitRecognition.util.test.iml" filepath="$PROJECT_DIR$/.idea/modules/util/DigitRecognition.util.test.iml" />
+    </modules>
+  </component>
+</project>

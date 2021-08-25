@@ -1,0 +1,74 @@
+<h2>Theory</h2>
+
+<p>Let's try to recognize more different numbers—all of them, from 0 to 9. For this, we need to increase the grid from 3x3 to 5x3, the absolute minimum to write all the numbers.</p>
+
+<p>First, check out <a target="_blank" href="https://www.youtube.com/watch?v=aircAruvnKk" rel="nofollow noopener noreferrer">this great video</a> about this topic. It covers a lot more than you need in this stage and will be recommended in the next stages, too. You don't need to remember everything from this video.</p>
+
+<p>Numbers should look like this:</p>
+
+<p><img alt="" height="269" src="https://ucarecdn.com/38618c71-71bc-4b6e-a6a1-280233b03733/" width="441"></p>
+
+<p>Also, the output no longer can be binary (either less or greater than zero). But can we do the following: if the sum is less than zero then the result should be considered as zero, if the sum is between zero and one then the output value should be considered as one, ... , if the sum is greater than 8 then the output value should be considered as 9? This solution is bad for two reasons:</p>
+
+<ol>
+	<li>The distribution of the output numbers is uneven. Most of the number line is dedicated to only two numbers: 0 and 9. Generally, it is impossible to divide one number line into 9 even parts. (It is possible if the part from -1 to 10 repeats forever, but this would be a total mess.)</li>
+	<li>In our case, some numbers appear in the number line close to each other but look very different. For example, 7 and 8, as well as 1 and 2, are very different but there’s just a single unit between them in the output number line,. There is another situation in which some similar numbers lie far from each other. For example, 6 and 8 which differ, in only 1 cell. Generally, it is impossible to rearrange them in a way that everything similar is near each other and everything dissimilar is far from each other.</li>
+</ol>
+
+<p>The solution for this is multiple output neurons. The best way of doing it would be a single output neuron per each possible output value. In our case, that would be 10 output neurons.</p>
+
+<p>Every input neuron should be connected to every output neuron like in the picture below:</p>
+
+<p><img alt="" height="493" src="https://ucarecdn.com/811bc287-2874-4720-b214-3fcea852cc23/" width="464"></p>
+
+<p> </p>
+
+<p>As you can see, there are a lot of lines, representing weights. In fact, there should be exactly 16 * 10 = 160 weights total. Also, you may notice the numbers 1 and 2 on the top of the neuron. This is not exponentiation, but a special mark to indicate the layer number. The layer is a vertical line of neurons. This network above has two layers, but in the next stage, we consider a network with more than two layers. So, if you see this notation in the formulas: $ a^2_6 $ you can say that this is a neuron from the second layer and it is 6th from the top.</p>
+
+<h2>Description</h2>
+
+<p>In this stage, you should write such a network with two layers. The weights are defined in a pretty simple way: 1 for a blue and -1 for a white. For the first output neuron, you should set 15 weights for the number 1, for the second output neuron you should set another 15 weights for the number 2 etc and the last output neuron should recognize the number 0. In the end, you should choose the maximum out of all output neurons and it will be the result of the recognition.</p>
+
+<p>Now take note that the best result of the recognition of the number 1 is 5, but the result of the recognition of the number 8 is 13 since the number 1 has 5 blue points and the number 8 has 13 blue points. To equalize all the numbers you need a bias. It should be:</p>
+
+<ol>
+	<li>6 for 1</li>
+	<li>0 for 3, 5</li>
+	<li>1 for 2</li>
+	<li>2 for 4</li>
+	<li>3 for 7</li>
+	<li>-2 for 8</li>
+	<li>-1 for 6, 9, 0</li>
+</ol>
+
+<h2>Examples</h2>
+
+<pre><code class="java">Input grid:
+_X_
+_X_
+XX_
+XX_
+_XX
+This number is 1</code></pre>
+
+<p> </p>
+
+<pre><code class="java">Input grid:
+XX_
+__X
+__X
+X__
+XXX
+This number is 2
+</code></pre>
+
+<p> </p>
+
+<pre><code class="java">Input grid:
+XXX
+X_X
+__X
+__X
+__X
+This number is 7
+</code></pre>

@@ -1,0 +1,58 @@
+<h2>Description</h2>
+
+<p>In this stage, you should upgrade your neural network to work not with 5x3 black-white images, but with real handwritten images of numbers from 0 to 9.</p>
+
+<p>To continue the project, you can download <a target="_blank" href="http://www.dropbox.com/s/q241dampcp3g67f/data.zip?dl=1" rel="noopener noreferrer nofollow">this zip-archive</a> with 70000 images (that's a lot). The dataset contains 7000 samples of every number. Each sample contains the 28x28 image where each pixel contain a gray value from 0 to 255 (where 0 is white and 255 is black). Every image is converted to the text file so you can straight import it into your program as a layer of input neurons. This is the MNIST database, and it is widely known and commonly used for training various image processing systems.</p>
+
+<p>Wikipedia page on MNIST: <a target="_blank" href="https://en.wikipedia.org/wiki/MNIST_database" rel="nofollow noopener noreferrer">https://en.wikipedia.org/wiki/MNIST_database</a><br>
+Official MNIST page: <a target="_blank" href="http://yann.lecun.com/exdb/mnist/" rel="nofollow noopener noreferrer">http://yann.lecun.com/exdb/mnist/</a></p>
+
+<p><div class="alert alert-warning">Please, do not keep the downloaded files inside your project directory because the server can reject large files and you will see the message <strong>"Failed to post submission to the Hyperskill"</strong>.</div></p>
+
+<p>The images of this database look like this:</p>
+
+<p><img alt="" src="https://ucarecdn.com/dba2d266-b5ba-4c82-9c64-6181f233d5a5/"></p>
+
+<p>And the converted image from the zip-archive looks like this (you can open it using a text editor).</p>
+
+<p><img alt="" height="345" src="https://ucarecdn.com/dded4b18-0a5e-4c33-b837-7529fae55483/" width="574"></p>
+
+<p>As you can see, it represents an image with 28x28 pixels, and each pixel has a value from 0 to 255. Notice that the very last line contains the answer — what this number actually is—so you can train your neural network with this database.</p>
+
+<p>Remember to divide all the values to 255 to have the input be from 0 to 1, as in the previous stages, but unlike the previous stages, this time you will also have the values in the middle, not just 0 and 1.</p>
+
+<p>So, the input layer should contain 28x28 = 784 neurons plus a bias.</p>
+
+<p>Unlike in the previous stage where you trained a neural network only on 10 numbers, in this stage, you should train a neural network with many more samples. The only restriction is that the training dataset should contain the same number of every digit. After that, you can test your neural network with other images of this dataset and calculate the accuracy of the predictions of the numbers given by the neural network.</p>
+
+<p>You can check out <a target="_blank" href="http://www.youtube.com/watch?v=aircAruvnKk" rel="noopener noreferrer nofollow">this video</a> a fourth time and take into account that this is also about handwritten digits in the same MNIST dataset.</p>
+
+<p>You can also check out <a target="_blank" href="http://www.youtube.com/watch?v=IHZwWFHWa-w" rel="noopener noreferrer nofollow">this next video</a> in the series. The start of the video explains the database and learning you need to implement in this stage. The rest of the video goes with the next stage.</p>
+
+<p>Tests of this stage only check for guessing numbers, not learning so you need to make sure the network is loading correctly at the start of the program. Tests never check option 1 and 2 from the output example below.</p>
+
+<h2>Example</h2>
+
+<pre><code class="java">
+1. Learn the network
+2. Guess all the numbers
+3. Guess number from text file
+Your choice: 1
+Enter the sizes of the layers: 784 16 16 10
+Learning...
+Done! Saved to the file.
+1. Learn the network
+2. Guess all the numbers
+3. Guess number from text file
+Your choice: 2
+Guessing...
+The network prediction accuracy: 56731/70000, 81%
+1. Learn the network
+2. Guess all the numbers
+3. Guess number from text file
+Your choice: 3
+Enter filename: test1.txt
+This number is 6
+
+
+</code></pre>

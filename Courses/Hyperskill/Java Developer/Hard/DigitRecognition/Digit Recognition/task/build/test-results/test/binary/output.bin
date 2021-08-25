@@ -1,0 +1,56 @@
+[1;31m
+Start test 1[0m
+Input grid:
+> _X_
+> _X_
+> XX_
+This number is 1
+[1;31m
+Start test 2[0m
+Input grid:
+> _XX
+> X_X
+> XXX
+This number is 0
+[1;31m
+Start test 3[0m
+Input grid:
+> _X_
+> _X_
+> X__
+This number is 1
+[1;31m
+Start test 4[0m
+Input grid:
+> _X_
+> X_X
+> _X_
+This number is 0
+[1;31m
+Start test 5[0m
+Input grid:
+> _X_
+> _X_
+> _X_
+This number is 1
+[1;31m
+Start test 6[0m
+Input grid:
+> XXX
+> X_X
+> XXX
+This number is 0
+[1;31m
+Start test 7[0m
+Input grid:
+> _XX
+> X_X
+> XX_
+This number is 0
+[1;31m
+Start test 8[0m
+Input grid:
+> _XX
+> _X_
+> _X_
+This number is 1

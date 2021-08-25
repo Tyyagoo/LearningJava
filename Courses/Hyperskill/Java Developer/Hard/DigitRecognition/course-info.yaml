@@ -1,0 +1,14 @@
+type: hyperskill
+title: Digit Recognition
+language: English
+summary: 'Neural networks: what a trend nowadays! It might seem like a kind of magic,
+  but upon completing this project, you’ll see that you are already competent enough
+  to build your own neural network. Your network will be able to recognize numeric
+  data, allowing you to digitize checks and even figure out some captchas. If you
+  aren’t too intimidated by words like “sigmoid” or “backpropagation”, click select
+  and let’s get started!<br/><br/>Learn more at <a href="https://hyperskill.org/projects/51?utm_source=ide&utm_medium=ide&utm_campaign=ide&utm_content=project-card">https://hyperskill.org/projects/51</a>'
+programming_language: Java
+programming_language_version: 11
+content:
+- Digit Recognition
+mode: Study
