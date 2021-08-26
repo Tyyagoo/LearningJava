@@ -392,6 +392,18 @@ files:
         }
     }
   learner_created: true
+- name: src/recognition/NeuralNetwork.java
+  visible: true
+  learner_created: true
+- name: src/recognition/Menu.java
+  visible: true
+  learner_created: true
+- name: src/recognition/LearningData.java
+  visible: true
+  learner_created: true
+- name: src/recognition/Command.java
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/51/stages/279/implement#comment
 status: Unchecked
 record: -1
